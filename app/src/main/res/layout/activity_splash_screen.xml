@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context=".SplashScreen">
+
+    <!--<LinearLayout
+        android:id="@+id/logo_layout"
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/logo_s"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/s"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/logo_v"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/v"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/logo_a"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/a"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/logo_k"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/k"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/logo_a1"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/a"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/logo_t"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/t"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/logo_h"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/h"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/logo_a2"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/a"
+            android:layout_weight="1"/>
+
+    </LinearLayout>-->
+
+    <ImageView
+        android:id="@+id/logo_first"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_34sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.50"
+        app:srcCompat="@drawable/svak" />
+
+    <!--<ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.50"
+        app:srcCompat="@drawable/svakathalogo" />-->
+
+    <ImageView
+        android:id="@+id/logo_last"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_125sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/logo_first"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/atha" />
+
+    <TextView
+        android:id="@+id/splash2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/segoe"
+        android:letterSpacing="0.2"
+        android:text="Let's Design Together"
+        android:textSize="@dimen/_16ssp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_first" />
+
+    <TextView
+        android:id="@+id/splash3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:fontFamily="@font/segoe_semibold"
+        android:text="Your Personal Fashion Assistance"
+        android:textSize="@dimen/_16ssp"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
