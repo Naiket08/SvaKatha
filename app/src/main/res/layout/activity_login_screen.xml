@@ -1,9 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".LoginScreen">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageViewLoginHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_152sdp"
+        android:background="@drawable/heaaderrectangleloginscreen"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_minus20sdp"/>
+
+    <TextView
+        android:id="@+id/textViewLoginWelcome"
+        android:layout_width="@dimen/_134sdp"
+        android:layout_height="@dimen/_27sdp"
+        android:fontFamily="@font/arial"
+        android:text="@string/welcome_to"
+        android:textColor="#000"
+        android:textSize="@dimen/_24ssp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+    
+    <TextView
+        android:id="@+id/textViewLoginSvakatha"
+        android:layout_width="@dimen/_204sdp"
+        android:layout_height="@dimen/_42sdp"
+        android:text="@string/svakatha"
+        android:textColor="#000"
+        android:textSize="@dimen/_36ssp"
+        android:fontFamily="@font/arial"
+        android:layout_below="@+id/textViewLoginWelcome"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+    
+    <EditText
+        android:id="@+id/editTextLoginEmailId"
+        android:layout_width="@dimen/_246sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:hint="Email ID"
+        android:textColorHint="#707070"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        android:inputType="textEmailAddress"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:background="@drawable/borderedittext"
+        android:layout_centerInParent="true"
+        android:imeOptions="actionDone"/>
+
+    <EditText
+        android:id="@+id/editTextLoginPassword"
+        android:layout_width="@dimen/_246sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:hint="Password"
+        android:textColorHint="#707070"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        android:inputType="textPassword"
+        android:fontFamily="@font/arial"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:background="@drawable/borderedittext"
+        android:layout_below="@+id/editTextLoginEmailId"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/buttonLogin_login"
+        android:layout_width="@dimen/_115sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:text="Login"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:background="@drawable/buttonbackgroundlogin"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editTextLoginPassword"/>
+
+    <ImageView
+        android:id="@+id/imageViewLoginDividor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/divider"
+        android:layout_below="@+id/buttonLogin_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_23sdp"/>
+
+    <TextView
+        android:id="@+id/textViewLoginSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textColor="#000"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/arial"
+        android:layout_below="@+id/imageViewLoginDividor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
+
+</RelativeLayout>

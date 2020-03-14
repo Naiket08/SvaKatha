@@ -1,9 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupScreen">
+    android:background="#FFFFFF"
+    tools:context=".LoginScreen">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageViewSignUpHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_152sdp"
+        android:background="@drawable/heaaderrectangleloginscreen"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_minus20sdp"/>
+
+    <TextView
+        android:id="@+id/textViewSignUpWelcome"
+        android:layout_width="@dimen/_134sdp"
+        android:layout_height="@dimen/_27sdp"
+        android:fontFamily="@font/arial"
+        android:text="@string/welcome_to"
+        android:textColor="#000"
+        android:textSize="@dimen/_24ssp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+
+    <TextView
+        android:id="@+id/textViewSignUpSvakatha"
+        android:layout_width="@dimen/_204sdp"
+        android:layout_height="@dimen/_42sdp"
+        android:text="@string/svakatha"
+        android:textColor="#000"
+        android:textSize="@dimen/_36ssp"
+        android:fontFamily="@font/arial"
+        android:layout_below="@+id/textViewSignUpWelcome"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        app:hintTextColor="#000"
+        android:layout_below="@+id/imageViewSignUpHeader"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_centerHorizontal="true"
+        app:endIconMode="clear_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="@dimen/_246sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:inputType="textPersonName"
+            android:textColor="#000"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+</RelativeLayout>
