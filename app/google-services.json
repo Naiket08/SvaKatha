@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "671381143613",
+    "firebase_url": "https://svakatha-af104.firebaseio.com",
+    "project_id": "svakatha-af104",
+    "storage_bucket": "svakatha-af104.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671381143613:android:f9037e927e17930e32ea54",
+        "android_client_info": {
+          "package_name": "com.example.svakatha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671381143613-6m3gapgijjike9injcu2e3lcj839hoap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.svakatha",
+            "certificate_hash": "a81682694a521a6df3c7dd0f0f3931b87cc7376b"
+          }
+        },
+        {
+          "client_id": "671381143613-0lnsa0a61t1570gos1hk4n24tkin0vh6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.svakatha",
+            "certificate_hash": "70343d9b581dead90bee5b37d5ca5974b709a034"
+          }
+        },
+        {
+          "client_id": "671381143613-20e2viqncqq076880kk5umqvgcb0tiek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBylHps5MUAFQGg-AKtKQLE-if3uLImWuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671381143613-51c6gsivvmjo92f4tusqh7tfkls96aea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
