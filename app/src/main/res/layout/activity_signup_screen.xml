@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".LoginScreen">
+    tools:context=".SignupScreen">
 
     <ImageView
         android:id="@+id/imageViewSignUpHeader"
@@ -45,17 +45,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Username"
-        app:hintTextColor="#000"
         android:layout_below="@+id/imageViewSignUpHeader"
-        android:layout_marginTop="@dimen/_20sdp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
         app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="@dimen/_246sdp"
             android:layout_height="@dimen/_32sdp"
             android:inputType="textPersonName"
-            android:textColor="#000"/>
+            android:textSize="@dimen/_12ssp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 </RelativeLayout>

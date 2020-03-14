@@ -3,4 +3,6 @@
     <string name="svakatha"><b>SVAKATHA</b></string>
     <string name="welcome_to"><b>Welcome to</b></string>
     <string name="textfield_label">Confirm</string>
+    <string name="hi_rohan"><b>Hi Rohan</b></string>
+    <string name="occupation"><b>Occupation</b></string>
 </resources>
