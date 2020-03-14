@@ -61,6 +61,7 @@
         android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_8sdp"
         android:layout_below="@+id/imageViewDetailsScreenHeader"
+        android:background="@drawable/progress"
         android:layout_marginTop="@dimen/_34sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"/>
