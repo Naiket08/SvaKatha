@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/textViewDetailsScreenGreet"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_115sdp"
         android:layout_height="@dimen/_30sdp"
         android:fontFamily="@font/arial"
         android:text="@string/hi_rohan"
@@ -26,8 +26,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_23sdp"
-        android:layout_marginEnd="@dimen/_20sdp"/>
+        android:layout_marginStart="@dimen/_23sdp"/>
 
     <TextView
         android:id="@+id/textViewDetailsScreenText2"
@@ -42,7 +41,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginStart="@dimen/_23sdp"/>
-    
+
     <TextView
         android:id="@+id/textViewDetailsScreenText3"
         android:layout_width="@dimen/_242sdp"
@@ -61,7 +60,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_8sdp"
-        android:progress="10"
+        android:progress="30"
         android:max="100"
         android:scaleY="2"
         android:progressTint="@color/progess"
@@ -73,20 +72,22 @@
 
     <TextView
         android:id="@+id/textViewDetailsScreenOccupation"
-        android:layout_width="@dimen/_105sdp"
-        android:layout_height="@dimen/_22sdp"
-        android:text="@string/occupation"
-        android:textColor="#000"
-        android:textSize="@dimen/_17ssp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/progressBarDetailsScreen"
-        android:layout_marginTop="@dimen/_80sdp"
-        android:layout_marginStart="@dimen/_20sdp"/>
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="103dp"
+        android:fontFamily="@font/arial"
+        android:text="@string/style"
+        android:textColor="#000"
+        android:textSize="@dimen/_17ssp" />
 
     <EditText
-        android:id="@+id/editTextDetailsScreenStyle"
+        android:id="@+id/editTextDetailsScreenStyle_3"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_45sdp"
-        android:hint="Fashion Designer"
+        android:hint="Style"
+        android:textSize="18dp"
         android:textColorHint="#707070"
         android:textColor="#000"
         android:inputType="textPersonName"
@@ -97,11 +98,11 @@
         android:layout_marginStart="@dimen/_20sdp"/>
 
     <ImageButton
-        android:id="@+id/imageButtonDetailsScreenForward"
+        android:id="@+id/imageButtonDetailsScreenForward_3"
         android:layout_width="@dimen/_26sdp"
         android:layout_height="@dimen/_26sdp"
         android:background="#FFFFFF"
-        app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="@dimen/_30sdp"
@@ -109,3 +110,4 @@
 
 
 </RelativeLayout>
+
