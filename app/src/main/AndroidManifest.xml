@@ -9,20 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".Part_two"></activity>
-        <activity android:name=".Parttwo.PartTwo" />
-        <activity android:name=".Business" />
-        <activity android:name=".Style" />
-        <activity android:name=".Price" />
-=======
         <activity android:name=".Business"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".Style"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".Price"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
->>>>>>> parent of bdde6fc... Revert "nadeem ke liye"
         <activity
             android:name=".DetailsScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
