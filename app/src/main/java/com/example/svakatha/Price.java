@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.media.Image;
+import android.media.ImageReader;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,40 +17,49 @@ import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.w3c.dom.Text;
+
 public class Price extends AppCompatActivity {
-    private ImageButton imgb1 =(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_1);
 
-
-    TextView textViewDetailsScreenGreet, textViewDetailsScreenText2, textViewDetailsScreenText3, textViewDetailsScreenOccupation;
-    private ImageView imageViewDetailsScreenHeader;
-    private EditText editTextDetailsScreenStyle;
-    private ImageButton imageButtonDetailsScreenForward;
-    private ProgressBar progressBarDetailsScreen;
-    private SeekBar seekBar4;
+    private ImageView imageViewDetailScreenHeader;
+    private TextView textViewDetailsScreenGreet1,textViewDetailsScreenTextTwo2_1,getTextViewDetailsScreenTextTwo3_1,textViewDetailsScreenOccupation,textViewPriceOne,textViewPriceTwo;
+    private ProgressBar  progressBarDetailsScreen;
+    private SeekBar seekBarPriceRange ;
+    private ImageButton imageButtonDetailsScreenForward_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_price);
 
-        textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
-        textViewDetailsScreenText2 = (TextView) findViewById(R.id.textViewDetailsScreenText2);
-        textViewDetailsScreenText3 = (TextView) findViewById(R.id.textViewDetailsScreenText3);
-        textViewDetailsScreenOccupation = (TextView) findViewById(R.id.textViewDetailsScreenOccupation);
+        //casting of textView
+        textViewDetailsScreenGreet1=(TextView)findViewById(R.id.textViewDetailsScreenGreet1);
+        textViewDetailsScreenTextTwo2_1=(TextView)findViewById(R.id.textViewDetailsScreenText2_1);
+        getTextViewDetailsScreenTextTwo3_1=(TextView)findViewById(R.id.textViewDetailsScreenText3_1);
+        textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
+        textViewPriceOne=(TextView)findViewById(R.id.textViewPriceOne);
+        textViewPriceTwo=(TextView)findViewById(R.id.textViewPriceTwo);
 
-        imageButtonDetailsScreenForward = (ImageButton) findViewById(R.id.imageButtonDetailsScreenForward);
+        //casting of ImageView
+        imageViewDetailScreenHeader=(ImageView)findViewById(R.id.imageViewDetailsScreenHeader);
 
-        editTextDetailsScreenStyle = (EditText) findViewById(R.id.editTextDetailsScreenStyle);
+        //casting of progressbar
+        progressBarDetailsScreen=(ProgressBar)findViewById(R.id.progressBarDetailsScreen);
 
-        imageViewDetailsScreenHeader = (ImageView) findViewById(R.id.imageViewDetailsScreenHeader);
 
-        progressBarDetailsScreen = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
+        //casting of SeekBar
+        seekBarPriceRange=(SeekBar)findViewById(R.id.seekBarPriceRange);
 
-        imgb1.setOnClickListener(new View.OnClickListener() {
+        //casting of iamgebutton
+        imageButtonDetailsScreenForward_1=(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_1);
+
+        imageButtonDetailsScreenForward_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),Style.class));
             }
         });
+
+
     }
 }

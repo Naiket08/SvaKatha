@@ -39,7 +39,6 @@ public class DetailsScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_screen);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
         textViewDetailsScreenText2 = (TextView) findViewById(R.id.textViewDetailsScreenText2);
@@ -53,18 +52,7 @@ public class DetailsScreen extends AppCompatActivity {
         imageViewDetailsScreenHeader = (ImageView) findViewById(R.id.imageViewDetailsScreenHeader);
 
         progressBarDetailsScreen = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
-/*
 
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-*/
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,50 +62,5 @@ public class DetailsScreen extends AppCompatActivity {
         });
 
     }
-/*
-    @Override
-    protected void onStart() {
-        super.onStart();
-        OptionalPendingResult<GoogleSignInResult> opr= Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-        if(opr.isDone()){
-            GoogleSignInResult result=opr.get();
-            handleSignInResult(result);
-        }else{
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
-    private void handleSignInResult (GoogleSignInResult result){
-        if (result.isSuccess()) {
-            GoogleSignInAccount account = result.getSignInAccount();
-            textViewDetailsScreenGreet.setText(account.getDisplayName());
-            //userEmail.setText(account.getEmail());
-            //userId.setText(account.getId());
-            /*try {
-                Glide.with(this).load(account.getPhotoUrl()).into(profileImage);
-            } catch (NullPointerException e) {
-                Toast.makeText(getApplicationContext(), "image not found", Toast.LENGTH_LONG).show();
-            }*/
 
-/*
-
-        } else {
-            gotoMainActivity();
-        }
-    }
-    private void gotoMainActivity(){
-        Intent intent=new Intent(this,SignupScreen.class);
-        startActivity(intent);
-    }
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-}
-
- */
 }
