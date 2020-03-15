@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Business"></activity>
-        <activity android:name=".Style" />
-        <activity android:name=".Price" />
+        <activity android:name=".Business"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Style"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Price"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".DetailsScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
