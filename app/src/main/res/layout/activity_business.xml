@@ -60,10 +60,6 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_8sdp"
-        android:progress="35"
-        android:max="100"
-        android:scaleY="2"
-        android:progressTint="@color/progess"
         android:layout_below="@+id/imageViewDetailsScreenHeader"
         android:background="@drawable/progress"
         android:layout_marginTop="@dimen/_34sdp"
@@ -77,8 +73,8 @@
         android:layout_below="@+id/progressBarDetailsScreen"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="103dp"
-        android:fontFamily="@font/arial"
-        android:text="@string/business"
+        android:text="What occasion you mostly
+dress for?"
         android:textColor="#000"
         android:textSize="@dimen/_17ssp" />
 
