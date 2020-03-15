@@ -11,4 +11,8 @@ spend on clothing?</b></string>
     <string name="business"><b>What occasion you mostly
 dress for?</b></string>
     <string name="skinTone"><b>Skin Tone?</b></string>
+
+    <string name="facebook_app_id">610430299509221</string>
+    <string name="fb_login_protocol_scheme">fb610430299509221</string>
+
 </resources>
