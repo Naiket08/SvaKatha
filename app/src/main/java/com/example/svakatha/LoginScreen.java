@@ -1,5 +1,6 @@
 package com.example.svakatha;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import org.w3c.dom.Text;
 
 public class LoginScreen extends AppCompatActivity {
@@ -21,6 +29,7 @@ public class LoginScreen extends AppCompatActivity {
     EditText editTextLoginEmail,editTextLoginPassword;
     Button buttonLogin_login;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +37,7 @@ public class LoginScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         imageViewLoginHeader = (ImageView)findViewById(R.id.imageViewLoginHeader);
-        imageViewLoginDivider = (ImageView)findViewById(R.id.imageViewLoginDivider);
+        imageViewLoginDivider = (ImageView)findViewById(R.id.imageViewLoginDividor);
         textViewLoginWelcome = (TextView)findViewById(R.id.textViewLoginWelcome);
         textViewLoginSvakatha = (TextView)findViewById(R.id.textViewLoginSvakatha);
         textViewLoginSignUp = (TextView)findViewById(R.id.textViewLoginSignUp);
@@ -71,5 +80,8 @@ public class LoginScreen extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
+
     }
+
+
 }
