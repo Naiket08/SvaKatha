@@ -87,6 +87,7 @@
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_45sdp"
         android:hint="Business"
+        android:textColorHint="#707070"
         android:textSize="18dp"
         android:textColor="#000"
         android:inputType="textPersonName"

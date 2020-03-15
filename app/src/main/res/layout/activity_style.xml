@@ -88,6 +88,7 @@
         android:layout_height="@dimen/_45sdp"
         android:hint="Style"
         android:textSize="18dp"
+        android:textColorHint="#707070"
         android:textColor="#000"
         android:inputType="textPersonName"
         android:background="@drawable/styleedittextborder"
