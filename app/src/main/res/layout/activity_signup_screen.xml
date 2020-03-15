@@ -41,20 +41,100 @@
         android:layout_marginTop="19dp"
         android:layout_marginStart="@dimen/_23sdp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/editTextSignUpUsername"
+        android:layout_width="@dimen/_246sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:hint="Username"
+        android:textColorHint="#707070"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        android:inputType="textPersonName"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:background="@drawable/borderedittext"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_220sdp"/>
+
+    <EditText
+        android:id="@+id/editTextSignUpEmailId"
+        android:layout_width="@dimen/_246sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:hint="Email ID"
+        android:textColorHint="#707070"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        android:inputType="textEmailAddress"
+        android:fontFamily="@font/arial"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:background="@drawable/borderedittext"
+        android:layout_below="@+id/editTextSignUpUsername"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/editTextSignUpPassword"
+        android:layout_width="@dimen/_246sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:hint="Password"
+        android:textColorHint="#707070"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        android:inputType="textPassword"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:background="@drawable/borderedittext"
+        android:layout_below="@+id/editTextSignUpEmailId"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_16sdp"/>
+
+    <EditText
+        android:id="@+id/editTextSignUpConfirmPassword"
+        android:layout_width="@dimen/_246sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:hint="Confirm Password"
+        android:textColorHint="#707070"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="#000"
+        android:textCursorDrawable="@null"
+        android:inputType="textPassword"
+        android:fontFamily="@font/arial"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:background="@drawable/borderedittext"
+        android:layout_below="@+id/editTextSignUpPassword"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/buttonSignUp_LetsStart"
+        android:layout_width="@dimen/_115sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:text="Let's Start"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:background="@drawable/buttonbackgroundlogin"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editTextSignUpConfirmPassword"/>
+
+    <ImageView
+        android:id="@+id/imageViewSignUpDivider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Username"
-        android:layout_below="@+id/imageViewSignUpHeader"
+        android:background="@drawable/divider"
+        android:layout_below="@+id/buttonSignUp_LetsStart"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:endIconMode="clear_text">
+        android:layout_marginTop="@dimen/_23sdp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="@dimen/_246sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:inputType="textPersonName"
-            android:textSize="@dimen/_12ssp"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
 </RelativeLayout>

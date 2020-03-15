@@ -28,7 +28,7 @@ public class LoginScreen extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         imageViewLoginHeader = (ImageView)findViewById(R.id.imageViewLoginHeader);
-        imageViewLoginDivider = (ImageView)findViewById(R.id.imageViewLoginDividor);
+        imageViewLoginDivider = (ImageView)findViewById(R.id.imageViewLoginDivider);
         textViewLoginWelcome = (TextView)findViewById(R.id.textViewLoginWelcome);
         textViewLoginSvakatha = (TextView)findViewById(R.id.textViewLoginSvakatha);
         textViewLoginSignUp = (TextView)findViewById(R.id.textViewLoginSignUp);
