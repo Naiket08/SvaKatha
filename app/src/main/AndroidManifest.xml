@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Business"></activity>
+        <activity android:name=".Part_two"></activity>
+        <activity android:name=".Parttwo.PartTwo" />
+        <activity android:name=".Business" />
         <activity android:name=".Style" />
         <activity android:name=".Price" />
         <activity
