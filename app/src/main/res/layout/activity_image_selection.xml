@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".DetailsScreen">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewImageSelection"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_245sdp"
+                android:background="@drawable/heaaderrectangleloginscreen"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_minus20sdp"/>
+
+            <TextView
+                android:id="@+id/textViewImageSelection"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:fontFamily="@font/arial"
+                android:text="@string/hi_rohan"
+                android:textColor="#000"
+                android:textSize="@dimen/_27ssp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_23sdp"
+                android:layout_marginEnd="@dimen/_20sdp"/>
+
+            <TextView
+                android:id="@+id/textViewImageSelection_2"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:text="Let's start by knowing\nmore about you.."
+                android:textColor="#000"
+                android:lineSpacingExtra="@dimen/_7sdp"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/arial"
+                android:layout_below="@+id/textViewImageSelection"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_23sdp"/>
+
+            <TextView
+                android:id="@+id/textViewImageSelection_3"
+                android:layout_width="@dimen/_242sdp"
+                android:layout_height="@dimen/_49sdp"
+                android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
+                android:fontFamily="@font/arial"
+                android:textColor="#000"
+                android:textSize="@dimen/_12ssp"
+                android:lineSpacingExtra="@dimen/_2sdp"
+                android:layout_below="@+id/textViewImageSelection_2"
+                android:layout_marginStart="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_12sdp"/>
+
+            <ProgressBar
+                android:id="@+id/progressBarDetailsScreen"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/_270sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:progress="10"
+                android:max="100"
+                android:progressTint="@color/progess"
+                android:layout_below="@+id/imageViewImageSelection"
+                android:background="@drawable/progressfinal"
+                android:layout_marginTop="@dimen/_34sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"/>
+
+            <ImageView
+                android:layout_width="323dp"
+                android:layout_height="@dimen/_374sdp"
+                android:layout_below="@id/progressBarDetailsScreen"
+                android:layout_marginTop="49dp"
+                android:background="@drawable/imagelast"
+                android:layout_marginLeft="50dp"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="900dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/imagebuttonimageselection1"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_marginLeft="90dp"
+                        android:background="@drawable/cross"/>
+                    <ImageButton
+                        android:id="@+id/imagebuttonimageselection2"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_marginLeft="@dimen/_30sdp"
+                        android:background="@drawable/help"/>
+                    <ImageButton
+                        android:id="@+id/imagebuttonimageselection3"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:layout_marginLeft="@dimen/_30sdp"
+                        android:background="@drawable/check"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textviewimageselection1"
+                        android:layout_width="@dimen/_29sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/arial"
+                        android:text="Hate it"
+                        android:layout_marginLeft="100dp" />
+
+                    <TextView
+                        android:id="@+id/textviewimageselection2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
+                        android:layout_marginLeft="@dimen/_45sdp"
+                        android:fontFamily="@font/arial"
+                        android:text="Not sure"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/textviewimageselection3"
+                        android:layout_width="64dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:fontFamily="@font/arial"
+                        android:text="Loved It"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+                
+                <ImageButton
+                    android:id="@+id/imageButtonimageselection4"
+                    android:layout_width="@dimen/_138sdp"
+                    android:layout_height="@dimen/_46sdp"
+                    android:background="@drawable/finishbutton"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_gravity="center"/>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
