@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".DetailsScreen">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageViewBodyShape"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_245sdp"
+        android:background="@drawable/heaaderrectangleloginscreen"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_minus20sdp"/>
+
+    <TextView
+        android:id="@+id/textViewBodyShape"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:fontFamily="@font/arial"
+        android:text="@string/hi_rohan"
+        android:textColor="#000"
+        android:textSize="@dimen/_27ssp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_23sdp"
+        android:layout_marginEnd="@dimen/_20sdp"/>
+
+    <TextView
+        android:id="@+id/textViewBodyShape_2"
+        android:layout_width="@dimen/_210sdp"
+        android:layout_height="@dimen/_55sdp"
+        android:text="Let's start by knowing\nmore about you.."
+        android:textColor="#000"
+        android:lineSpacingExtra="@dimen/_7sdp"
+        android:textSize="@dimen/_20ssp"
+        android:fontFamily="@font/arial"
+        android:layout_below="@+id/textViewBodyShape"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+
+    <TextView
+        android:id="@+id/textViewBodyShape_3"
+        android:layout_width="@dimen/_242sdp"
+        android:layout_height="@dimen/_49sdp"
+        android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
+        android:fontFamily="@font/arial"
+        android:textColor="#000"
+        android:textSize="@dimen/_12ssp"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:layout_below="@+id/textViewBodyShape_2"
+        android:layout_marginStart="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_12sdp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBarDetailsScreen"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="@dimen/_8sdp"
+        android:progress="10"
+        android:max="100"
+        android:scaleY="2"
+        android:progressTint="@color/progess"
+        android:layout_below="@+id/imageViewBodyShape"
+        android:background="@drawable/progress"
+        android:layout_marginTop="@dimen/_34sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_300sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/imagebuttonbody1"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_270sdp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/pear"/>
+                <ImageButton
+                    android:id="@+id/imagebuttonbody2"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_270sdp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/pear"/>
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody3"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/hourglass"/>
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody4"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/inverted"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody5"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/oval"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+    </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
