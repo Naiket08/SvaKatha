@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,17 +25,27 @@ import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignupScreen extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
@@ -47,6 +58,10 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
     private static final int RC_SIGN_IN = 1;
     CallbackManager callbackManager;
     LoginButton facebook_login_button;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth firebaseAuth;
+    String userId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +80,16 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         editTextSignUpConfirmPassword = (EditText)findViewById(R.id.editTextSignUpConfirmPassword);
         boolean loggedOut = AccessToken.getCurrentAccessToken() == null;
 
+        firebaseAuth=FirebaseAuth.getInstance();
+
         buttonSignUp_LetsStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registerUser();
+            }
+        });
+
+        /*buttonSignUp_LetsStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(editTextSignUpUsrname.getText().toString().isEmpty()||editTextSignUpEmailId.getText().toString().isEmpty()||editTextSignUpPassword.getText().toString().isEmpty()||editTextSignUpConfirmPassword.getText().toString().isEmpty()){
@@ -102,7 +126,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                     }
                 }
             }
-        });
+        });*/
 
         GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -182,6 +206,81 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
 
     }
 
+    private void registerUser(){
+        //getting email and password from edit texts
+        final String email =editTextSignUpEmailId.getText().toString().trim();
+        final String password  = editTextSignUpPassword.getText().toString().trim();
+        final String confirmpassword=editTextSignUpConfirmPassword.getText().toString().trim();
+        final String username=editTextSignUpUsrname.getText().toString().trim();
+
+        //checking if email and passwords are empty
+        if(TextUtils.isEmpty(username)){
+            Toast.makeText(this,"Please enter First Name",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(TextUtils.isEmpty(password)){
+            Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(TextUtils.isEmpty(confirmpassword)){
+            Toast.makeText(this,"Please enter confirm password",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!password.equals(confirmpassword)){
+            Toast.makeText(this, "Please Match The Password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //if the email and password are not empty
+        //displaying a progress dialog
+
+
+        //creating a new user
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        //checking if success
+                        if(task.isSuccessful()){
+                            //display some message here
+                            Toast.makeText(SignupScreen.this,"Successfully registered",Toast.LENGTH_LONG).show();
+                            //Database connection
+
+                            userId = firebaseAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = db.collection("users").document(userId);
+                            Map<String,Object> user = new HashMap<>();
+                            user.put("Email",email);
+                            user.put("Password",password);
+                            user.put("FirstName",username);
+                            user.put("Business","");
+                            user.put("Style","");
+                            user.put("Price","");
+                            user.put("Occupation","");
+                            //user.put("closetChoiceDocName","");
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            startActivity(new Intent(getApplicationContext(),DetailsScreen.class));
+                        }else{
+                            //display some message here
+                            Toast.makeText(SignupScreen.this,"Registration Error", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                });
+    }
+
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -198,12 +297,33 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
     }
     private void handleSignInResult(GoogleSignInResult result){
         if(result.isSuccess()){
-            gotoProfile();
+            GoogleSignInAccount account=result.getSignInAccount();
+            gotoProfile(account);
         }else{
             Toast.makeText(getApplicationContext(),"Sign in cancel",Toast.LENGTH_LONG).show();
         }
     }
-    private void gotoProfile(){
+    private void gotoProfile(GoogleSignInAccount acc){
+
+        String email=acc.getEmail();
+        String username=acc.getGivenName();
+        userId = firebaseAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = db.collection("users").document(userId);
+        Map<String,Object> user = new HashMap<>();
+        user.put("Email",email);
+        //user.put("Password",password);
+        user.put("FirstName",username);
+        user.put("Business","");
+        user.put("Style","");
+        user.put("Price","");
+        user.put("Occupation","");
+        //user.put("closetChoiceDocName","");
+        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
+            }
+        });
         Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
         startActivity(intent);
     }
