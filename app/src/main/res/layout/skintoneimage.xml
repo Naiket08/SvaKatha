@@ -9,21 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:weightSum="5"
         android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
 
             <ImageButton
                 android:id="@+id/imageButtonimg6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
                 android:id="@+id/textViewImage6"
@@ -35,17 +34,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
 
             <ImageButton
                 android:id="@+id/imageButtonimg7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
                 android:id="@+id/textViewImage7"
                 android:layout_width="@dimen/_45sdp"
@@ -56,16 +56,16 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
 
             <ImageButton
                 android:id="@+id/imageButtonimg8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
                 android:id="@+id/textViewImage8"
@@ -77,17 +77,17 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
 
             <ImageButton
                 android:id="@+id/imageButtonimg9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
             <TextView
                 android:id="@+id/textViewImage9"
                 android:layout_width="@dimen/_45sdp"
@@ -98,26 +98,26 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.5"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/imageButtonimg10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
                 android:id="@+id/textViewImage10"
-                android:textSize="@dimen/_9sdp"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -126,228 +126,163 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:weightSum="5"
         android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.8"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButtonimg11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
-            <TextView
-                android:id="@+id/textViewImage11"
+                android:id="@+id/imageButtonimg6"
                 android:layout_width="@dimen/_45sdp"
-                android:layout_height="wrap_content"
-                android:text="text"
-                android:textSize="@dimen/_9sdp"
-                android:textAlignment="center"/>
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.8"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/imageButtonimg12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
             <TextView
-                android:id="@+id/textViewImage12"
+                android:id="@+id/textViewImage7"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
-                android:textSize="@dimen/_9sdp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <ImageButton
-                android:id="@+id/imageButtonimg13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
-            <TextView
-                android:id="@+id/textViewImage13"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="wrap_content"
-                android:text="text"
-                android:textSize="@dimen/_9sdp"
-                android:textAlignment="center"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <ImageButton
-                android:id="@+id/imageButtonimg14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
-            <TextView
-                android:id="@+id/textViewImage14"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="wrap_content"
-                android:text="text"
-                android:textSize="@dimen/_9sdp"
-                android:textAlignment="center"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
-            <ImageButton
-                android:id="@+id/imageButtonimg15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
-            <TextView
-                android:id="@+id/textViewImage15"
-                android:textSize="@dimen/_9sdp"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="wrap_content"
-                android:text="text"
-                android:textAlignment="center"/>
-        </LinearLayout>
+            android:orientation="vertical"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:weightSum="5"
             android:gravity="center"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_10sdp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.8"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonimg16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/squareshape"/>
+                    android:id="@+id/imageButtonimg6"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/squareshape" />
+
                 <TextView
-                    android:id="@+id/textViewImage16"
+                    android:id="@+id/textViewImage6"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="wrap_content"
                     android:text="text"
-                    android:textSize="@dimen/_9sdp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_9sdp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_10sdp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.8"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonimg17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/squareshape"/>
+                    android:id="@+id/imageButtonimg7"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/squareshape" />
+
                 <TextView
-                    android:id="@+id/textViewImage17"
+                    android:id="@+id/textViewImage7"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="wrap_content"
                     android:text="text"
-                    android:textSize="@dimen/_9sdp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_9sdp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_10sdp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.8"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonimg18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/squareshape"/>
+                    android:id="@+id/imageButtonimg8"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/squareshape" />
+
                 <TextView
-                    android:id="@+id/textViewImage18"
+                    android:id="@+id/textViewImage8"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="wrap_content"
                     android:text="text"
-                    android:textSize="@dimen/_9sdp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_9sdp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_10sdp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.8"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonimg19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/squareshape"/>
+                    android:id="@+id/imageButtonimg9"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/squareshape" />
+
                 <TextView
-                    android:id="@+id/textViewImage19"
+                    android:id="@+id/textViewImage9"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="wrap_content"
                     android:text="text"
-                    android:textSize="@dimen/_9sdp"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_9sdp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_10sdp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.8"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonimg20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/squareshape"/>
+                    android:id="@+id/imageButtonimg10"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/squareshape" />
+
                 <TextView
-                    android:id="@+id/textViewImage20"
-                    android:textSize="@dimen/_9sdp"
+                    android:id="@+id/textViewImage10"
                     android:layout_width="@dimen/_45sdp"
                     android:layout_height="wrap_content"
                     android:text="text"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_9sdp" />
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -358,24 +293,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:weightSum="5"
         android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageButtonimg6"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
-                android:id="@+id/textViewImage21"
+                android:id="@+id/textViewImage6"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -384,19 +318,20 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg7"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
-                android:id="@+id/textViewImage22"
+                android:id="@+id/textViewImage7"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -405,19 +340,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageButtonimg8"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
-                android:id="@+id/textViewImage23"
+                android:id="@+id/textViewImage8"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -426,19 +361,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg9"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
             <TextView
-                android:id="@+id/textViewImage24"
+                android:id="@+id/textViewImage9"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -447,26 +382,26 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.8"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButtonimg25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg10"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
-                android:id="@+id/textViewImage25"
-                android:textSize="@dimen/_9sdp"
+                android:id="@+id/textViewImage10"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -475,24 +410,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:weightSum="5"
         android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageButtonimg6"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
-                android:id="@+id/textViewImage26"
+                android:id="@+id/textViewImage6"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -501,19 +435,20 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg7"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
-                android:id="@+id/textViewImage27"
+                android:id="@+id/textViewImage7"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -522,19 +457,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageButtonimg8"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
-                android:id="@+id/textViewImage28"
+                android:id="@+id/textViewImage8"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -543,19 +478,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg9"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
             <TextView
-                android:id="@+id/textViewImage29"
+                android:id="@+id/textViewImage9"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -564,52 +499,54 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.8"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButtonimg30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg10"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
-                android:id="@+id/textViewImage30"
-                android:textSize="@dimen/_9sdp"
+                android:id="@+id/textViewImage10"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
         </LinearLayout>
-
 
 
     </LinearLayout>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:weightSum="5"
         android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageButtonimg6"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
-                android:id="@+id/textViewImage31"
+                android:id="@+id/textViewImage6"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -618,19 +555,20 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg7"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
-                android:id="@+id/textViewImage32"
+                android:id="@+id/textViewImage7"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -639,19 +577,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageButtonimg8"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/squareshape"/>
             <TextView
-                android:id="@+id/textViewImage33"
+                android:id="@+id/textViewImage8"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -660,19 +598,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.8">
 
             <ImageButton
-                android:id="@+id/imageButtonimg34"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg9"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
             <TextView
-                android:id="@+id/textViewImage34"
+                android:id="@+id/textViewImage9"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
@@ -681,26 +619,26 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.8"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/imageButtonimg35"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/squareshape"/>
+                android:id="@+id/imageButtonimg10"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/squareshape" />
+
             <TextView
-                android:id="@+id/textViewImage35"
-                android:textSize="@dimen/_9sdp"
+                android:id="@+id/textViewImage10"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
                 android:text="text"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
         </LinearLayout>
-
 
 
     </LinearLayout>
