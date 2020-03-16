@@ -31,7 +31,7 @@ public class Part_two extends AppCompatActivity {
         textViewUserScreenGreet=(TextView)findViewById(R.id.textViewUserScreenGreet_1);
         textViewUserScreenText2=(TextView)findViewById(R.id.textViewUserScreenText2_1);
         textViewUserScreenText3=(TextView)findViewById(R.id.textViewUserScreenText3_1);
-        textViewFemale=(TextView)findViewById(R.id.textViewFemale_1);
+        /*textViewFemale=(TextView)findViewById(R.id.textViewFemale_1);
         textViewMale=(TextView)findViewById(R.id.textViewMale_2);
         textViewHeight=(TextView)findViewById(R.id.textViewHeight_1);
         textViewWeight=(TextView)findViewById(R.id.textViewWeight_1);
@@ -48,7 +48,7 @@ public class Part_two extends AppCompatActivity {
         progressBarUserScreen=(ProgressBar)findViewById(R.id.progressBarUserScreen_1);
         //casting of Switch
         aSwitch=(Switch)findViewById(R.id.switch_1);
-
+*/
         imageButtonUserScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

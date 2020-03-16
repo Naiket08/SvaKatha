@@ -69,8 +69,8 @@
 
     <TextView
         android:id="@+id/skintone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_154sdp"
+        android:layout_height="@dimen/_32sdp"
         android:layout_below="@+id/progressBarDetailsScreen"
         android:layout_marginStart="34dp"
         android:layout_marginTop="14dp"
@@ -78,9 +78,11 @@
         android:textColor="#000"
         android:textSize="29dp" />
 
-<include layout="@layout/skintoneimage"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:layout_below="@+id/skintone"
-    />
+    <include
+        layout="@layout/skintoneimage"
+        android:layout_width="387dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/skintone"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="4dp" />
 </RelativeLayout>
