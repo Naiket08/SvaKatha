@@ -41,6 +41,9 @@ public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.activity_details_screen);
 
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
+        Intent intent = getIntent();
+        textViewDetailsScreenGreet.setTypeface(textViewDetailsScreenGreet.getTypeface(),Typeface.BOLD);
+        textViewDetailsScreenGreet.setText(intent.getStringExtra("Name"));
         textViewDetailsScreenText2 = (TextView) findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3 = (TextView) findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation = (TextView) findViewById(R.id.textViewDetailsScreenOccupation);

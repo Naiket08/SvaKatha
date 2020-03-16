@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import com.google.android.gms.common.api.ResultCallback;
 public class Style extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     private ImageView imageViewDetailsScreenHeader;
-    private TextView textViewDetailsScreenGreet,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
+    private TextView textViewDetailsScreenGreet2,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
     private EditText editTextDetailsScreenStyle_3;
     private ImageButton imageButtonDetailsScreenForward_3;
     private ProgressBar progressBarDetailsScreen;
@@ -35,7 +36,10 @@ public class Style extends AppCompatActivity implements GoogleApiClient.OnConnec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style);
         //casting of textview
-        textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
+        textViewDetailsScreenGreet2 = (TextView) findViewById(R.id.textViewStyleGreet);
+        Intent intent = getIntent();
+        textViewDetailsScreenGreet2.setTypeface(textViewDetailsScreenGreet2.getTypeface(), Typeface.BOLD);
+        textViewDetailsScreenGreet2.setText(intent.getStringExtra("Name"));
         textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
@@ -89,7 +93,7 @@ public class Style extends AppCompatActivity implements GoogleApiClient.OnConnec
     private void handleSignInResult(GoogleSignInResult result){
         if(result.isSuccess()){
             GoogleSignInAccount account=result.getSignInAccount();
-            textViewDetailsScreenGreet.setText("Hi "+account.getGivenName());
+            textViewDetailsScreenGreet2.setText("Hi "+account.getGivenName());
             /*userEmail.setText(account.getEmail());
             userId.setText(account.getId());
             try{

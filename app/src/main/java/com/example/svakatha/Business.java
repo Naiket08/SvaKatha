@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import com.google.android.gms.common.api.ResultCallback;
 public class Business extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     private ImageView imageViewDetailsScreenHeader;
-    private TextView textViewDetailsScreenGreet,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
+    private TextView textViewDetailsScreenGreet3,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
     private EditText editTextDetailsScreenStyle_4;
     private ImageButton imageButtonDetailsScreenForward_4;
     private ProgressBar progressBarDetailsScreen;
@@ -37,7 +38,10 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
         //casting of TextView
-        textViewDetailsScreenGreet=(TextView)findViewById(R.id.textViewDetailsScreenGreet);
+        textViewDetailsScreenGreet3=(TextView)findViewById(R.id.textViewBusinessGreet);
+        Intent intent = getIntent();
+        textViewDetailsScreenGreet3.setTypeface(textViewDetailsScreenGreet3.getTypeface(), Typeface.BOLD);
+        textViewDetailsScreenGreet3.setText(intent.getStringExtra("Name"));
         textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
@@ -87,7 +91,7 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
         if(result.isSuccess()){
             GoogleSignInAccount account=result.getSignInAccount();
             String name = "Hi "+account.getGivenName();
-            textViewDetailsScreenGreet.setText(name);
+            textViewDetailsScreenGreet3.setText(name);
             /*userEmail.setText(account.getEmail());
             userId.setText(account.getId());
             try{

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Bundle;
@@ -43,6 +44,9 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
 
         //casting of textView
         textViewDetailsScreenGreet1=(TextView)findViewById(R.id.textViewDetailsScreenGreet1);
+        Intent intent = getIntent();
+        textViewDetailsScreenGreet1.setTypeface(textViewDetailsScreenGreet1.getTypeface(), Typeface.BOLD);
+        textViewDetailsScreenGreet1.setText(intent.getStringExtra("Name"));
         textViewDetailsScreenTextTwo2_1=(TextView)findViewById(R.id.textViewDetailsScreenText2_1);
         getTextViewDetailsScreenTextTwo3_1=(TextView)findViewById(R.id.textViewDetailsScreenText3_1);
         textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
