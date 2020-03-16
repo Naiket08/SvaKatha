@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageViewBodyShape"
+        android:id="@+id/imageViewBodyShapeScreen_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_245sdp"
         android:background="@drawable/heaaderrectangleloginscreen"
@@ -24,7 +24,7 @@
         android:layout_marginTop="@dimen/_minus20sdp"/>
 
     <TextView
-        android:id="@+id/textViewBodyShape"
+        android:id="@+id/textViewBodyShapeText2_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
         android:fontFamily="@font/arial"
@@ -38,7 +38,7 @@
         android:layout_marginEnd="@dimen/_20sdp"/>
 
     <TextView
-        android:id="@+id/textViewBodyShape_2"
+        android:id="@+id/textViewBodyShapeText3_1"
         android:layout_width="@dimen/_210sdp"
         android:layout_height="@dimen/_55sdp"
         android:text="Let's start by knowing\nmore about you.."
@@ -46,13 +46,13 @@
         android:lineSpacingExtra="@dimen/_7sdp"
         android:textSize="@dimen/_20ssp"
         android:fontFamily="@font/arial"
-        android:layout_below="@+id/textViewBodyShape"
+        android:layout_below="@+id/textViewBodyShapeText2_1"
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginStart="@dimen/_23sdp"/>
 
     <TextView
-        android:id="@+id/textViewBodyShape_3"
+        android:id="@+id/textViewBodyShapeText4_1"
         android:layout_width="@dimen/_242sdp"
         android:layout_height="@dimen/_49sdp"
         android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
@@ -60,19 +60,19 @@
         android:textColor="#000"
         android:textSize="@dimen/_12ssp"
         android:lineSpacingExtra="@dimen/_2sdp"
-        android:layout_below="@+id/textViewBodyShape_2"
+        android:layout_below="@+id/textViewBodyShapeText3_1"
         android:layout_marginStart="@dimen/_23sdp"
         android:layout_marginTop="@dimen/_12sdp"/>
 
     <ProgressBar
-        android:id="@+id/progressBarDetailsScreen"
+        android:id="@+id/progressBarBodyShapeScreen_1"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_8sdp"
         android:progress="10"
         android:max="100"
         android:progressTint="@color/progess"
-        android:layout_below="@+id/imageViewBodyShape"
+        android:layout_below="@+id/imageViewBodyShapeScreen_1"
         android:background="@drawable/progressthree"
         android:layout_marginTop="@dimen/_34sdp"
         android:layout_marginStart="@dimen/_20sdp"
@@ -136,7 +136,7 @@
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/imageButtonSkinToneScreenForward_1"
+                    android:id="@+id/imageButtonBodyShapeScreenForward_1"
                     android:layout_width="@dimen/_26sdp"
                     android:layout_height="@dimen/_26sdp"
                     android:layout_below="@+id/layoutskintone"
