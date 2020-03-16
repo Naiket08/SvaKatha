@@ -49,6 +49,7 @@ public class Part_two extends AppCompatActivity {
         //casting of Switch
         aSwitch=(Switch)findViewById(R.id.switch_1);
 */
+        imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
         imageButtonUserScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

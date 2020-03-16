@@ -135,6 +135,15 @@
                         android:background="@drawable/oval"/>
                 </LinearLayout>
 
+                <ImageButton
+                    android:id="@+id/imageButtonSkinToneScreenForward_1"
+                    android:layout_width="@dimen/_26sdp"
+                    android:layout_height="@dimen/_26sdp"
+                    android:layout_below="@+id/layoutskintone"
+                    android:layout_marginStart="320dp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
 
             </LinearLayout>
