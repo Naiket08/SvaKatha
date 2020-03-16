@@ -7,6 +7,14 @@
     android:background="#FFFFFF"
     tools:context=".DetailsScreen">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/imageViewBodyShape"
         android:layout_width="match_parent"
@@ -71,16 +79,12 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/progressBarDetailsScreen"
-        android:layout_marginTop="@dimen/_10sdp">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_300sdp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -89,13 +93,13 @@
                    android:orientation="horizontal">
                 <ImageButton
                     android:id="@+id/imagebuttonbody1"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_270sdp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/pear"/>
                 <ImageButton
                     android:id="@+id/imagebuttonbody2"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_270sdp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/pear"/>
@@ -106,14 +110,14 @@
                     android:orientation="horizontal">
                     <ImageButton
                         android:id="@+id/imagebuttonbody3"
-                        android:layout_width="@dimen/_150sdp"
+                        android:layout_width="@dimen/_140sdp"
                         android:layout_height="@dimen/_270sdp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/hourglass"/>
                     <ImageButton
                         android:id="@+id/imagebuttonbody4"
-                        android:layout_width="@dimen/_150sdp"
+                        android:layout_width="@dimen/_140sdp"
                         android:layout_height="@dimen/_270sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginLeft="10dp"
@@ -125,9 +129,9 @@
                     android:orientation="horizontal">
                     <ImageButton
                         android:id="@+id/imagebuttonbody5"
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="@dimen/_270sdp"
+                        android:layout_width="@dimen/_140sdp"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="@dimen/_270sdp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/oval"/>
                 </LinearLayout>
@@ -135,6 +139,6 @@
 
 
             </LinearLayout>
-
+    </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
