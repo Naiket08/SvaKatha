@@ -71,10 +71,9 @@
         android:layout_height="@dimen/_8sdp"
         android:progress="10"
         android:max="100"
-        android:scaleY="2"
         android:progressTint="@color/progess"
         android:layout_below="@+id/imageViewBodyShape"
-        android:background="@drawable/progress"
+        android:background="@drawable/progressthree"
         android:layout_marginTop="@dimen/_34sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"/>
