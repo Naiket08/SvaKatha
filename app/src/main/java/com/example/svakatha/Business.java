@@ -13,11 +13,11 @@ import android.widget.TextView;
 
 public class Business extends AppCompatActivity {
 
-    private ImageView imageViewDetailsScreenHeader;
-    private TextView textViewDetailsScreenGreet,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
-    private EditText editTextDetailsScreenStyle_4;
-    private ImageButton imageButtonDetailsScreenForward_4;
-    private ProgressBar progressBarDetailsScreen;
+    private ImageView imageViewBusinessScreenHeader;
+    private TextView textViewBusinessScreenGreet,textViewBusinessScreenText2,textViewBusinessScreenText3,textViewBusinessScreenOccasion;
+    private EditText editTextBusinessScreen;
+    private ImageButton imageButtonBusinessScreenForward;
+    private ProgressBar progressBarBusinessScreen;
 
 
     @Override
@@ -25,23 +25,28 @@ public class Business extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
         //casting of TextView
-        textViewDetailsScreenGreet=(TextView)findViewById(R.id.textViewDetailsScreenGreet);
-        textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
-        textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
-        textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
+        textViewBusinessScreenGreet=(TextView)findViewById(R.id.textViewBusinessScreenGreet1);
+        textViewBusinessScreenText2=(TextView)findViewById(R.id.textViewBusinessScreenText2_1);
+        textViewBusinessScreenText3=(TextView)findViewById(R.id.textViewBusinessScreenText3_1);
+        textViewBusinessScreenOccasion=(TextView)findViewById(R.id.textViewBusinessScreenOccasion_1);
 
         //casting of ImageView
-        imageViewDetailsScreenHeader=(ImageView)findViewById(R.id.imageViewDetailsScreenHeader);
+        imageViewBusinessScreenHeader=(ImageView)findViewById(R.id.imageViewBusinessScreenHeader1);
 
         //casting of EditText
-        editTextDetailsScreenStyle_4=(EditText)findViewById(R.id.editTextDetailsScreenStyle_4);
+        editTextBusinessScreen=(EditText)findViewById(R.id.editTextBusinessScreen_1);
 
         //casting of ImageButton
-        imageButtonDetailsScreenForward_4=(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_4);
+        imageButtonBusinessScreenForward=(ImageButton)findViewById(R.id.imageButtonBusinessScreenForward_1);
 
         //casting of ProgressBar
-        progressBarDetailsScreen =(ProgressBar)findViewById(R.id.progressBarDetailsScreen);
+        progressBarBusinessScreen =(ProgressBar)findViewById(R.id.progressBarBusinessScreen1);
         
-
+        imageButtonBusinessScreenForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Part_two.class));
+            }
+        });
     }
 }

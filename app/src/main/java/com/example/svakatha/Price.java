@@ -21,11 +21,11 @@ import org.w3c.dom.Text;
 
 public class Price extends AppCompatActivity {
 
-    private ImageView imageViewDetailScreenHeader;
-    private TextView textViewDetailsScreenGreet1,textViewDetailsScreenTextTwo2_1,getTextViewDetailsScreenTextTwo3_1,textViewDetailsScreenOccupation,textViewPriceOne,textViewPriceTwo;
-    private ProgressBar  progressBarDetailsScreen;
-    private SeekBar seekBarPriceRange ;
-    private ImageButton imageButtonDetailsScreenForward_1;
+    private ImageView imageViewPriceScreenHeader;
+    private TextView textViewPriceScreenGreet,textViewPriceScreenText2,textViewPriceScreenText3,textViewPriceOne,textViewPriceTwo,textViewPriceScreenClothing;
+    private ProgressBar progressBarPriceScreen;
+    private SeekBar seekBarPriceRange_1;
+    private ImageButton imageButtonPriceScreenForward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,27 +33,27 @@ public class Price extends AppCompatActivity {
         setContentView(R.layout.activity_price);
 
         //casting of textView
-        textViewDetailsScreenGreet1=(TextView)findViewById(R.id.textViewDetailsScreenGreet1);
-        textViewDetailsScreenTextTwo2_1=(TextView)findViewById(R.id.textViewDetailsScreenText2_1);
-        getTextViewDetailsScreenTextTwo3_1=(TextView)findViewById(R.id.textViewDetailsScreenText3_1);
-        textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
+        textViewPriceScreenGreet=(TextView)findViewById(R.id.textViewPriceScreenGreet1);
+        textViewPriceScreenText2=(TextView)findViewById(R.id.textViewPriceScreenText2_1);
+        textViewPriceScreenText3=(TextView)findViewById(R.id.textViewPriceScreenText3_1);
+        textViewPriceScreenClothing=(TextView)findViewById(R.id.textViewPriceScreenClothing1);
         textViewPriceOne=(TextView)findViewById(R.id.textViewPriceOne);
         textViewPriceTwo=(TextView)findViewById(R.id.textViewPriceTwo);
 
         //casting of ImageView
-        imageViewDetailScreenHeader=(ImageView)findViewById(R.id.imageViewDetailsScreenHeader);
+        imageViewPriceScreenHeader=(ImageView)findViewById(R.id.imageViewPriceScreenHeader1);
 
         //casting of progressbar
-        progressBarDetailsScreen=(ProgressBar)findViewById(R.id.progressBarDetailsScreen);
+        progressBarPriceScreen=(ProgressBar)findViewById(R.id.progressBarPriceScreen1);
 
 
         //casting of SeekBar
-        seekBarPriceRange=(SeekBar)findViewById(R.id.seekBarPriceRange);
+        seekBarPriceRange_1=(SeekBar)findViewById(R.id.seekBarPriceRange);
 
         //casting of iamgebutton
-        imageButtonDetailsScreenForward_1=(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_1);
+        imageButtonPriceScreenForward=(ImageButton)findViewById(R.id.imageButtonPriceScreenForward_1);
 
-        imageButtonDetailsScreenForward_1.setOnClickListener(new View.OnClickListener() {
+        imageButtonPriceScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),Style.class));

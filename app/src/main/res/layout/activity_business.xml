@@ -8,7 +8,7 @@
     tools:context=".DetailsScreen">
 
     <ImageView
-        android:id="@+id/imageViewDetailsScreenHeader"
+        android:id="@+id/imageViewBusinessScreenHeader1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_245sdp"
         android:background="@drawable/heaaderrectangleloginscreen"
@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/_minus20sdp"/>
 
     <TextView
-        android:id="@+id/textViewDetailsScreenGreet"
+        android:id="@+id/textViewBusinessScreenGreet1"
         android:layout_width="@dimen/_115sdp"
         android:layout_height="@dimen/_30sdp"
         android:fontFamily="@font/arial"
@@ -29,7 +29,7 @@
         android:layout_marginStart="@dimen/_23sdp"/>
 
     <TextView
-        android:id="@+id/textViewDetailsScreenText2"
+        android:id="@+id/textViewBusinessScreenText2_1"
         android:layout_width="@dimen/_210sdp"
         android:layout_height="@dimen/_55sdp"
         android:text="Let's start by knowing\nmore about you.."
@@ -37,13 +37,13 @@
         android:lineSpacingExtra="@dimen/_7sdp"
         android:textSize="@dimen/_20ssp"
         android:fontFamily="@font/arial"
-        android:layout_below="@+id/textViewDetailsScreenGreet"
+        android:layout_below="@+id/textViewBusinessScreenGreet1"
         android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/_24sdp"
         android:layout_marginStart="@dimen/_23sdp"/>
 
     <TextView
-        android:id="@+id/textViewDetailsScreenText3"
+        android:id="@+id/textViewBusinessScreenText3_1"
         android:layout_width="@dimen/_242sdp"
         android:layout_height="@dimen/_49sdp"
         android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
@@ -51,12 +51,12 @@
         android:textColor="#000"
         android:textSize="@dimen/_12ssp"
         android:lineSpacingExtra="@dimen/_2sdp"
-        android:layout_below="@+id/textViewDetailsScreenText2"
+        android:layout_below="@+id/textViewBusinessScreenText2_1"
         android:layout_marginStart="@dimen/_23sdp"
         android:layout_marginTop="@dimen/_12sdp"/>
 
     <ProgressBar
-        android:id="@+id/progressBarDetailsScreen"
+        android:id="@+id/progressBarBusinessScreen1"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_8sdp"
@@ -64,17 +64,17 @@
         android:max="100"
         android:scaleY="2"
         android:progressTint="@color/progess"
-        android:layout_below="@+id/imageViewDetailsScreenHeader"
+        android:layout_below="@+id/imageViewBusinessScreenHeader1"
         android:background="@drawable/progress"
         android:layout_marginTop="@dimen/_34sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"/>
 
     <TextView
-        android:id="@+id/textViewDetailsScreenOccupation"
+        android:id="@+id/textViewBusinessScreenOccasion_1"
         android:layout_width="320dp"
         android:layout_height="55dp"
-        android:layout_below="@+id/progressBarDetailsScreen"
+        android:layout_below="@+id/progressBarBusinessScreen1"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="103dp"
         android:fontFamily="@font/arial"
@@ -83,7 +83,7 @@
         android:textSize="@dimen/_17ssp" />
 
     <EditText
-        android:id="@+id/editTextDetailsScreenStyle_4"
+        android:id="@+id/editTextBusinessScreen_1"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_45sdp"
         android:hint="Business"
@@ -93,12 +93,12 @@
         android:inputType="textPersonName"
         android:background="@drawable/styleedittextborder"
         android:paddingStart="@dimen/_20sdp"
-        android:layout_below="@+id/textViewDetailsScreenOccupation"
+        android:layout_below="@+id/textViewBusinessScreenOccasion_1"
         android:layout_marginTop="@dimen/_25sdp"
         android:layout_marginStart="@dimen/_20sdp"/>
 
     <ImageButton
-        android:id="@+id/imageButtonDetailsScreenForward_4"
+        android:id="@+id/imageButtonBusinessScreenForward_1"
         android:layout_width="@dimen/_26sdp"
         android:layout_height="@dimen/_26sdp"
         android:background="#FFFFFF"

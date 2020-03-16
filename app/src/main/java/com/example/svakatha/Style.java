@@ -13,35 +13,36 @@ import android.widget.TextView;
 
 public class Style extends AppCompatActivity {
 
-    private ImageView imageViewDetailsScreenHeader;
-    private TextView textViewDetailsScreenGreet,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
-    private EditText editTextDetailsScreenStyle_3;
-    private ImageButton imageButtonDetailsScreenForward_3;
-    private ProgressBar progressBarDetailsScreen;
+    private TextView textViewStyleScreenGreet,textViewStyleScreenText2,textViewStyleScreenText3,textViewStyleScreenQuestion;
+    private ImageView imageViewStyleScreenHeader;
+    private ProgressBar progressBarStyleScreen;
+    private EditText editTextStyleScreen;
+    private ImageButton imageButtonStyleScreenForward;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style);
         //casting of textview
-        textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
-        textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
-        textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
-        textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
+        textViewStyleScreenGreet=(TextView)findViewById(R.id.textViewStyleScreenGreet1);
+        textViewStyleScreenText2=(TextView)findViewById(R.id.textViewStyleScreenText2_1);
+        textViewStyleScreenText3=(TextView)findViewById(R.id.textViewStyleScreenText3_1);
+        textViewStyleScreenQuestion=(TextView)findViewById(R.id.textViewStyleScreenQuestion_1);
 
         //casting of ImageView
-        imageViewDetailsScreenHeader=(ImageView)findViewById(R.id.imageViewDetailsScreenHeader);
+        imageViewStyleScreenHeader=(ImageView)findViewById(R.id.imageViewStyleScreenHeader1);
 
         //casting of ProgressBar
-        progressBarDetailsScreen =(ProgressBar)findViewById(R.id.progressBarDetailsScreen);
+        progressBarStyleScreen =(ProgressBar)findViewById(R.id.progressBarStyleScreen1);
 
         //casting of EditText
-        editTextDetailsScreenStyle_3=(EditText)findViewById(R.id.editTextDetailsScreenStyle_3);
+        editTextStyleScreen=(EditText)findViewById(R.id.editTextStyleScreen_3);
 
         //casting of ImageButton
-        imageButtonDetailsScreenForward_3=(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_3);
+        imageButtonStyleScreenForward=(ImageButton)findViewById(R.id.imageButtonStyleScreenForward_3);
 
 
-        imageButtonDetailsScreenForward_3.setOnClickListener(new View.OnClickListener() {
+        imageButtonStyleScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
