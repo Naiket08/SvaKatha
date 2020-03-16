@@ -43,7 +43,8 @@ public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
         Intent intent = getIntent();
         textViewDetailsScreenGreet.setTypeface(textViewDetailsScreenGreet.getTypeface(),Typeface.BOLD);
-        textViewDetailsScreenGreet.setText(intent.getStringExtra("Name"));
+        final String name_details = intent.getStringExtra("Name");
+        textViewDetailsScreenGreet.setText("Hi"+" "+name_details);
         textViewDetailsScreenText2 = (TextView) findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3 = (TextView) findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation = (TextView) findViewById(R.id.textViewDetailsScreenOccupation);
@@ -61,7 +62,10 @@ public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Price.class));
+                Intent intent1 = new Intent(DetailsScreen.this,Price.class);
+                intent1.putExtra("Name_details",name_details);
+                startActivity(intent1);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
 
@@ -104,7 +108,7 @@ public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.
             }*/
 
         }else{
-            gotoMainActivity();
+            //gotoMainActivity();
         }
     }
     private void gotoMainActivity(){

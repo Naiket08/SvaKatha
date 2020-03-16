@@ -41,7 +41,8 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
         textViewDetailsScreenGreet3=(TextView)findViewById(R.id.textViewBusinessGreet);
         Intent intent = getIntent();
         textViewDetailsScreenGreet3.setTypeface(textViewDetailsScreenGreet3.getTypeface(), Typeface.BOLD);
-        textViewDetailsScreenGreet3.setText(intent.getStringExtra("Name"));
+        String name_business = intent.getStringExtra("Name_style");
+        textViewDetailsScreenGreet3.setText("Hi"+" "+name_business);
         textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
@@ -101,7 +102,7 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
             }*/
 
         }else{
-            gotoMainActivity();
+            //gotoMainActivity();
         }
     }
     private void gotoMainActivity(){

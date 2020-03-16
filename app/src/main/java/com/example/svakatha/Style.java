@@ -39,7 +39,8 @@ public class Style extends AppCompatActivity implements GoogleApiClient.OnConnec
         textViewDetailsScreenGreet2 = (TextView) findViewById(R.id.textViewStyleGreet);
         Intent intent = getIntent();
         textViewDetailsScreenGreet2.setTypeface(textViewDetailsScreenGreet2.getTypeface(), Typeface.BOLD);
-        textViewDetailsScreenGreet2.setText(intent.getStringExtra("Name"));
+        final String name_style = intent.getStringExtra("Name_price");
+        textViewDetailsScreenGreet2.setText("Hi"+" "+name_style);
         textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
@@ -60,8 +61,10 @@ public class Style extends AppCompatActivity implements GoogleApiClient.OnConnec
         imageButtonDetailsScreenForward_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                startActivity(new Intent(getApplicationContext(),Business.class));
+                Intent intent1 = new Intent(Style.this,Business.class);
+                intent1.putExtra("Name_style",name_style);
+                startActivity(intent1);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
 

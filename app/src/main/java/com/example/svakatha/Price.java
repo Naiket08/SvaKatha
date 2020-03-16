@@ -46,7 +46,8 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         textViewDetailsScreenGreet1=(TextView)findViewById(R.id.textViewDetailsScreenGreet1);
         Intent intent = getIntent();
         textViewDetailsScreenGreet1.setTypeface(textViewDetailsScreenGreet1.getTypeface(), Typeface.BOLD);
-        textViewDetailsScreenGreet1.setText(intent.getStringExtra("Name"));
+        final String name_price = intent.getStringExtra("Name_details");
+        textViewDetailsScreenGreet1.setText("Hi"+" "+name_price);
         textViewDetailsScreenTextTwo2_1=(TextView)findViewById(R.id.textViewDetailsScreenText2_1);
         getTextViewDetailsScreenTextTwo3_1=(TextView)findViewById(R.id.textViewDetailsScreenText3_1);
         textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
@@ -69,7 +70,10 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         imageButtonDetailsScreenForward_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Style.class));
+                Intent intent1 = new Intent(Price.this,Style.class);
+                intent1.putExtra("Name_price",name_price);
+                startActivity(intent1);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         });
 
@@ -113,7 +117,7 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
             }*/
 
         }else{
-            gotoMainActivity();
+            //gotoMainActivity();
         }
     }
     private void gotoMainActivity(){
