@@ -124,13 +124,13 @@
         android:layout_marginLeft="@dimen/_30sdp"
         android:fontFamily="@font/arial"
         android:textSize="@dimen/_14sdp"
-        android:textColor="#BCE0FD"/>
+        android:textColor="#2699FB"/>
 
     <TextView
         android:id="@+id/textViewPriceTwo"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_16sdp"
-        android:textColor="#BCE0FD"
+        android:textColor="#2699FB"
         android:layout_below="@id/rangeseekbar"
         android:fontFamily="@font/arial"
         android:textSize="@dimen/_14sdp"
