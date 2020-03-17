@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,11 +25,12 @@ import com.google.android.gms.common.api.ResultCallback;
 
 public class Business extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
-    private ImageView imageViewDetailsScreenHeader;
-    private TextView textViewDetailsScreenGreet3,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
-    private EditText editTextDetailsScreenStyle_4;
-    private ImageButton imageButtonDetailsScreenForward_4;
-    private ProgressBar progressBarDetailsScreen;
+    private ImageView imageViewBusinessScreenHeader;
+    private TextView textViewBusinessScreenGreet,textViewBusinessScreenText2,textViewBusinessScreenText3,textViewBusinessScreenOccasion;
+    private EditText editTextBusinessScreen;
+    private ImageButton imageButtonBusinessScreenForward;
+    private ProgressBar progressBarBusinessScreen;
+
     private GoogleApiClient googleApiClient;
     private GoogleSignInOptions gso;
 
@@ -38,14 +40,15 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
         //casting of TextView
-        textViewDetailsScreenGreet3=(TextView)findViewById(R.id.textViewBusinessGreet);
+
+        textViewBusinessScreenText2=(TextView)findViewById(R.id.textViewBusinessScreenText2_1);
+        textViewBusinessScreenText3=(TextView)findViewById(R.id.textViewBusinessScreenText3_1);
+        textViewBusinessScreenOccasion=(TextView)findViewById(R.id.textViewBusinessScreenOccasion_1);
+        textViewBusinessScreenGreet=(TextView)findViewById(R.id.textViewBusinessScreenGreet1);
         Intent intent = getIntent();
-        textViewDetailsScreenGreet3.setTypeface(textViewDetailsScreenGreet3.getTypeface(), Typeface.BOLD);
+        textViewBusinessScreenGreet.setTypeface(textViewBusinessScreenGreet.getTypeface(), Typeface.BOLD);
         String name_business = intent.getStringExtra("Name_style");
-        textViewDetailsScreenGreet3.setText("Hi"+" "+name_business);
-        textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
-        textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
-        textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
+        textViewBusinessScreenGreet.setText("Hi"+" "+name_business);
 
         gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -57,16 +60,27 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
                 .build();
 
         //casting of ImageView
-        imageViewDetailsScreenHeader=(ImageView)findViewById(R.id.imageViewDetailsScreenHeader);
+        imageViewBusinessScreenHeader=(ImageView)findViewById(R.id.imageViewBusinessScreenHeader1);
 
         //casting of EditText
-        editTextDetailsScreenStyle_4=(EditText)findViewById(R.id.editTextDetailsScreenStyle_4);
+        editTextBusinessScreen=(EditText)findViewById(R.id.editTextBusinessScreen_1);
 
         //casting of ImageButton
-        imageButtonDetailsScreenForward_4=(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_4);
+        imageButtonBusinessScreenForward=(ImageButton)findViewById(R.id.imageButtonBusinessScreenForward_1);
 
         //casting of ProgressBar
-        progressBarDetailsScreen =(ProgressBar)findViewById(R.id.progressBarDetailsScreen);
+        progressBarBusinessScreen =(ProgressBar)findViewById(R.id.progressBarBusinessScreen1);
+        
+        imageButtonBusinessScreenForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editTextBusinessScreen.getText().toString().equals("")) {
+                    Toast.makeText(Business.this, "Field is Empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(getApplicationContext(), Part_two.class));
+                }
+            }
+        });
 
 
 
@@ -92,7 +106,7 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
         if(result.isSuccess()){
             GoogleSignInAccount account=result.getSignInAccount();
             String name = "Hi "+account.getGivenName();
-            textViewDetailsScreenGreet3.setText(name);
+            textViewBusinessScreenGreet.setText(name);
             /*userEmail.setText(account.getEmail());
             userId.setText(account.getId());
             try{
@@ -111,6 +125,7 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
     }
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
 
     }
 }

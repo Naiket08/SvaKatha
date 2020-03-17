@@ -62,11 +62,16 @@ public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(DetailsScreen.this,Price.class);
-                intent1.putExtra("Name_details",name_details);
-                startActivity(intent1);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-            }
+                if (editTextDetailsScreenStyle.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Field is empty", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    Intent intent1 = new Intent(DetailsScreen.this, Price.class);
+                    intent1.putExtra("Name_details", name_details);
+                    startActivity(intent1);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                }
+                }
         });
 
         gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

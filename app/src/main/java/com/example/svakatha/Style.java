@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -24,11 +25,11 @@ import com.google.android.gms.common.api.ResultCallback;
 
 public class Style extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
-    private ImageView imageViewDetailsScreenHeader;
-    private TextView textViewDetailsScreenGreet2,textViewDetailsScreenText2,textViewDetailsScreenText3,textViewDetailsScreenOccupation;
-    private EditText editTextDetailsScreenStyle_3;
-    private ImageButton imageButtonDetailsScreenForward_3;
-    private ProgressBar progressBarDetailsScreen;
+    private TextView textViewStyleScreenGreet,textViewStyleScreenText2,textViewStyleScreenText3,textViewStyleScreenQuestion;
+    private ImageView imageViewStyleScreenHeader;
+    private ProgressBar progressBarStyleScreen;
+    private EditText editTextStyleScreen;
+    private ImageButton imageButtonStyleScreenForward;
     private GoogleApiClient googleApiClient;
 
     @Override
@@ -36,36 +37,43 @@ public class Style extends AppCompatActivity implements GoogleApiClient.OnConnec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style);
         //casting of textview
-        textViewDetailsScreenGreet2 = (TextView) findViewById(R.id.textViewStyleGreet);
+        textViewStyleScreenGreet=(TextView)findViewById(R.id.textViewStyleScreenGreet1);
+        textViewStyleScreenText2=(TextView)findViewById(R.id.textViewStyleScreenText2_1);
+        textViewStyleScreenText3=(TextView)findViewById(R.id.textViewStyleScreenText3_1);
+        textViewStyleScreenQuestion=(TextView)findViewById(R.id.textViewStyleScreenQuestion_1);
         Intent intent = getIntent();
-        textViewDetailsScreenGreet2.setTypeface(textViewDetailsScreenGreet2.getTypeface(), Typeface.BOLD);
+        textViewStyleScreenGreet.setTypeface(textViewStyleScreenGreet.getTypeface(), Typeface.BOLD);
         final String name_style = intent.getStringExtra("Name_price");
-        textViewDetailsScreenGreet2.setText("Hi"+" "+name_style);
-        textViewDetailsScreenText2=(TextView)findViewById(R.id.textViewDetailsScreenText2);
-        textViewDetailsScreenText3=(TextView)findViewById(R.id.textViewDetailsScreenText3);
-        textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
+        textViewStyleScreenGreet.setText("Hi"+" "+name_style);
 
         //casting of ImageView
-        imageViewDetailsScreenHeader=(ImageView)findViewById(R.id.imageViewDetailsScreenHeader);
+        imageViewStyleScreenHeader=(ImageView)findViewById(R.id.imageViewStyleScreenHeader1);
 
         //casting of ProgressBar
-        progressBarDetailsScreen =(ProgressBar)findViewById(R.id.progressBarDetailsScreen);
+        progressBarStyleScreen =(ProgressBar)findViewById(R.id.progressBarStyleScreen1);
 
         //casting of EditText
-        editTextDetailsScreenStyle_3=(EditText)findViewById(R.id.editTextDetailsScreenStyle_3);
+        editTextStyleScreen=(EditText)findViewById(R.id.editTextStyleScreen_3);
 
         //casting of ImageButton
-        imageButtonDetailsScreenForward_3=(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_3);
+        imageButtonStyleScreenForward=(ImageButton)findViewById(R.id.imageButtonStyleScreenForward_3);
 
 
-        imageButtonDetailsScreenForward_3.setOnClickListener(new View.OnClickListener() {
+        imageButtonStyleScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(Style.this,Business.class);
-                intent1.putExtra("Name_style",name_style);
-                startActivity(intent1);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-            }
+
+                if (editTextStyleScreen.getText().toString().equals("")) {
+                    Toast.makeText(Style.this, "Feild is empty", Toast.LENGTH_SHORT).show();
+                } else {
+
+
+                    Intent intent1 = new Intent(Style.this, Business.class);
+                    intent1.putExtra("Name_style", name_style);
+                    startActivity(intent1);
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                }
+                }
         });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -96,7 +104,7 @@ public class Style extends AppCompatActivity implements GoogleApiClient.OnConnec
     private void handleSignInResult(GoogleSignInResult result){
         if(result.isSuccess()){
             GoogleSignInAccount account=result.getSignInAccount();
-            textViewDetailsScreenGreet2.setText("Hi "+account.getGivenName());
+            textViewStyleScreenGreet.setText("Hi "+account.getGivenName());
             /*userEmail.setText(account.getEmail());
             userId.setText(account.getId());
             try{

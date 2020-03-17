@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -29,11 +30,12 @@ import org.w3c.dom.Text;
 
 public class Price extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
-    private ImageView imageViewDetailScreenHeader;
-    private TextView textViewDetailsScreenGreet1,textViewDetailsScreenTextTwo2_1,getTextViewDetailsScreenTextTwo3_1,textViewDetailsScreenOccupation,textViewPriceOne,textViewPriceTwo;
-    private ProgressBar  progressBarDetailsScreen;
-    private SeekBar seekBarPriceRange ;
-    private ImageButton imageButtonDetailsScreenForward_1;
+    private ImageView imageViewPriceScreenHeader;
+    private TextView textViewPriceScreenGreet,textViewPriceScreenText2,textViewPriceScreenText3,textViewPriceOne,textViewPriceTwo,textViewPriceScreenClothing;
+    private ProgressBar progressBarPriceScreen;
+    private SeekBar seekBarPriceRange_1;
+    private ImageButton imageButtonPriceScreenForward;
+
     private GoogleApiClient googleApiClient;
     private GoogleSignInOptions gso;
 
@@ -43,37 +45,37 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         setContentView(R.layout.activity_price);
 
         //casting of textView
-        textViewDetailsScreenGreet1=(TextView)findViewById(R.id.textViewDetailsScreenGreet1);
+        textViewPriceScreenGreet=(TextView)findViewById(R.id.textViewPriceScreenGreet1);
+        textViewPriceScreenText2=(TextView)findViewById(R.id.textViewPriceScreenText2_1);
+        textViewPriceScreenText3=(TextView)findViewById(R.id.textViewPriceScreenText3_1);
+        textViewPriceScreenClothing=(TextView)findViewById(R.id.textViewPriceScreenClothing1);
         Intent intent = getIntent();
-        textViewDetailsScreenGreet1.setTypeface(textViewDetailsScreenGreet1.getTypeface(), Typeface.BOLD);
+        textViewPriceScreenGreet.setTypeface(textViewPriceScreenGreet.getTypeface(), Typeface.BOLD);
         final String name_price = intent.getStringExtra("Name_details");
-        textViewDetailsScreenGreet1.setText("Hi"+" "+name_price);
-        textViewDetailsScreenTextTwo2_1=(TextView)findViewById(R.id.textViewDetailsScreenText2_1);
-        getTextViewDetailsScreenTextTwo3_1=(TextView)findViewById(R.id.textViewDetailsScreenText3_1);
-        textViewDetailsScreenOccupation=(TextView)findViewById(R.id.textViewDetailsScreenOccupation);
-        textViewPriceOne=(TextView)findViewById(R.id.textViewPriceOne);
-        textViewPriceTwo=(TextView)findViewById(R.id.textViewPriceTwo);
+        textViewPriceScreenGreet.setText("Hi"+" "+name_price);
 
         //casting of ImageView
-        imageViewDetailScreenHeader=(ImageView)findViewById(R.id.imageViewDetailsScreenHeader);
+        imageViewPriceScreenHeader=(ImageView)findViewById(R.id.imageViewPriceScreenHeader1);
 
         //casting of progressbar
-        progressBarDetailsScreen=(ProgressBar)findViewById(R.id.progressBarDetailsScreen);
+        progressBarPriceScreen=(ProgressBar)findViewById(R.id.progressBarPriceScreen1);
 
 
         //casting of SeekBar
-        seekBarPriceRange=(SeekBar)findViewById(R.id.seekBarPriceRange);
-
+       
         //casting of iamgebutton
-        imageButtonDetailsScreenForward_1=(ImageButton)findViewById(R.id.imageButtonDetailsScreenForward_1);
+        imageButtonPriceScreenForward=(ImageButton)findViewById(R.id.imageButtonPriceScreenForward_1);
 
-        imageButtonDetailsScreenForward_1.setOnClickListener(new View.OnClickListener() {
+        imageButtonPriceScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Intent intent1 = new Intent(Price.this,Style.class);
                 intent1.putExtra("Name_price",name_price);
                 startActivity(intent1);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
             }
         });
 
@@ -107,7 +109,7 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         if(result.isSuccess()){
             GoogleSignInAccount account=result.getSignInAccount();
             String name = "Hi "+account.getGivenName();
-            textViewDetailsScreenGreet1.setText(name);
+            textViewPriceScreenGreet.setText(name);
             /*userEmail.setText(account.getEmail());
             userId.setText(account.getId());
             try{

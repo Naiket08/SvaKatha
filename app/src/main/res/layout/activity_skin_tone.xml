@@ -7,75 +7,111 @@
     android:background="#FFFFFF"
     tools:context=".DetailsScreen">
 
-    <ImageView
-        android:id="@+id/imageViewDetailsScreenHeader"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_245sdp"
-        android:background="@drawable/heaaderrectangleloginscreen"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/_minus20sdp"/>
-
-    <TextView
-        android:id="@+id/textViewDetailsScreenGreet"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
-        android:fontFamily="@font/arial"
-        android:text="@string/hi_rohan"
-        android:textColor="#000"
-        android:textSize="@dimen/_27ssp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_23sdp"
-        android:layout_marginEnd="@dimen/_20sdp"/>
-
-    <TextView
-        android:id="@+id/textViewDetailsScreenText2"
-        android:layout_width="@dimen/_210sdp"
-        android:layout_height="@dimen/_55sdp"
-        android:text="Let's start by knowing\nmore about you.."
-        android:textColor="#000"
-        android:lineSpacingExtra="@dimen/_7sdp"
-        android:textSize="@dimen/_20ssp"
-        android:fontFamily="@font/arial"
-        android:layout_below="@+id/textViewDetailsScreenGreet"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:layout_marginStart="@dimen/_23sdp"/>
-
-    <TextView
-        android:id="@+id/textViewDetailsScreenText3"
-        android:layout_width="@dimen/_242sdp"
-        android:layout_height="@dimen/_49sdp"
-        android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
-        android:fontFamily="@font/arial"
-        android:textColor="#000"
-        android:textSize="@dimen/_12ssp"
-        android:lineSpacingExtra="@dimen/_2sdp"
-        android:layout_below="@+id/textViewDetailsScreenText2"
-        android:layout_marginStart="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_12sdp"/>
-
-    <ProgressBar
-        android:id="@+id/progressBarDetailsScreen"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="@dimen/_270sdp"
-        android:layout_height="@dimen/_8sdp"
-        android:layout_below="@+id/imageViewDetailsScreenHeader"
-        android:background="@drawable/progress"
-        android:layout_marginTop="@dimen/_34sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"/>
-
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBarDetailsScreen"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="14dp"
-        android:text="@string/skinTone"
-        android:textColor="#000"
-        android:textSize="29dp" />
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageViewSkinToneScreenHeader_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_245sdp"
+                android:background="@drawable/heaaderrectangleloginscreen"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_minus20sdp"/>
+
+            <TextView
+                android:id="@+id/textViewSkinToneScreenGreet_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:fontFamily="@font/arial"
+                android:text="@string/hi_rohan"
+                android:textColor="#000"
+                android:textSize="@dimen/_27ssp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:layout_marginStart="@dimen/_23sdp"
+                android:layout_marginEnd="@dimen/_20sdp"/>
+
+            <TextView
+                android:id="@+id/textViewSkinToneScreenText2_1"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:text="Let's start by knowing\nmore about you.."
+                android:textColor="#000"
+                android:lineSpacingExtra="@dimen/_7sdp"
+                android:textSize="@dimen/_20ssp"
+                android:fontFamily="@font/arial"
+                android:layout_below="@+id/textViewSkinToneScreenGreet_1"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_23sdp"/>
+
+            <TextView
+                android:id="@+id/textViewSkinToneScreenText3_1"
+                android:layout_width="@dimen/_242sdp"
+                android:layout_height="@dimen/_49sdp"
+                android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
+                android:fontFamily="@font/arial"
+                android:textColor="#000"
+                android:textSize="@dimen/_12ssp"
+                android:lineSpacingExtra="@dimen/_2sdp"
+                android:layout_below="@+id/textViewSkinToneScreenText2_1"
+                android:layout_marginStart="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_12sdp"/>
+
+            <ProgressBar
+                android:id="@+id/progressBarDetailsScreen"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/_270sdp"
+                android:layout_height="@dimen/_8sdp"
+                android:layout_below="@+id/imageViewSkinToneScreenHeader_1"
+                android:background="@drawable/progresstwo"
+                android:layout_marginTop="@dimen/_34sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"/>
+
+            <TextView
+                android:id="@+id/skintone"
+                android:layout_width="@dimen/_154sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_below="@+id/progressBarDetailsScreen"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/skinTone"
+                android:textColor="#000"
+                android:textSize="29dp" />
+
+            <include layout="@layout/skintoneimage"
+                android:id="@+id/layoutskintone"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/skintone" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSkinToneScreenForward_1"
+                android:layout_width="@dimen/_26sdp"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_below="@+id/layoutskintone"
+                android:layout_marginStart="320dp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="#FFFFFF"
+                app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
 
 
 </RelativeLayout>
