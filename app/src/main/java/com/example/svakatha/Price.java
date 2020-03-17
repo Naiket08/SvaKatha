@@ -53,8 +53,6 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         textViewPriceScreenGreet.setTypeface(textViewPriceScreenGreet.getTypeface(), Typeface.BOLD);
         final String name_price = intent.getStringExtra("Name_details");
         textViewPriceScreenGreet.setText("Hi"+" "+name_price);
-        textViewPriceOne=(TextView)findViewById(R.id.textViewPrice1);
-        textViewPriceTwo=(TextView)findViewById(R.id.textViewPrice2);
 
         //casting of ImageView
         imageViewPriceScreenHeader=(ImageView)findViewById(R.id.imageViewPriceScreenHeader1);
@@ -64,8 +62,7 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
 
 
         //casting of SeekBar
-        seekBarPriceRange_1=(SeekBar)findViewById(R.id.rangeSeekbar3);
-
+       
         //casting of iamgebutton
         imageButtonPriceScreenForward=(ImageButton)findViewById(R.id.imageButtonPriceScreenForward_1);
 
