@@ -37,11 +37,19 @@ public class BodyShape extends AppCompatActivity {
         imageButtonBody4 = (ImageButton) findViewById(R.id.imagebuttonbody4);
         imageButtonBody5 = (ImageButton) findViewById(R.id.imagebuttonbody5);
 
-        //imageButtonBodyShapeScreenForward.setOnClickListener(new View.OnClickListener() {
-        //  public void onClick(View view) {
-        //    startActivity(new Intent(getApplicationContext(),));
-        //}
-        //});
-        //}
+        imageButtonBody1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
+
+
+        imageButtonBodyShapeScreenForward.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View view) {
+            startActivity(new Intent(getApplicationContext(),ImageSelection.class));
+        }
+        });
+        }
     }
-}
+
