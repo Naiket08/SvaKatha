@@ -3,7 +3,9 @@ package com.example.svakatha;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,31 +43,56 @@ public class BodyShape extends AppCompatActivity {
         imageButtonBody1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(BodyShape.this, "Body 1 is selected", Toast.LENGTH_SHORT).show();
+                imageButtonBody1.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonBody5.getBackground().clearColorFilter();
+                imageButtonBody3.getBackground().clearColorFilter();
+                imageButtonBody4.getBackground().clearColorFilter();
+
+            }
+        });
+
+        imageButtonBody3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageButtonBody3.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonBody1.getBackground().clearColorFilter();
+                imageButtonBody2.getBackground().clearColorFilter();
+                imageButtonBody5.getBackground().clearColorFilter();
+                imageButtonBody4.getBackground().clearColorFilter();
+
             }
         });
         imageButtonBody2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(BodyShape.this, "Body 2 is selected", Toast.LENGTH_SHORT).show();
+                imageButtonBody2.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonBody5.getBackground().clearColorFilter();
+                imageButtonBody3.getBackground().clearColorFilter();
+                imageButtonBody4.getBackground().clearColorFilter();
+
             }
         });
-        imageButtonBody3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(BodyShape.this, "Body 3 is selected", Toast.LENGTH_SHORT).show();
-            }
-        });
+
         imageButtonBody4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(BodyShape.this, "Body 4 is selected", Toast.LENGTH_SHORT).show();
+                imageButtonBody4.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonBody1.getBackground().clearColorFilter();
+                imageButtonBody2.getBackground().clearColorFilter();
+                imageButtonBody3.getBackground().clearColorFilter();
+                imageButtonBody5.getBackground().clearColorFilter();
+
             }
         });
         imageButtonBody5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(BodyShape.this, "Body 5 is selected", Toast.LENGTH_SHORT).show();
+                imageButtonBody5.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonBody1.getBackground().clearColorFilter();
+                imageButtonBody2.getBackground().clearColorFilter();
+                imageButtonBody3.getBackground().clearColorFilter();
+                imageButtonBody4.getBackground().clearColorFilter();
+
             }
         });
 
@@ -77,5 +104,4 @@ public class BodyShape extends AppCompatActivity {
         });
     }
 }
-
 
