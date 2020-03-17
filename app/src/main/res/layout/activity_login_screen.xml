@@ -107,7 +107,7 @@
         android:textColor="#000"
         android:textSize="@dimen/_14ssp"
         android:fontFamily="@font/arial"
-        android:layout_below="@+id/imageViewLoginDividor"
+        android:layout_below="@+id/imageViewLoginDivider"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"/>
 
