@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BodyShape extends AppCompatActivity {
 
@@ -40,16 +41,41 @@ public class BodyShape extends AppCompatActivity {
         imageButtonBody1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                Toast.makeText(BodyShape.this, "Body 1 is selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imageButtonBody2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(BodyShape.this, "Body 2 is selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imageButtonBody3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(BodyShape.this, "Body 3 is selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imageButtonBody4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(BodyShape.this, "Body 4 is selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+        imageButtonBody5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(BodyShape.this, "Body 5 is selected", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         imageButtonBodyShapeScreenForward.setOnClickListener(new View.OnClickListener() {
-          public void onClick(View view) {
-            startActivity(new Intent(getApplicationContext(),ImageSelection.class));
-        }
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ImageSelection.class));
+            }
         });
-        }
     }
+}
+
 

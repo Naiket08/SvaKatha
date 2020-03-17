@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Style extends AppCompatActivity {
 
@@ -45,8 +46,11 @@ public class Style extends AppCompatActivity {
         imageButtonStyleScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                startActivity(new Intent(getApplicationContext(),Business.class));
+                if (editTextStyleScreen.getText().toString().equals("")) {
+                    Toast.makeText(Style.this, "Feild is empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(getApplicationContext(), Business.class));
+                }
             }
         });
     }

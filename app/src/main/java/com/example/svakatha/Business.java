@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Business extends AppCompatActivity {
 
@@ -45,7 +46,11 @@ public class Business extends AppCompatActivity {
         imageButtonBusinessScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Part_two.class));
+                if (editTextBusinessScreen.getText().toString().equals("")) {
+                    Toast.makeText(Business.this, "", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(getApplicationContext(), Part_two.class));
+                }
             }
         });
     }

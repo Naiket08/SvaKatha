@@ -57,7 +57,11 @@ public class DetailsScreen extends AppCompatActivity {
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), Price.class));
+                if (editTextDetailsScreenStyle.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Field is empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(getApplicationContext(), Price.class));
+                }
             }
         });
 

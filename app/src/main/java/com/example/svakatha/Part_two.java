@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Part_two extends AppCompatActivity {
     private ImageView imageViewUserScreenHeader;
@@ -31,8 +32,8 @@ public class Part_two extends AppCompatActivity {
         textViewUserScreenGreet=(TextView)findViewById(R.id.textViewUserScreenGreet_1);
         textViewUserScreenText2=(TextView)findViewById(R.id.textViewUserScreenText2_1);
         textViewUserScreenText3=(TextView)findViewById(R.id.textViewUserScreenText3_1);
-        /*textViewFemale=(TextView)findViewById(R.id.textViewFemale_1);
-        textViewMale=(TextView)findViewById(R.id.textViewMale_2);
+        textViewFemale=(TextView)findViewById(R.id.textViewFemale_1);
+        textViewMale=(TextView)findViewById(R.id.textViewMale_1);
         textViewHeight=(TextView)findViewById(R.id.textViewHeight_1);
         textViewWeight=(TextView)findViewById(R.id.textViewWeight_1);
         textViewBirth=(TextView)findViewById(R.id.textViewBirth_1);
@@ -41,19 +42,23 @@ public class Part_two extends AppCompatActivity {
         //casting of ImageButton
         imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
         //casting of EditText
-        editTextUserScreenHeight=(EditText)findViewById(R.id.editTextUserScreenHeight_1);
-        editTextUserScreenWeight=(EditText)findViewById(R.id.editTextUserScreenWeight_1);
-        editTextUserScreenBirth=(EditText)findViewById(R.id.editTextUserScreenBirth_1);
+        editTextUserScreenHeight=(EditText)findViewById(R.id.editTextPartTwoHeight_1);
+        editTextUserScreenWeight=(EditText)findViewById(R.id.editTextPartTwoWeight_1);
+        editTextUserScreenBirth=(EditText)findViewById(R.id.editTextPartTwoBirth_1);
         //casting of ProgressBar
         progressBarUserScreen=(ProgressBar)findViewById(R.id.progressBarUserScreen_1);
         //casting of Switch
-        aSwitch=(Switch)findViewById(R.id.switch_1);
-*/
+        aSwitch=(Switch)findViewById(R.id.switch1);
+
         imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
         imageButtonUserScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),SkinTone.class));
+                if (editTextUserScreenHeight.getText().toString().equals("") || editTextUserScreenWeight.getText().toString().equals("") || editTextUserScreenBirth.getText().toString().equals("")) {
+                    Toast.makeText(Part_two.this, "Feilds Are Empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    startActivity(new Intent(getApplicationContext(), SkinTone.class));
+                }
             }
         });
     }
