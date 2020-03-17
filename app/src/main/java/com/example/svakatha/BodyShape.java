@@ -69,6 +69,7 @@ public class BodyShape extends AppCompatActivity {
                 imageButtonBody5.getBackground().clearColorFilter();
                 imageButtonBody3.getBackground().clearColorFilter();
                 imageButtonBody4.getBackground().clearColorFilter();
+                imageButtonBody1.getBackground().clearColorFilter();
 
             }
         });

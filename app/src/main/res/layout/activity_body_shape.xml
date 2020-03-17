@@ -101,7 +101,7 @@
                     android:layout_width="@dimen/_140sdp"
                     android:layout_height="@dimen/_270sdp"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/pear"/>
+                    android:background="@drawable/rectangle"/>
             </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
