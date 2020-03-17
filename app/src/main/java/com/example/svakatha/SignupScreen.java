@@ -34,21 +34,23 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SignupScreen extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
+    private static final String TAG = "Status";
     ImageView imageViewSignUpHeader, imageViewSignUpDivider;
     TextView textViewSignUpWelcome, textViewSignUpSvakatha;
     Button buttonSignUp_LetsStart;
@@ -56,10 +58,10 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
     SignInButton signInButton;
     private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1;
-    CallbackManager callbackManager;
+    CallbackManager mcallbackManager;
     LoginButton facebook_login_button;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth mfirebaseAuth;
     String userId;
 
 
@@ -80,7 +82,8 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         editTextSignUpConfirmPassword = (EditText)findViewById(R.id.editTextSignUpConfirmPassword);
         boolean loggedOut = AccessToken.getCurrentAccessToken() == null;
 
-        firebaseAuth=FirebaseAuth.getInstance();
+        mfirebaseAuth =FirebaseAuth.getInstance();
+
 
         buttonSignUp_LetsStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,23 +155,42 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
             getUserProfile(AccessToken.getCurrentAccessToken());
         }
 
-        callbackManager = CallbackManager.Factory.create();
+        mcallbackManager = CallbackManager.Factory.create();
         facebook_login_button = (LoginButton) findViewById(R.id.facebook_login_button);
-        facebook_login_button.setReadPermissions(Arrays.asList("email","public_profile"));
-        // If you are using in a fragment, call loginButton.setFragment(this);
-
-        // Callback registration
-        facebook_login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        facebook_login_button.setPermissions("public_profile","email", "user_birthday");
+        facebook_login_button.registerCallback(mcallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                // App code
-                boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
-                Log.d("API123", loggedIn + " ??");
+                Log.i(TAG, "onSuccess: logged in successfully");
+                handleFacebookAccessToken(loginResult.getAccessToken());
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        // Application code
+                        Log.i(TAG, "onCompleted: response: " + response.toString());
+                        try {
+                            String email = object.getString("email");
+                            String birthday = object.getString("birthday");
+
+                            Log.i(TAG, "onCompleted: Email: " + email);
+                            Log.i(TAG, "onCompleted: Birthday: " + birthday);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.i(TAG, "onCompleted: JSON exception");
+                        }
+                    }
+                });
+
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender,birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
             }
 
             @Override
             public void onCancel() {
-                // App code
+
             }
 
             @Override
@@ -176,8 +198,68 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
 
             }
         });
+        // If you are using in a fragment, call loginButton.setFragment(this);
+
+        // Callback registration
+//        facebook_login_button.registerCallback(mcallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                // App code
+//                boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
+//                Log.d("API123", loggedIn + " ??");
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                // App code
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//
+//            }
+//        });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseAuth mFirebaseAuth=FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            Log.i(TAG, "onStart: Someone logged in <3");
+        } else {
+            Log.i(TAG, "onStart: No one logged in :/");
+        }
+
+    }
+
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        final FirebaseAuth mFirebaseAuth=FirebaseAuth.getInstance();
+        mFirebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                            Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(SignupScreen.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
+    }
     private void getUserProfile(AccessToken currentAccessToken) {
         GraphRequest request = GraphRequest.newMeRequest(
                 currentAccessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -243,7 +325,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
 
 
         //creating a new user
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        mfirebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -253,7 +335,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             Toast.makeText(SignupScreen.this,"Successfully registered",Toast.LENGTH_LONG).show();
                             //Database connection
 
-                            userId = firebaseAuth.getCurrentUser().getUid();
+                            userId = mfirebaseAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = db.collection("users").document(userId);
                             Map<String,Object> user = new HashMap<>();
                             user.put("Email",email);
@@ -288,7 +370,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        mcallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==RC_SIGN_IN){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -307,7 +389,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
 
         String email=acc.getEmail();
         String username=acc.getGivenName();
-        userId = firebaseAuth.getCurrentUser().getUid();
+        userId = mfirebaseAuth.getCurrentUser().getUid();
         DocumentReference documentReference = db.collection("users").document(userId);
         Map<String,Object> user = new HashMap<>();
         user.put("Email",email);
