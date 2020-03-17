@@ -3,11 +3,14 @@ package com.example.svakatha;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.media.ImageReader;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,6 +20,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -49,6 +54,8 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         textViewPriceScreenText2=(TextView)findViewById(R.id.textViewPriceScreenText2_1);
         textViewPriceScreenText3=(TextView)findViewById(R.id.textViewPriceScreenText3_1);
         textViewPriceScreenClothing=(TextView)findViewById(R.id.textViewPriceScreenClothing1);
+        textViewPriceOne=(TextView)findViewById(R.id.textViewPriceOne);
+        textViewPriceTwo=(TextView)findViewById(R.id.textViewPriceTwo);
         Intent intent = getIntent();
         textViewPriceScreenGreet.setTypeface(textViewPriceScreenGreet.getTypeface(), Typeface.BOLD);
         final String name_price = intent.getStringExtra("Name_details");
@@ -59,6 +66,20 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
 
         //casting of progressbar
         progressBarPriceScreen=(ProgressBar)findViewById(R.id.progressBarPriceScreen1);
+
+
+        CrystalRangeSeekbar rangeseekbar = (CrystalRangeSeekbar)findViewById(R.id.rangeseekbar);
+
+        rangeseekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue, Number maxValue) {
+                String min = String.valueOf(minValue);
+                textViewPriceOne.setText(min);
+                String max = String.valueOf(maxValue);
+                textViewPriceTwo.setText(max);
+
+            }
+        });
 
 
         //casting of SeekBar
