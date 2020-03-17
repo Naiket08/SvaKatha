@@ -129,6 +129,7 @@
                         android:layout_height="@dimen/_11sdp"
                         android:textSize="@dimen/_10sdp"
                         android:fontFamily="@font/arial"
+                        android:textColor="#000"
                         android:text="Hate it"
                         android:layout_marginLeft="100dp" />
 
@@ -138,6 +139,7 @@
                         android:layout_height="14dp"
                         android:layout_marginLeft="@dimen/_45sdp"
                         android:fontFamily="@font/arial"
+                        android:textColor="#000"
                         android:text="Not sure"
                         android:textSize="@dimen/_10sdp" />
 
@@ -147,11 +149,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_40sdp"
                         android:fontFamily="@font/arial"
+                        android:textColor="#000"
                         android:text="Loved It"
                         android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
-                
+
                 <ImageButton
                     android:id="@+id/imageButtonimageselection4"
                     android:layout_width="@dimen/_138sdp"
