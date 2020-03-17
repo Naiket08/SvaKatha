@@ -47,7 +47,7 @@ public class Business extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (editTextBusinessScreen.getText().toString().equals("")) {
-                    Toast.makeText(Business.this, "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Business.this, "Field is Empty", Toast.LENGTH_SHORT).show();
                 } else {
                     startActivity(new Intent(getApplicationContext(), Part_two.class));
                 }
