@@ -29,6 +29,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Business extends AppCompatActivity {
 
@@ -69,32 +73,37 @@ public class Business extends AppCompatActivity {
 
         //casting of ProgressBar
         progressBarBusinessScreen =(ProgressBar)findViewById(R.id.progressBarBusinessScreen1);
-        
-        imageButtonBusinessScreenForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (editTextBusinessScreen.getText().toString().equals("")) {
-                    Toast.makeText(Business.this, "Field is Empty", Toast.LENGTH_SHORT).show();
-                } else {
-                    startActivity(new Intent(getApplicationContext(), Part_two.class));
-                }
-            }
-        });
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final String currentID = auth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewBusinessScreenGreet.setText("Hi "+finalProfileText);
+                        textViewBusinessScreenGreet.setText(finalProfileText);
 
                     }
 
                 });
+
+
+        imageButtonBusinessScreenForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editTextBusinessScreen.getText().toString().equals("")) {
+                    Toast.makeText(Business.this, "Field is Empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    String Business=editTextBusinessScreen.getText().toString();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Business", Business);
+                    db.collection("users").document(currentID).set(user, SetOptions.merge());
+                    startActivity(new Intent(getApplicationContext(), Part_two.class));
+                }
+            }
+        });
+
 
     }
 

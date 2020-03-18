@@ -26,14 +26,12 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +44,7 @@ public class DetailsScreen extends AppCompatActivity {
     private ImageButton imageButtonDetailsScreenForward;
     private ProgressBar progressBarDetailsScreen;
     private FirebaseAuth auth;
+    private FirebaseFirestore mfirestore;
 
 
     @Override
@@ -56,8 +55,8 @@ public class DetailsScreen extends AppCompatActivity {
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
         Intent intent = getIntent();
         textViewDetailsScreenGreet.setTypeface(textViewDetailsScreenGreet.getTypeface(),Typeface.BOLD);
-        final String name_details = intent.getStringExtra("Name");
-        textViewDetailsScreenGreet.setText("Hi"+" "+name_details);
+        //final String name_details = intent.getStringExtra("Name");
+        //textViewDetailsScreenGreet.setText("Hi"+" "+name_details);
         textViewDetailsScreenText2 = (TextView) findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3 = (TextView) findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation = (TextView) findViewById(R.id.textViewDetailsScreenOccupation);
@@ -72,27 +71,13 @@ public class DetailsScreen extends AppCompatActivity {
 
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
 
+        mfirestore = FirebaseFirestore.getInstance();
+
         auth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
-        imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (editTextDetailsScreenStyle.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Field is empty", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    Intent intent1 = new Intent(DetailsScreen.this, Price.class);
-                    intent1.putExtra("Name_details", name_details);
-                    startActivity(intent1);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                }
-                }
-        });
-
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final String currentID = auth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -100,21 +85,32 @@ public class DetailsScreen extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewDetailsScreenGreet.setText("Hi "+finalProfileText);
-
+                        //FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        //String currentID = auth.getCurrentUser().getUid();
+                        Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
                     }
 
                 });
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+
+        imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onClick(View view) {
+                if (editTextDetailsScreenStyle.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Field is empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    //DocumentReference documentReference = db.collection("users").document(currentID);
+                    String occupation=editTextDetailsScreenStyle.getText().toString();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Occupation", occupation);
+                    db.collection("users").document(currentID).set(user, SetOptions.merge());
+                    startActivity(new Intent(getApplicationContext(), Price.class));
+                }
+                }
         });
+
+        //DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        //databaseReference.setValue(occupation);
 
     }
 }

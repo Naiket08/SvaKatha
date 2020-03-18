@@ -20,6 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Part_two extends AppCompatActivity {
     private ImageView imageViewUserScreenHeader;
@@ -61,21 +65,8 @@ public class Part_two extends AppCompatActivity {
         //casting of Switch
         aSwitch=(Switch)findViewById(R.id.switch1);
 
-        imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
-        imageButtonUserScreenForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (editTextUserScreenHeight.getText().toString().equals("") || editTextUserScreenWeight.getText().toString().equals("") || editTextUserScreenBirth.getText().toString().equals("")) {
-                    Toast.makeText(Part_two.this, "Feilds Are Empty", Toast.LENGTH_SHORT).show();
-                } else {
-                    startActivity(new Intent(getApplicationContext(), SkinTone.class));
-                }
-            }
-        });
-
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final String currentID = auth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -87,5 +78,28 @@ public class Part_two extends AppCompatActivity {
                     }
 
                 });
+
+
+        imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
+        imageButtonUserScreenForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editTextUserScreenHeight.getText().toString().equals("") || editTextUserScreenWeight.getText().toString().equals("") || editTextUserScreenBirth.getText().toString().equals("")) {
+                    Toast.makeText(Part_two.this, "Feilds Are Empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    String Height=editTextUserScreenHeight.getText().toString();
+                    String Weight=editTextUserScreenWeight.getText().toString();
+                    String DOB=editTextUserScreenBirth.getText().toString();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Height", Height);
+                    user.put("Weight", Weight);
+                    user.put("Birth", DOB);
+                    db.collection("users").document(currentID).set(user, SetOptions.merge());
+
+                    startActivity(new Intent(getApplicationContext(), SkinTone.class));
+                }
+            }
+        });
+
     }
 }

@@ -29,6 +29,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Style extends AppCompatActivity {
 
@@ -53,7 +57,7 @@ public class Style extends AppCompatActivity {
 
         Intent intent = getIntent();
         textViewStyleScreenGreet.setTypeface(textViewStyleScreenGreet.getTypeface(), Typeface.BOLD);
-        final String name_style = intent.getStringExtra("Name_price");
+        //final String name_style = intent.getStringExtra("Name_price");
         //textViewStyleScreenGreet.setText("Hi"+" "+name_style);
 
         //casting of ImageView
@@ -68,6 +72,21 @@ public class Style extends AppCompatActivity {
         //casting of ImageButton
         imageButtonStyleScreenForward=(ImageButton)findViewById(R.id.imageButtonStyleScreenForward_3);
 
+        //Display Name of user
+        final String currentID = auth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewStyleScreenGreet.setText(finalProfileText);
+
+                    }
+
+                });
+
 
         imageButtonStyleScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,29 +96,18 @@ public class Style extends AppCompatActivity {
                     Toast.makeText(Style.this, "Feild is empty", Toast.LENGTH_SHORT).show();
                 } else {
 
-
+                    String Style=editTextStyleScreen.getText().toString();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Style", Style);
+                    db.collection("users").document(currentID).set(user, SetOptions.merge());
                     Intent intent1 = new Intent(Style.this, Business.class);
-                    intent1.putExtra("Name_style", name_style);
+                    //intent1.putExtra("Name_style", name_style);
                     startActivity(intent1);
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
                 }
         });
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewStyleScreenGreet.setText("Hi "+finalProfileText);
-
-                    }
-
-                });
     }
 
 }

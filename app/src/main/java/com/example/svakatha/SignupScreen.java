@@ -20,6 +20,7 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
@@ -72,6 +73,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_signup_screen);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -252,6 +254,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
+                            startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -345,10 +348,10 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             user.put("Email",email);
                             user.put("Password",password);
                             user.put("FirstName",username);
-                            //user.put("Business","");
-                            //user.put("Style","");
-                            //user.put("Price","");
-                            //user.put("Occupation","");
+                            user.put("Business","");
+                            user.put("Style","");
+                            user.put("Price","");
+                            user.put("Occupation","");
                             //user.put("closetChoiceDocName","");
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -399,11 +402,12 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         user.put("Email",email);
         //user.put("Password",password);
         user.put("FirstName",username);
-        //user.put("Business","");
-        //user.put("Style","");
-        //user.put("Price","");
-        //user.put("Occupation","");
+        user.put("Business","");
+        user.put("Style","");
+        user.put("Price","");
+        user.put("Occupation","");
         //user.put("closetChoiceDocName","");
+
         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

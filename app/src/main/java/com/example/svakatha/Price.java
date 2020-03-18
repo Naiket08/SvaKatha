@@ -37,8 +37,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Price extends AppCompatActivity {
 
@@ -66,11 +70,10 @@ public class Price extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         textViewPriceScreenGreet.setTypeface(textViewPriceScreenGreet.getTypeface(), Typeface.BOLD);
         final String name_price = intent.getStringExtra("Name_details");
-        //textViewPriceScreenGreet.setText("Hi"+" "+name_price);
+        textViewPriceScreenGreet.setText("Hi"+" "+name_price);*/
 
         //casting of ImageView
         imageViewPriceScreenHeader=(ImageView)findViewById(R.id.imageViewPriceScreenHeader1);
@@ -92,6 +95,21 @@ public class Price extends AppCompatActivity {
             }
         });
 
+        final String currentID = auth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewPriceScreenGreet.setText(finalProfileText);
+
+                    }
+
+                });
+
+
 
         //casting of SeekBar
        
@@ -102,29 +120,19 @@ public class Price extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                String Price=textViewPriceTwo.getText().toString();
+                Map<String, Object> user = new HashMap<>();
+                user.put("Price", Price);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
                 Intent intent1 = new Intent(Price.this,Style.class);
-                intent1.putExtra("Name_price",name_price);
+                //intent1.putExtra("Name_price",name_price);
                 startActivity(intent1);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
             }
         });
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewPriceScreenGreet.setText("Hi "+finalProfileText);
-
-                    }
-
-                });
 
     }
 
