@@ -122,6 +122,7 @@
                         android:layout_width="@dimen/_45sdp"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_marginLeft="@dimen/_30sdp"
+                        android:layout_gravity="center"
                         android:background="@drawable/check" />
 
                 </LinearLayout>
@@ -153,11 +154,14 @@
 
                     <TextView
                         android:id="@+id/textviewimageselectionLove_1"
-                        android:layout_width="64dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
                         android:layout_marginLeft="@dimen/_40sdp"
                         android:fontFamily="@font/arial"
+                        android:inputType="text"
+                        android:labelFor="@+id/imagebuttonimageselectionLove_1"
                         android:text="Loved It"
+                        android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="@dimen/_10sdp" />
 
@@ -166,6 +170,8 @@
                 <ImageButton
                     android:id="@+id/imageButtonimageSelectionScreenForward_1"
                     android:layout_width="@dimen/_138sdp"
+                    android:layout_marginStart="@dimen/_100sdp"
+                    android:layout_marginEnd="@dimen/_100sdp"
                     android:layout_height="@dimen/_46sdp"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
