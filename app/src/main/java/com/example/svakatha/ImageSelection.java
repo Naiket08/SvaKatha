@@ -42,9 +42,11 @@ public class ImageSelection extends AppCompatActivity {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     Map<String, String> data = new HashMap<>();
     String imageCode;
-
+    ImageView imageView;
+    int i=0;
     @SuppressWarnings("deprecation")
     @SuppressLint({"NewApi", "ClickableViewAccessibility"})
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class ImageSelection extends AppCompatActivity {
 
         context = ImageSelection.this;
 
-        parentView = (RelativeLayout) findViewById(R.id.main_layoutview);
+        parentView = findViewById(R.id.relative_layout);
 
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();
 
@@ -64,50 +66,65 @@ public class ImageSelection extends AppCompatActivity {
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
-
+        imageView=findViewById(R.id.userIMG);
         getArrayData();
 
-        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View containerView = inflate.inflate(R.layout.activity_image_selection, null);
-        //RelativeLayout relativeLayoutContainer = (RelativeLayout) containerView.findViewById(R.id.relative_container);
+//        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        final View containerView = inflate.inflate(R.layout.activity_image_selection, null);
+//        //RelativeLayout relativeLayoutContainer = (RelativeLayout) containerView.findViewById(R.id.relative_container);
+//
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        containerView.setLayoutParams(layoutParams);
+//        addParentView(containerView, index);
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        containerView.setLayoutParams(layoutParams);
-        addParentView(containerView, index);
+//        Log.i("Status",userDataModelArrayList.get(2).getUrl());
+            Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+            btn1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
+                    if(index ==8 )
+                    {
+                        index=0;
+                    }else
+                        {
+                        index++;
+                    }
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+                }
+            });
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
-            }
-        });
+            btn2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
+                    if(index ==8 )
+                    {
+                        index=0;
+                    }else {
+                    index++;}
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+                }
+            });
 
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
-            }
-        });
+            btn3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveUserChoiceToDb(i);
+                    if(index == 8 )
+                    {
+                        index=0;
+                    }else {
+                        index++;
+                    }
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+                }
+            });
 
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveUserChoiceToDb(index);
-            }
-        });
     }
-
-
-    private void addParentView(View containerView, int index) {
-        ImageView userIMG = (ImageView) containerView.findViewById(R.id.userIMG);
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).memoryPolicy(MemoryPolicy.NO_CACHE).into(userIMG);
-        parentView.addView(containerView);
-    }
-
-
     private void getArrayData() {
 
-        final UserDataModel model = new UserDataModel();
+        UserDataModel model = new UserDataModel();
         model.setName("Cloth 1 ");
         model.setImageCode("1");
         settingURL(model, 1);
@@ -176,7 +193,7 @@ public class ImageSelection extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String durl = documentSnapshot.getString("url" + i);
                         model.setUrl(durl);
-                        // Log.i("Hi",durl);
+                         Log.i("Hi",durl);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -198,5 +215,11 @@ public class ImageSelection extends AppCompatActivity {
         //db.collection("users").document(uId).set(data, SetOptions.merge() );
         db.collection("users").document(uId).collection("Choices").document().set(choiceModel);
         //db.collection("users").document(uId).set(choiceModel, SetOptions.merge() );
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }

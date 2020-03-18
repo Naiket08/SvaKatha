@@ -10,6 +10,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/relative_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -88,7 +89,7 @@
                     android:id="@+id/userIMG"
                     android:layout_width="@dimen/_260sdp"
                     android:layout_height="@dimen/_374sdp"
-                    android:background="@drawable/imagelast"
+
                     android:scaleType="centerCrop" />
 
             </androidx.cardview.widget.CardView>
