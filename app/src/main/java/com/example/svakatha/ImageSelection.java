@@ -43,7 +43,8 @@ public class ImageSelection extends AppCompatActivity {
     Map<String, String> data = new HashMap<>();
     String imageCode;
     ImageView imageView;
-    int i=0;
+    int i = 0;
+
     @SuppressWarnings("deprecation")
     @SuppressLint({"NewApi", "ClickableViewAccessibility"})
 
@@ -66,7 +67,8 @@ public class ImageSelection extends AppCompatActivity {
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
-        imageView=findViewById(R.id.userIMG);
+        imageView = findViewById(R.id.userIMG);
+        imageView.
         getArrayData();
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -78,50 +80,49 @@ public class ImageSelection extends AppCompatActivity {
 //        addParentView(containerView, index);
 
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
-            Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
-            btn1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
-                    if(index ==8 )
-                    {
-                        index=0;
-                    }else
-                        {
-                        index++;
-                    }
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
+                if (index == 8) {
+                    index = 0;
+                } else {
+                    index++;
                 }
-            });
+                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+            }
+        });
 
-            btn2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
-                    if(index ==8 )
-                    {
-                        index=0;
-                    }else {
-                    index++;}
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
+                if (index == 8) {
+                    index = 0;
+                } else {
+                    index++;
                 }
-            });
+                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+            }
+        });
 
-            btn3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    saveUserChoiceToDb(i);
-                    if(index == 8 )
-                    {
-                        index=0;
-                    }else {
-                        index++;
-                    }
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveUserChoiceToDb(i);
+                Toast.makeText(ImageSelection.this, "Image Saved", Toast.LENGTH_SHORT).show();
+                if (index == 8) {
+                    index = 0;
+                } else {
+                    index++;
                 }
-            });
+                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+            }
+        });
 
     }
+
     private void getArrayData() {
 
         UserDataModel model = new UserDataModel();
@@ -193,7 +194,7 @@ public class ImageSelection extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String durl = documentSnapshot.getString("url" + i);
                         model.setUrl(durl);
-                         Log.i("Hi",durl);
+                        Log.i("Hi", durl);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -220,6 +221,5 @@ public class ImageSelection extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 }
