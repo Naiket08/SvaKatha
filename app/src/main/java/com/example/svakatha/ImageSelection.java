@@ -53,8 +53,6 @@ public class ImageSelection extends AppCompatActivity {
 
         context = ImageSelection.this;
 
-        parentView = (RelativeLayout) findViewById(R.id.main_layoutview);
-
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();
 
         screenCenter = windowwidth / 2;
@@ -66,14 +64,6 @@ public class ImageSelection extends AppCompatActivity {
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
 
         getArrayData();
-
-        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View containerView = inflate.inflate(R.layout.activity_image_selection, null);
-        //RelativeLayout relativeLayoutContainer = (RelativeLayout) containerView.findViewById(R.id.relative_container);
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        containerView.setLayoutParams(layoutParams);
-        addParentView(containerView, index);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,14 +86,6 @@ public class ImageSelection extends AppCompatActivity {
             }
         });
     }
-
-
-    private void addParentView(View containerView, int index) {
-        ImageView userIMG = (ImageView) containerView.findViewById(R.id.userIMG);
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).memoryPolicy(MemoryPolicy.NO_CACHE).into(userIMG);
-        parentView.addView(containerView);
-    }
-
 
     private void getArrayData() {
 
