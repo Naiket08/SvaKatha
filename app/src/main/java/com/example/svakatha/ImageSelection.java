@@ -21,15 +21,36 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ImageSelection extends AppCompatActivity {
 
+<<<<<<< Updated upstream
     private ImageView  imageViewImageSelectionScreenHeader,imageViewPerson;
     private TextView textViewImageSelectionText,textViewImageSelectionText2,textViewImageSelectionText3,textViewImageSelectionHate,textViewImageSelectionNotSure,textViewImaegSelectionLove;
     private ImageButton imageButtonImageSelectionHate,imageButtonImageSelectionNotSure,imageButtonImageSelectionLove,imageButtonImageSelectionScreenForward;
     private ProgressBar progressBarImageSelectionScreen;
+=======
+    private static ImageButton btn1, btn2, btn3,btn4;
+    int windowwidth;
+    int screenCenter;
+    public RelativeLayout parentView;
+    private Context context;
+    ArrayList<UserDataModel> userDataModelArrayList;
+    private static int index = 0;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    Map<String, String> data = new HashMap<>();
+    String imageCode;
+    ImageView imageView;
+    int i = 0;
+
+    @SuppressWarnings("deprecation")
+    @SuppressLint({"NewApi", "ClickableViewAccessibility"})
+
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_selection);
+<<<<<<< Updated upstream
         //casting of ImageView
         imageViewImageSelectionScreenHeader=(ImageView)findViewById(R.id.imageViewImageSelectionScreenHeader_1);
         imageViewPerson=(ImageView)findViewById(R.id.imageViewPerson_1);
@@ -54,10 +75,44 @@ public class ImageSelection extends AppCompatActivity {
 
 
       /*  imageButtonImageSelectionScreenForward.setOnClickListener(new View.OnClickListener() {
+=======
+
+        context = ImageSelection.this;
+
+        parentView = findViewById(R.id.relative_layout);
+
+        windowwidth = getWindowManager().getDefaultDisplay().getWidth();
+
+        screenCenter = windowwidth / 2;
+
+        userDataModelArrayList = new ArrayList<>();
+
+        btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
+        btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
+        btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
+        btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
+        imageView = (ImageView) findViewById(R.id.userIMG);
+        imageView.setImageResource(R.drawable.imagelast);
+
+        getArrayData();
+
+//        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        final View containerView = inflate.inflate(R.layout.activity_image_selection, null);
+//        //RelativeLayout relativeLayoutContainer = (RelativeLayout) containerView.findViewById(R.id.relative_container);
+//
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        containerView.setLayoutParams(layoutParams);
+//        addParentView(containerView, index);
+
+//        Log.i("Status",userDataModelArrayList.get(2).getUrl());
+        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        btn1.setOnClickListener(new View.OnClickListener() {
+>>>>>>> Stashed changes
             @Override
             public void onClick(View view) {
             }
         });
+<<<<<<< Updated upstream
         */
       imageButtonImageSelectionHate.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -91,6 +146,110 @@ public class ImageSelection extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
+=======
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
+                if (index == 8) {
+                    index = 0;
+                } else {
+                    index++;
+                }
+                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveUserChoiceToDb(i);
+                Toast.makeText(ImageSelection.this, "Image Saved", Toast.LENGTH_SHORT).show();
+                if (index == 8) {
+                    index = 0;
+                } else {
+                    index++;
+                }
+                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getArrayData() {
+
+        UserDataModel model = new UserDataModel();
+        model.setName("Cloth 1 ");
+        model.setImageCode("1");
+        settingURL(model, 1);
+        userDataModelArrayList.add(model);
+
+
+        UserDataModel model2 = new UserDataModel();
+        model2.setName("Cloth 2 ");
+        model2.setImageCode("2");
+        settingURL(model2, 2);
+        userDataModelArrayList.add(model2);
+
+        UserDataModel model3 = new UserDataModel();
+        model3.setName("Cloth 3 ");
+        model3.setImageCode("3");
+        settingURL(model3, 3);
+        userDataModelArrayList.add(model3);
+
+
+        UserDataModel model4 = new UserDataModel();
+        model4.setName("Cloth 4 ");
+        model4.setImageCode("4");
+        settingURL(model4, 4);
+        userDataModelArrayList.add(model4);
+
+
+        UserDataModel model5 = new UserDataModel();
+        model5.setName("Cloth 5 ");
+        model5.setImageCode("5");
+        settingURL(model5, 5);
+        userDataModelArrayList.add(model5);
+
+        UserDataModel model6 = new UserDataModel();
+        model6.setName("Cloth 6 ");
+        model6.setImageCode("6");
+        settingURL(model6, 6);
+        userDataModelArrayList.add(model6);
+
+
+        UserDataModel model7 = new UserDataModel();
+        model7.setName("Cloth 7 ");
+        model7.setImageCode("7");
+        settingURL(model7, 7);
+        userDataModelArrayList.add(model7);
+
+
+        UserDataModel model8 = new UserDataModel();
+        model8.setName("Cloth 8 ");
+        model8.setImageCode("8");
+        settingURL(model8, 8);
+        userDataModelArrayList.add(model8);
+
+
+        UserDataModel model9 = new UserDataModel();
+        model9.setName("Cloth 9 ");
+        model9.setImageCode("9");
+        settingURL(model9, 9);
+        userDataModelArrayList.add(model9);
+
+    }
+
+    public void settingURL(final UserDataModel model, final int i) {
+        db.collection("Images").document("ImageURLs").get()
+>>>>>>> Stashed changes
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
