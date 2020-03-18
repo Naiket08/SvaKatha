@@ -77,16 +77,21 @@
                 android:progressTint="@color/progess"
                 android:scaleY="2" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="@dimen/_384sdp"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="@dimen/_300sdp"
+                android:layout_marginEnd="38dp">
+
                 <ImageView
                     android:id="@+id/userIMG"
                     android:layout_width="@dimen/_260sdp"
                     android:layout_height="@dimen/_374sdp"
                     android:background="@drawable/imagelast"
-                    android:scaleType="centerCrop"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginTop="@dimen/_300sdp"
-                    android:layout_marginEnd="38dp" />
+                    android:scaleType="centerCrop" />
 
+            </androidx.cardview.widget.CardView>
         </RelativeLayout>
 
         <LinearLayout
