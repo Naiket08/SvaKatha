@@ -39,6 +39,7 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
     private TextView textViewPriceScreenGreet,textViewPriceScreenText2,textViewPriceScreenText3,textViewPriceOne,textViewPriceTwo,textViewPriceScreenClothing;
     private ProgressBar progressBarPriceScreen;
     private SeekBar seekBarPriceRange_1;
+    //private CrystalRangeSeekBar;
     private ImageButton imageButtonPriceScreenForward;
 
     private GoogleApiClient googleApiClient;
@@ -64,11 +65,11 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         //casting of ImageView
         imageViewPriceScreenHeader=(ImageView)findViewById(R.id.imageViewPriceScreenHeader1);
 
+        CrystalRangeSeekbar rangeseekbar = (CrystalRangeSeekbar)findViewById(R.id.rangeseekbar);
+
         //casting of progressbar
         progressBarPriceScreen=(ProgressBar)findViewById(R.id.progressBarPriceScreen1);
 
-
-        CrystalRangeSeekbar rangeseekbar = (CrystalRangeSeekbar)findViewById(R.id.rangeseekbar);
 
         rangeseekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
             @Override

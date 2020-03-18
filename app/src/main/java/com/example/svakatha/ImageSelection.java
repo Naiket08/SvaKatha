@@ -51,12 +51,14 @@ public class ImageSelection extends AppCompatActivity {
           @Override
           public void onClick(View view) {
               Toast.makeText(ImageSelection.this, "Image is deleted", Toast.LENGTH_SHORT).show();
+              imageButtonImageSelectionHate.isPressed();
           }
       });
       imageButtonImageSelectionNotSure.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               Toast.makeText(ImageSelection.this, "not sure about this image", Toast.LENGTH_SHORT).show();
+              imageButtonImageSelectionNotSure.isPressed();
           }
       });
       imageButtonImageSelectionLove.setOnClickListener(new View.OnClickListener() {
@@ -68,12 +70,7 @@ public class ImageSelection extends AppCompatActivity {
       imageButtonImageSelectionScreenForward.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-              if(!imageButtonImageSelectionHate.isSelected()||!imageButtonImageSelectionNotSure.isSelected()||!imageButtonImageSelectionLove.isSelected()){
-                  Toast.makeText(ImageSelection.this, "Select the options which are given Below", Toast.LENGTH_SHORT).show();
-              }
-              else{
-                  Toast.makeText(ImageSelection.this, "Next Page", Toast.LENGTH_SHORT).show();
-              }
+              Toast.makeText(ImageSelection.this, "Next Page", Toast.LENGTH_SHORT).show();
           }
       });
 
