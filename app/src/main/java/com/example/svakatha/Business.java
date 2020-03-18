@@ -22,17 +22,22 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class Business extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class Business extends AppCompatActivity {
 
     private ImageView imageViewBusinessScreenHeader;
     private TextView textViewBusinessScreenGreet,textViewBusinessScreenText2,textViewBusinessScreenText3,textViewBusinessScreenOccasion;
     private EditText editTextBusinessScreen;
     private ImageButton imageButtonBusinessScreenForward;
     private ProgressBar progressBarBusinessScreen;
-
-    private GoogleApiClient googleApiClient;
-    private GoogleSignInOptions gso;
+    private FirebaseAuth auth;
 
 
     @Override
@@ -45,19 +50,13 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
         textViewBusinessScreenText3=(TextView)findViewById(R.id.textViewBusinessScreenText3_1);
         textViewBusinessScreenOccasion=(TextView)findViewById(R.id.textViewBusinessScreenOccasion_1);
         textViewBusinessScreenGreet=(TextView)findViewById(R.id.textViewBusinessScreenGreet1);
+        auth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         Intent intent = getIntent();
         textViewBusinessScreenGreet.setTypeface(textViewBusinessScreenGreet.getTypeface(), Typeface.BOLD);
-        String name_business = intent.getStringExtra("Name_style");
-        textViewBusinessScreenGreet.setText("Hi"+" "+name_business);
+        //String name_business = intent.getStringExtra("Name_style");
+        //textViewBusinessScreenGreet.setText("Hi"+" "+name_business);
 
-        gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
 
         //casting of ImageView
         imageViewBusinessScreenHeader=(ImageView)findViewById(R.id.imageViewBusinessScreenHeader1);
@@ -82,50 +81,22 @@ public class Business extends AppCompatActivity implements GoogleApiClient.OnCon
             }
         });
 
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewBusinessScreenGreet.setText("Hi "+finalProfileText);
 
+                    }
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        OptionalPendingResult<GoogleSignInResult> opr= Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-        if(opr.isDone()){
-            GoogleSignInResult result=opr.get();
-            handleSignInResult(result);
-        }else{
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
-    private void handleSignInResult(GoogleSignInResult result){
-        if(result.isSuccess()){
-            GoogleSignInAccount account=result.getSignInAccount();
-            String name = "Hi "+account.getGivenName();
-            textViewBusinessScreenGreet.setText(name);
-            /*userEmail.setText(account.getEmail());
-            userId.setText(account.getId());
-            try{
-                Glide.with(this).load(account.getPhotoUrl()).into(profileImage);
-            }catch (NullPointerException e){
-                Toast.makeText(getApplicationContext(),"image not found",Toast.LENGTH_LONG).show();
-            }*/
-
-        }else{
-            //gotoMainActivity();
-        }
-    }
-    private void gotoMainActivity(){
-        Intent intent=new Intent(this,SignupScreen.class);
-        startActivity(intent);
-    }
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+                });
 
     }
+
+
 }

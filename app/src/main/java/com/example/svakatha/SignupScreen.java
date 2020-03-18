@@ -16,12 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -59,6 +61,8 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1;
     CallbackManager mcallbackManager;
+    private AccessTokenTracker accessTokenTracker;
+    private ProfileTracker profileTracker;
     LoginButton facebook_login_button;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mfirebaseAuth;
@@ -341,10 +345,10 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             user.put("Email",email);
                             user.put("Password",password);
                             user.put("FirstName",username);
-                            user.put("Business","");
-                            user.put("Style","");
-                            user.put("Price","");
-                            user.put("Occupation","");
+                            //user.put("Business","");
+                            //user.put("Style","");
+                            //user.put("Price","");
+                            //user.put("Occupation","");
                             //user.put("closetChoiceDocName","");
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -395,10 +399,10 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         user.put("Email",email);
         //user.put("Password",password);
         user.put("FirstName",username);
-        user.put("Business","");
-        user.put("Style","");
-        user.put("Price","");
-        user.put("Occupation","");
+        //user.put("Business","");
+        //user.put("Style","");
+        //user.put("Price","");
+        //user.put("Occupation","");
         //user.put("closetChoiceDocName","");
         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

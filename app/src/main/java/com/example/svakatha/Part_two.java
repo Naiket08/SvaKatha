@@ -13,6 +13,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class Part_two extends AppCompatActivity {
     private ImageView imageViewUserScreenHeader;
     private TextView textViewUserScreenGreet,textViewUserScreenText2,textViewUserScreenText3,textViewFemale,textViewMale,textViewHeight,textViewWeight,textViewBirth,textViewCM,textViewKG;
@@ -45,6 +53,9 @@ public class Part_two extends AppCompatActivity {
         editTextUserScreenHeight=(EditText)findViewById(R.id.editTextPartTwoHeight_1);
         editTextUserScreenWeight=(EditText)findViewById(R.id.editTextPartTwoWeight_1);
         editTextUserScreenBirth=(EditText)findViewById(R.id.editTextPartTwoBirth_1);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         //casting of ProgressBar
         progressBarUserScreen=(ProgressBar)findViewById(R.id.progressBarUserScreen_1);
         //casting of Switch
@@ -61,5 +72,20 @@ public class Part_two extends AppCompatActivity {
                 }
             }
         });
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewUserScreenGreet.setText("Hi "+finalProfileText);
+
+                    }
+
+                });
     }
 }

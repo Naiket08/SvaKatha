@@ -11,6 +11,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class ImageSelection extends AppCompatActivity {
 
     private ImageView  imageViewImageSelectionScreenHeader,imageViewPerson;
@@ -32,6 +40,10 @@ public class ImageSelection extends AppCompatActivity {
         textViewImageSelectionHate=(TextView)findViewById(R.id.textviewimageselectionHate_1);
         textViewImageSelectionNotSure=(TextView)findViewById(R.id.textviewimageselectionNotSure_1);
         textViewImaegSelectionLove=(TextView)findViewById(R.id.textviewimageselectionLove_1);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
         //casting of ImageButton
         imageButtonImageSelectionHate=(ImageButton)findViewById(R.id.imagebuttonimageselectionHate_1);
         imageButtonImageSelectionNotSure=(ImageButton)findViewById(R.id.imagebuttonimageselectionNotSure_1);
@@ -73,6 +85,21 @@ public class ImageSelection extends AppCompatActivity {
               Toast.makeText(ImageSelection.this, "Next Page", Toast.LENGTH_SHORT).show();
           }
       });
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewImageSelectionText.setText("Hi "+finalProfileText);
+
+                    }
+
+                });
 
     }
 }

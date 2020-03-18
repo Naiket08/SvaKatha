@@ -24,16 +24,29 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+import java.util.HashMap;
+import java.util.Map;
+
+public class DetailsScreen extends AppCompatActivity {
 
     TextView textViewDetailsScreenGreet, textViewDetailsScreenText2, textViewDetailsScreenText3, textViewDetailsScreenOccupation;
-    private GoogleApiClient googleApiClient;
-    private GoogleSignInOptions gso;
     private ImageView imageViewDetailsScreenHeader;
     private EditText editTextDetailsScreenStyle;
     private ImageButton imageButtonDetailsScreenForward;
     private ProgressBar progressBarDetailsScreen;
+    private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +72,9 @@ public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.
 
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
 
+        auth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,54 +90,31 @@ public class DetailsScreen extends AppCompatActivity implements GoogleApiClient.
                 }
         });
 
-        gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewDetailsScreenGreet.setText("Hi "+finalProfileText);
 
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
+                    }
 
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        OptionalPendingResult<GoogleSignInResult> opr= Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-        if(opr.isDone()){
-            GoogleSignInResult result=opr.get();
-            handleSignInResult(result);
-        }else{
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
-    private void handleSignInResult(GoogleSignInResult result){
-        if(result.isSuccess()){
-            GoogleSignInAccount account=result.getSignInAccount();
-            textViewDetailsScreenGreet.setText("Hi " +account.getGivenName());
-            /*userEmail.setText(account.getEmail());
-            userId.setText(account.getId());
-            try{
-                Glide.with(this).load(account.getPhotoUrl()).into(profileImage);
-            }catch (NullPointerException e){
-                Toast.makeText(getApplicationContext(),"image not found",Toast.LENGTH_LONG).show();
-            }*/
+                });
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        }else{
-            //gotoMainActivity();
-        }
-    }
-    private void gotoMainActivity(){
-        Intent intent=new Intent(this,SignupScreen.class);
-        startActivity(intent);
-    }
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 }

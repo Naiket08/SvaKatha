@@ -9,6 +9,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class SkinTone extends AppCompatActivity {
 
     private ImageView imageViewSkinToneScreenToneHeader;
@@ -26,6 +34,10 @@ public class SkinTone extends AppCompatActivity {
         textViewSkinToneScreenText2=(TextView)findViewById(R.id.textViewUserScreenText2_1);
         textViewSkinToneScreenText3=(TextView)findViewById(R.id.textViewSkinToneScreenText3_1);
         textViewSkinTone=(TextView)findViewById(R.id.skintone);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
         //casting of imagebutton
         imageButtonSkinToneScreenForward=(ImageButton)findViewById(R.id.imageButtonSkinToneScreenForward_1);
 
@@ -35,5 +47,20 @@ public class SkinTone extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),BodyShape.class));
             }
         });
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewSkinToneScreenGreet.setText("Hi "+finalProfileText);
+
+                    }
+
+                });
     }
 }

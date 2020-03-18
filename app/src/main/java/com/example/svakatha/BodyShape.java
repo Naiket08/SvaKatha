@@ -13,12 +13,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class BodyShape extends AppCompatActivity {
 
     private ImageView imageViewBodyShapeScreen;
     private TextView textViewBodyShapeText2, textViewBodyShapeText3, textViewBodyShapeText4;
     private ProgressBar progressBarBodyShapeScreen;
     private ImageButton imageButtonBody1, imageButtonBody2, imageButtonBody3, imageButtonBody4, imageButtonBody5, imageButtonBodyShapeScreenForward;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,9 @@ public class BodyShape extends AppCompatActivity {
         textViewBodyShapeText4 = (TextView) findViewById(R.id.textViewBodyShapeText4_1);
         //casting of ProgressBar
         progressBarBodyShapeScreen = (ProgressBar) findViewById(R.id.progressBarBodyShapeScreen_1);
+
+        auth = FirebaseAuth.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         //casting of imageButton
         imageButtonBodyShapeScreenForward = (ImageButton) findViewById(R.id.imageButtonBodyShapeScreenForward_1);
         imageButtonBody1 = (ImageButton) findViewById(R.id.imagebuttonbody1);
@@ -104,6 +116,21 @@ public class BodyShape extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ImageSelection.class));
             }
         });
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewBodyShapeText2.setText("Hi "+finalProfileText);
+
+                    }
+
+                });
     }
 }
 

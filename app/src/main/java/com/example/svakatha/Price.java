@@ -30,10 +30,17 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
-public class Price extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class Price extends AppCompatActivity {
 
     private ImageView imageViewPriceScreenHeader;
     private TextView textViewPriceScreenGreet,textViewPriceScreenText2,textViewPriceScreenText3,textViewPriceOne,textViewPriceTwo,textViewPriceScreenClothing;
@@ -41,9 +48,8 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
     private SeekBar seekBarPriceRange_1;
     //private CrystalRangeSeekBar;
     private ImageButton imageButtonPriceScreenForward;
-
-    private GoogleApiClient googleApiClient;
-    private GoogleSignInOptions gso;
+    FirebaseAuth auth;
+    FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +63,14 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
         textViewPriceScreenClothing=(TextView)findViewById(R.id.textViewPriceScreenClothing1);
         textViewPriceOne=(TextView)findViewById(R.id.textViewPriceOne);
         textViewPriceTwo=(TextView)findViewById(R.id.textViewPriceTwo);
+
+        auth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
         Intent intent = getIntent();
         textViewPriceScreenGreet.setTypeface(textViewPriceScreenGreet.getTypeface(), Typeface.BOLD);
         final String name_price = intent.getStringExtra("Name_details");
-        textViewPriceScreenGreet.setText("Hi"+" "+name_price);
+        //textViewPriceScreenGreet.setText("Hi"+" "+name_price);
 
         //casting of ImageView
         imageViewPriceScreenHeader=(ImageView)findViewById(R.id.imageViewPriceScreenHeader1);
@@ -101,55 +111,21 @@ public class Price extends AppCompatActivity implements GoogleApiClient.OnConnec
             }
         });
 
-        gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewPriceScreenGreet.setText("Hi "+finalProfileText);
 
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
-    }
+                    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        OptionalPendingResult<GoogleSignInResult> opr= Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-        if(opr.isDone()){
-            GoogleSignInResult result=opr.get();
-            handleSignInResult(result);
-        }else{
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
-    private void handleSignInResult(GoogleSignInResult result){
-        if(result.isSuccess()){
-            GoogleSignInAccount account=result.getSignInAccount();
-            String name = "Hi "+account.getGivenName();
-            textViewPriceScreenGreet.setText(name);
-            /*userEmail.setText(account.getEmail());
-            userId.setText(account.getId());
-            try{
-                Glide.with(this).load(account.getPhotoUrl()).into(profileImage);
-            }catch (NullPointerException e){
-                Toast.makeText(getApplicationContext(),"image not found",Toast.LENGTH_LONG).show();
-            }*/
-
-        }else{
-            //gotoMainActivity();
-        }
-    }
-    private void gotoMainActivity(){
-        Intent intent=new Intent(this,SignupScreen.class);
-        startActivity(intent);
-    }
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                });
 
     }
+
 }
