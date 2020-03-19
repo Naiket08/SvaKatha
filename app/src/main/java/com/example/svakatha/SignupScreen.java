@@ -167,8 +167,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         facebook_login_button.registerCallback(mcallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Profile profile = Profile.getCurrentProfile();
-                FbProfile(profile);
+
                 Log.i(TAG, "onSuccess: logged in successfully");
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
@@ -179,6 +178,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                         try {
                             String email = object.getString("email");
                             String birthday = object.getString("birthday");
+                            Toast.makeText(getApplicationContext(),""+email,Toast.LENGTH_LONG).show();
 
                             Log.i(TAG, "onCompleted: Email: " + email);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
@@ -269,6 +269,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                     }
                 });
     }
+
     private void getUserProfile(AccessToken currentAccessToken) {
         GraphRequest request = GraphRequest.newMeRequest(
                 currentAccessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -276,8 +277,19 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         Log.d("TAG", object.toString());
                         try {
+                            userId = mfirebaseAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = db.collection("users").document(userId);
+                            Map<String, Object> user = new HashMap<>();
                             String first_name = object.getString("first_name");
-
+                            user.put("FirstName", first_name);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            //String email = object.getString("email");
+                            //Toast.makeText(getApplicationContext(),""+first_name,Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
                             intent.putExtra("Name",first_name);
                             startActivity(intent);
@@ -295,32 +307,6 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         request.setParameters(parameters);
         request.executeAsync();
 
-    }
-
-    private void FbProfile(Profile profile)
-    {
-        if(profile!=null) {
-            String FirstName = profile.getFirstName();
-            String username = profile.getName();
-            userId = mfirebaseAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = db.collection("users").document(userId);
-            Map<String, Object> user = new HashMap<>();
-            user.put("Name", username);
-            //user.put("Password",password);
-            user.put("FirstName", FirstName);
-            user.put("Business", "");
-            user.put("Style", "");
-            user.put("Price", "");
-            user.put("Occupation", "");
-            //user.put("closetChoiceDocName","");
-
-            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
     }
 
     private void registerUser(){
@@ -412,6 +398,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
             handleSignInResult(result);
         }
     }
+
     private void handleSignInResult(GoogleSignInResult result){
         if(result.isSuccess()){
             GoogleSignInAccount account=result.getSignInAccount();
@@ -420,6 +407,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
             Toast.makeText(getApplicationContext(),"Sign in cancel",Toast.LENGTH_LONG).show();
         }
     }
+
     private void gotoProfile(GoogleSignInAccount acc){
 
         String email=acc.getEmail();
