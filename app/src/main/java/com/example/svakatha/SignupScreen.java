@@ -285,7 +285,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
                                 }
                             });
                             //String email = object.getString("email");
@@ -370,7 +370,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
                                 }
                             });
                             startActivity(new Intent(getApplicationContext(),DetailsScreen.class));
@@ -427,7 +427,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
             }
         });
         Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
