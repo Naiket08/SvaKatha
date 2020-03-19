@@ -84,6 +84,7 @@ public class ImageSelection extends AppCompatActivity {
 //        addParentView(containerView, index);
 
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
+        
         Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +133,7 @@ public class ImageSelection extends AppCompatActivity {
             }
         });
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+//        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
         String currentID = auth.getCurrentUser().getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
