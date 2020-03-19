@@ -71,12 +71,10 @@ public class ImageSelection extends AppCompatActivity {
 
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewImageSelectionText2.setText("Hi "+finalProfileText);
-                    }
                 });
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
