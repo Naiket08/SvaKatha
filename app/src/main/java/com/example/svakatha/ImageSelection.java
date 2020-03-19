@@ -2,10 +2,8 @@ package com.example.svakatha;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,13 +12,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -40,9 +34,8 @@ public class ImageSelection extends AppCompatActivity {
     private Context context;
     ArrayList<UserDataModel> userDataModelArrayList;
     private static int index = 0;
-    FirebaseDatabase firebaseDatabase;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseFirestore db;
+    FirebaseAuth mAuth ;
     Map<String, String> data = new HashMap<>();
     String imageCode;
     ImageView imageView;
@@ -66,14 +59,24 @@ public class ImageSelection extends AppCompatActivity {
         screenCenter = windowwidth / 2;
 
         userDataModelArrayList = new ArrayList<>();
-
-        textViewImageSelectionText2 = (TextView) findViewById(R.id.textViewStyleGreet2);
+        mAuth=FirebaseAuth.getInstance();
+        db=FirebaseFirestore.getInstance();
+        textViewImageSelectionText2 = findViewById(R.id.textViewStyleGreet2);
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
         btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
         imageView = findViewById(R.id.userIMG);
         getArrayData();
+
+        db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewImageSelectionText2.setText("Hi "+finalProfileText);
+                    }
+                });
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        final View containerView = inflate.inflate(R.layout.activity_image_selection, null);
@@ -131,21 +134,6 @@ public class ImageSelection extends AppCompatActivity {
                 Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
-
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewImageSelectionText2.setText("Hi "+finalProfileText);
-
-                    }
-
-                });
     }
 
     private void getArrayData() {
@@ -232,7 +220,7 @@ public class ImageSelection extends AppCompatActivity {
     }
 
     public void saveUserChoiceToDb(int index) {
-        String uId = auth.getCurrentUser().getUid();
+        String uId = mAuth.getCurrentUser().getUid();
         imageCode = userDataModelArrayList.get(index).getImageCode();
         // Log.i("hi",imageCode);
         ChoiceModel choiceModel = new ChoiceModel();
