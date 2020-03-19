@@ -68,7 +68,6 @@ public class ImageSelection extends AppCompatActivity {
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
         imageView = findViewById(R.id.userIMG);
-        imageView.
         getArrayData();
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
