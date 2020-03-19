@@ -2,12 +2,16 @@ package com.example.svakatha;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,14 +23,16 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ImageSelection extends AppCompatActivity {
 
-<<<<<<< Updated upstream
     private ImageView  imageViewImageSelectionScreenHeader,imageViewPerson;
     private TextView textViewImageSelectionText,textViewImageSelectionText2,textViewImageSelectionText3,textViewImageSelectionHate,textViewImageSelectionNotSure,textViewImaegSelectionLove;
-    private ImageButton imageButtonImageSelectionHate,imageButtonImageSelectionNotSure,imageButtonImageSelectionLove,imageButtonImageSelectionScreenForward;
+    private ImageButton imageButtonImageSelectionHate,imageButtonImageSelectionNotSure,imageButtonImageSelectionLove;
     private ProgressBar progressBarImageSelectionScreen;
-=======
+    private Button buttonFinish;
     private static ImageButton btn1, btn2, btn3,btn4;
     int windowwidth;
     int screenCenter;
@@ -44,38 +50,35 @@ public class ImageSelection extends AppCompatActivity {
     @SuppressWarnings("deprecation")
     @SuppressLint({"NewApi", "ClickableViewAccessibility"})
 
->>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_selection);
-<<<<<<< Updated upstream
         //casting of ImageView
         imageViewImageSelectionScreenHeader=(ImageView)findViewById(R.id.imageViewImageSelectionScreenHeader_1);
-        imageViewPerson=(ImageView)findViewById(R.id.imageViewPerson_1);
+        imageViewPerson=(ImageView)findViewById(R.id.imageofPerson);
         //casting of TextView
         textViewImageSelectionText=(TextView)findViewById(R.id.textViewImageSelectionText_1);
         textViewImageSelectionText2=(TextView)findViewById(R.id.textViewImageSelectionText2_1);
         textViewImageSelectionText3=(TextView)findViewById(R.id.textViewImageSelectionText3_1);
-        textViewImageSelectionHate=(TextView)findViewById(R.id.textviewimageselectionHate_1);
-        textViewImageSelectionNotSure=(TextView)findViewById(R.id.textviewimageselectionNotSure_1);
-        textViewImaegSelectionLove=(TextView)findViewById(R.id.textviewimageselectionLove_1);
+        textViewImageSelectionHate=(TextView)findViewById(R.id.textViewHateIt);
+        textViewImageSelectionNotSure=(TextView)findViewById(R.id.textViewNotSure);
+        textViewImaegSelectionLove=(TextView)findViewById(R.id.textViewLovedIt);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
         //casting of ImageButton
-        imageButtonImageSelectionHate=(ImageButton)findViewById(R.id.imagebuttonimageselectionHate_1);
-        imageButtonImageSelectionNotSure=(ImageButton)findViewById(R.id.imagebuttonimageselectionNotSure_1);
-        imageButtonImageSelectionLove=(ImageButton)findViewById(R.id.imagebuttonimageselectionLove_1);
-        imageButtonImageSelectionScreenForward=(ImageButton)findViewById(R.id.imageButtonimageSelectionScreenForward_1);
+        imageButtonImageSelectionHate=(ImageButton)findViewById(R.id.imageButtonHateIt);
+        imageButtonImageSelectionNotSure=(ImageButton)findViewById(R.id.imageButtonNotSure);
+        imageButtonImageSelectionLove=(ImageButton)findViewById(R.id.imageButtonLovedIt);
+        buttonFinish=(Button)findViewById(R.id.buttonFinish);
         //casting of ProgressBar
         progressBarImageSelectionScreen=(ProgressBar)findViewById(R.id.progressBarImageSelectionScreen_1);
 
 
       /*  imageButtonImageSelectionScreenForward.setOnClickListener(new View.OnClickListener() {
-=======
 
         context = ImageSelection.this;
 
@@ -107,12 +110,10 @@ public class ImageSelection extends AppCompatActivity {
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
         Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
         btn1.setOnClickListener(new View.OnClickListener() {
->>>>>>> Stashed changes
             @Override
             public void onClick(View view) {
             }
         });
-<<<<<<< Updated upstream
         */
       imageButtonImageSelectionHate.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -134,7 +135,7 @@ public class ImageSelection extends AppCompatActivity {
               Toast.makeText(ImageSelection.this, "image is inserted", Toast.LENGTH_SHORT).show();
           }
       });
-      imageButtonImageSelectionScreenForward.setOnClickListener(new View.OnClickListener() {
+      buttonFinish.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
               Toast.makeText(ImageSelection.this, "Next Page", Toast.LENGTH_SHORT).show();
@@ -145,8 +146,7 @@ public class ImageSelection extends AppCompatActivity {
         String currentID = auth.getCurrentUser().getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
-=======
+        documentReference.get();
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,7 +249,6 @@ public class ImageSelection extends AppCompatActivity {
 
     public void settingURL(final UserDataModel model, final int i) {
         db.collection("Images").document("ImageURLs").get()
->>>>>>> Stashed changes
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {

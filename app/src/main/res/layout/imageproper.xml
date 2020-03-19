@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+    <ImageView
+        android:id="@+id/imageofPerson"
+        android:layout_width="@dimen/_235sdp"
+        android:layout_height="@dimen/_290sdp"
+        android:src="@drawable/imagelast"/>
+
+    <LinearLayout
+        android:layout_width="@dimen/_235sdp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="@dimen/_25sdp">
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_weight="1"
+           android:gravity="center">
+        <ImageButton
+            android:id="@+id/imageButtonHateIt"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:src="@drawable/cross"
+            android:background="#FFFFFF" />
+         <TextView
+             android:id="@+id/textViewHateIt"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Hate It"
+             android:textColor="#000"
+             android:textSize="@dimen/_12ssp"
+             android:textAlignment="center"/>
+
+
+       </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+
+            <ImageButton
+                android:id="@+id/imageButtonNotSure"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:src="@drawable/help"
+                android:background="#FFFFFF"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/textViewNotSure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Not Sure"
+                android:textColor="#000"
+                android:textSize="@dimen/_12ssp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/imageButtonLovedIt"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:src="@drawable/check"
+                android:background="#FFFFFF"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/textViewLovedIt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loved It"
+                android:textColor="#000"
+                android:textSize="@dimen/_12ssp"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonFinish"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_34sdp"
+            android:fontFamily="@font/arial"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:background="@drawable/backgroundfinish"
+            android:text="@string/finish"
+            android:textColor="#000"
+            android:textSize="@dimen/_14ssp"
+            android:textAllCaps="false"/>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
