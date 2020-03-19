@@ -276,17 +276,17 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         Log.d("TAG", object.toString());
                         try {
-                            //userId = mfirebaseAuth.getCurrentUser().getUid();
-                            //DocumentReference documentReference = db.collection("users").document(userId);
-                            //Map<String, Object> user = new HashMap<>();
+                            userId = mfirebaseAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = db.collection("users").document(userId);
+                            Map<String, Object> user = new HashMap<>();
                             String first_name = object.getString("first_name");
-                            //user.put("FirstName", first_name);
-                            /*documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            user.put("FirstName", first_name);
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
                                 }
-                            });*/
+                            });
                             //String email = object.getString("email");
                             //Toast.makeText(getApplicationContext(),""+first_name,Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
