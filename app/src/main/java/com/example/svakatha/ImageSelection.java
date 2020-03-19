@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class ImageSelection extends AppCompatActivity {
 
-    private static ImageButton btn1, btn2, btn3;
+    private static ImageButton btn1, btn2, btn3,btn4;
     int windowwidth;
     int screenCenter;
     public RelativeLayout parentView;
@@ -67,6 +67,7 @@ public class ImageSelection extends AppCompatActivity {
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
+        btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
         imageView = findViewById(R.id.userIMG);
         getArrayData();
 
@@ -117,6 +118,13 @@ public class ImageSelection extends AppCompatActivity {
                     index++;
                 }
                 Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
 
