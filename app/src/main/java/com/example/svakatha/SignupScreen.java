@@ -167,6 +167,8 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         facebook_login_button.registerCallback(mcallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Profile profile = Profile.getCurrentProfile();
+                FbProfile(profile);
                 Log.i(TAG, "onSuccess: logged in successfully");
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
@@ -293,6 +295,32 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         request.setParameters(parameters);
         request.executeAsync();
 
+    }
+
+    private void FbProfile(Profile profile)
+    {
+        if(profile!=null) {
+            String FirstName = profile.getFirstName();
+            String username = profile.getName();
+            userId = mfirebaseAuth.getCurrentUser().getUid();
+            DocumentReference documentReference = db.collection("users").document(userId);
+            Map<String, Object> user = new HashMap<>();
+            user.put("Name", username);
+            //user.put("Password",password);
+            user.put("FirstName", FirstName);
+            user.put("Business", "");
+            user.put("Style", "");
+            user.put("Price", "");
+            user.put("Occupation", "");
+            //user.put("closetChoiceDocName","");
+
+            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(SignupScreen.this, "Database Me Aapka Password Save HO GAYA", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void registerUser(){
