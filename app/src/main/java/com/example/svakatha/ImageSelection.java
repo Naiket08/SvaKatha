@@ -1,20 +1,21 @@
 package com.example.svakatha;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -22,24 +23,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ImageSelection extends AppCompatActivity {
 
-    private ImageView  imageViewImageSelectionScreenHeader,imageViewPerson;
-    private TextView textViewImageSelectionText,textViewImageSelectionText2,textViewImageSelectionText3,textViewImageSelectionHate,textViewImageSelectionNotSure,textViewImaegSelectionLove;
-    private ImageButton imageButtonImageSelectionHate,imageButtonImageSelectionNotSure,imageButtonImageSelectionLove;
-    private ProgressBar progressBarImageSelectionScreen;
-    private Button buttonFinish;
     private static ImageButton btn1, btn2, btn3,btn4;
+    private TextView textViewImageSelectionText2;
     int windowwidth;
     int screenCenter;
     public RelativeLayout parentView;
     private Context context;
     ArrayList<UserDataModel> userDataModelArrayList;
     private static int index = 0;
+    FirebaseDatabase firebaseDatabase;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     Map<String, String> data = new HashMap<>();
@@ -55,34 +56,10 @@ public class ImageSelection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_selection);
-        //casting of ImageView
-        imageViewImageSelectionScreenHeader=(ImageView)findViewById(R.id.imageViewImageSelectionScreenHeader_1);
-        imageViewPerson=(ImageView)findViewById(R.id.imageofPerson);
-        //casting of TextView
-        textViewImageSelectionText=(TextView)findViewById(R.id.textViewImageSelectionText_1);
-        textViewImageSelectionText2=(TextView)findViewById(R.id.textViewImageSelectionText2_1);
-        textViewImageSelectionText3=(TextView)findViewById(R.id.textViewImageSelectionText3_1);
-        textViewImageSelectionHate=(TextView)findViewById(R.id.textViewHateIt);
-        textViewImageSelectionNotSure=(TextView)findViewById(R.id.textViewNotSure);
-        textViewImaegSelectionLove=(TextView)findViewById(R.id.textViewLovedIt);
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-
-        //casting of ImageButton
-        imageButtonImageSelectionHate=(ImageButton)findViewById(R.id.imageButtonHateIt);
-        imageButtonImageSelectionNotSure=(ImageButton)findViewById(R.id.imageButtonNotSure);
-        imageButtonImageSelectionLove=(ImageButton)findViewById(R.id.imageButtonLovedIt);
-        buttonFinish=(Button)findViewById(R.id.buttonFinish);
-        //casting of ProgressBar
-        progressBarImageSelectionScreen=(ProgressBar)findViewById(R.id.progressBarImageSelectionScreen_1);
-
-
-      /*  imageButtonImageSelectionScreenForward.setOnClickListener(new View.OnClickListener() {
 
         context = ImageSelection.this;
 
-        parentView = findViewById(R.id.relative_layout);
+        parentView = findViewById(R.id.main_layoutview);
 
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();
 
@@ -90,13 +67,12 @@ public class ImageSelection extends AppCompatActivity {
 
         userDataModelArrayList = new ArrayList<>();
 
+        textViewImageSelectionText2 = (TextView) findViewById(R.id.textViewStyleGreet2);
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
         btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
-        imageView = (ImageView) findViewById(R.id.userIMG);
-        imageView.setImageResource(R.drawable.imagelast);
-
+        imageView = findViewById(R.id.userIMG);
         getArrayData();
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -111,42 +87,16 @@ public class ImageSelection extends AppCompatActivity {
         Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
+                if (index == 8) {
+                    index = 0;
+                } else {
+                    index++;
+                }
+                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
             }
         });
-        */
-      imageButtonImageSelectionHate.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Toast.makeText(ImageSelection.this, "Image is deleted", Toast.LENGTH_SHORT).show();
-              imageButtonImageSelectionHate.isPressed();
-          }
-      });
-      imageButtonImageSelectionNotSure.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Toast.makeText(ImageSelection.this, "not sure about this image", Toast.LENGTH_SHORT).show();
-              imageButtonImageSelectionNotSure.isPressed();
-          }
-      });
-      imageButtonImageSelectionLove.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Toast.makeText(ImageSelection.this, "image is inserted", Toast.LENGTH_SHORT).show();
-          }
-      });
-      buttonFinish.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              Toast.makeText(ImageSelection.this, "Next Page", Toast.LENGTH_SHORT).show();
-          }
-      });
-
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get();
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +131,21 @@ public class ImageSelection extends AppCompatActivity {
                 Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        String currentID = auth.getCurrentUser().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String finalProfileText = documentSnapshot.getString("FirstName");
+                        textViewImageSelectionText2.setText("Hi "+finalProfileText);
+
+                    }
+
+                });
     }
 
     private void getArrayData() {
@@ -252,12 +217,34 @@ public class ImageSelection extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewImageSelectionText.setText("Hi "+finalProfileText);
-
+                        String durl = documentSnapshot.getString("url" + i);
+                        model.setUrl(durl);
+                        Log.i("Hi", durl);
                     }
-
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
+                        Log.i("hi", e.toString());
+                    }
                 });
+    }
 
+    public void saveUserChoiceToDb(int index) {
+        String uId = auth.getCurrentUser().getUid();
+        imageCode = userDataModelArrayList.get(index).getImageCode();
+        // Log.i("hi",imageCode);
+        ChoiceModel choiceModel = new ChoiceModel();
+        choiceModel.setChoice(imageCode);
+        //data.put("userchoice",imageCode);
+        //db.collection("users").document(uId).set(data, SetOptions.merge() );
+        db.collection("users").document(uId).collection("Choices").document().set(choiceModel);
+        //db.collection("users").document(uId).set(choiceModel, SetOptions.merge() );
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 }

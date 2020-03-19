@@ -112,7 +112,8 @@ public class BodyShape extends AppCompatActivity {
 
 
         imageButtonBodyShapeScreenForward.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+            @Override
+            public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), ImageSelection.class));
             }
         });
@@ -133,4 +134,3 @@ public class BodyShape extends AppCompatActivity {
                 });
     }
 }
-
