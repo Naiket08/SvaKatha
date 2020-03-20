@@ -1,6 +1,7 @@
 package com.example.svakatha;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -28,11 +29,14 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,6 +46,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -51,7 +56,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupScreen extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+public class SignupScreen extends AppCompatActivity {
 
     private static final String TAG = "Status";
     ImageView imageViewSignUpHeader, imageViewSignUpDivider;
@@ -59,8 +64,8 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
     Button buttonSignUp_LetsStart;
     EditText editTextSignUpUsrname,editTextSignUpEmailId,editTextSignUpPassword,editTextSignUpConfirmPassword;
     SignInButton signInButton;
-    private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1;
+    private GoogleSignInClient mGoogleSignInClient;
     CallbackManager mcallbackManager;
     private AccessTokenTracker accessTokenTracker;
     private ProfileTracker profileTracker;
@@ -88,6 +93,21 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         boolean loggedOut = AccessToken.getCurrentAccessToken() == null;
 
         mfirebaseAuth =FirebaseAuth.getInstance();
+
+        signInButton=findViewById(R.id.sign_in_button);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signIn();
+            }
+        });
 
 
         buttonSignUp_LetsStart.setOnClickListener(new View.OnClickListener() {
@@ -136,31 +156,16 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
             }
         });*/
 
-        GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleApiClient=new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
 
-        signInButton=(SignInButton)findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent,RC_SIGN_IN);
-            }
-        });
 
-        if (!loggedOut) {
+        /*if (!loggedOut) {
             Log.d("TAG", "Username is: " + Profile.getCurrentProfile().getName());
 
             //Using Graph API
             getUserProfile(AccessToken.getCurrentAccessToken());
-        }
+        }*/
 
-        mcallbackManager = CallbackManager.Factory.create();
+       mcallbackManager = CallbackManager.Factory.create();
         facebook_login_button = (LoginButton) findViewById(R.id.facebook_login_button);
         facebook_login_button.setPermissions("public_profile","email", "user_birthday");
         facebook_login_button.registerCallback(mcallbackManager, new FacebookCallback<LoginResult>() {
@@ -168,16 +173,21 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
             public void onSuccess(LoginResult loginResult) {
 
                 Log.i(TAG, "onSuccess: logged in successfully");
+                Toast.makeText(SignupScreen.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         // Application code
                         Log.i(TAG, "onCompleted: response: " + response.toString());
+                        Toast.makeText(SignupScreen.this, "Facebook1", Toast.LENGTH_SHORT).show();
                         try {
                             String email = object.getString("email");
                             String birthday = object.getString("birthday");
                             Toast.makeText(getApplicationContext(),""+email,Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignupScreen.this, "Facebook2", Toast.LENGTH_SHORT).show();
+
 
                             Log.i(TAG, "onCompleted: Email: " + email);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
@@ -235,6 +245,8 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
             Log.i(TAG, "onStart: Someone logged in <3");
+            Toast.makeText(SignupScreen.this, "Facebook4", Toast.LENGTH_SHORT).show();
+
         } else {
             Log.i(TAG, "onStart: No one logged in :/");
         }
@@ -253,6 +265,8 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            Toast.makeText(SignupScreen.this, "Facebook5", Toast.LENGTH_SHORT).show();
+
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
                             startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
@@ -289,9 +303,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             });
                             //String email = object.getString("email");
                             //Toast.makeText(getApplicationContext(),""+first_name,Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
-                            intent.putExtra("Name",first_name);
-                            startActivity(intent);
+                            startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
                             overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
                         } catch (JSONException e) {
@@ -375,7 +387,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
                             startActivity(new Intent(getApplicationContext(),DetailsScreen.class));
                         }else{
                             //display some message here
-                            Toast.makeText(SignupScreen.this,"Registration Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignupScreen.this,"Already Registered", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -383,7 +395,7 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
     }
 
 
-    @Override
+    /*@Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
@@ -431,9 +443,60 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         });
         Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
         startActivity(intent);
+    }*/
+
+    private void signIn()
+    {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent,RC_SIGN_IN);
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==RC_SIGN_IN)
+        {
+            Task<GoogleSignInAccount>task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handlesigninResult(task);
+        }
+    }
+
+    private  void handlesigninResult(Task<GoogleSignInAccount> completedtask)
+    {
+        try {
+            GoogleSignInAccount account =completedtask.getResult(ApiException.class);
+            Toast.makeText(this,"Sign In Successfull",Toast.LENGTH_SHORT).show();
+            FirebaseGoogleAuth(account);
+        }
+        catch (ApiException e){
+            Toast.makeText(this,"Sign In Failed",Toast.LENGTH_SHORT).show();
+            FirebaseGoogleAuth(null);
+
+        }
+    }
+
+    private void FirebaseGoogleAuth(GoogleSignInAccount acc)
+    {
+        AuthCredential authCredential = GoogleAuthProvider.getCredential(acc.getIdToken(),null);
+        mfirebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(SignupScreen.this, "Successful", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = mfirebaseAuth.getCurrentUser();
+                    updateUI(user);
+                }
+                else
+                {
+                    Toast.makeText(SignupScreen.this, "Failed", Toast.LENGTH_SHORT).show();
+                    updateUI(null);
+                }
+            }
+        });
+    }
+
+    /*@Override
     protected void onResume() {
         super.onResume();
         editTextSignUpUsrname.setText("");
@@ -441,11 +504,41 @@ public class SignupScreen extends AppCompatActivity implements GoogleApiClient.O
         editTextSignUpPassword.setText("");
         editTextSignUpConfirmPassword.setText("");
         editTextSignUpUsrname.requestFocus();
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
+    }*/
+
+    private void updateUI(FirebaseUser user1)
+    {
+        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if(acc!=null)
+        {
+            String email=acc.getEmail();
+            String username=acc.getGivenName();
+            userId = mfirebaseAuth.getCurrentUser().getUid();
+            DocumentReference documentReference = db.collection("users").document(userId);
+            Map<String,Object> user = new HashMap<>();
+            user.put("Email",email);
+            //user.put("Password",password);
+            user.put("FirstName",username);
+            user.put("Business","");
+            user.put("Style","");
+            user.put("Price","");
+            user.put("Occupation","");
+            //user.put("closetChoiceDocName","");
+
+            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
+                }
+            });
+            Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
+            startActivity(intent);
+        }
     }
 }
