@@ -118,15 +118,18 @@
         android:id="@+id/buttonSignUp_LetsStart"
         android:layout_width="@dimen/_115sdp"
         android:layout_height="@dimen/_35sdp"
-        android:text="Let's Start"
-        android:fontFamily="@font/arial"
-        android:textSize="@dimen/_14ssp"
-        android:textColor="#FFFFFF"
-        android:textAllCaps="false"
+        android:layout_below="@+id/editTextSignUpConfirmPassword"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="120dp"
         android:background="@drawable/buttonbackgroundlogin"
-        android:layout_marginTop="@dimen/_32sdp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/editTextSignUpConfirmPassword"/>
+        android:fontFamily="@font/arial"
+        android:text="Let's Start"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_14ssp" />
 
     <ImageView
         android:id="@+id/imageViewSignUpDivider"
@@ -140,15 +143,15 @@
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebook_login_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_45sdp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="29dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginEnd="240dp"
+        android:layout_marginEnd="244dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="45dp" />
+        android:layout_marginBottom="113dp" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
@@ -157,13 +160,29 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="257dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="45dp">
+        android:layout_marginBottom="87dp">
 
     </com.google.android.gms.common.SignInButton>
+
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginBottom="62dp"
+        android:text="LOGIN"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/arial" />
 
 
 </RelativeLayout>

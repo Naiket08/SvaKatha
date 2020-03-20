@@ -344,6 +344,10 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+                String skintone="Type7";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
 
             }
@@ -376,6 +380,10 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+                String skintone="Type8";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
 
             }
@@ -408,6 +416,10 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+                String skintone="Type9";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
 
             }
@@ -440,6 +452,10 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+                String skintone="Type10";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
 
             }
@@ -472,6 +488,10 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+                String skintone="Type11";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
 
 
@@ -505,6 +525,10 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+                String skintone="Type12";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
             }
         });
@@ -536,6 +560,10 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+                String skintone="Type13";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
 
             }
@@ -569,6 +597,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
 
+                String skintone="Type14";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
@@ -600,6 +633,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type15";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
 
             }
@@ -633,6 +671,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
 
+                String skintone="Type16";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
             }
         });
         imageButtonImage17.setOnClickListener(new View.OnClickListener() {
@@ -664,6 +707,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
 
+                String skintone="Type17";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
             }
         });
         imageButtonImage18.setOnClickListener(new View.OnClickListener() {
@@ -694,6 +742,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type18";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
             }
         });
         imageButtonImage19.setOnClickListener(new View.OnClickListener() {
@@ -724,6 +777,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type19";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
             }
         });
@@ -756,6 +814,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
 
+                String skintone="Type20";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
             }
         });
         imageButtonImage21.setOnClickListener(new View.OnClickListener() {
@@ -787,6 +850,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
 
+                String skintone="Type21";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
             }
         });
         imageButtonImage22.setOnClickListener(new View.OnClickListener() {
@@ -817,6 +885,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type22";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
             }
         });
         imageButtonImage23.setOnClickListener(new View.OnClickListener() {
@@ -847,6 +920,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage22.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type23";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
             }
         });
@@ -879,6 +957,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage25.getBackground().clearColorFilter();
 
+                String skintone="Type24";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
             }
         });
         imageButtonImage25.setOnClickListener(new View.OnClickListener() {
@@ -909,6 +992,11 @@ public class SkinTone extends AppCompatActivity {
                 imageButtonImage22.getBackground().clearColorFilter();
                 imageButtonImage23.getBackground().clearColorFilter();
                 imageButtonImage24.getBackground().clearColorFilter();
+
+                String skintone="Type25";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
             }
         });

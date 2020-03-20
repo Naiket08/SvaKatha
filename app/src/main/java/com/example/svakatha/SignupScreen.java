@@ -60,7 +60,7 @@ public class SignupScreen extends AppCompatActivity {
 
     private static final String TAG = "Status";
     ImageView imageViewSignUpHeader, imageViewSignUpDivider;
-    TextView textViewSignUpWelcome, textViewSignUpSvakatha;
+    TextView textViewSignUpWelcome, textViewSignUpSvakatha,textViewLoginForward;
     Button buttonSignUp_LetsStart;
     EditText editTextSignUpUsrname,editTextSignUpEmailId,editTextSignUpPassword,editTextSignUpConfirmPassword;
     SignInButton signInButton;
@@ -84,6 +84,7 @@ public class SignupScreen extends AppCompatActivity {
         imageViewSignUpHeader = (ImageView)findViewById(R.id.imageViewSignUpHeader);
         imageViewSignUpDivider = (ImageView)findViewById(R.id.imageViewSignUpDivider);
         textViewSignUpWelcome = (TextView)findViewById(R.id.textViewSignUpWelcome);
+        textViewLoginForward = (TextView)findViewById(R.id.textViewLogin);
         textViewSignUpSvakatha = (TextView)findViewById(R.id.textViewSignUpSvakatha);
         buttonSignUp_LetsStart = (Button)findViewById(R.id.buttonSignUp_LetsStart);
         editTextSignUpUsrname = (EditText)findViewById(R.id.editTextSignUpUsername);
@@ -155,6 +156,15 @@ public class SignupScreen extends AppCompatActivity {
                 }
             }
         });*/
+        textViewLoginForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignupScreen.this, LoginScreen.class));
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
+
+            }
+        });
 
 
 
@@ -527,11 +537,7 @@ public class SignupScreen extends AppCompatActivity {
             user.put("Email",email);
             //user.put("Password",password);
             user.put("FirstName",username);
-            user.put("Business","");
-            user.put("Style","");
-            user.put("Price","");
-            user.put("Occupation","");
-            //user.put("closetChoiceDocName","");
+
 
             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -549,4 +555,6 @@ public class SignupScreen extends AppCompatActivity {
             startActivity(new Intent(SignupScreen.this, DetailsScreen.class));
         }
     }
+
+
 }
