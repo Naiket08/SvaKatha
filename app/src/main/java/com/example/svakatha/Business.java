@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -77,8 +78,8 @@ public class Business extends AppCompatActivity {
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarBusinessScreen1);
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 20,30);
-        progressAnimator.setDuration(900);
-        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.setDuration(500);
+        progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
 
         final String currentID = auth.getCurrentUser().getUid();

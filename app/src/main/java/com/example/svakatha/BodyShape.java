@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -49,8 +50,8 @@ public class BodyShape extends AppCompatActivity {
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarBodyShapeScreen_1);
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "secondaryProgress", 50,70);
-        progressAnimator.setDuration(900);
-        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.setDuration(500);
+        progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
 
         auth = FirebaseAuth.getInstance();

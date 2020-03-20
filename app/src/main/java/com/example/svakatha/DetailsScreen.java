@@ -69,6 +69,14 @@ public class DetailsScreen extends AppCompatActivity {
 
         imageViewDetailsScreenHeader = (ImageView) findViewById(R.id.imageViewDetailsScreenHeader);
 
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0,9);
+        progressAnimator.setDuration(900);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
+        textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
+
         mfirestore = FirebaseFirestore.getInstance();
 
         auth = FirebaseAuth.getInstance();
@@ -89,16 +97,6 @@ public class DetailsScreen extends AppCompatActivity {
                     }
 
                 });
-
-
-        //progressbar animation
-        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
-        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0,9);
-        progressAnimator.setDuration(900);
-        progressAnimator.setInterpolator(new LinearInterpolator());
-        progressAnimator.start();
-        textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
-
 
 
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {

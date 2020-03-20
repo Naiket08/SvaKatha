@@ -13,6 +13,7 @@ import android.media.ImageReader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -87,8 +88,8 @@ public class Price extends AppCompatActivity {
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarPriceScreen1);
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 9,15);
-        progressAnimator.setDuration(900);
-        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.setDuration(500);
+        progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
 
 
