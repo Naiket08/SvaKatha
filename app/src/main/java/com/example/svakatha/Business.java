@@ -90,7 +90,7 @@ public class Business extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewBusinessScreenGreet.setText("Hi "+finalProfileText);
-
+                        textViewBusinessScreenGreet.setTypeface(textViewBusinessScreenGreet.getTypeface(),Typeface.BOLD);
                     }
 
                 });

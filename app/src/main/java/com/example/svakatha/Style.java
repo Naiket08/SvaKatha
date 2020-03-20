@@ -88,7 +88,7 @@ public class Style extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewStyleScreenGreet.setText("Hi "+finalProfileText);
-
+                        textViewStyleScreenGreet.setTypeface(textViewStyleScreenGreet.getTypeface(),Typeface.BOLD);
                     }
 
                 });

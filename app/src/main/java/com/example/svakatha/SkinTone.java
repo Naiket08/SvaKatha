@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -920,7 +921,7 @@ public class SkinTone extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewSkinToneScreenGreet.setText("Hi "+finalProfileText);
-
+                        textViewSkinToneScreenGreet.setTypeface(textViewSkinToneScreenGreet.getTypeface(), Typeface.BOLD);
                     }
 
                 });

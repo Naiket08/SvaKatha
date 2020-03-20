@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -81,7 +82,7 @@ public class Part_two extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewUserScreenGreet.setText("Hi "+finalProfileText);
-
+                        textViewUserScreenGreet.setTypeface(textViewUserScreenGreet.getTypeface(), Typeface.BOLD);
                     }
 
                 });

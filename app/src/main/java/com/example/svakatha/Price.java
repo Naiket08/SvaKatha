@@ -113,7 +113,7 @@ public class Price extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewPriceScreenGreet.setText("Hi "+finalProfileText);
-
+                        textViewPriceScreenGreet.setTypeface(textViewPriceScreenGreet.getTypeface(),Typeface.BOLD);
                     }
 
                 });
