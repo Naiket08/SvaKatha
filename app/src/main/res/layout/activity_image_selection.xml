@@ -95,91 +95,103 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="@dimen/_235sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/imagebuttonimageselectionHate_1"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_marginLeft="80dp"
-                    android:background="@drawable/cross" />
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="#FFFFFF"
+                    android:src="@drawable/cross" />
 
-                <ImageButton
-                    android:id="@+id/imagebuttonimageselectionNotSure_1"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_marginLeft="@dimen/_30sdp"
-                    android:background="@drawable/help" />
+                <TextView
+                    android:id="@+id/textViewHateIt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hate It"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="@dimen/_12ssp" />
 
-                <ImageButton
-                    android:id="@+id/imagebuttonimageselectionLove_1"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_30sdp"
-                    android:background="@drawable/check" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <ImageButton
+                    android:id="@+id/imagebuttonimageselectionNotSure_1"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:src="@drawable/help" />
 
                 <TextView
-                    android:id="@+id/textviewimageselectionHate_1"
-                    android:layout_width="@dimen/_29sdp"
-                    android:layout_height="@dimen/_11sdp"
-                    android:layout_marginLeft="90dp"
-                    android:fontFamily="@font/arial"
-                    android:text="Hate it"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:id="@+id/textviewimageselectionNotSure_1"
+                    android:id="@+id/textViewNotSure"
                     android:layout_width="wrap_content"
-                    android:layout_height="14dp"
-                    android:layout_marginLeft="@dimen/_45sdp"
-                    android:fontFamily="@font/arial"
-                    android:text="Not sure"
+                    android:layout_height="wrap_content"
+                    android:text="Not Sure"
+                    android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="@dimen/_10sdp" />
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/imagebuttonimageselectionLove_1"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:src="@drawable/check" />
 
                 <TextView
-                    android:id="@+id/textviewimageselectionLove_1"
+                    android:id="@+id/textViewLovedIt"
                     android:layout_width="wrap_content"
-                    android:layout_height="14dp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:fontFamily="@font/arial"
-                    android:inputType="text"
-                    android:labelFor="@+id/imagebuttonimageselectionLove_1"
+                    android:layout_height="wrap_content"
                     android:text="Loved It"
                     android:textAlignment="center"
                     android:textColor="#000"
-                    android:textSize="@dimen/_10sdp" />
-
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/imageButtonimageSelectionScreenForward_1"
-                android:layout_width="@dimen/_138sdp"
-                android:layout_height="@dimen/_46sdp"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_100sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/finishbutton" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonimageSelectionScreenForward_1"
+            android:layout_width="@dimen/_138sdp"
+            android:layout_height="@dimen/_46sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_100sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_100sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@drawable/finishbutton" />
 
     </LinearLayout>
 </ScrollView>

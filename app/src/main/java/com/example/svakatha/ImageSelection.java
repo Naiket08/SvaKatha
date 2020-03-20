@@ -100,7 +100,8 @@ public class ImageSelection extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
                 if (index == 8) {
-                    index = 0;
+                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
+                    index = 8;
                 } else {
                     index++;
                 }
@@ -113,7 +114,8 @@ public class ImageSelection extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
                 if (index == 8) {
-                    index = 0;
+                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
+                    index = 8;
                 } else {
                     index++;
                 }
@@ -127,7 +129,8 @@ public class ImageSelection extends AppCompatActivity {
                 saveUserChoiceToDb(i);
                 Toast.makeText(ImageSelection.this, "Image Saved", Toast.LENGTH_SHORT).show();
                 if (index == 8) {
-                    index = 0;
+                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
+                    index = 8;
                 } else {
                     index++;
                 }
