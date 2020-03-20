@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -68,8 +69,8 @@ public class Style extends AppCompatActivity {
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarStyleScreen1);
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 15,20);
-        progressAnimator.setDuration(900);
-        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.setDuration(500);
+        progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
 
         //casting of EditText
