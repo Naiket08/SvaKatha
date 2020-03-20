@@ -103,7 +103,7 @@ public class Style extends AppCompatActivity {
                     Intent intent1 = new Intent(Style.this, Business.class);
                     //intent1.putExtra("Name_style", name_style);
                     startActivity(intent1);
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
                 }
         });

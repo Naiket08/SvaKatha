@@ -62,7 +62,7 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 Intent i = new Intent(SplashScreen.this, SignupScreen.class);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                //overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         },3000);
     }

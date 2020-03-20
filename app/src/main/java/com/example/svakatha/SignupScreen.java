@@ -298,7 +298,7 @@ public class SignupScreen extends AppCompatActivity {//implements GoogleApiClien
                             Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
                             intent.putExtra("Name",first_name);
                             startActivity(intent);
-                            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                            //overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

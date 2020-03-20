@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -74,7 +75,8 @@ public class ImageSelection extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewImageSelectionText2.setText("Hi "+finalProfileText);
+                        textViewImageSelectionText2.setText("Hi " + finalProfileText);
+                    }
                 });
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -87,6 +89,7 @@ public class ImageSelection extends AppCompatActivity {
 
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
         Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +133,9 @@ public class ImageSelection extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ImageSelection.this,HostActivity.class);
+                startActivity(intent);
             }
         });
     }
