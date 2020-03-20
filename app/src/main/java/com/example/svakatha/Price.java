@@ -137,7 +137,7 @@ public class Price extends AppCompatActivity {
                 Intent intent1 = new Intent(Price.this,Style.class);
                 //intent1.putExtra("Name_price",name_price);
                 startActivity(intent1);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                //overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
             }
         });

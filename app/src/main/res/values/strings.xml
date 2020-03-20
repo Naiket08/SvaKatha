@@ -15,5 +15,19 @@ dress for?</b></string>
     <string name="facebook_app_id">610430299509221</string>
     <string name="fb_login_protocol_scheme">fb610430299509221</string>
     <string name="finish"><b>Finish</b></string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="type_of_garment">Type of garment</string>
+    <string name="occasion">Occasion</string>
+    <string name="setting">setting</string>
+    <string name="shop">shop</string>
+    <string name="rating">Rating</string>
+    <string name="closet">closet</string>
+
+    <string name="closet_title"><u>My Closet</u></string>
+    <string name="image_picker_error" />
+    <string name="dialog_select_gallery" />
+    <string name="dialog_select_prompt" />
+
+    <string name="dialog_select_camera" />
 
 </resources>
