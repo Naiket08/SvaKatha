@@ -20,6 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class BodyShape extends AppCompatActivity {
 
@@ -52,6 +56,10 @@ public class BodyShape extends AppCompatActivity {
         imageButtonBody4 = (ImageButton) findViewById(R.id.imagebuttonbody4);
         imageButtonBody5 = (ImageButton) findViewById(R.id.imagebuttonbody5);
 
+        final String currentID = auth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
         imageButtonBody1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +68,11 @@ public class BodyShape extends AppCompatActivity {
                 imageButtonBody3.getBackground().clearColorFilter();
                 imageButtonBody4.getBackground().clearColorFilter();
                 imageButtonBody2.getBackground().clearColorFilter();
+                String bodyshape="Shape1";
+                Map<String, Object> user = new HashMap<>();
+                user.put("BodyShape", bodyshape);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
@@ -73,6 +86,12 @@ public class BodyShape extends AppCompatActivity {
                 imageButtonBody5.getBackground().clearColorFilter();
                 imageButtonBody4.getBackground().clearColorFilter();
 
+                String bodyshape="Shape3";
+                Map<String, Object> user = new HashMap<>();
+                user.put("BodyShape", bodyshape);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
+
             }
         });
         imageButtonBody2.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +102,12 @@ public class BodyShape extends AppCompatActivity {
                 imageButtonBody3.getBackground().clearColorFilter();
                 imageButtonBody4.getBackground().clearColorFilter();
                 imageButtonBody1.getBackground().clearColorFilter();
+
+                String bodyshape="Shape2";
+                Map<String, Object> user = new HashMap<>();
+                user.put("BodyShape", bodyshape);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
@@ -96,6 +121,12 @@ public class BodyShape extends AppCompatActivity {
                 imageButtonBody3.getBackground().clearColorFilter();
                 imageButtonBody5.getBackground().clearColorFilter();
 
+                String bodyshape="Shape4";
+                Map<String, Object> user = new HashMap<>();
+                user.put("BodyShape", bodyshape);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
+
             }
         });
         imageButtonBody5.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +137,12 @@ public class BodyShape extends AppCompatActivity {
                 imageButtonBody2.getBackground().clearColorFilter();
                 imageButtonBody3.getBackground().clearColorFilter();
                 imageButtonBody4.getBackground().clearColorFilter();
+
+                String bodyshape="Shape5";
+                Map<String, Object> user = new HashMap<>();
+                user.put("BodyShape", bodyshape);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
@@ -119,8 +156,6 @@ public class BodyShape extends AppCompatActivity {
         });
 
         DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

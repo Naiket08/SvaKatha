@@ -2,9 +2,10 @@ package com.example.svakatha;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +14,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -62,7 +67,7 @@ public class ImageSelection extends AppCompatActivity {
         userDataModelArrayList = new ArrayList<>();
         mAuth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
-        textViewImageSelectionText2 = findViewById(R.id.textViewStyleGreet2);
+        textViewImageSelectionText2 = (TextView) findViewById(R.id.textViewStyleGreet2);
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
@@ -72,10 +77,11 @@ public class ImageSelection extends AppCompatActivity {
 
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewImageSelectionText2.setText("Hi " + finalProfileText);
+                        textViewImageSelectionText2.setText("Hi "+finalProfileText);
                     }
                 });
 
@@ -89,13 +95,13 @@ public class ImageSelection extends AppCompatActivity {
 
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
         Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
-
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
                 if (index == 8) {
-                    index = 0;
+                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
+                    index = 8;
                 } else {
                     index++;
                 }
@@ -108,7 +114,8 @@ public class ImageSelection extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
                 if (index == 8) {
-                    index = 0;
+                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
+                    index = 8;
                 } else {
                     index++;
                 }
@@ -122,7 +129,8 @@ public class ImageSelection extends AppCompatActivity {
                 saveUserChoiceToDb(i);
                 Toast.makeText(ImageSelection.this, "Image Saved", Toast.LENGTH_SHORT).show();
                 if (index == 8) {
-                    index = 0;
+                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
+                    index = 8;
                 } else {
                     index++;
                 }
@@ -133,11 +141,13 @@ public class ImageSelection extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ImageSelection.this,HostActivity.class);
-                startActivity(intent);
+                Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //  DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+
+
     }
 
     private void getArrayData() {

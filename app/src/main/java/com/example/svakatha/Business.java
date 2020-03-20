@@ -82,7 +82,7 @@ public class Business extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewBusinessScreenGreet.setText(finalProfileText);
+                        textViewBusinessScreenGreet.setText("Hi "+finalProfileText);
 
                     }
 

@@ -103,7 +103,7 @@ public class Price extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewPriceScreenGreet.setText(finalProfileText);
+                        textViewPriceScreenGreet.setText("Hi "+finalProfileText);
 
                     }
 

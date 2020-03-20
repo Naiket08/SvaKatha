@@ -81,7 +81,7 @@ public class Style extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewStyleScreenGreet.setText(finalProfileText);
+                        textViewStyleScreenGreet.setText("Hi "+finalProfileText);
 
                     }
 
