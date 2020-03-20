@@ -56,7 +56,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignupScreen extends AppCompatActivity {//implements GoogleApiClient.OnConnectionFailedListener
+public class SignupScreen extends AppCompatActivity {
 
     private static final String TAG = "Status";
     ImageView imageViewSignUpHeader, imageViewSignUpDivider;
@@ -64,7 +64,6 @@ public class SignupScreen extends AppCompatActivity {//implements GoogleApiClien
     Button buttonSignUp_LetsStart;
     EditText editTextSignUpUsrname,editTextSignUpEmailId,editTextSignUpPassword,editTextSignUpConfirmPassword;
     SignInButton signInButton;
-    //private GoogleApiClient googleApiClient;
     private static final int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
     CallbackManager mcallbackManager;
@@ -159,12 +158,12 @@ public class SignupScreen extends AppCompatActivity {//implements GoogleApiClien
 
 
 
-        if (!loggedOut) {
+        /*if (!loggedOut) {
             Log.d("TAG", "Username is: " + Profile.getCurrentProfile().getName());
 
             //Using Graph API
             getUserProfile(AccessToken.getCurrentAccessToken());
-        }
+        }*/
 
        mcallbackManager = CallbackManager.Factory.create();
         facebook_login_button = (LoginButton) findViewById(R.id.facebook_login_button);
@@ -174,16 +173,21 @@ public class SignupScreen extends AppCompatActivity {//implements GoogleApiClien
             public void onSuccess(LoginResult loginResult) {
 
                 Log.i(TAG, "onSuccess: logged in successfully");
+                Toast.makeText(SignupScreen.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
                 handleFacebookAccessToken(loginResult.getAccessToken());
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         // Application code
                         Log.i(TAG, "onCompleted: response: " + response.toString());
+                        Toast.makeText(SignupScreen.this, "Facebook1", Toast.LENGTH_SHORT).show();
                         try {
                             String email = object.getString("email");
                             String birthday = object.getString("birthday");
                             Toast.makeText(getApplicationContext(),""+email,Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignupScreen.this, "Facebook2", Toast.LENGTH_SHORT).show();
+
 
                             Log.i(TAG, "onCompleted: Email: " + email);
                             Log.i(TAG, "onCompleted: Birthday: " + birthday);
@@ -241,6 +245,8 @@ public class SignupScreen extends AppCompatActivity {//implements GoogleApiClien
         FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
         if (currentUser != null) {
             Log.i(TAG, "onStart: Someone logged in <3");
+            Toast.makeText(SignupScreen.this, "Facebook4", Toast.LENGTH_SHORT).show();
+
         } else {
             Log.i(TAG, "onStart: No one logged in :/");
         }
@@ -259,6 +265,8 @@ public class SignupScreen extends AppCompatActivity {//implements GoogleApiClien
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            Toast.makeText(SignupScreen.this, "Facebook5", Toast.LENGTH_SHORT).show();
+
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
                             startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
@@ -295,9 +303,7 @@ public class SignupScreen extends AppCompatActivity {//implements GoogleApiClien
                             });
                             //String email = object.getString("email");
                             //Toast.makeText(getApplicationContext(),""+first_name,Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
-                            intent.putExtra("Name",first_name);
-                            startActivity(intent);
+                            startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
                             overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
                         } catch (JSONException e) {

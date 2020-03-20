@@ -2,8 +2,10 @@ package com.example.svakatha;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,9 +14,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -61,7 +67,7 @@ public class ImageSelection extends AppCompatActivity {
         userDataModelArrayList = new ArrayList<>();
         mAuth=FirebaseAuth.getInstance();
         db=FirebaseFirestore.getInstance();
-        textViewImageSelectionText2 = findViewById(R.id.textViewStyleGreet2);
+        textViewImageSelectionText2 = (TextView) findViewById(R.id.textViewStyleGreet2);
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
@@ -75,6 +81,9 @@ public class ImageSelection extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewImageSelectionText2.setText("Hi "+finalProfileText);
+
+                    }
+
                 });
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -133,6 +142,10 @@ public class ImageSelection extends AppCompatActivity {
                 Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //  DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+
+
     }
 
     private void getArrayData() {

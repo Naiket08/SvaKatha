@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
         android:fontFamily="@font/arial"
-        android:text="@string/hi_rohan"
+        android:text=""
         android:textColor="#000"
         android:textSize="@dimen/_27ssp"
         android:layout_alignParentTop="true"
