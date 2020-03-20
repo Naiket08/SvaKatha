@@ -94,7 +94,7 @@ public class ImageSelection extends AppCompatActivity {
 //        addParentView(containerView, index);
 
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).noFade().into(imageView);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

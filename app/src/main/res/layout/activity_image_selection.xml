@@ -73,7 +73,7 @@
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:background="@drawable/progressfinal"
                 android:max="100"
-                android:progress="10"
+                android:progress="100"
                 android:progressTint="@color/progess"
                 android:scaleY="2" />
 
