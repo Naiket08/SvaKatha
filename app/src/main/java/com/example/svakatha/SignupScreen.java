@@ -265,13 +265,13 @@ public class SignupScreen extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            Toast.makeText(SignupScreen.this, "Facebook5", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(SignupScreen.this, "Facebook5", Toast.LENGTH_SHORT).show();
 
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
                           //  startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
-                            FirebaseUser user1 = mFirebaseAuth.getCurrentUser();
-                            updateUI(user1);
+                            getUserProfile(AccessToken.getCurrentAccessToken());
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
