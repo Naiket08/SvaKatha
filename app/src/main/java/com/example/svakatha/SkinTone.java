@@ -17,6 +17,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SkinTone extends AppCompatActivity {
 
@@ -39,8 +43,20 @@ public class SkinTone extends AppCompatActivity {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
+        final String currentID = auth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
         //casting of imagebutton
         imageButtonSkinToneScreenForward=(ImageButton)findViewById(R.id.imageButtonSkinToneScreenForward_1);
+        imageButtonSkinToneScreenForward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(SkinTone.this,BodyShape.class);
+                startActivity(intent1);
+
+            }
+        });
         imageButtonImage1=(ImageButton)findViewById(R.id.imageButtonimg_1);
         imageButtonImage2=(ImageButton)findViewById(R.id.imageButtonimg_2);
         imageButtonImage3=(ImageButton)findViewById(R.id.imageButtonimg_3);
@@ -67,199 +83,827 @@ public class SkinTone extends AppCompatActivity {
         imageButtonImage24=(ImageButton)findViewById(R.id.imageButtonimg_24);
         imageButtonImage25=(ImageButton)findViewById(R.id.imageButtonimg_25);
 
-        imageButtonSkinToneScreenForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),BodyShape.class));
-            }
-        });
-
         imageButtonImage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage1.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type1";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
 
             }
         });
         imageButtonImage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage2.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage2.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type2";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
         imageButtonImage3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage3.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage3.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type3";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
-        imageButtonImage1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageButtonImage1.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
 
-            }
-        });
         imageButtonImage4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage4.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage4.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type4";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
         imageButtonImage5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage5.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage5.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type5";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
 
             }
         });
         imageButtonImage6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage6.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage6.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
+                String skintone="Type6";
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
+
 
             }
         });
         imageButtonImage7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage7.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage7.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
 
             }
         });
         imageButtonImage8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage8.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage8.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
 
             }
         });
         imageButtonImage9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage9.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage9.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
 
             }
         });
         imageButtonImage10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage10.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage10.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
 
             }
         });
         imageButtonImage11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage11.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage11.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
+
 
             }
         });
         imageButtonImage12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage12.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage12.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage13.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage13.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
 
             }
         });
         imageButtonImage14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage14.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage14.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
 
             }
         });
         imageButtonImage15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage15.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage15.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
+
 
             }
         });
         imageButtonImage16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage16.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage16.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage17.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage17.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage18.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
-
+                imageButtonImage18.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
             }
         });
         imageButtonImage19.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage19.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage19.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage20.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage20.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage21.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage21.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage22.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
-
+                imageButtonImage22.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
             }
         });
         imageButtonImage23.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage23.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage23.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage24.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage24.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage24.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage25.getBackground().clearColorFilter();
 
             }
         });
         imageButtonImage25.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageButtonImage25.getBackground().setColorFilter(0xfff47521, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage25.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                imageButtonImage1.getBackground().clearColorFilter();
+                imageButtonImage2.getBackground().clearColorFilter();
+                imageButtonImage3.getBackground().clearColorFilter();
+                imageButtonImage4.getBackground().clearColorFilter();
+                imageButtonImage5.getBackground().clearColorFilter();
+                imageButtonImage6.getBackground().clearColorFilter();
+                imageButtonImage7.getBackground().clearColorFilter();
+                imageButtonImage8.getBackground().clearColorFilter();
+                imageButtonImage9.getBackground().clearColorFilter();
+                imageButtonImage10.getBackground().clearColorFilter();
+                imageButtonImage11.getBackground().clearColorFilter();
+                imageButtonImage12.getBackground().clearColorFilter();
+                imageButtonImage13.getBackground().clearColorFilter();
+                imageButtonImage14.getBackground().clearColorFilter();
+                imageButtonImage15.getBackground().clearColorFilter();
+                imageButtonImage16.getBackground().clearColorFilter();
+                imageButtonImage17.getBackground().clearColorFilter();
+                imageButtonImage18.getBackground().clearColorFilter();
+                imageButtonImage19.getBackground().clearColorFilter();
+                imageButtonImage20.getBackground().clearColorFilter();
+                imageButtonImage21.getBackground().clearColorFilter();
+                imageButtonImage22.getBackground().clearColorFilter();
+                imageButtonImage23.getBackground().clearColorFilter();
+                imageButtonImage24.getBackground().clearColorFilter();
 
             }
         });
 
         DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
-        String currentID = auth.getCurrentUser().getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

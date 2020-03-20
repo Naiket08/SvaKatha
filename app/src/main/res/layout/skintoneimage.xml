@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="@dimen/_270sdp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_53sdp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -22,10 +22,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_1"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image1"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -46,10 +46,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_2"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image2"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -70,10 +70,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_3"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image3"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_3"
@@ -93,9 +93,8 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_4"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image4"
                 android:scaleType="centerInside"
                 android:backgroundTintMode="add"/>
@@ -117,10 +116,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_5"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image5"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -138,139 +137,139 @@
 
 
 
+    <LinearLayout
+        android:layout_width="@dimen/_270sdp"
+        android:layout_height="@dimen/_53sdp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="@dimen/_270sdp"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_weight="0.8"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="@dimen/_10sdp"
+            <ImageButton
+                android:id="@+id/imageButtonimg_6"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:src="@drawable/image6"
+                android:backgroundTintMode="add"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/textViewImage_6"
+                android:layout_width="@dimen/_45sdp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imageButtonimg_6"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/squareshape"
-                    android:src="@drawable/image6"
-                    android:scaleType="centerInside"/>
-
-                <TextView
-                    android:id="@+id/textViewImage_6"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="wrap_content"
-                    android:text="text"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_9sdp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imageButtonimg_7"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/squareshape"
-                    android:src="@drawable/image7"
-                    android:scaleType="centerInside"/>
-
-                <TextView
-                    android:id="@+id/textViewImage_7"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="wrap_content"
-                    android:text="text"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_9sdp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imageButtonimg_8"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/squareshape"
-                    android:src="@drawable/image8"
-                    android:scaleType="centerInside"/>
-
-                <TextView
-                    android:id="@+id/textViewImage_8"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="wrap_content"
-                    android:text="text"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_9sdp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imageButtonimg_9"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/squareshape"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/image9" />
-
-                <TextView
-                    android:id="@+id/textViewImage_9"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="wrap_content"
-                    android:text="text"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_9sdp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imageButtonimg_10"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/squareshape"
-                    android:src="@drawable/image10"
-                    android:scaleType="centerInside"/>
-
-                <TextView
-                    android:id="@+id/textViewImage_10"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="wrap_content"
-                    android:text="text"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_9sdp" />
-            </LinearLayout>
-
-
+                android:text="text"
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButtonimg_7"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:src="@drawable/image7"
+                android:backgroundTintMode="add"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/textViewImage_7"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="wrap_content"
+                android:text="text"
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButtonimg_8"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:src="@drawable/image8"
+                android:backgroundTintMode="add"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/textViewImage_8"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="wrap_content"
+                android:text="text"
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButtonimg_9"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:scaleType="centerInside"
+                android:backgroundTintMode="add"
+                android:src="@drawable/image9" />
+
+            <TextView
+                android:id="@+id/textViewImage_9"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="wrap_content"
+                android:text="text"
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButtonimg_10"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:src="@drawable/image10"
+                android:backgroundTintMode="add"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:id="@+id/textViewImage_10"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="wrap_content"
+                android:text="text"
+                android:textAlignment="center"
+                android:textSize="@dimen/_9sdp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="@dimen/_270sdp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_53sdp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -284,10 +283,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_11"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image11"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_11"
@@ -307,10 +306,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_12"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image12"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -331,10 +330,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_13"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image13"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_13"
@@ -354,10 +353,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_14"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image14"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_14"
@@ -377,10 +376,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_15"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image15"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -397,7 +396,7 @@
 
     <LinearLayout
         android:layout_width="@dimen/_270sdp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_53sdp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -411,10 +410,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_16"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image16"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_16"
@@ -434,10 +433,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_17"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image17"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -458,10 +457,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_18"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image18"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_18"
@@ -481,10 +480,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_19"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image19"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_19"
@@ -504,10 +503,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_20"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image20"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -527,7 +526,7 @@
 
     <LinearLayout
         android:layout_width="@dimen/_270sdp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_53sdp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
@@ -541,10 +540,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_21"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:scaleType="centerInside"
+                android:backgroundTintMode="add"
                 android:src="@drawable/image21"/>
             <TextView
                 android:id="@+id/textViewImage_21"
@@ -564,10 +563,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_22"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image22"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -588,10 +587,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_23"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image23"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_23"
@@ -611,10 +610,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_24"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image24"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
             <TextView
                 android:id="@+id/textViewImage_24"
@@ -634,10 +633,10 @@
 
             <ImageButton
                 android:id="@+id/imageButtonimg_25"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/squareshape"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
                 android:src="@drawable/image25"
+                android:backgroundTintMode="add"
                 android:scaleType="centerInside"/>
 
             <TextView
@@ -647,12 +646,7 @@
                 android:text="text"
                 android:textAlignment="center"
                 android:textSize="@dimen/_9sdp" />
+
         </LinearLayout>
-
-
     </LinearLayout>
-
-
-
-
 </LinearLayout>
