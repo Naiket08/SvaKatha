@@ -72,7 +72,7 @@
                 android:secondaryProgressTintMode="src_over"
                 android:secondaryProgressTint="@color/progressblue"
                 android:secondaryProgress="70"
-                android:layout_below="@+id/imageViewDetailsScreenHeader"
+                android:layout_below="@id/imageViewDetailsScreenHeader"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_34sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
@@ -80,6 +80,7 @@
                 android:progressBackgroundTintMode="src_over"
                 android:max="100"
                 android:progressTint="@color/progess"/>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="@dimen/_300sdp"
