@@ -67,13 +67,14 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="@dimen/_270sdp"
                 android:layout_height="@dimen/_8sdp"
+                android:progressTint="@color/progess"
                 android:layout_below="@+id/imageViewDetailsScreenHeader"
+                android:max="100"
+                android:progress="30"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_34sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:background="@drawable/progressfinal"
-                android:max="100"
-                android:progressTint="@color/progess"/>
+                android:background="@drawable/progressfinal" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="@dimen/_300sdp"
