@@ -3,14 +3,17 @@ package com.example.svakatha;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +58,14 @@ public class ImageSelection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_selection);
-
+//test
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarImageSelection);
+       // ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "secondaryProgress", 70,100);
+       // progressAnimator.setDuration(900);
+       // progressAnimator.setInterpolator(new LinearInterpolator());
+       // progressAnimator.start();
+//
         context = ImageSelection.this;
 
         parentView = findViewById(R.id.main_layoutview);

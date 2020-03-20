@@ -63,15 +63,21 @@
                 android:textSize="@dimen/_13ssp" />
 
             <ProgressBar
-                android:id="@+id/progressBarDetailsScreen"
+                android:id="@+id/progressBarImageSelection"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="@dimen/_270sdp"
-                android:layout_height="@dimen/_8sdp"
+                android:layout_width="@dimen/_327sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:progress="30"
+                android:scaleY="3"
+                android:secondaryProgressTintMode="src_over"
+                android:secondaryProgressTint="@color/progressblue"
+                android:secondaryProgress="70"
                 android:layout_below="@+id/imageViewDetailsScreenHeader"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_34sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:background="@drawable/progressfinal"
+                android:progressBackgroundTint="@color/progressred"
+                android:progressBackgroundTintMode="src_over"
                 android:max="100"
                 android:progressTint="@color/progess"/>
 

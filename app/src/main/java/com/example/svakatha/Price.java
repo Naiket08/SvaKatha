@@ -3,6 +3,7 @@ package com.example.svakatha;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,6 +13,7 @@ import android.media.ImageReader;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -81,7 +83,14 @@ public class Price extends AppCompatActivity {
         CrystalRangeSeekbar rangeseekbar = (CrystalRangeSeekbar)findViewById(R.id.rangeseekbar);
 
         //casting of progressbar
-        progressBarPriceScreen=(ProgressBar)findViewById(R.id.progressBarPriceScreen1);
+
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarPriceScreen1);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 9,15);
+        progressAnimator.setDuration(900);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
+
 
 
         rangeseekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
@@ -132,6 +141,8 @@ public class Price extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }

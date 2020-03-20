@@ -3,12 +3,14 @@ package com.example.svakatha;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -67,8 +69,12 @@ public class DetailsScreen extends AppCompatActivity {
 
         imageViewDetailsScreenHeader = (ImageView) findViewById(R.id.imageViewDetailsScreenHeader);
 
-        progressBarDetailsScreen = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
-
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0,9);
+        progressAnimator.setDuration(900);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
 
         mfirestore = FirebaseFirestore.getInstance();

@@ -3,10 +3,12 @@ package com.example.svakatha;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -63,8 +65,12 @@ public class Style extends AppCompatActivity {
         //casting of ImageView
         imageViewStyleScreenHeader=(ImageView)findViewById(R.id.imageViewStyleScreenHeader1);
 
-        //casting of ProgressBar
-        progressBarStyleScreen =(ProgressBar)findViewById(R.id.progressBarStyleScreen1);
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarStyleScreen1);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 15,20);
+        progressAnimator.setDuration(900);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
 
         //casting of EditText
         editTextStyleScreen=(EditText)findViewById(R.id.editTextStyleScreen_3);

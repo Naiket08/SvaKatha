@@ -3,10 +3,12 @@ package com.example.svakatha;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -71,8 +73,13 @@ public class Business extends AppCompatActivity {
         //casting of ImageButton
         imageButtonBusinessScreenForward=(ImageButton)findViewById(R.id.imageButtonBusinessScreenForward_1);
 
-        //casting of ProgressBar
-        progressBarBusinessScreen =(ProgressBar)findViewById(R.id.progressBarBusinessScreen1);
+
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarBusinessScreen1);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 20,30);
+        progressAnimator.setDuration(900);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
 
         final String currentID = auth.getCurrentUser().getUid();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();

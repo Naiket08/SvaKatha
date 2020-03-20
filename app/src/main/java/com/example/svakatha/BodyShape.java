@@ -2,11 +2,13 @@ package com.example.svakatha;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -43,8 +45,12 @@ public class BodyShape extends AppCompatActivity {
         textViewBodyShapeText2 = (TextView) findViewById(R.id.textViewBodyShapeText2_1);
         textViewBodyShapeText3 = (TextView) findViewById(R.id.textViewBodyShapeText3_1);
         textViewBodyShapeText4 = (TextView) findViewById(R.id.textViewBodyShapeText4_1);
-        //casting of ProgressBar
-        progressBarBodyShapeScreen = (ProgressBar) findViewById(R.id.progressBarBodyShapeScreen_1);
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarBodyShapeScreen_1);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "secondaryProgress", 50,70);
+        progressAnimator.setDuration(900);
+        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.start();
 
         auth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

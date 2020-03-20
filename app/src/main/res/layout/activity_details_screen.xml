@@ -59,12 +59,12 @@
     <ProgressBar
         android:id="@+id/progressBarDetailsScreen"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="@dimen/_270sdp"
-        android:layout_height="@dimen/_8sdp"
+        android:layout_width="@dimen/_327sdp"
+        android:layout_height="@dimen/_10sdp"
         android:max="100"
         android:progressTint="@color/progess"
+        android:scaleY="3"
         android:layout_below="@+id/imageViewDetailsScreenHeader"
-        android:background="@drawable/progressoccu"
         android:layout_marginTop="@dimen/_34sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"/>
