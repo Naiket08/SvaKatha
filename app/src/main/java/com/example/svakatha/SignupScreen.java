@@ -238,20 +238,20 @@ public class SignupScreen extends AppCompatActivity {
 //        });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseAuth mFirebaseAuth=FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-        if (currentUser != null) {
-            Log.i(TAG, "onStart: Someone logged in <3");
-            Toast.makeText(SignupScreen.this, "Facebook4", Toast.LENGTH_SHORT).show();
-
-        } else {
-            Log.i(TAG, "onStart: No one logged in :/");
-        }
-
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseAuth mFirebaseAuth=FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            Log.i(TAG, "onStart: Someone logged in <3");
+//            Toast.makeText(SignupScreen.this, "Facebook4", Toast.LENGTH_SHORT).show();
+//
+//        } else {
+//            Log.i(TAG, "onStart: No one logged in :/");
+//        }
+//
+//    }
 
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
@@ -269,8 +269,9 @@ public class SignupScreen extends AppCompatActivity {
 
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
-                            startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
-
+                          //  startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
+                            FirebaseUser user1 = mFirebaseAuth.getCurrentUser();
+                            updateUI(user1);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -453,6 +454,7 @@ public class SignupScreen extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        mcallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==RC_SIGN_IN)
         {
@@ -539,6 +541,12 @@ public class SignupScreen extends AppCompatActivity {
             });
             Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
             startActivity(intent);
+        }
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+
+        if(isLoggedIn){
+            startActivity(new Intent(SignupScreen.this, DetailsScreen.class));
         }
     }
 }
