@@ -107,7 +107,10 @@ public class Business extends AppCompatActivity {
                     Map<String, Object> user = new HashMap<>();
                     user.put("Business", Business);
                     db.collection("users").document(currentID).set(user, SetOptions.merge());
-                    startActivity(new Intent(getApplicationContext(), Part_two.class));
+                    Intent intent = new Intent(Business.this,Part_two.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
             }
         });

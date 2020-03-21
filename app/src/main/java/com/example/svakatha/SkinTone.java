@@ -64,7 +64,9 @@ public class SkinTone extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent1 = new Intent(SkinTone.this,BodyShape.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent1);
+                overridePendingTransition(0,0);
 
             }
         });

@@ -159,10 +159,10 @@ public class SignupScreen extends AppCompatActivity {
         textViewLoginForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignupScreen.this, LoginScreen.class));
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-
-
+                Intent intent = new Intent(SignupScreen.this,LoginScreen.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                //overridePendingTransition(0,0);
             }
         });
 
@@ -315,7 +315,7 @@ public class SignupScreen extends AppCompatActivity {
                             //String email = object.getString("email");
                             //Toast.makeText(getApplicationContext(),""+first_name,Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
-                            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                            //overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -395,7 +395,10 @@ public class SignupScreen extends AppCompatActivity {
                                     Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(),DetailsScreen.class));
+                            Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            startActivity(intent);
+//                            overridePendingTransition(0,0);
                         }else{
                             //display some message here
                             Toast.makeText(SignupScreen.this,"Already Registered", Toast.LENGTH_LONG).show();

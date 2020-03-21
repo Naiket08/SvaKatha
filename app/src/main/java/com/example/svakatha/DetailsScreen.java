@@ -110,7 +110,10 @@ public class DetailsScreen extends AppCompatActivity {
                     Map<String, Object> user = new HashMap<>();
                     user.put("Occupation", occupation);
                     db.collection("users").document(currentID).set(user, SetOptions.merge());
-                    startActivity(new Intent(getApplicationContext(), Price.class));
+                    Intent intent = new Intent(DetailsScreen.this,Price.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
                 }
         });

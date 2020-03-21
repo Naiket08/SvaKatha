@@ -105,7 +105,10 @@ public class Part_two extends AppCompatActivity {
                     user.put("Birth", DOB);
                     db.collection("users").document(currentID).set(user, SetOptions.merge());
 
-                    startActivity(new Intent(getApplicationContext(), SkinTone.class));
+                    Intent intent = new Intent(Part_two.this,SkinTone.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    overridePendingTransition(0,0);
                 }
             }
         });

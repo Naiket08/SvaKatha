@@ -108,8 +108,11 @@ public class Style extends AppCompatActivity {
                     user.put("Style", Style);
                     db.collection("users").document(currentID).set(user, SetOptions.merge());
                     Intent intent1 = new Intent(Style.this, Business.class);
-                    //intent1.putExtra("Name_style", name_style);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent1);
+                    overridePendingTransition(0,0);
+                    //intent1.putExtra("Name_style", name_style);
+                    //startActivity(intent1);
                     //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
                 }

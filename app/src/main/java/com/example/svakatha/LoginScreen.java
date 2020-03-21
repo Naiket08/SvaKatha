@@ -112,7 +112,7 @@ public class LoginScreen extends AppCompatActivity {
                                                          public void onClick(View view) {
                                                              Intent intent = new Intent(LoginScreen.this, SignupScreen.class);
                                                              startActivity(intent);
-                                                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                                             //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                                                          }
                                                      });
                                                  }
@@ -155,7 +155,9 @@ public class LoginScreen extends AppCompatActivity {
             String uid = user.getUid();
 
             Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
+            //overridePendingTransition(0,0);
         }
     }
 
