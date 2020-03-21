@@ -1,17 +1,11 @@
 package com.example.svakatha;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -19,20 +13,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
 public class ImageSelection extends AppCompatActivity {
 
@@ -83,7 +79,6 @@ public class ImageSelection extends AppCompatActivity {
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
         btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
-        imageView = findViewById(R.id.userIMG);
         getArrayData();
 
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
@@ -105,47 +100,67 @@ public class ImageSelection extends AppCompatActivity {
 //        addParentView(containerView, index);
 
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ImageSelection.this, "ImageDeleted", Toast.LENGTH_SHORT).show();
-                if (index == 8) {
-                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
-                    index = 8;
-                } else {
-                    index++;
+                Toast.makeText(context, "Image Deleted", Toast.LENGTH_SHORT).show();
+                removeParentView(index);
+                if (index < 8) {
+                    saveUserChoiceToDb(index);
                 }
-                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+                if (index == 8) {
+                    Toast.makeText(context, "Reached End", Toast.LENGTH_SHORT).show();
+                    index = 8;
+                    addParentView(index);
+                } else {
+                    index = index + 1;
+                    addParentView(index);
+                }
+
+
+
             }
         });
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ImageSelection.this, "Not Sure About This One", Toast.LENGTH_SHORT).show();
-                if (index == 8) {
-                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
-                    index = 8;
-                } else {
-                    index++;
+                Toast.makeText(context, "Not Sure About This One", Toast.LENGTH_SHORT).show();
+                removeParentView(index);
+                if (index < 8) {
+                    saveUserChoiceToDb(index);
                 }
-                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+                if (index == 8) {
+                    Toast.makeText(context, "Reached End", Toast.LENGTH_SHORT).show();
+                    index = 8;
+                    addParentView(index);
+                } else {
+                    index = index + 1;
+                    addParentView(index);
+                }
+
+
             }
         });
-
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveUserChoiceToDb(i);
-                Toast.makeText(ImageSelection.this, "Image Saved", Toast.LENGTH_SHORT).show();
-                if (index == 8) {
-                    Toast.makeText(ImageSelection.this, "Reached End Of The Suggestions.", Toast.LENGTH_LONG).show();
-                    index = 8;
-                } else {
-                    index++;
+                Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
+                removeParentView(index);
+                if (index < 8) {
+                    saveUserChoiceToDb(index);
                 }
-                Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+                if (index == 8) {
+                    Toast.makeText(context, "Reached End", Toast.LENGTH_SHORT).show();
+                    index = 8;
+                    addParentView(index);
+                } else {
+                    index = index + 1;
+                    addParentView(index);
+                }
+
+
             }
         });
 
@@ -236,7 +251,10 @@ public class ImageSelection extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String durl = documentSnapshot.getString("url" + i);
                         model.setUrl(durl);
-                        Log.i("Hi", durl);
+                        if(i==1){
+                            onFirstUrlSet();
+                        }
+                       // Log.i("Hi", durl);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -246,6 +264,15 @@ public class ImageSelection extends AppCompatActivity {
                         Log.i("hi", e.toString());
                     }
                 });
+    }
+
+    private void addParentView(int index) {
+        imageView = findViewById(R.id.userIMG);
+        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+    }
+
+    private void removeParentView(int index) {
+
     }
 
     public void saveUserChoiceToDb(int index) {
@@ -260,8 +287,10 @@ public class ImageSelection extends AppCompatActivity {
         //db.collection("users").document(uId).set(choiceModel, SetOptions.merge() );
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+
+
+    public void onFirstUrlSet() {
+        addParentView(index);
     }
+
 }
