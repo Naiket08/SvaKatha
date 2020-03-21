@@ -65,52 +65,62 @@ public class LoginScreen extends AppCompatActivity {
         editTextLoginPassword = (EditText)findViewById(R.id.editTextLoginPassword);
         buttonLogin_login = (Button)findViewById(R.id.buttonLogin_login);
 
+        mfirebaseAuth = FirebaseAuth.getInstance();
+
+
         buttonLogin_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email2 = editTextLoginEmail.getText().toString().trim();
-                String password1 = editTextLoginPassword.getText().toString().trim();
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     String email2 = editTextLoginEmail.getText().toString().trim();
+                                                     String password1 = editTextLoginPassword.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email2)){
-                    editTextLoginEmail.setError("Email is required");
-                    return;
-                }
-                if(TextUtils.isEmpty(password1)){
-                    editTextLoginPassword.setError("Password is required");
-                    return;
-                }
-                if(password1.length()<6){
-                    editTextLoginEmail.setError("Password Must be more than 6 character");
-                    return;
-                }
+                                                     if (TextUtils.isEmpty(email2)) {
+                                                         editTextLoginEmail.setError("Email is required");
+                                                         return;
+                                                     }
+                                                     if (TextUtils.isEmpty(password1)) {
+                                                         editTextLoginPassword.setError("Password is required");
+                                                         return;
+                                                     }
+                                                     if (password1.length() < 6) {
+                                                         editTextLoginEmail.setError("Password Must be more than 6 character");
+                                                         return;
+                                                     }
 
-                mfirebaseAuth.signInWithEmailAndPassword(email2,password1).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                mfirebaseAuth.signInWithEmailAndPassword(email2,password1)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(LoginScreen.this,"Login Successful",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),ImageSelection.class));
-
+                            FirebaseUser user = mfirebaseAuth.getCurrentUser();
+                            updateUI(user);
                         }else{
                             editTextLoginEmail.setError("Invalid EmailID");
                             editTextLoginPassword.setError("Invalid Password");
                             Toast.makeText(LoginScreen.this,"Error! " + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                            updateUI(null);
                         }
                     }
                 });
             }
         });
 
-        textViewLoginSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginScreen.this,SignupScreen.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-            }
-        });
+                                                     textViewLoginSignUp.setOnClickListener(new View.OnClickListener() {
+                                                         @Override
+                                                         public void onClick(View view) {
+                                                             Intent intent = new Intent(LoginScreen.this, SignupScreen.class);
+                                                             startActivity(intent);
+                                                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                                         }
+                                                     });
+                                                 }
 
-        googlelogin=findViewById(R.id.sign_in_button);
+
+
+
+        /*googlelogin=findViewById(R.id.sign_in_button);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -123,19 +133,40 @@ public class LoginScreen extends AppCompatActivity {
             public void onClick(View view) {
                 signIn();
             }
-        });
+        });*/
 
 
 
+    public  void updateUI(FirebaseUser user)
+    {
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            //Uri photoUrl = user.getPhotoUrl();
 
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
+
+            Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
+            startActivity(intent);
+        }
     }
-    private void signIn()
+
+}
+    /*private void signIn()
     {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent,RC_SIGN_IN);
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         mcallbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
@@ -181,8 +212,7 @@ public class LoginScreen extends AppCompatActivity {
                 }
             }
         });
-    }
+    }*/
 
 
 
-}
