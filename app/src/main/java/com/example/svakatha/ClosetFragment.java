@@ -1,6 +1,5 @@
 package com.example.svakatha;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -67,7 +66,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
@@ -196,7 +194,7 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         btnAdd.setOnClickListener(v -> {
 
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-            ClosetDialog closetDialog = new ClosetDialog(mContext, getActivity(), this);
+            ClosetDialog closetDialog = new ClosetDialog(mContext,getActivity(), this);
             closetDialog.show(ft,"ClosetDialog");
 
         });
@@ -238,11 +236,6 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
                 });
     }
 
-    private File getCameraFile() {
-        File dir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        return new File(dir, FILE_NAME);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -252,8 +245,8 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
             Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
             uploadImage(data.getData());
         } else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            Uri photoUri = FileProvider.getUriForFile(mContext, mContext.getApplicationContext().getPackageName() + ".provider", getCameraFile());
             Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
+            Uri photoUri = FileProvider.getUriForFile(mContext, mContext.getApplicationContext().getPackageName() + ".provider", getCameraFile());
             uploadImage(photoUri);
         }
     }
@@ -447,6 +440,11 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     public void onImageListReceived() {
         setupShowcaseImageView();
         setupImageGridView();
+    }
+
+    private File getCameraFile() {
+        File dir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        return new File(dir, FILE_NAME);
     }
 
     private static class LableDetectionTask extends AsyncTask<Object, Void, String> {

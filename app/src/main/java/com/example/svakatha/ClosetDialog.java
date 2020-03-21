@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,10 +13,10 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 
 import java.io.File;
 
@@ -32,11 +31,11 @@ import com.example.svakatha.PermissionUtils.PermissionUtils;
 
 public class ClosetDialog extends DialogFragment {
 
+    private static final String FILE_NAME = "temp.jpg";
     private static final int GALLERY_PERMISSIONS_REQUEST = 0;
     private static final int GALLERY_IMAGE_REQUEST = 1;
     private static final int CAMERA_PERMISSIONS_REQUEST = 2;
     private static final int CAMERA_IMAGE_REQUEST = 3;
-    private static final String FILE_NAME = "temp.jpg";
 
     private Context mContext;
     private FragmentActivity fa;
@@ -134,20 +133,16 @@ public class ClosetDialog extends DialogFragment {
     }
 
     private void startGalleryChooser() {
-        PermissionUtils.requestPermission(fa, GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE);
         if (PermissionUtils.requestPermission(fa, GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             fragment.startActivityForResult(Intent.createChooser(intent, "Select a photo"),
                     GALLERY_IMAGE_REQUEST);
-        } else {
-            Toast.makeText(mContext,"Please grand permission to use camera from settings",Toast.LENGTH_LONG).show();
         }
     }
+
     private void startCamera() {
-        PermissionUtils.requestPermission(fa, CAMERA_PERMISSIONS_REQUEST,
-                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
         if (PermissionUtils.requestPermission(
                 fa,
                 CAMERA_PERMISSIONS_REQUEST,
@@ -158,8 +153,6 @@ public class ClosetDialog extends DialogFragment {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             fragment.startActivityForResult(intent, CAMERA_IMAGE_REQUEST);
-        } else {
-            Toast.makeText(mContext,"Please grand permission to access files from settings",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -167,6 +160,4 @@ public class ClosetDialog extends DialogFragment {
         File dir = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return new File(dir, FILE_NAME);
     }
-
-
 }
