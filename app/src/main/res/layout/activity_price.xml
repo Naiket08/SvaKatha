@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/textViewPriceScreenGreet1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_35sdp"
         android:fontFamily="@font/arial"
         android:text=""
         android:textColor="#000"
@@ -106,14 +106,14 @@
 
     <ImageButton
         android:id="@+id/imageButtonPriceScreenForward_1"
-        android:layout_width="24dp"
-        android:layout_height="27dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="45dp"
+        android:layout_width="@dimen/_26sdp"
+        android:layout_height="@dimen/_26sdp"
         android:background="#FFFFFF"
-        android:src="@drawable/ic_arrow_forward_black_24dp" />
+        app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_25sdp"/>
 
     <TextView
         android:id="@+id/textViewPriceOne"

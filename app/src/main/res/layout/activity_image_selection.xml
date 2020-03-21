@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/cardview_light_background">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -26,13 +25,13 @@
             <TextView
                 android:id="@+id/textViewStyleGreet2"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="@dimen/_23sdp"
                 android:layout_marginTop="@dimen/_35sdp"
                 android:fontFamily="@font/arial"
-                tools:text="Hi Nadeem"
+                android:text=""
                 android:textColor="#000"
                 android:textSize="@dimen/_27ssp" />
 
@@ -93,10 +92,9 @@
 
                 <ImageView
                     android:id="@+id/userIMG"
-                    android:layout_width="match_parent"
-                    android:layout_height="499dp"
+                    android:layout_width="@dimen/_260sdp"
+                    android:layout_height="@dimen/_384sdp"
                     android:background="@color/cardview_light_background"
-
                     android:scaleType="centerCrop" />
 
             </androidx.cardview.widget.CardView>

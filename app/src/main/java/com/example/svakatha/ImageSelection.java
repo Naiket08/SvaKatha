@@ -3,6 +3,7 @@ package com.example.svakatha;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -88,6 +89,7 @@ public class ImageSelection extends AppCompatActivity {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewImageSelectionText2.setText("Hi "+finalProfileText);
+                        textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(), Typeface.BOLD);
                     }
                 });
 

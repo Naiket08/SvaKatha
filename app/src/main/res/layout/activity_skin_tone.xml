@@ -29,7 +29,7 @@
             <TextView
                 android:id="@+id/textViewSkinToneScreenGreet_1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:fontFamily="@font/arial"
                 android:text=""
                 android:textColor="#000"
@@ -106,14 +106,11 @@
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
                 android:layout_below="@+id/layoutskintone"
-                android:layout_marginStart="320dp"
+                android:layout_marginStart="@dimen/_250sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
                 android:background="#FFFFFF"
                 app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
-
-
-
-
 
         </RelativeLayout>
     </ScrollView>
