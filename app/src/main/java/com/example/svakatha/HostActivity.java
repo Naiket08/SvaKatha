@@ -27,6 +27,9 @@ public class HostActivity extends AppCompatActivity {
     private static final int GALLERY_IMAGE_REQUEST = 1;
     private static final int CAMERA_PERMISSIONS_REQUEST = 2;
     private static final int CAMERA_IMAGE_REQUEST = 3;
+    private ClosetFragment closetFragment;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,9 +52,12 @@ public class HostActivity extends AppCompatActivity {
             FragmentManager supportFragmentManager = getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.closet:
+                    if (closetFragment == null) {
+                        closetFragment = new ClosetFragment();
+                    }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    new ClosetFragment()).commit();
+                                    closetFragment).commit();
                     setTitle("My Closet");
                     break;
                 case R.id.shop:
@@ -65,6 +71,7 @@ public class HostActivity extends AppCompatActivity {
                 case R.id.setting:
                     makeToast("Setting clicked");
                     //TODO: add fragment 4
+
             }
             return true;
         }
@@ -123,6 +130,10 @@ public class HostActivity extends AppCompatActivity {
     private File getCameraFile() {
         File dir = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return new File(dir, FILE_NAME);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        closetFragment.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }
