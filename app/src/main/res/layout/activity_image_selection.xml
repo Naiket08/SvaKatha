@@ -93,8 +93,8 @@
 
                 <ImageView
                     android:id="@+id/userIMG"
-                    android:layout_width="@dimen/_260sdp"
-                    android:layout_height="@dimen/_374sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="499dp"
                     android:background="@color/cardview_light_background"
 
                     android:scaleType="centerCrop" />
