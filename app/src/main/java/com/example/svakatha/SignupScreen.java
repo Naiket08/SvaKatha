@@ -521,11 +521,11 @@ public class SignupScreen extends AppCompatActivity {
         editTextSignUpUsrname.requestFocus();
     }*/
 
-    /*@Override
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
-    }*/
+    }
 
     private void updateUI(FirebaseUser user1)
     {
