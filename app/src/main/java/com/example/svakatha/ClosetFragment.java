@@ -247,12 +247,13 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
 
         if (requestCode == GALLERY_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
+            Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
             uploadImage(data.getData());
         } else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
             Uri photoUri = FileProvider.getUriForFile(mContext, mContext.getApplicationContext().getPackageName() + ".provider", getCameraFile());
+            Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
             uploadImage(photoUri);
         }
     }

@@ -10,6 +10,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -72,8 +73,8 @@ public class DetailsScreen extends AppCompatActivity {
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0,9);
-        progressAnimator.setDuration(900);
-        progressAnimator.setInterpolator(new LinearInterpolator());
+        progressAnimator.setDuration(500);
+        progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
 

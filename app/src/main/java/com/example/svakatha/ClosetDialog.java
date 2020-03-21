@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -133,16 +134,20 @@ public class ClosetDialog extends DialogFragment {
     }
 
     private void startGalleryChooser() {
+        PermissionUtils.requestPermission(fa, GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE);
         if (PermissionUtils.requestPermission(fa, GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             fragment.startActivityForResult(Intent.createChooser(intent, "Select a photo"),
                     GALLERY_IMAGE_REQUEST);
+        } else {
+            Toast.makeText(mContext,"Please grand permission to use camera from settings",Toast.LENGTH_LONG).show();
         }
     }
-
     private void startCamera() {
+        PermissionUtils.requestPermission(fa, CAMERA_PERMISSIONS_REQUEST,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
         if (PermissionUtils.requestPermission(
                 fa,
                 CAMERA_PERMISSIONS_REQUEST,
@@ -153,6 +158,8 @@ public class ClosetDialog extends DialogFragment {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             fragment.startActivityForResult(intent, CAMERA_IMAGE_REQUEST);
+        } else {
+            Toast.makeText(mContext,"Please grand permission to access files from settings",Toast.LENGTH_LONG).show();
         }
     }
 
