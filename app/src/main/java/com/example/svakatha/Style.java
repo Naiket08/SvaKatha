@@ -60,8 +60,8 @@ public class Style extends AppCompatActivity {
 
         Intent intent = getIntent();
         textViewStyleScreenGreet.setTypeface(textViewStyleScreenGreet.getTypeface(), Typeface.BOLD);
-        //final String name_style = intent.getStringExtra("Name_price");
-        //textViewStyleScreenGreet.setText("Hi"+" "+name_style);
+        final String name_style = intent.getStringExtra("Name_price");
+        textViewStyleScreenGreet.setText("Hi"+" "+name_style);
 
         //casting of ImageView
         imageViewStyleScreenHeader=(ImageView)findViewById(R.id.imageViewStyleScreenHeader1);
@@ -109,10 +109,10 @@ public class Style extends AppCompatActivity {
                     db.collection("users").document(currentID).set(user, SetOptions.merge());
                     Intent intent1 = new Intent(Style.this, Business.class);
                     intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(intent1);
-                    overridePendingTransition(0,0);
-                    //intent1.putExtra("Name_style", name_style);
                     //startActivity(intent1);
+                    overridePendingTransition(0,0);
+                    intent1.putExtra("Name_style", name_style);
+                    startActivity(intent1);
                     //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 }
                 }

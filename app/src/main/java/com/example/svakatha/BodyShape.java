@@ -67,6 +67,11 @@ public class BodyShape extends AppCompatActivity {
         final String currentID = auth.getCurrentUser().getUid();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        Intent intent = getIntent();
+        textViewBodyShapeText2.setTypeface(textViewBodyShapeText2.getTypeface(), Typeface.BOLD);
+        String name_bodyshape = intent.getStringExtra("Name_skintone");
+        textViewBodyShapeText2.setText("Hi"+" "+name_bodyshape);
+
 
         imageButtonBody1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,12 +166,13 @@ public class BodyShape extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(BodyShape.this,ImageSelection.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("Name_bodyshape", name_bodyshape);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
         });
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        /*DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -177,6 +183,6 @@ public class BodyShape extends AppCompatActivity {
                         textViewBodyShapeText2.setTypeface(textViewBodyShapeText2.getTypeface(), Typeface.BOLD);
                     }
 
-                });
+                });*/
     }
 }

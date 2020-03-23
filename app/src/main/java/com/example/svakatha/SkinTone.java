@@ -57,6 +57,12 @@ public class SkinTone extends AppCompatActivity {
         final String currentID = auth.getCurrentUser().getUid();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        Intent intent = getIntent();
+        textViewSkinToneScreenGreet.setTypeface(textViewSkinToneScreenGreet.getTypeface(), Typeface.BOLD);
+        String name_skintone = intent.getStringExtra("Name_part_two");
+        textViewSkinToneScreenGreet.setText("Hi"+" "+name_skintone);
+
+
 
         //casting of imagebutton
         imageButtonSkinToneScreenForward=(ImageButton)findViewById(R.id.imageButtonSkinToneScreenForward_1);
@@ -65,6 +71,7 @@ public class SkinTone extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent1 = new Intent(SkinTone.this,BodyShape.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent1.putExtra("Name_skintone", name_skintone);
                 startActivity(intent1);
                 overridePendingTransition(0,0);
 
@@ -1004,7 +1011,7 @@ public class SkinTone extends AppCompatActivity {
             }
         });
 
-        DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
+        /*DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
         final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -1015,6 +1022,6 @@ public class SkinTone extends AppCompatActivity {
                         textViewSkinToneScreenGreet.setTypeface(textViewSkinToneScreenGreet.getTypeface(), Typeface.BOLD);
                     }
 
-                });
+                });*/
     }
 }

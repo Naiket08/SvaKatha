@@ -27,12 +27,16 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
 
@@ -154,9 +158,29 @@ public class LoginScreen extends AppCompatActivity {
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
 
-            Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
-            //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent);
+            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+            final DocumentReference documentReference = db.collection("users").document(currentID);
+            documentReference.get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            String bodyshape = documentSnapshot.getString("BodyShape");
+                            if(bodyshape=="")
+                            {
+                                Intent intent=new Intent(LoginScreen.this,DetailsScreen.class);
+                                startActivity(intent);
+                            }
+                            else
+                            {
+                                Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
+                                startActivity(intent);
+                            }
+                            Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
+                        }
+
+                    });
+
             //overridePendingTransition(0,0);
         }
     }

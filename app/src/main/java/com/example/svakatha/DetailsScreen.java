@@ -57,8 +57,8 @@ public class DetailsScreen extends AppCompatActivity {
         textViewDetailsScreenGreet = (TextView) findViewById(R.id.textViewDetailsScreenGreet);
         Intent intent = getIntent();
         textViewDetailsScreenGreet.setTypeface(textViewDetailsScreenGreet.getTypeface(),Typeface.BOLD);
-        //final String name_details = intent.getStringExtra("Name");
-        //textViewDetailsScreenGreet.setText("Hi"+" "+name_details);
+        final String name_details = intent.getStringExtra("Name");
+        textViewDetailsScreenGreet.setText("Hi"+" "+name_details);
         textViewDetailsScreenText2 = (TextView) findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3 = (TextView) findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation = (TextView) findViewById(R.id.textViewDetailsScreenOccupation);
@@ -85,7 +85,7 @@ public class DetailsScreen extends AppCompatActivity {
         final String currentID = auth.getCurrentUser().getUid();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
+        /*documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -96,7 +96,7 @@ public class DetailsScreen extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
                     }
 
-                });
+                });*/
 
 
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +112,7 @@ public class DetailsScreen extends AppCompatActivity {
                     db.collection("users").document(currentID).set(user, SetOptions.merge());
                     Intent intent = new Intent(DetailsScreen.this,Price.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("Name_details", name_details);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                 }

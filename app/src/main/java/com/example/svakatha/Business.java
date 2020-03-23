@@ -61,8 +61,8 @@ public class Business extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         Intent intent = getIntent();
         textViewBusinessScreenGreet.setTypeface(textViewBusinessScreenGreet.getTypeface(), Typeface.BOLD);
-        //String name_business = intent.getStringExtra("Name_style");
-        //textViewBusinessScreenGreet.setText("Hi"+" "+name_business);
+        String name_business = intent.getStringExtra("Name_style");
+        textViewBusinessScreenGreet.setText("Hi"+" "+name_business);
 
 
         //casting of ImageView
@@ -85,7 +85,7 @@ public class Business extends AppCompatActivity {
         final String currentID = auth.getCurrentUser().getUid();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
+        /*documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -94,7 +94,7 @@ public class Business extends AppCompatActivity {
                         textViewBusinessScreenGreet.setTypeface(textViewBusinessScreenGreet.getTypeface(),Typeface.BOLD);
                     }
 
-                });
+                });*/
 
 
         imageButtonBusinessScreenForward.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +109,7 @@ public class Business extends AppCompatActivity {
                     db.collection("users").document(currentID).set(user, SetOptions.merge());
                     Intent intent = new Intent(Business.this,Part_two.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("Name_business", name_business);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                 }
