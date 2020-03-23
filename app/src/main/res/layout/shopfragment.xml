@@ -12,9 +12,12 @@
         android:layout_height="@dimen/_130sdp"
         android:layout_alignParentTop="true"
         android:background="@drawable/heaaderrectangleloginscreen"
+        app:layout_constraintBottom_toTopOf="@+id/imageButtonPersonClothesSelection_1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewClosetSugestion_1"
@@ -66,61 +69,88 @@
         android:id="@+id/imageButtonPersonClothesSelection_1"
         android:layout_width="@dimen/_241sdp"
         android:layout_height="@dimen/_301sdp"
-        android:layout_marginTop="@dimen/_129sdp"
-        android:layout_marginBottom="@dimen/_82sdp"
-        android:layout_marginEnd="@dimen/_25sdp"
-        android:layout_marginStart="@dimen/_26sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/imageButtonBackward"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonForward"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/cardview_light_background"
+        app:layout_constraintVertical_bias="0.744" />
 
     <ImageView
         android:id="@+id/imageViewShopFragment1"
         android:layout_width="@dimen/_26sdp"
         android:layout_height="@dimen/_23sdp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSeason_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.018"
         app:srcCompat="@drawable/cart"
-        tools:layout_editor_absoluteX="356dp"
-        tools:layout_editor_absoluteY="16dp"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageViewShopFragment2"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
+        android:layout_marginStart="232dp"
+        android:layout_marginBottom="160dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSeason_1"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewShopFragment1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewClosetSugestion_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/round"
-        tools:layout_editor_absoluteX="325dp"
-        tools:layout_editor_absoluteY="15dp"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButtonForward"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        app:srcCompat="@drawable/forwardarrow"
+        android:layout_marginTop="198dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="336dp"
         android:background="@color/cardview_light_background"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="369dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButtonPersonClothesSelection_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
+        app:srcCompat="@drawable/forwardarrow"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButtonBackward"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        app:srcCompat="@drawable/backwardarrow"
-        tools:layout_editor_absoluteX="380dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="198dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="336dp"
         android:background="@color/cardview_light_background"
-        tools:layout_editor_absoluteY="369dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonPersonClothesSelection_1"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
+        app:srcCompat="@drawable/backwardarrow"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButtonDownward"
         android:layout_width="@dimen/_21sdp"
         android:layout_height="@dimen/_21sdp"
-        app:srcCompat="@drawable/downarrow"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="184dp"
+        android:layout_marginBottom="47dp"
         android:background="@color/cardview_light_background"
-        tools:layout_editor_absoluteX="200dp"
-        tools:layout_editor_absoluteY="616dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonPersonClothesSelection_1"
+        app:srcCompat="@drawable/downarrow"
         tools:ignore="MissingConstraints" />
 
 
