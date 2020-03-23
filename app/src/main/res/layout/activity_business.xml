@@ -19,7 +19,7 @@
 
         android:id="@+id/textViewBusinessScreenGreet1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_35sdp"
         android:fontFamily="@font/arial"
         android:text=""
         android:textColor="#000"

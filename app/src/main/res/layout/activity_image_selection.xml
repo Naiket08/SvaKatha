@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             <TextView
                 android:id="@+id/textViewStyleGreet2"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="@dimen/_23sdp"
@@ -92,8 +93,8 @@
                 <ImageView
                     android:id="@+id/userIMG"
                     android:layout_width="@dimen/_260sdp"
-                    android:layout_height="@dimen/_374sdp"
-
+                    android:layout_height="@dimen/_384sdp"
+                    android:background="@color/cardview_light_background"
                     android:scaleType="centerCrop" />
 
             </androidx.cardview.widget.CardView>
