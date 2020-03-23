@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -84,9 +85,14 @@ public class ImageSelection extends AppCompatActivity {
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
         btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
         imageView = findViewById(R.id.userIMG);
+
+        Intent intent = getIntent();
+        textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(), Typeface.BOLD);
+        String name_image = intent.getStringExtra("Name_bodyshape");
+        textViewImageSelectionText2.setText("Hi"+" "+name_image);
         getArrayData();
 
-        db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
+        /*db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @SuppressLint("SetTextI18n")
                     @Override
@@ -94,7 +100,7 @@ public class ImageSelection extends AppCompatActivity {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         textViewImageSelectionText2.setText("Hi "+finalProfileText);
                     }
-                });
+                });*/
 
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        final View containerView = inflate.inflate(R.layout.activity_image_selection, null);
