@@ -97,7 +97,7 @@
         android:id="@+id/imageButtonForward"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        app:srcCompat="@drawable/backwardarrow"
+        app:srcCompat="@drawable/forwardarrow"
         android:background="@color/cardview_light_background"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="369dp"
