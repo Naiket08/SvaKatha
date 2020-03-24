@@ -18,7 +18,8 @@ public class Shopfragmnetselectedimage  extends Fragment {
 
     private TextView  textViewTshirt,textViewAboutDesign,textViewAboutDesignInfo,textviewTransparentPricing,textViewTransparentPricingInfo,textViewTotalCost;
     private ImageView imageViewPersonImgae;
-    private ImageButton buttonAddtoCart,buttonBuyNow;
+    private ImageButton buttonAddtoCart,buttonBuyNow,imagebuttonBackWard,imagebuttonForWard;
+    int angle = 0;
 
     public Shopfragmnetselectedimage(){
 
@@ -46,12 +47,27 @@ public class Shopfragmnetselectedimage  extends Fragment {
         imageViewPersonImgae=(ImageView)view.findViewById(R.id.imageViewPersoneImgae_1);
         buttonAddtoCart=(ImageButton) view.findViewById(R.id.imagebuttonAddtoCart_1);
         buttonBuyNow=(ImageButton) view.findViewById(R.id.imagebuttonBuyNow_1);
-
+        imagebuttonBackWard=(ImageButton)view.findViewById(R.id.imagebuttonBackWard_1);
+        imagebuttonForWard=(ImageButton)view.findViewById(R.id.imagebuttonForWard_1);
         buttonBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(),RazorPay.class);
                 startActivity(intent);
+            }
+        });
+        imagebuttonForWard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                angle = angle + 90;
+                imageViewPersonImgae.setRotation(angle);
+            }
+        });
+        imagebuttonBackWard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                angle = angle - 90;
+                imageViewPersonImgae.setRotation(angle);
             }
         });
 
