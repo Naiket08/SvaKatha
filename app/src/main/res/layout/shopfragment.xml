@@ -134,7 +134,4 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
         app:srcCompat="@drawable/arrow_right"
         tools:ignore="MissingConstraints" />
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
