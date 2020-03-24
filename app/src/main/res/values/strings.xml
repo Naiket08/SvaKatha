@@ -29,5 +29,11 @@ dress for?</b></string>
     <string name="dialog_select_prompt" />
 
     <string name="dialog_select_camera" />
+    <string name="about_our_application">About Our Application</string>
+    <string name="about_svakatha">About SvaKatha</string>
+    <string name="share_and_earn">Share and Earn</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="help">Help</string>
+    <string name="direct_help">Or directly write us at help@svakatha.com</string>
 
 </resources>
