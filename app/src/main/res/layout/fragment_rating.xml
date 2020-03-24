@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF">
 
-    <ImageView
-        android:id="@+id/imageViewCapturedImage"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_290sdp"
-        android:layout_marginStart="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:scaleType="centerInside"/>
+
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF">
+
+
+        <ImageView
+            android:id="@+id/imageViewCapturedImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_290sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:scaleType="centerInside" />
 
     <ImageButton
         android:id="@+id/imageButtonCameraButton"
@@ -94,4 +106,8 @@
         android:layout_marginTop="@dimen/_38sdp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/_10sdp"/>
+
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

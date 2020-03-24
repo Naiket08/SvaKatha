@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -82,7 +83,12 @@ public class ImageSelection extends AppCompatActivity {
         btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
         getArrayData();
 
-        db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
+        Intent intent = getIntent();
+        textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(),Typeface.BOLD);
+        final String name_image = intent.getStringExtra("Name_bodyshape");
+        textViewImageSelectionText2.setText("Hi"+" "+name_image);
+
+        /*db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @SuppressLint("SetTextI18n")
                     @Override
@@ -91,8 +97,20 @@ public class ImageSelection extends AppCompatActivity {
                         textViewImageSelectionText2.setText("Hi "+finalProfileText);
                         textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(), Typeface.BOLD);
                     }
-                });
+                });*/
 
+        final String currentID = mAuth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        final String gender = documentSnapshot.getString("Gender");
+                        //Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
+                    }
+
+                });
 //        final LayoutInflater inflate = (LayoutInflater) ImageSelection.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        final View containerView = inflate.inflate(R.layout.activity_image_selection, null);
 //        //RelativeLayout relativeLayoutContainer = (RelativeLayout) containerView.findViewById(R.id.relative_container);
@@ -247,24 +265,61 @@ public class ImageSelection extends AppCompatActivity {
     }
 
     public void settingURL(final UserDataModel model, final int i) {
-        db.collection("Images").document("ImageURLs").get()
+        final String currentID = mAuth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String durl = documentSnapshot.getString("url" + i);
-                        model.setUrl(durl);
-                        if(i==1){
-                            onFirstUrlSet();
+                        final String gender = documentSnapshot.getString("Gender");
+                        Toast.makeText(ImageSelection.this, ""+gender, Toast.LENGTH_SHORT).show();
+                        if(gender.equals("MALE"))
+                        {
+                            db.collection("Images").document("ImageURLs").get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String durl = documentSnapshot.getString("url" + i);
+                                            model.setUrl(durl);
+                                            if(i==1){
+                                                onFirstUrlSet();
+                                            }
+                                            // Log.i("Hi", durl);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
+                                            Log.i("hi", e.toString());
+                                        }
+                                    });
                         }
-                        // Log.i("Hi", durl);
+                        else
+                        {
+                            db.collection("ShoppingImages").document("ShoppingImageURLs").get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String durl = documentSnapshot.getString("url" + i);
+                                            model.setUrl(durl);
+                                            if(i==1){
+                                                onFirstUrlSet();
+                                            }
+                                            // Log.i("Hi", durl);
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
+                                            Log.i("hi", e.toString());
+                                        }
+                                    });
+                        }
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
-                        Log.i("hi", e.toString());
-                    }
+
                 });
     }
 
