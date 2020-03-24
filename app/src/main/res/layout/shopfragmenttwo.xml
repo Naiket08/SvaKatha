@@ -37,7 +37,7 @@
                 android:layout_below="@+id/textViewTshirt_1"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_38sdp"
+                android:layout_marginStart="@dimen/_32sdp"
                 android:layout_marginTop="@dimen/_11sdp"
                 android:layout_marginEnd="@dimen/_38sdp" />
 
@@ -48,7 +48,7 @@
                 android:layout_below="@+id/imageViewPersoneImgae_1"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_38sdp"
+                android:layout_marginStart="@dimen/_29sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginEnd="@dimen/_111sdp"
                 android:text="About the Design"
@@ -61,7 +61,7 @@
                 android:layout_below="@+id/textViewAboutDesign_1"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_38sdp"
+                android:layout_marginStart="@dimen/_29sdp"
                 android:layout_marginTop="@dimen/_13sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
                 android:fontFamily="@font/segoe"
@@ -75,7 +75,7 @@
                 android:layout_height="@dimen/_23sdp"
                 android:layout_below="@+id/textViewAboutDesignInfo_1"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/_38sdp"
+                android:layout_marginStart="@dimen/_29sdp"
                 android:layout_marginTop="@dimen/_13sdp"
                 android:text="Transparent Pricing"
                 android:textSize="@dimen/_18ssp"
@@ -87,10 +87,10 @@
                 android:layout_height="@dimen/_220sdp"
                 android:layout_below="@+id/textViewTransparentPricing_1"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/_38sdp"
+                android:layout_marginStart="@dimen/_29sdp"
                 android:layout_marginTop="@dimen/_13sdp"
-                android:textSize="@dimen/_9ssp"
-                android:text="We believe Cutomers have the right\n\nto Know what thier products cost to make.\n\nPrice Breakdown.\n\n\nFabric Cost:  5170\n\nHardware Cost:  5170\n\nLabour Cost:  5170\n\nDesigner Cost:  5170\n\nDuties Cost:  5170 \n\nTransport Cost:  5170" />
+                android:textSize="@dimen/_10ssp"
+                android:text="We believe Cutomers have the right\n\nto Know what thier products cost to make.\n\nPrice Breakdown.\n\nFabric Cost:  5170\n\nHardware Cost:  5170\n\nLabour Cost:  5170\n\nDesigner Cost:  5170\n\nDuties Cost:  5170 \n\nTransport Cost:  5170" />
 
             <TextView
                 android:id="@+id/textViewTotalCost_1"
@@ -115,7 +115,7 @@
                 android:layout_height="@dimen/_43sdp"
                 android:layout_below="@+id/textViewTotalCost_1"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/_38sdp"
+                android:layout_marginStart="@dimen/_29sdp"
                 android:layout_marginTop="@dimen/_36sdp"
                 android:background="@drawable/addtocart"
                 android:textSize="@dimen/_12ssp" />
@@ -130,33 +130,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/_155sdp"
                 android:layout_marginTop="@dimen/_36sdp"
-                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_29sdp"
                 android:layout_marginBottom="@dimen/_48sdp"
                 android:textSize="@dimen/_12ssp" />
-
-            <ImageButton
-                android:id="@+id/imagebuttonBackWard_1"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_190sdp"
-                android:background="@color/cardview_light_background"
-                android:src="@drawable/arrow_left" />
-
-            <ImageButton
-                android:id="@+id/imagebuttonForWard_1"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_287sdp"
-                android:layout_marginTop="@dimen/_190sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:background="@color/cardview_light_background"
-                android:src="@drawable/arrow_right" />
-            
 
         </RelativeLayout>
     </ScrollView>
