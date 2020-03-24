@@ -36,7 +36,7 @@ public class ShopClothes extends Fragment {
     
     private TextView textViewClosetSugestions,textViewAddDesign,textViewSeason;
     private ImageView imageViewShopScreenGreet;
-    private ImageButton imageButtonPersonClothesSelection,imageButtonForward,imagebuttonbackward,imagebuttondownward;
+    private ImageButton imageButtonPersonClothesSelection,imageButtonForward,imagebuttonbackward;
     private Context mContext;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -67,7 +67,7 @@ public class ShopClothes extends Fragment {
         textViewSeason=(TextView)view.findViewById(R.id.textViewSeason_1);
         imageButtonForward=(ImageButton)view.findViewById(R.id.imageButtonForward);
         imagebuttonbackward=(ImageButton)view.findViewById(R.id.imageButtonBackward);
-        imagebuttondownward=(ImageButton)view.findViewById(R.id.imageButtonDownward);
+
         
         imageViewShopScreenGreet=(ImageView)view.findViewById(R.id.imageViewShopScreenGreet_1);
         
@@ -93,7 +93,7 @@ public class ShopClothes extends Fragment {
         imageButtonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
                 if (index < 8) {
                     //saveUserChoiceToDb(index);
@@ -102,8 +102,13 @@ public class ShopClothes extends Fragment {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
                     index = 8;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
-                } else {
-                    index = index + 1;
+                }
+                if(index == 0) {
+                    Toast.makeText(mContext, "forward", Toast.LENGTH_SHORT).show();
+                }
+                    else
+                 {
+                    index = index - 1;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
                 }
 
@@ -114,30 +119,10 @@ public class ShopClothes extends Fragment {
         imagebuttonbackward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
                 if (index < 8) {
                    // saveUserChoiceToDb(index);
-                }
-                if (index == 8) {
-                    Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
-                    index = 8;
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
-                } else {
-                    index = index + 1;
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
-                }
-
-
-            }
-        });
-        imagebuttondownward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
-                removeParentView(index);
-                if (index < 8) {
-                    //saveUserChoiceToDb(index);
                 }
                 if (index == 8) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();

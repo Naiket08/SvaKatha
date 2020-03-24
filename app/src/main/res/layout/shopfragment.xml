@@ -68,7 +68,7 @@
     <ImageButton
         android:id="@+id/imageButtonPersonClothesSelection_1"
         android:layout_width="@dimen/_241sdp"
-        android:layout_height="@dimen/_301sdp"
+        android:layout_height="@dimen/_330sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButtonBackward"
         app:layout_constraintHorizontal_bias="0.56"
@@ -95,13 +95,14 @@
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
         android:layout_marginStart="232dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="160dp"
         app:layout_constraintBottom_toTopOf="@+id/textViewSeason_1"
         app:layout_constraintEnd_toStartOf="@+id/imageViewShopFragment1"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textViewClosetSugestion_1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/round"
         tools:ignore="MissingConstraints" />
 
@@ -134,23 +135,6 @@
         app:layout_constraintStart_toEndOf="@+id/imageButtonPersonClothesSelection_1"
         app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
         app:srcCompat="@drawable/backwardarrow"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/imageButtonDownward"
-        android:layout_width="@dimen/_21sdp"
-        android:layout_height="@dimen/_21sdp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginBottom="47dp"
-        android:background="@color/cardview_light_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonPersonClothesSelection_1"
-        app:srcCompat="@drawable/downarrow"
         tools:ignore="MissingConstraints" />
 
 
