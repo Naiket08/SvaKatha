@@ -46,6 +46,7 @@
         android:text=""
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageViewShopScreenGreet_1"
         app:layout_constraintTop_toTopOf="@+id/imageViewShopScreenGreet_1" />
@@ -57,10 +58,11 @@
         android:layout_marginStart="@dimen/_178sdp"
         android:layout_marginTop="@dimen/_105sdp"
         android:layout_marginEnd="@dimen/_10sdp"
+        android:fontFamily="@font/arial"
         android:text="Season - Spring/Summer"
         android:textSize="11sp"
         android:textStyle="bold"
-        android:fontFamily="@font/arial"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewShopScreenGreet_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -109,49 +111,30 @@
         android:id="@+id/imageButtonForward"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_marginTop="198dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="336dp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_210sdp"
+        android:layout_marginBottom="@dimen/_259sdp"
         android:background="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButtonPersonClothesSelection_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
-        app:srcCompat="@drawable/forwardarrow"
+        app:srcCompat="@drawable/arrow_left"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imageButtonBackward"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="198dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="336dp"
+        android:layout_marginTop="@dimen/_210sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_259sdp"
         android:background="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonPersonClothesSelection_1"
         app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
-        app:srcCompat="@drawable/backwardarrow"
+        app:srcCompat="@drawable/arrow_right"
         tools:ignore="MissingConstraints" />
 
-    <ImageButton
-        android:id="@+id/imageButtonDownward"
-        android:layout_width="@dimen/_21sdp"
-        android:layout_height="@dimen/_21sdp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginBottom="47dp"
-        android:background="@color/cardview_light_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonPersonClothesSelection_1"
-        app:srcCompat="@drawable/downarrow"
-        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

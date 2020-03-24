@@ -67,7 +67,7 @@ public class ShopClothes extends Fragment {
         textViewSeason=(TextView)view.findViewById(R.id.textViewSeason_1);
         imageButtonForward=(ImageButton)view.findViewById(R.id.imageButtonForward);
         imagebuttonbackward=(ImageButton)view.findViewById(R.id.imageButtonBackward);
-        imagebuttondownward=(ImageButton)view.findViewById(R.id.imageButtonDownward);
+       // imagebuttondownward=(ImageButton)view.findViewById(R.id.imageButtonDownward);
         
         imageViewShopScreenGreet=(ImageView)view.findViewById(R.id.imageViewShopScreenGreet_1);
         
@@ -131,7 +131,7 @@ public class ShopClothes extends Fragment {
 
             }
         });
-        imagebuttondownward.setOnClickListener(new View.OnClickListener() {
+       /* imagebuttondownward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
@@ -151,7 +151,7 @@ public class ShopClothes extends Fragment {
 
             }
         });
-
+*/
 
         return view;
     }
