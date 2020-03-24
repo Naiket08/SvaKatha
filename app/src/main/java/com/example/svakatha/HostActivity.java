@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.svakatha.Closet.ClosetFragment;
 import com.example.svakatha.PermissionUtils.PermissionUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

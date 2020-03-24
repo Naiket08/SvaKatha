@@ -1,4 +1,4 @@
-package com.example.svakatha.Closet;
+package com.example.svakatha;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import java.io.File;
@@ -26,9 +27,7 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.svakatha.Closet.ClosetFragment;
 import com.example.svakatha.PermissionUtils.PermissionUtils;
-import com.example.svakatha.R;
 
 public class ClosetDialog extends DialogFragment {
 
