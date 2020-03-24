@@ -1,4 +1,4 @@
-package com.example.svakatha;
+package com.example.svakatha.Closet;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,9 +25,11 @@ import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.svakatha.Adapter.ClosetGridAdapter;
+import com.example.svakatha.Closet.Adapter.ClosetGridAdapter;
+import com.example.svakatha.HostActivity;
 import com.example.svakatha.PackageManagerUtils.PackageManagerUtils;
-import com.example.svakatha.listeners.ClosetFragmentListener;
+import com.example.svakatha.Closet.Listeners.ClosetFragmentListener;
+import com.example.svakatha.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.api.client.extensions.android.http.AndroidHttp;
