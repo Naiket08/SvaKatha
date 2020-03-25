@@ -95,12 +95,12 @@ public class ShopClothes extends Fragment {
             public void onClick(View v) {
                // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
-                if (index < 8) {
+                if (index < 10) {
                     //saveUserChoiceToDb(index);
                 }
-                if (index == 8) {
+                if (index == 10) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
-                    index = 8;
+                    index = 10;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
                 }
                 if(index == 0) {
@@ -121,12 +121,12 @@ public class ShopClothes extends Fragment {
             public void onClick(View v) {
                // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
-                if (index < 8) {
+                if (index < 10) {
                    // saveUserChoiceToDb(index);
                 }
-                if (index == 8) {
+                if (index == 10) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
-                    index = 8;
+                    index = 10;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
                 } else {
                     index = index + 1;
@@ -209,14 +209,27 @@ public class ShopClothes extends Fragment {
         settingURL(model9, 9);
         userDataModelArrayList.add(model9);
 
+        UserDataModel model10 = new UserDataModel();
+        model9.setName("Cloth 10 ");
+        model9.setImageCode("10");
+        settingURL(model10, 10);
+        userDataModelArrayList.add(model10);
+
+        UserDataModel model11 = new UserDataModel();
+        model9.setName("Cloth 11 ");
+        model9.setImageCode("11");
+        settingURL(model11, 11);
+        userDataModelArrayList.add(model11);
+
     }
 
     public void settingURL(final UserDataModel model, final int i) {
-        db.collection("Images").document("ImageURLs").get()
+
+        db.collection("Images").document("2").get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String durl = documentSnapshot.getString("url" + i);
+                        String durl = documentSnapshot.getString("img" + i);
                         model.setUrl(durl);
                         if(i==1){
                             onFirstUrlSet();
