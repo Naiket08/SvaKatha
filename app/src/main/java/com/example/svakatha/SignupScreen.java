@@ -48,6 +48,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONException;
@@ -275,13 +276,14 @@ public class SignupScreen extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            Toast.makeText(SignupScreen.this, "Facebook5", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(SignupScreen.this, "Facebook5", Toast.LENGTH_SHORT).show();
 
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
                           //  startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
-                            FirebaseUser user1 = mFirebaseAuth.getCurrentUser();
-                            updateUI(user1);
+                           // FirebaseUser user1 = mFirebaseAuth.getCurrentUser();
+                            //updateUI(user1);
+                            getUserProfile(AccessToken.getCurrentAccessToken());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -312,9 +314,25 @@ public class SignupScreen extends AppCompatActivity {
                                     Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+                            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            //final DocumentReference documentReference = db.collection("users").document(currentID);
+                            documentReference.get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String name = documentSnapshot.getString("FirstName");
+                                            Intent intent1 = new Intent(SignupScreen.this, DetailsScreen.class);
+                                            intent1.putExtra("Name", name);
+                                            startActivity(intent1);
+                                            Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    });
+//
                             //String email = object.getString("email");
                             //Toast.makeText(getApplicationContext(),""+first_name,Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
+                            //startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
                             //overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
 
                         } catch (JSONException e) {
@@ -388,6 +406,7 @@ public class SignupScreen extends AppCompatActivity {
                             user.put("Style","");
                             user.put("Price","");
                             user.put("Occupation","");
+                            user.put("BodyShape","");
                             //user.put("closetChoiceDocName","");
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -395,9 +414,21 @@ public class SignupScreen extends AppCompatActivity {
                                     Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
-//                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                            startActivity(intent);
+                            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+                            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            //final DocumentReference documentReference = db.collection("users").document(currentID);
+                            documentReference.get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String name = documentSnapshot.getString("FirstName");
+                                            Intent intent1 = new Intent(SignupScreen.this, DetailsScreen.class);
+                                            intent1.putExtra("Name", name);
+                                            startActivity(intent1);
+                                            Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    });
 //                            overridePendingTransition(0,0);
                         }else{
                             //display some message here
@@ -548,8 +579,24 @@ public class SignupScreen extends AppCompatActivity {
                     Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
                 }
             });
-            Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
-            startActivity(intent);
+            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+            //final DocumentReference documentReference = db.collection("users").document(currentID);
+            documentReference.get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            String name = documentSnapshot.getString("FirstName");
+                            Intent intent1 = new Intent(SignupScreen.this, DetailsScreen.class);
+                            intent1.putExtra("Name", name);
+                            startActivity(intent1);
+                            Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
+                        }
+
+                    });
+//
+            //Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
+            //startActivity(intent);
         }
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();

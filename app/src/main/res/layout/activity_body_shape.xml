@@ -93,19 +93,34 @@
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:orientation="horizontal">
-                <ImageButton
-                    android:id="@+id/imagebuttonbody1"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_height="@dimen/_270sdp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/pear"/>
-                <ImageButton
-                    android:id="@+id/imagebuttonbody2"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_height="@dimen/_270sdp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/rectangle"/>
-            </LinearLayout>
+
+                    <!--<ImageView
+                        android:id="@+id/imageviewbody1"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginLeft="10dp" />
+
+                    <ImageView
+                        android:id="@+id/imageviewbody2"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginLeft="10dp" />-->
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody1"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/pear"/>
+
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody2"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/rectangle"/>
+
+
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -117,6 +132,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:background="@drawable/hourglass"/>
+
                     <ImageButton
                         android:id="@+id/imagebuttonbody4"
                         android:layout_width="@dimen/_140sdp"
@@ -124,6 +140,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/inverted"/>
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -136,6 +153,14 @@
                         android:layout_height="@dimen/_270sdp"
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/oval"/>
+
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody6"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_270sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="10dp" />
+
                 </LinearLayout>
 
                 <ImageButton
@@ -150,6 +175,9 @@
 
 
             </LinearLayout>
+
     </RelativeLayout>
+
     </ScrollView>
+
 </RelativeLayout>

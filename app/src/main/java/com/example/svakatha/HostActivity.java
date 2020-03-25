@@ -28,6 +28,7 @@ public class HostActivity extends AppCompatActivity {
     private static final int CAMERA_PERMISSIONS_REQUEST = 2;
     private static final int CAMERA_IMAGE_REQUEST = 3;
     private ClosetFragment closetFragment;
+    private ShopClothes shopClothes;
     private RatingFragment ratingFragment;
 
 
@@ -61,6 +62,16 @@ public class HostActivity extends AppCompatActivity {
                                     closetFragment).commit();
                     setTitle("My Closet");
                     break;
+                case R.id.shop:
+                    if (shopClothes == null) {
+                        shopClothes = new ShopClothes();
+                    }
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.host_fragment,
+                                    shopClothes).commit();
+                    setTitle("My Closet");
+                    //TODO: add fragment 2
+                    break;
                 case R.id.rating:
                     if (ratingFragment == null) {
                         ratingFragment = new RatingFragment();
@@ -69,10 +80,6 @@ public class HostActivity extends AppCompatActivity {
                             .replace(R.id.host_fragment,
                                     ratingFragment).commit();
                     setTitle("Rating");
-                    break;
-                case R.id.shop:
-                    makeToast("Shop clicked");
-                    //TODO: add fragment 3
                     break;
                 case R.id.setting:
                     makeToast("Setting clicked");

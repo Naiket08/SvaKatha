@@ -55,6 +55,7 @@ public class Part_two extends AppCompatActivity {
         textViewBirth=(TextView)findViewById(R.id.textViewBirth_1);
         textViewCM=(TextView)findViewById(R.id.textViewCM_1);
         textViewKG=(TextView)findViewById(R.id.textViewKG_1);
+        aSwitch=(Switch)findViewById(R.id.switch1);
         //casting of ImageButton
         imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
         //casting of EditText
@@ -71,12 +72,16 @@ public class Part_two extends AppCompatActivity {
         progressAnimator.setDuration(500);
         progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
-        //casting of Switch
-        aSwitch=(Switch)findViewById(R.id.switch1);
+
+        Intent intent = getIntent();
+        textViewUserScreenGreet.setTypeface(textViewUserScreenGreet.getTypeface(), Typeface.BOLD);
+        String name_two = intent.getStringExtra("Name_business");
+        textViewUserScreenGreet.setText("Hi"+" "+name_two);
+
 
         final String currentID = auth.getCurrentUser().getUid();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
+        /*final DocumentReference documentReference = db.collection("users").document(currentID);
         documentReference.get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -86,7 +91,7 @@ public class Part_two extends AppCompatActivity {
                         textViewUserScreenGreet.setTypeface(textViewUserScreenGreet.getTypeface(), Typeface.BOLD);
                     }
 
-                });
+                });*/
 
 
         imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
@@ -96,10 +101,22 @@ public class Part_two extends AppCompatActivity {
                 if (editTextUserScreenHeight.getText().toString().equals("") || editTextUserScreenWeight.getText().toString().equals("") || editTextUserScreenBirth.getText().toString().equals("")) {
                     Toast.makeText(Part_two.this, "Feilds Are Empty", Toast.LENGTH_SHORT).show();
                 } else {
+                    // check current state of a Switch (true or false).
+                    String male="MALE";
+                    String female="FEMALE";
                     String Height=editTextUserScreenHeight.getText().toString();
                     String Weight=editTextUserScreenWeight.getText().toString();
                     String DOB=editTextUserScreenBirth.getText().toString();
                     Map<String, Object> user = new HashMap<>();
+                    if(aSwitch.isChecked())
+                    {
+                        user.put("Gender",male);
+                    }
+                    else
+                    {
+                        user.put("Gender",female);
+
+                    }
                     user.put("Height", Height);
                     user.put("Weight", Weight);
                     user.put("Birth", DOB);
@@ -107,6 +124,7 @@ public class Part_two extends AppCompatActivity {
 
                     Intent intent = new Intent(Part_two.this,SkinTone.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    intent.putExtra("Name_part_two", name_two);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                 }
