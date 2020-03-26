@@ -46,7 +46,7 @@ public class ShopClothes extends Fragment {
     Map<String, String> data = new HashMap<>();
     String imageCode;
     int i = 0;
-    public Boolean str=true;
+    public Boolean str=false;
 
 
     public ShopClothes() {
@@ -72,7 +72,7 @@ public class ShopClothes extends Fragment {
         imageViewShopScreenGreet=(ImageView)view.findViewById(R.id.imageViewShopScreenGreet_1);
         
         imageButtonPersonClothesSelection=(ImageButton)view.findViewById(R.id.imageButtonPersonClothesSelection_1);
-        getArrayData();
+
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @SuppressLint("SetTextI18n")
@@ -80,12 +80,13 @@ public class ShopClothes extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         String finalProfileText2 = documentSnapshot.getString("Gender");
-                        str=finalProfileText.equals("FEMALE");
+                        str=finalProfileText2.equals("FEMALE");
                         textViewAddDesign.setText(finalProfileText+", add these design \n" +
                                 "to your Closet.");
                         textViewAddDesign.setTypeface(textViewAddDesign.getTypeface(), Typeface.BOLD);
                     }
                 });
+        getArrayData();
         imageButtonPersonClothesSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
