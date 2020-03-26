@@ -30,6 +30,9 @@ import com.example.svakatha.PermissionUtils.PermissionUtils;
 import org.w3c.dom.Text;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class RatingFragment extends Fragment {
 
@@ -41,6 +44,8 @@ public class RatingFragment extends Fragment {
     private EditText editTextPercentage;
     private Button buttonChangeLikeDislike;
     static final int REQUEST_IMAGE_CAPTURE = 4;
+    private Bitmap mImageBitmap;
+    private String mCurrentPhotoPath;
 
 
 
@@ -88,7 +93,16 @@ public class RatingFragment extends Fragment {
             public void onClick(View v) {
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(context.getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    File photofile = null;
+                    try{
+                        photofile = createImageFile();
+                    }catch (IOException e){
+                        Log.i("ERROR","IOEXCEPTION");
+                    }
+                    if(photofile != null){
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", photofile));
+                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    }
                 }
             }
         });
@@ -106,12 +120,32 @@ public class RatingFragment extends Fragment {
         return view;
     }
 
+    private File createImageFile() throws IOException{
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  // prefix
+                ".jpg",         // suffix
+                storageDir      // directory
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageViewCapturedImage.setImageBitmap(imageBitmap);
+            try {
+                mImageBitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), Uri.parse(mCurrentPhotoPath));
+                imageViewCapturedImage.setImageBitmap(mImageBitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
