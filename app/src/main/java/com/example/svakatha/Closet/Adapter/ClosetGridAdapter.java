@@ -1,4 +1,4 @@
-package com.example.svakatha.Adapter;
+package com.example.svakatha.Closet.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
