@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.svakatha.Closet.ClosetFragment;
 import com.example.svakatha.PermissionUtils.PermissionUtils;
+import com.example.svakatha.Settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
@@ -31,6 +32,7 @@ public class HostActivity extends AppCompatActivity {
     private ClosetFragment closetFragment;
     private ShopClothes shopClothes;
     private RatingFragment ratingFragment;
+    private SettingsFragment settingsFragment;
     int result = 0;
 
 
@@ -88,7 +90,12 @@ public class HostActivity extends AppCompatActivity {
                     break;
                 case R.id.setting:
                     result = 4;
-                    makeToast("Setting clicked");
+                    if (settingsFragment == null) {
+                        settingsFragment = new SettingsFragment();
+                    }
+                    supportFragmentManager.beginTransaction()
+                            .replace(R.id.host_fragment,
+                                    settingsFragment).commit();
                     //TODO: add fragment 4
 
             }
