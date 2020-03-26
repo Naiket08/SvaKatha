@@ -10,13 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.example.svakatha.Model.ShapeBodyModel;
 import com.example.svakatha.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-    int []arr;
+    List <ShapeBodyModel>dataList;
 
-    public RecyclerViewAdapter(int[] arr) {
-        this.arr = arr;
+    public RecyclerViewAdapter(List<ShapeBodyModel> dataList)
+    {
+        this.dataList=dataList;
     }
 
     @NonNull
@@ -29,13 +34,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.imageView.setImageResource(arr[position]);
+        Picasso.get().load(dataList.get(position).getDownloadlink()).into(holder.imageView);
         //holder.textView.setText("Image no"+position);
     }
 
     @Override
     public int getItemCount() {
-        return arr.length;
+        return dataList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder

@@ -65,16 +65,16 @@ public class BodyShape extends AppCompatActivity {
         progressAnimator.setDuration(500);
         progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
-
+        Toast.makeText(this, "hj", Toast.LENGTH_SHORT).show();
         auth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         //casting of imageButton
-        imageButtonBodyShapeScreenForward = (ImageButton) findViewById(R.id.imageButtonBodyShapeScreenForward_1);
-        imageButtonBody1 = (ImageButton) findViewById(R.id.imagebuttonbody1);
-        imageButtonBody2 = (ImageButton) findViewById(R.id.imagebuttonbody2);
-        imageButtonBody3 = (ImageButton) findViewById(R.id.imagebuttonbody3);
-        imageButtonBody4 = (ImageButton) findViewById(R.id.imagebuttonbody4);
-        imageButtonBody5 = (ImageButton) findViewById(R.id.imagebuttonbody5);
+//        imageButtonBodyShapeScreenForward = (ImageButton) findViewById(R.id.imageButtonBodyShapeScreenForward_1);
+//        imageButtonBody1 = (ImageButton) findViewById(R.id.imagebuttonbody1);
+//        imageButtonBody2 = (ImageButton) findViewById(R.id.imagebuttonbody2);
+//        imageButtonBody3 = (ImageButton) findViewById(R.id.imagebuttonbody3);
+//        imageButtonBody4 = (ImageButton) findViewById(R.id.imagebuttonbody4);
+//        imageButtonBody5 = (ImageButton) findViewById(R.id.imagebuttonbody5);
         //imageview1=findViewById(R.id.imageviewbody1);
         //imageview2=findViewById(R.id.imageviewbody2);
 
@@ -142,105 +142,105 @@ public class BodyShape extends AppCompatActivity {
         });*/
 
 
-        imageButtonBody1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageButtonBody1.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                imageButtonBody5.getBackground().clearColorFilter();
-                imageButtonBody3.getBackground().clearColorFilter();
-                imageButtonBody4.getBackground().clearColorFilter();
-                imageButtonBody2.getBackground().clearColorFilter();
-                String bodyshape="Shape1";
-                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/svakatha-af104.appspot.com/o/BodyShapeMale%2FMaleAthletic.jpg?alt=media&token=6dcf6d96-b755-4734-ada3-3245fdaefbde").into(imageButtonBody1);
-                Map<String, Object> user = new HashMap<>();
-                user.put("BodyShape", bodyshape);
-                db.collection("users").document(currentID).set(user, SetOptions.merge());
-
-
-            }
-        });
-
-        imageButtonBody3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageButtonBody3.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                imageButtonBody1.getBackground().clearColorFilter();
-                imageButtonBody2.getBackground().clearColorFilter();
-                imageButtonBody5.getBackground().clearColorFilter();
-                imageButtonBody4.getBackground().clearColorFilter();
-
-                String bodyshape="Shape3";
-                Map<String, Object> user = new HashMap<>();
-                user.put("BodyShape", bodyshape);
-                db.collection("users").document(currentID).set(user, SetOptions.merge());
-
-
-            }
-        });
-        imageButtonBody2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageButtonBody2.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                imageButtonBody5.getBackground().clearColorFilter();
-                imageButtonBody3.getBackground().clearColorFilter();
-                imageButtonBody4.getBackground().clearColorFilter();
-                imageButtonBody1.getBackground().clearColorFilter();
-
-                String bodyshape="Shape2";
-                Map<String, Object> user = new HashMap<>();
-                user.put("BodyShape", bodyshape);
-                db.collection("users").document(currentID).set(user, SetOptions.merge());
-
-
-            }
-        });
-
-        imageButtonBody4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageButtonBody4.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                imageButtonBody1.getBackground().clearColorFilter();
-                imageButtonBody2.getBackground().clearColorFilter();
-                imageButtonBody3.getBackground().clearColorFilter();
-                imageButtonBody5.getBackground().clearColorFilter();
-
-                String bodyshape="Shape4";
-                Map<String, Object> user = new HashMap<>();
-                user.put("BodyShape", bodyshape);
-                db.collection("users").document(currentID).set(user, SetOptions.merge());
-
-
-            }
-        });
-        imageButtonBody5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageButtonBody5.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                imageButtonBody1.getBackground().clearColorFilter();
-                imageButtonBody2.getBackground().clearColorFilter();
-                imageButtonBody3.getBackground().clearColorFilter();
-                imageButtonBody4.getBackground().clearColorFilter();
-
-                String bodyshape="Shape5";
-                Map<String, Object> user = new HashMap<>();
-                user.put("BodyShape", bodyshape);
-                db.collection("users").document(currentID).set(user, SetOptions.merge());
-
-
-            }
-        });
-
-
-        imageButtonBodyShapeScreenForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BodyShape.this,ImageSelection.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("Name_bodyshape", name_bodyshape);
-                startActivity(intent);
-                overridePendingTransition(0,0);
-            }
-        });
+//        imageButtonBody1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                imageButtonBody1.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+//                imageButtonBody5.getBackground().clearColorFilter();
+//                imageButtonBody3.getBackground().clearColorFilter();
+//                imageButtonBody4.getBackground().clearColorFilter();
+//                imageButtonBody2.getBackground().clearColorFilter();
+//                String bodyshape="Shape1";
+//                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/svakatha-af104.appspot.com/o/BodyShapeMale%2FMaleAthletic.jpg?alt=media&token=6dcf6d96-b755-4734-ada3-3245fdaefbde").into(imageButtonBody1);
+//                Map<String, Object> user = new HashMap<>();
+//                user.put("BodyShape", bodyshape);
+//                db.collection("users").document(currentID).set(user, SetOptions.merge());
+//
+//
+//            }
+//        });
+//
+//        imageButtonBody3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                imageButtonBody3.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+//                imageButtonBody1.getBackground().clearColorFilter();
+//                imageButtonBody2.getBackground().clearColorFilter();
+//                imageButtonBody5.getBackground().clearColorFilter();
+//                imageButtonBody4.getBackground().clearColorFilter();
+//
+//                String bodyshape="Shape3";
+//                Map<String, Object> user = new HashMap<>();
+//                user.put("BodyShape", bodyshape);
+//                db.collection("users").document(currentID).set(user, SetOptions.merge());
+//
+//
+//            }
+//        });
+//        imageButtonBody2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                imageButtonBody2.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+//                imageButtonBody5.getBackground().clearColorFilter();
+//                imageButtonBody3.getBackground().clearColorFilter();
+//                imageButtonBody4.getBackground().clearColorFilter();
+//                imageButtonBody1.getBackground().clearColorFilter();
+//
+//                String bodyshape="Shape2";
+//                Map<String, Object> user = new HashMap<>();
+//                user.put("BodyShape", bodyshape);
+//                db.collection("users").document(currentID).set(user, SetOptions.merge());
+//
+//
+//            }
+//        });
+//
+//        imageButtonBody4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                imageButtonBody4.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+//                imageButtonBody1.getBackground().clearColorFilter();
+//                imageButtonBody2.getBackground().clearColorFilter();
+//                imageButtonBody3.getBackground().clearColorFilter();
+//                imageButtonBody5.getBackground().clearColorFilter();
+//
+//                String bodyshape="Shape4";
+//                Map<String, Object> user = new HashMap<>();
+//                user.put("BodyShape", bodyshape);
+//                db.collection("users").document(currentID).set(user, SetOptions.merge());
+//
+//
+//            }
+//        });
+//        imageButtonBody5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                imageButtonBody5.getBackground().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+//                imageButtonBody1.getBackground().clearColorFilter();
+//                imageButtonBody2.getBackground().clearColorFilter();
+//                imageButtonBody3.getBackground().clearColorFilter();
+//                imageButtonBody4.getBackground().clearColorFilter();
+//
+//                String bodyshape="Shape5";
+//                Map<String, Object> user = new HashMap<>();
+//                user.put("BodyShape", bodyshape);
+//                db.collection("users").document(currentID).set(user, SetOptions.merge());
+//
+//
+//            }
+//        });
+//
+//
+//        imageButtonBodyShapeScreenForward.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(BodyShape.this,ImageSelection.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                intent.putExtra("Name_bodyshape", name_bodyshape);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);
+//            }
+//        });
 
         /*DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
         final DocumentReference documentReference = db.collection("users").document(currentID);

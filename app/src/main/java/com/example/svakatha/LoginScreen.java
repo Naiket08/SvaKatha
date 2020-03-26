@@ -111,15 +111,15 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
 
-                                                     textViewLoginSignUp.setOnClickListener(new View.OnClickListener() {
-                                                         @Override
-                                                         public void onClick(View view) {
-                                                             Intent intent = new Intent(LoginScreen.this, SignupScreen.class);
-                                                             startActivity(intent);
+        textViewLoginSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginScreen.this, SignupScreen.class);
+                startActivity(intent);
                                                              //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                                         }
-                                                     });
-                                                 }
+            }
+        });
+    }
 
 
 
@@ -175,7 +175,7 @@ public class LoginScreen extends AppCompatActivity {
                             }*/
                             //else
                             //{
-                                Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
+                                Intent intent=new Intent(LoginScreen.this,ShapeBody.class);
                                 intent.putExtra("Name_bodyshape", name);
                                 startActivity(intent);
                             //}
