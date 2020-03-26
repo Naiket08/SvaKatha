@@ -46,6 +46,8 @@ public class ShopClothes extends Fragment {
     Map<String, String> data = new HashMap<>();
     String imageCode;
     int i = 0;
+    public Boolean str=true;
+
 
     public ShopClothes() {
         // Required empty public constructor
@@ -67,8 +69,6 @@ public class ShopClothes extends Fragment {
         textViewSeason=(TextView)view.findViewById(R.id.textViewSeason_1);
         imageButtonForward=(ImageButton)view.findViewById(R.id.imageButtonForward);
         imagebuttonbackward=(ImageButton)view.findViewById(R.id.imageButtonBackward);
-
-        
         imageViewShopScreenGreet=(ImageView)view.findViewById(R.id.imageViewShopScreenGreet_1);
         
         imageButtonPersonClothesSelection=(ImageButton)view.findViewById(R.id.imageButtonPersonClothesSelection_1);
@@ -79,6 +79,8 @@ public class ShopClothes extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
+                        String finalProfileText2 = documentSnapshot.getString("Gender");
+                        str=finalProfileText.equals("FEMALE");
                         textViewAddDesign.setText(finalProfileText+", add these design \n" +
                                 "to your Closet.");
                         textViewAddDesign.setTypeface(textViewAddDesign.getTypeface(), Typeface.BOLD);
@@ -95,12 +97,12 @@ public class ShopClothes extends Fragment {
             public void onClick(View v) {
                // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
-                if (index < 10) {
+                if (index < 19) {
                     //saveUserChoiceToDb(index);
                 }
-                if (index == 10) {
+                if (index == 19) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
-                    index = 10;
+                    index = 19;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
                 }
                 if(index == 0) {
@@ -121,12 +123,12 @@ public class ShopClothes extends Fragment {
             public void onClick(View v) {
                // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
-                if (index < 10) {
+                if (index < 19) {
                    // saveUserChoiceToDb(index);
                 }
-                if (index == 10) {
+                if (index == 19) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
-                    index = 10;
+                    index = 19;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
                 } else {
                     index = index + 1;
@@ -221,29 +223,109 @@ public class ShopClothes extends Fragment {
         settingURL(model11, 11);
         userDataModelArrayList.add(model11);
 
+        UserDataModel model12 = new UserDataModel();
+        model9.setName("Cloth 12 ");
+        model9.setImageCode("12");
+        settingURL(model12, 12);
+        userDataModelArrayList.add(model12);
+
+        UserDataModel model13 = new UserDataModel();
+        model9.setName("Cloth 13 ");
+        model9.setImageCode("13");
+        settingURL(model13, 13);
+        userDataModelArrayList.add(model13);
+
+        UserDataModel model14 = new UserDataModel();
+        model9.setName("Cloth 14 ");
+        model9.setImageCode("14");
+        settingURL(model14, 14);
+        userDataModelArrayList.add(model14);
+
+        UserDataModel model15 = new UserDataModel();
+        model9.setName("Cloth 15 ");
+        model9.setImageCode("15");
+        settingURL(model15, 15);
+        userDataModelArrayList.add(model15);
+
+        UserDataModel model16 = new UserDataModel();
+        model9.setName("Cloth 16 ");
+        model9.setImageCode("16");
+        settingURL(model16, 16);
+        userDataModelArrayList.add(model16);
+
+        UserDataModel model17 = new UserDataModel();
+        model9.setName("Cloth 17 ");
+        model9.setImageCode("17");
+        settingURL(model7, 17);
+        userDataModelArrayList.add(model17);
+
+        UserDataModel model18 = new UserDataModel();
+        model9.setName("Cloth 18 ");
+        model9.setImageCode("18");
+        settingURL(model18, 18);
+        userDataModelArrayList.add(model18);
+
+        UserDataModel model19 = new UserDataModel();
+        model9.setName("Cloth 19 ");
+        model9.setImageCode("19");
+        settingURL(model19, 19);
+        userDataModelArrayList.add(model19);
+
+        UserDataModel model20 = new UserDataModel();
+        model9.setName("Cloth 20 ");
+        model9.setImageCode("20");
+        settingURL(model20, 20);
+        userDataModelArrayList.add(model20);
+
     }
 
     public void settingURL(final UserDataModel model, final int i) {
 
-        db.collection("Images").document("2").get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String durl = documentSnapshot.getString("img" + i);
-                        model.setUrl(durl);
-                        if(i==1){
-                            onFirstUrlSet();
+        if (str) {
+
+            db.collection("Images").document("femaleimages").get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            String durl = documentSnapshot.getString("imgF" + i);
+                            model.setUrl(durl);
+                            if (i == 1) {
+                                onFirstUrlSet();
+                            }
+                            // Log.i("Hi", durl);
                         }
-                        // Log.i("Hi", durl);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
-                        Log.i("hi", e.toString());
-                    }
-                });
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                            Log.i("hi", e.toString());
+                        }
+                    });
+        }
+        else
+        {
+            db.collection("Images").document("maleimages").get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            String durl = documentSnapshot.getString("imgM" + i);
+                            model.setUrl(durl);
+                            if (i == 1) {
+                                onFirstUrlSet();
+                            }
+                            // Log.i("Hi", durl);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                            Log.i("hi", e.toString());
+                        }
+                    });
+
+        }
     }
 
 
