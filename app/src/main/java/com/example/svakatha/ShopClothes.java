@@ -158,6 +158,9 @@ public class ShopClothes extends Fragment {
     private void swapFragment(){
         Shopfragmnetselectedimage fragment1 = new Shopfragmnetselectedimage();
         FragmentManager fragmentManager = getFragmentManager();
+        Bundle args = new Bundle();
+        args.putString("IndexValue", String.valueOf(index));
+        fragment1.setArguments(args);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.host_fragment, fragment1);
         fragmentTransaction.commit();
