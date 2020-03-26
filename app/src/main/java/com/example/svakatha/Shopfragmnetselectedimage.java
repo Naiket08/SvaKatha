@@ -2,6 +2,7 @@ package com.example.svakatha;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-<<<<<<< Updated upstream
-=======
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -26,15 +24,12 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
->>>>>>> Stashed changes
 public class Shopfragmnetselectedimage  extends Fragment {
 
     private TextView  textViewTshirt,textViewAboutDesign,textViewAboutDesignInfo,textviewTransparentPricing,textViewTransparentPricingInfo,textViewTotalCost;
     private ImageView imageViewPersonImgae;
-<<<<<<< Updated upstream
     private ImageButton buttonAddtoCart,buttonBuyNow;
-=======
-    private ImageButton buttonAddtoCart,buttonBuyNow,imagebuttonBackWard,imagebuttonForWard;
+     private ImageButton imagebuttonBackWard,imagebuttonForWard;
     int angle = 0;
     String img;
     String img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16,img17,img18,img19,img20;
@@ -44,7 +39,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
     FirebaseFirestore mDB;
     String index;
 
->>>>>>> Stashed changes
+
 
     public Shopfragmnetselectedimage(){
 
@@ -74,8 +69,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
         imageViewPersonImgae=(ImageView)view.findViewById(R.id.imageViewPersoneImgae_1);
         buttonAddtoCart=(ImageButton) view.findViewById(R.id.imagebuttonAddtoCart_1);
         buttonBuyNow=(ImageButton) view.findViewById(R.id.imagebuttonBuyNow_1);
-<<<<<<< Updated upstream
-=======
+
         imagebuttonBackWard=(ImageButton)view.findViewById(R.id.imagebuttonBackWard_1);
         imagebuttonForWard=(ImageButton)view.findViewById(R.id.imagebuttonForWard_1);
         mDB.collection("Images").document(receivedIndex)
@@ -127,7 +121,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
                 //textViewAboutDesignInfo.setText(ClothDetails);
             }
         });
->>>>>>> Stashed changes
+
 
         buttonBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,8 +131,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
             }
         });
 
-<<<<<<< Updated upstream
-=======
+
         mDB.collection("Images").document("maleimages")
                 .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
@@ -160,7 +153,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
         //imageViewPersonImgae.setImageResource();
 
 
-        if(im){
+        if(img == img1){
             Picasso.get().load(img).into(imageViewPersonImgae);
            // Picasso.
            // Picasso.get().load(urlList.toString(img).)
@@ -400,7 +393,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
             }
         });
 
->>>>>>> Stashed changes
+
         return view;
 
     }
