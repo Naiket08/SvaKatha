@@ -2,6 +2,8 @@ package com.example.svakatha;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +16,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
 public class Shopfragmnetselectedimage  extends Fragment {
 
     private TextView  textViewTshirt,textViewAboutDesign,textViewAboutDesignInfo,textviewTransparentPricing,textViewTransparentPricingInfo,textViewTotalCost;
     private ImageView imageViewPersonImgae;
     private ImageButton buttonAddtoCart,buttonBuyNow,imagebuttonBackWard,imagebuttonForWard;
     int angle = 0;
+    FirebaseFirestore mDB;
+
 
     public Shopfragmnetselectedimage(){
 
@@ -35,7 +45,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view;
-
+        mDB=FirebaseFirestore.getInstance();
         view= inflater.inflate(R.layout.shopfragmenttwo,container,false);
 
         textViewTshirt=(TextView)view.findViewById(R.id.textViewTshirt_1);
@@ -56,6 +66,17 @@ public class Shopfragmnetselectedimage  extends Fragment {
                 startActivity(intent);
             }
         });
+
+        mDB.collection("Images").document("1")
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                        String received=documentSnapshot.getString("details");
+                        textViewAboutDesignInfo.setText(received.replace("\\n","\n"));
+                        Log.i("ALL",received);
+                    }
+                });
+
         imagebuttonForWard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
