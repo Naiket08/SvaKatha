@@ -81,12 +81,13 @@ public class ShopClothes extends Fragment {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         String finalProfileText2 = documentSnapshot.getString("Gender");
                         str=finalProfileText2.equals("FEMALE");
+                        getArrayData();
                         textViewAddDesign.setText(finalProfileText+", add these design \n" +
                                 "to your Closet.");
                         textViewAddDesign.setTypeface(textViewAddDesign.getTypeface(), Typeface.BOLD);
                     }
                 });
-        getArrayData();
+
         imageButtonPersonClothesSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
