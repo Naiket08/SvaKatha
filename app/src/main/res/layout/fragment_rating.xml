@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_290sdp"
             android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:scaleType="centerInside" />
 

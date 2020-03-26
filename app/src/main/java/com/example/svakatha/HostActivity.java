@@ -31,6 +31,7 @@ public class HostActivity extends AppCompatActivity {
     private ClosetFragment closetFragment;
     private ShopClothes shopClothes;
     private RatingFragment ratingFragment;
+    int result = 0;
 
 
 
@@ -55,6 +56,7 @@ public class HostActivity extends AppCompatActivity {
             FragmentManager supportFragmentManager = getSupportFragmentManager();
             switch (item.getItemId()) {
                 case R.id.closet:
+                    result = 1;
                     if (closetFragment == null) {
                         closetFragment = new ClosetFragment();
                     }
@@ -64,6 +66,7 @@ public class HostActivity extends AppCompatActivity {
                     setTitle("My Closet");
                     break;
                 case R.id.shop:
+                    result = 2;
                     if (shopClothes == null) {
                         shopClothes = new ShopClothes();
                     }
@@ -74,6 +77,7 @@ public class HostActivity extends AppCompatActivity {
                     //TODO: add fragment 2
                     break;
                 case R.id.rating:
+                    result = 3;
                     if (ratingFragment == null) {
                         ratingFragment = new RatingFragment();
                     }
@@ -83,6 +87,7 @@ public class HostActivity extends AppCompatActivity {
                     setTitle("Rating");
                     break;
                 case R.id.setting:
+                    result = 4;
                     makeToast("Setting clicked");
                     //TODO: add fragment 4
 
@@ -146,7 +151,12 @@ public class HostActivity extends AppCompatActivity {
         return new File(dir, FILE_NAME);
     }
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        closetFragment.onActivityResult(requestCode, resultCode, data);
+        if(result==1) {
+            closetFragment.onActivityResult(requestCode, resultCode, data);
+        }
+        if(result==3) {
+            ratingFragment.onActivityResult(requestCode, resultCode, data);
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
