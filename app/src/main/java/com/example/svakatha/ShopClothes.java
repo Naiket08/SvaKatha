@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShopClothes extends Fragment {
-    
+
     private TextView textViewClosetSugestions,textViewAddDesign,textViewSeason;
     private ImageView imageViewShopScreenGreet;
     private ImageButton imageButtonPersonClothesSelection,imageButtonForward,imagebuttonbackward;
@@ -70,7 +70,7 @@ public class ShopClothes extends Fragment {
         imageButtonForward=(ImageButton)view.findViewById(R.id.imageButtonForward);
         imagebuttonbackward=(ImageButton)view.findViewById(R.id.imageButtonBackward);
         imageViewShopScreenGreet=(ImageView)view.findViewById(R.id.imageViewShopScreenGreet_1);
-        
+
         imageButtonPersonClothesSelection=(ImageButton)view.findViewById(R.id.imageButtonPersonClothesSelection_1);
 
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
@@ -97,7 +97,7 @@ public class ShopClothes extends Fragment {
         imageButtonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
                 if (index < 19) {
                     //saveUserChoiceToDb(index);
@@ -110,8 +110,8 @@ public class ShopClothes extends Fragment {
                 if(index == 0) {
                     Toast.makeText(mContext, "forward", Toast.LENGTH_SHORT).show();
                 }
-                    else
-                 {
+                else
+                {
                     index = index - 1;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
                 }
@@ -123,10 +123,10 @@ public class ShopClothes extends Fragment {
         imagebuttonbackward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
                 if (index < 19) {
-                   // saveUserChoiceToDb(index);
+                    // saveUserChoiceToDb(index);
                 }
                 if (index == 19) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
@@ -147,6 +147,9 @@ public class ShopClothes extends Fragment {
     private void swapFragment(){
         Shopfragmnetselectedimage fragment1 = new Shopfragmnetselectedimage();
         FragmentManager fragmentManager = getFragmentManager();
+        Bundle args = new Bundle();
+        args.putString("IndexValue",userDataModelArrayList.get(index).getUrl());
+        fragment1.setArguments(args);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.host_fragment, fragment1);
         fragmentTransaction.commit();

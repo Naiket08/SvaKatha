@@ -111,15 +111,15 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
 
-                                                     textViewLoginSignUp.setOnClickListener(new View.OnClickListener() {
-                                                         @Override
-                                                         public void onClick(View view) {
-                                                             Intent intent = new Intent(LoginScreen.this, SignupScreen.class);
-                                                             startActivity(intent);
+        textViewLoginSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginScreen.this, SignupScreen.class);
+                startActivity(intent);
                                                              //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                                                         }
-                                                     });
-                                                 }
+            }
+        });
+    }
 
 
 
@@ -167,18 +167,18 @@ public class LoginScreen extends AppCompatActivity {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             String bodyshape = documentSnapshot.getString("BodyShape");
                             String name = documentSnapshot.getString("FirstName");
-                            /*if(bodyshape=="")
+                            if(bodyshape=="")
                             {
                                 Intent intent1 = new Intent(LoginScreen.this, DetailsScreen.class);
                                 intent1.putExtra("Name", name);
                                 startActivity(intent1);
-                            }*/
-                            //else
-                            //{
+                            }
+                            else
+                            {
                                 Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
                                 intent.putExtra("Name_bodyshape", name);
                                 startActivity(intent);
-                            //}
+                            }
                             Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
                         }
 
