@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +35,6 @@ public class ShapeBody extends AppCompatActivity {
     private TextView textViewBodyShapeText2, textViewBodyShapeText3, textViewBodyShapeText4;
     FirebaseFirestore mDb;
     private StorageReference mStorageRef;
-    int []arr={R.drawable.pear,R.drawable.rectangle,R.drawable.hourglass,R.drawable.inverted,R.drawable.oval};
     List<ShapeBodyModel> modelList;
     FirebaseAuth mAuth;
     String genderStatus;
@@ -109,5 +110,9 @@ public class ShapeBody extends AppCompatActivity {
 
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setHasFixedSize(true);
+
+
     }
+
+
 }

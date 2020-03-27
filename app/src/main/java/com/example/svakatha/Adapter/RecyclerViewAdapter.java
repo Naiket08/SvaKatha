@@ -12,12 +12,19 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.svakatha.Model.ShapeBodyModel;
 import com.example.svakatha.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     List <ShapeBodyModel>dataList;
+
+
 
     public RecyclerViewAdapter(List<ShapeBodyModel> dataList)
     {
@@ -43,15 +50,48 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return dataList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder
+    public static class MyViewHolder extends RecyclerView.ViewHolder
     {
         ImageView imageView;
+        View mView;
+
         //TextView textView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            mView=itemView;
             imageView=itemView.findViewById(R.id.image1);
             //textView=itemView.findViewById(R.id.text1);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                        ClickListener.onItemClick(view,getAdapterPosition());
+                }
+            });
+        }
+
+        public MyViewHolder.ClickListener mClickListener;
+
+
+        public interface ClickListener{
+            static void onItemClick(View view, int position){
+
+                FirebaseAuth mauth = FirebaseAuth.getInstance();
+                final String currentID = mauth.getCurrentUser().getUid();
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String bodyshape="Shape"+position;
+                Map<String, Object> user = new HashMap<>();
+                user.put("BodyShape", bodyshape);
+                db.collection("users").document(currentID).set(user, SetOptions.merge());
+
+            }
+        }
+
+        public void setOnClickListener(MyViewHolder.ClickListener clickListener){
+                mClickListener = clickListener;
         }
     }
+
+
+
 }

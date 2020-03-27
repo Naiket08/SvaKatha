@@ -167,18 +167,18 @@ public class LoginScreen extends AppCompatActivity {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             String bodyshape = documentSnapshot.getString("BodyShape");
                             String name = documentSnapshot.getString("FirstName");
-                            /*if(bodyshape=="")
+                            if(bodyshape=="")
                             {
                                 Intent intent1 = new Intent(LoginScreen.this, DetailsScreen.class);
                                 intent1.putExtra("Name", name);
                                 startActivity(intent1);
-                            }*/
-                            //else
-                            //{
-                                Intent intent=new Intent(LoginScreen.this,ShapeBody.class);
+                            }
+                            else
+                            {
+                                Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
                                 intent.putExtra("Name_bodyshape", name);
                                 startActivity(intent);
-                            //}
+                            }
                             Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
                         }
 
