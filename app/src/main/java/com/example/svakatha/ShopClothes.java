@@ -79,6 +79,15 @@ public class ShopClothes extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText = documentSnapshot.getString("FirstName");
+<<<<<<< Updated upstream
+=======
+                        String finalProfileText2 = documentSnapshot.getString("Gender");
+                        str=finalProfileText2.equals("FEMALE");
+                        getArrayData();
+                        //Bundle args = new Bundle();
+                        //args.putString("IndexValue",userDataModelArrayList.get(index).getUrl());
+
+>>>>>>> Stashed changes
                         textViewAddDesign.setText(finalProfileText+", add these design \n" +
                                 "to your Closet.");
                         textViewAddDesign.setTypeface(textViewAddDesign.getTypeface(), Typeface.BOLD);
@@ -88,6 +97,7 @@ public class ShopClothes extends Fragment {
             @Override
             public void onClick(View view) {
                 swapFragment();
+
             }
         });
         imageButtonForward.setOnClickListener(new View.OnClickListener() {
@@ -100,11 +110,24 @@ public class ShopClothes extends Fragment {
                 }
                 if (index == 8) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
+<<<<<<< Updated upstream
                     index = 8;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
                 } else {
                     index = index + 1;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+=======
+                    index = 19;
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
+                }
+                if(index == 0) {
+                    Toast.makeText(mContext, "forward", Toast.LENGTH_SHORT).show();
+                }
+                    else
+                 {
+                    index = index - 1;
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
+>>>>>>> Stashed changes
                 }
 
 
@@ -121,11 +144,16 @@ public class ShopClothes extends Fragment {
                 }
                 if (index == 8) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
+<<<<<<< Updated upstream
                     index = 8;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+=======
+                    index = 19;
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
+>>>>>>> Stashed changes
                 } else {
                     index = index + 1;
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 }
 
 
@@ -159,7 +187,11 @@ public class ShopClothes extends Fragment {
         Shopfragmnetselectedimage fragment1 = new Shopfragmnetselectedimage();
         FragmentManager fragmentManager = getFragmentManager();
         Bundle args = new Bundle();
+<<<<<<< Updated upstream
         args.putString("IndexValue", String.valueOf(index));
+=======
+        args.putString("IndexValue",userDataModelArrayList.get(index).getUrl());
+>>>>>>> Stashed changes
         fragment1.setArguments(args);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.host_fragment, fragment1);
@@ -271,7 +303,7 @@ public class ShopClothes extends Fragment {
 
 
     public void onFirstUrlSet() {
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
     }
 
 }
