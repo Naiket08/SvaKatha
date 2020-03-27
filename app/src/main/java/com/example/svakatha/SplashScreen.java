@@ -29,9 +29,9 @@ public class SplashScreen extends AppCompatActivity {
         getSupportActionBar().hide();
         splash2 = (TextView)findViewById(R.id.splash2);
         splash3 = (TextView)findViewById(R.id.splash3);
-        //logo = (ImageView)findViewById(R.id.logo);
-        logofirst =(ImageView)findViewById(R.id.logo_first);
-        logolast = (ImageView)findViewById(R.id.logo_last);
+        logo = (ImageView)findViewById(R.id.logo);
+        /*logofirst =(ImageView)findViewById(R.id.logo_first);
+        logolast = (ImageView)findViewById(R.id.logo_last);*/
        /* logos = (ImageView)findViewById(R.id.logo_s);
         logov = (ImageView)findViewById(R.id.logo_v);
         logoa = (ImageView)findViewById(R.id.logo_a);
@@ -40,8 +40,8 @@ public class SplashScreen extends AppCompatActivity {
         logot = (ImageView)findViewById(R.id.logo_t);
         logoh = (ImageView)findViewById(R.id.logo_h);
         logoa2 = (ImageView)findViewById(R.id.logo_a2);*/
-        animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.logo_animation);
-        animation1 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.logo_animation_side);
+        /*animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.logo_animation);
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.logo_animation_side);*/
 //        animation3 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_s);
 //        logos.startAnimation(animation3);
 //        logov.startAnimation(animation3);
@@ -52,8 +52,8 @@ public class SplashScreen extends AppCompatActivity {
 //        logoh.startAnimation(animation3);
 //        logoa2.startAnimation(animation3);
 
-        logofirst.startAnimation(animation);
-        logolast.startAnimation(animation1);
+        /*logofirst.startAnimation(animation);
+        logolast.startAnimation(animation1);*/
 
 
         Handler handler = new Handler();

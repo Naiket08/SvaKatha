@@ -64,7 +64,7 @@ public class ShopClothes extends Fragment {
         view = null;
         mContext = getContext();
         view = inflater.inflate(R.layout.shopfragment,container,false);
-        textViewClosetSugestions=(TextView)view.findViewById(R.id.textViewClosetSugestion_1);
+        //textViewClosetSugestions=(TextView)view.findViewById(R.id.textViewClosetSugestion_1);
         textViewAddDesign=(TextView)view.findViewById(R.id.textViewAddDesign_1);
         textViewSeason=(TextView)view.findViewById(R.id.textViewSeason_1);
         imageButtonForward=(ImageButton)view.findViewById(R.id.imageButtonForward);

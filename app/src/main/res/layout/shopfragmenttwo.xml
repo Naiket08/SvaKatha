@@ -18,11 +18,8 @@
                 android:id="@+id/textViewTshirt_1"
                 android:layout_width="@dimen/_64sdp"
                 android:layout_height="@dimen/_23sdp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_113sdp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_25sdp"
-                android:layout_marginEnd="@dimen/_112sdp"
                 android:text="T-Shirt"
                 android:fontFamily="@font/arial"
                 android:textStyle="bold"
@@ -35,11 +32,8 @@
                 android:layout_width="@dimen/_237sdp"
                 android:layout_height="@dimen/_296sdp"
                 android:layout_below="@+id/textViewTshirt_1"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_38sdp"
-                android:layout_marginTop="@dimen/_11sdp"
-                android:layout_marginEnd="@dimen/_38sdp" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"/>
 
             <TextView
                 android:id="@+id/textViewAboutDesign_1"

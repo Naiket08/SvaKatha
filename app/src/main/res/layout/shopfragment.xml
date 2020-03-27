@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <ImageView
         android:id="@+id/imageViewShopScreenGreet_1"
@@ -19,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textViewClosetSugestion_1"
         android:layout_width="@dimen/_117sdp"
         android:layout_height="@dimen/_19sdp"
@@ -33,7 +34,7 @@
         android:layout_marginStart="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewShopScreenGreet_1" />
+        app:layout_constraintTop_toTopOf="@+id/imageViewShopScreenGreet_1" />-->
 
     <TextView
         android:id="@+id/textViewAddDesign_1"
@@ -79,7 +80,7 @@
         android:background="@color/cardview_light_background"
         app:layout_constraintVertical_bias="0.744" />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageViewShopFragment1"
         android:layout_width="@dimen/_26sdp"
         android:layout_height="@dimen/_23sdp"
@@ -106,7 +107,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.178"
         app:srcCompat="@drawable/round"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints" />-->
 
     <ImageButton
         android:id="@+id/imageButtonForward"

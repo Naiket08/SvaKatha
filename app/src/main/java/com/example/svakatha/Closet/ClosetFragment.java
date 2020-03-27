@@ -1,5 +1,6 @@
 package com.example.svakatha.Closet;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,10 +9,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Environment;
@@ -29,6 +32,7 @@ import com.example.svakatha.Closet.Adapter.ClosetGridAdapter;
 import com.example.svakatha.HostActivity;
 import com.example.svakatha.PackageManagerUtils.PackageManagerUtils;
 import com.example.svakatha.Closet.Listeners.ClosetFragmentListener;
+import com.example.svakatha.PermissionUtils.PermissionUtils;
 import com.example.svakatha.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -85,7 +89,9 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     private static final int MAX_DIMENSION = 1200;
 
     private static final String TAG = HostActivity.class.getSimpleName();
+    private static final int GALLERY_PERMISSIONS_REQUEST = 0;
     private static final int GALLERY_IMAGE_REQUEST = 1;
+    private static final int CAMERA_PERMISSIONS_REQUEST = 2;
     private static final int CAMERA_IMAGE_REQUEST = 3;
 
     private FirebaseAuth mAuth;
@@ -195,11 +201,40 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         AppCompatImageButton btnAdd = view.findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(v -> {
 
-            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            /*FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             ClosetDialog closetDialog = new ClosetDialog(mContext,getActivity(), this);
-            closetDialog.show(ft,"ClosetDialog");
+            closetDialog.show(ft,"ClosetDialog");*/
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder
+                    .setMessage("Upload a Picture")
+                    .setPositiveButton("Gallery", (dialog, which) -> startGalleryChooser())
+                    .setNegativeButton("Camera", (dialog, which) -> startCamera());
+            builder.create().show();
         });
+    }
+    private void startGalleryChooser() {
+        if (PermissionUtils.requestPermission(getActivity(), GALLERY_PERMISSIONS_REQUEST, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select a photo"),
+                    GALLERY_IMAGE_REQUEST);
+        }
+    }
+
+    private void startCamera() {
+        if (PermissionUtils.requestPermission(
+                getActivity(),
+                CAMERA_PERMISSIONS_REQUEST,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            Uri photoUri = FileProvider.getUriForFile(mContext, mContext.getApplicationContext().getPackageName() + ".provider", getCameraFile());
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivityForResult(intent, CAMERA_IMAGE_REQUEST);
+        }
     }
 
     private void setupImageGridView() {

@@ -98,9 +98,9 @@ public class Price extends AppCompatActivity {
             @Override
             public void valueChanged(Number minValue, Number maxValue) {
                 String min = String.valueOf(minValue);
-                textViewPriceOne.setText(min);
+                textViewPriceOne.setText("\u20B9"+" "+min);
                 String max = String.valueOf(maxValue);
-                textViewPriceTwo.setText(max);
+                textViewPriceTwo.setText("\u20B9"+" "+max);
 
             }
         });

@@ -34,7 +34,7 @@
         android:layout_width="@dimen/_210sdp"
         android:layout_height="@dimen/_55sdp"
         android:text="Let's start by knowing\nmore about you.."
-        android:textColor="#000"
+        android:textColor="#474747"
         android:lineSpacingExtra="@dimen/_7sdp"
         android:textSize="@dimen/_20ssp"
         android:fontFamily="@font/arial"
@@ -49,7 +49,7 @@
         android:layout_height="@dimen/_49sdp"
         android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
         android:fontFamily="@font/arial"
-        android:textColor="#000"
+        android:textColor="#737373"
         android:textSize="@dimen/_12ssp"
         android:lineSpacingExtra="@dimen/_2sdp"
         android:layout_below="@+id/textViewPriceScreenText2_1"
@@ -86,8 +86,8 @@
         android:id="@+id/rangeseekbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:min_value="0"
-        app:max_value="10000"
+        app:min_value="2000"
+        app:max_value="200000"
         app:corner_radius="4"
         app:gap="500"
         android:layout_below="@id/textViewPriceScreenClothing1"
@@ -117,25 +117,28 @@
 
     <TextView
         android:id="@+id/textViewPriceOne"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_16sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rangeseekbar"
         android:layout_marginTop="@dimen/_30sdp"
-        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_10sdp"
         android:fontFamily="@font/arial"
         android:textSize="@dimen/_14sdp"
         android:textColor="#2699FB"/>
 
     <TextView
         android:id="@+id/textViewPriceTwo"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_16sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textColor="#2699FB"
         android:layout_below="@id/rangeseekbar"
         android:fontFamily="@font/arial"
         android:textSize="@dimen/_14sdp"
+        android:text=""
         android:layout_marginTop="@dimen/_30sdp"
-        android:layout_marginLeft="@dimen/_250sdp"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_10sdp"/>
 
 
 </RelativeLayout>

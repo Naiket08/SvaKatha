@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Settings.SettingsFragment"
-    tools:ignore="RtlHardcoded,RtlSymmetry">
+    tools:ignore="RtlHardcoded,RtlSymmetry"
+    android:background="#FFFFFF">
 
     <!--<LinearLayout
         android:layout_width="match_parent"

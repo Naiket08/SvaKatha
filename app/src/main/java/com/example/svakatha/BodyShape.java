@@ -231,16 +231,6 @@ public class BodyShape extends AppCompatActivity {
 //        });
 //
 //
-//        imageButtonBodyShapeScreenForward.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(BodyShape.this,ImageSelection.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                intent.putExtra("Name_bodyshape", name_bodyshape);
-//                startActivity(intent);
-//                overridePendingTransition(0,0);
-//            }
-//        });
 
         /*DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());
         final DocumentReference documentReference = db.collection("users").document(currentID);
