@@ -7,7 +7,7 @@
     tools:context=".Settings.SettingsFragment"
     tools:ignore="RtlHardcoded,RtlSymmetry">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_46sdp"
         android:orientation="horizontal">
@@ -37,19 +37,21 @@
             android:background="@drawable/cart"
             android:layout_marginTop="@dimen/_15sdp"/>
 
-    </LinearLayout>
-    <ImageView
+    </LinearLayout>-->
+    <!--<ImageView
         android:id="@+id/iv_separator1"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginHorizontal="32dp"
-        android:src="#dedede" />
+        android:src="#dedede" />-->
+
     <LinearLayout
         android:id="@+id/ll_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginVertical="8dp"
+        android:paddingTop="@dimen/_20sdp"
         android:orientation="horizontal">
 
         <ImageView
@@ -73,16 +75,16 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="bottom"
-                tools:text="Jay Patel"
-                android:textSize="16sp"/>
+                android:text=""
+                android:textSize="@dimen/_14ssp"/>
 
             <TextView
                 android:id="@+id/tv_profile_mail_id"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:text="pateljd5297@gmail.com"
-                android:textSize="14sp"/>
+                android:text=""
+                android:textSize="@dimen/_14ssp"/>
 
         </LinearLayout>
 

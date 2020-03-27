@@ -1,6 +1,7 @@
 package com.example.svakatha;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -39,12 +40,10 @@ public class RatingFragment extends Fragment {
     private static final int RESULT_OK = 0;
     private Context context;
     private ImageView imageViewCapturedImage,imageViewLikeDislike,imageViewLike;
-    private ImageButton imageButtonCameraButton;
     private TextView textViewLikeDislikePercentage;
-    private EditText editTextPercentage;
-    private Button buttonChangeLikeDislike;
-    static final int REQUEST_IMAGE_CAPTURE = 4;
-    private Bitmap mImageBitmap;
+    //private EditText editTextPercentage;
+    //private Button buttonChangeLikeDislike;
+    private static final int REQUEST_IMAGE_CAPTURE = 4;
     private String mCurrentPhotoPath;
 
 
@@ -65,13 +64,13 @@ public class RatingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_rating,container,false);
         imageViewCapturedImage = (ImageView) view.findViewById(R.id.imageViewCapturedImage);
         imageViewLikeDislike = (ImageView) view.findViewById(R.id.imageViewLikeDislike);
-        imageButtonCameraButton = (ImageButton) view.findViewById(R.id.imageButtonCameraButton);
+        ImageButton imageButtonCameraButton = (ImageButton) view.findViewById(R.id.imageButtonCameraButton);
         textViewLikeDislikePercentage = (TextView) view.findViewById(R.id.textViewLikeDislikePercentage);
-        editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
-        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
+//        editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
+//        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
         imageViewLike = (ImageView) view.findViewById(R.id.imageViewLike);
 
-        buttonChangeLikeDislike.setOnClickListener(new View.OnClickListener() {
+        /*buttonChangeLikeDislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int percentage = Integer.parseInt(editTextPercentage.getText().toString());
@@ -86,7 +85,7 @@ public class RatingFragment extends Fragment {
                     textViewLikeDislikePercentage.setText(percentage+"%");
                 }
             }
-        });
+        });*/
 
         imageButtonCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +121,7 @@ public class RatingFragment extends Fragment {
 
     private File createImageFile() throws IOException{
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
@@ -140,12 +139,8 @@ public class RatingFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            try {
-                mImageBitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), Uri.parse(mCurrentPhotoPath));
+                Bitmap mImageBitmap = (Bitmap)data.getExtras().get("data");
                 imageViewCapturedImage.setImageBitmap(mImageBitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 

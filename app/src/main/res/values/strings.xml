@@ -35,5 +35,11 @@ dress for?</b></string>
     <string name="contact_us">Contact Us</string>
     <string name="help">Help</string>
     <string name="direct_help">Or directly write us at help@svakatha.com</string>
+    <string name="svakatha_pvt_ltd"><b>SvaKatha Pvt Ltd</b></string>
+    <string name="know_more_about_us"><b>Know More about Us</b></string>
+    <string name="application"><b>Application</b></string>
+    <string name="how_it_works"><b>How It Works</b></string>
+    <string name="invite_your_friend_and_earn"><b>Invite your friends\nand earn</b></string>
+    <string name="contact_us_help_fragment"><b>Contact Us</b></string>
 
 </resources>

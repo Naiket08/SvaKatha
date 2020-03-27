@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewAboutSvakathaHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_242sdp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_minus28sdp"
+        android:background="@drawable/heaaderrectangleloginscreen"/>
+
+    <TextView
+        android:id="@+id/textViewSvakathaPvtLtd"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_28sdp"
+        android:text="@string/svakatha_pvt_ltd"
+        android:textColor="#000"
+        android:textSize="@dimen/_24ssp"
+        android:fontFamily="@font/arial"
+        android:layout_marginTop="@dimen/_72sdp"
+        android:layout_marginStart="@dimen/_15sdp"/>
+
+    <TextView
+        android:id="@+id/textViewKnowMoreAboutUs"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_28sdp"
+        android:text="@string/know_more_about_us"
+        android:textColor="#707070"
+        android:textSize="@dimen/_19ssp"
+        android:fontFamily="@font/arial"
+        android:layout_below="@+id/textViewSvakathaPvtLtd"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_15sdp"/>
+    
+</RelativeLayout>

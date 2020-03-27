@@ -1,4 +1,4 @@
-package com.example.svakatha;
+package com.example.svakatha.Settings.SubFragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.svakatha.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,6 +29,8 @@ public class ProfileFragment extends Fragment {
     private ImageButton imagebuttonanalysis;
     private TextView textviewdetail1,textviewdetail2,textviewdetail3,textviewdetail4,textviewdetail5,textviewdetail6,textviewdetail7,textviewdetail8,
             textviewdetail9,textViewprofilefragment2,textViewprofilefragment3;
+    private TextView textViewDetail1Title,textViewDetail2Title,textViewDetail3Title,textViewDetail4Title,textViewDetail5Title,
+            textViewDetail6Title,textViewDetail7Title,textViewDetail8Title,textViewDetail9Title;
     private Context mContext;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -62,6 +65,16 @@ public class ProfileFragment extends Fragment {
         textviewdetail8=(TextView)view.findViewById(R.id.textviewdetail8);
         textviewdetail9=(TextView)view.findViewById(R.id.textviewdetail9);
 
+        textViewDetail1Title=(TextView)view.findViewById(R.id.textViewDetail1Title);
+        textViewDetail2Title=(TextView)view.findViewById(R.id.textViewDetail2Title);
+        textViewDetail3Title=(TextView)view.findViewById(R.id.textViewDetail3Title);
+        textViewDetail4Title=(TextView)view.findViewById(R.id.textViewDetail4Title);
+        textViewDetail5Title=(TextView)view.findViewById(R.id.textViewDetail5Title);
+        textViewDetail6Title=(TextView)view.findViewById(R.id.textViewDetail6Title);
+        textViewDetail7Title=(TextView)view.findViewById(R.id.textViewDetail7Title);
+        textViewDetail8Title=(TextView)view.findViewById(R.id.textViewDetail8Title);
+        textViewDetail9Title=(TextView)view.findViewById(R.id.textViewDetail9Title);
+
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @SuppressLint("SetTextI18n")
@@ -76,15 +89,15 @@ public class ProfileFragment extends Fragment {
                         String style = documentSnapshot.getString("Style");
 
                         textViewprofilefragment2.setText(finalProfileText);
-                        textviewdetail1.setText("<b>Body Shape</b> /n"+bodyweight);
-                        textviewdetail2.setText("<b>Height</b> /n"+height);
-                        textviewdetail3.setText("<b>Skin Tone</b> /n"+skintone);
-                        textviewdetail4.setText("<b>Name</b> /n"+finalProfileText);
-                        textviewdetail5.setText("<b>Email Address</b> /n"+email);
-                        textviewdetail6.setText("<b>Style/Comfort</b> /n"+style);
-                        textviewdetail7.setText("<b>Gender</b> /n"+gender);
-                        textviewdetail8.setText("<b>Body Shape</b> /n"+bodyweight);
-                        textviewdetail9.setText("<b>Body Shape</b> /n"+bodyweight);
+                        textviewdetail1.setText(bodyweight);
+                        textviewdetail2.setText(height);
+                        textviewdetail3.setText(skintone);
+                        textviewdetail4.setText(finalProfileText);
+                        textviewdetail5.setText(email);
+                        textviewdetail6.setText(style);
+                        textviewdetail7.setText(gender);
+                        textviewdetail8.setText(bodyweight);
+                        textviewdetail9.setText(bodyweight);
 
                     }
                 });

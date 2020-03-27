@@ -75,7 +75,7 @@ public class HostActivity extends AppCompatActivity {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
                                     shopClothes).commit();
-                    setTitle("My Closet");
+                    setTitle("Shop");
                     //TODO: add fragment 2
                     break;
                 case R.id.rating:
@@ -96,6 +96,7 @@ public class HostActivity extends AppCompatActivity {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
                                     settingsFragment).commit();
+                    setTitle("Setting");
                     //TODO: add fragment 4
 
             }

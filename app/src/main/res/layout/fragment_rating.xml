@@ -71,7 +71,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_8sdp"/>
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editTextPercentge"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_30sdp"
@@ -93,7 +93,7 @@
         android:textSize="@dimen/_14ssp"
         android:layout_below="@+id/editTextPercentge"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="@dimen/_30sdp"/>
+        android:layout_marginStart="@dimen/_30sdp"/>-->
 
 
     <androidx.appcompat.widget.AppCompatSpinner
