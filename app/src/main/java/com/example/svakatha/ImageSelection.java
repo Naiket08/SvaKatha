@@ -297,7 +297,7 @@ public class ImageSelection extends AppCompatActivity {
                         }
                         else
                         {
-                            db.collection("ShoppingImages").document("ShoppingImageURLs").get()
+                            db.collection("Images").document("femaleimageselection").get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
