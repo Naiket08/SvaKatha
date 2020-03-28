@@ -151,7 +151,7 @@ public class ShopClothes extends Fragment {
         args.putString("IndexValue",userDataModelArrayList.get(index).getUrl());
         fragment1.setArguments(args);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.host_fragment, fragment1);
+        fragmentTransaction.replace(R.id.host_fragment, fragment1).addToBackStack(null);
         fragmentTransaction.commit();
     }
     private void getArrayData() {

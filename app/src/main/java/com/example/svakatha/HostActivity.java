@@ -75,7 +75,7 @@ public class HostActivity extends AppCompatActivity {
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
                                     shopClothes).addToBackStack(null).commit();
-                    setTitle("Shop");
+                    setTitle("Closet Suggestion");
                     //TODO: add fragment 2
                     break;
                 case R.id.rating:
