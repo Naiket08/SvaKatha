@@ -1,5 +1,6 @@
 package com.example.svakatha.Settings.SubFragments;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -7,8 +8,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +34,7 @@ public class ProfileFragment extends Fragment {
             textviewdetail9,textViewprofilefragment2,textViewprofilefragment3;
     private TextView textViewDetail1Title,textViewDetail2Title,textViewDetail3Title,textViewDetail4Title,textViewDetail5Title,
             textViewDetail6Title,textViewDetail7Title,textViewDetail8Title,textViewDetail9Title;
+    ProgressBar progressBarProfileFragment;
     private Context mContext;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -74,6 +78,17 @@ public class ProfileFragment extends Fragment {
         textViewDetail7Title=(TextView)view.findViewById(R.id.textViewDetail7Title);
         textViewDetail8Title=(TextView)view.findViewById(R.id.textViewDetail8Title);
         textViewDetail9Title=(TextView)view.findViewById(R.id.textViewDetail9Title);
+
+        //progressbar animation
+        ProgressBar mProgressBar = (ProgressBar)view.findViewById(R.id.progressBarProfileFragment);
+        ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0,30);
+        ObjectAnimator progressAnimator2 = ObjectAnimator.ofInt(mProgressBar, "secondaryProgress", 30,70);
+        progressAnimator.setDuration(500);
+        progressAnimator.setInterpolator(new AccelerateInterpolator());
+        progressAnimator.start();
+        progressAnimator2.setDuration(500);
+        progressAnimator2.setInterpolator(new AccelerateInterpolator());
+        progressAnimator2.start();
 
         db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
