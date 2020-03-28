@@ -112,7 +112,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
                     Log.i("ALL",received);
                 }
             });
-            mDB.collection("Images").document("maleimagePrice").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            mDB.collection("Images").document("maleimageprice").addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     String received = documentSnapshot.getString(receivedIndex+"TP");
