@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:paddingHorizontal="16dp"
-        android:background="@drawable/spinner_bg"
+        android:background="@drawable/mainspinnerlayout"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_48sdp"
         android:layout_below="@+id/textViewStyleScreenQuestion_1"

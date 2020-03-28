@@ -255,7 +255,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:paddingHorizontal="16dp"
-                android:background="@drawable/spinner_bg"
+                android:background="@drawable/mainspinnerlayout"
                 android:layout_marginStart="@dimen/_32sdp"
                 android:layout_marginEnd="@dimen/_28sdp"
                 android:layout_below="@id/textViewSizeFit_1"

@@ -53,7 +53,7 @@ android:layout_height="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:paddingHorizontal="16dp"
-        android:background="@drawable/spinner_bg" />
+        android:background="@drawable/mainspinnerlayout" />
 
     <ImageView
         android:id="@+id/iv_divider"

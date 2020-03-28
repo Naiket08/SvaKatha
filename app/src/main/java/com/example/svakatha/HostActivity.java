@@ -177,7 +177,7 @@ public class HostActivity extends AppCompatActivity {
         if(bnv.getSelectedItemId() == R.id.closet){
             if(doubleBackToExitPressedOnce){
                 super.onBackPressed();
-                return;
+                finishAffinity();
             }
             this.doubleBackToExitPressedOnce = true;
             Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
@@ -194,7 +194,7 @@ public class HostActivity extends AppCompatActivity {
         if(bnv.getSelectedItemId() == R.id.shop){
             bnv.setSelectedItemId(R.id.closet);
         }
-        if(bnv.getSelectedItemId() == R.id.setting && getFragmentManager().getBackStackEntryCount() == 0){
+        if(bnv.getSelectedItemId() == R.id.setting){
             bnv.setSelectedItemId(R.id.closet);
         }
     }
