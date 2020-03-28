@@ -28,7 +28,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShapeBody"></activity>
+        <activity android:name=".BodyShapeFemale"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".ShapeBody" />
         <activity
             android:name=".HostActivity"
             android:screenOrientation="portrait"
@@ -36,9 +38,9 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ImageSelection"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".BodyShape"
+            android:name=".BodyShapeMale"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".SkinTone"

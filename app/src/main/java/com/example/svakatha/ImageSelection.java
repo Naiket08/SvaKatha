@@ -85,7 +85,7 @@ public class ImageSelection extends AppCompatActivity {
 
         Intent intent = getIntent();
         textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(),Typeface.BOLD);
-        final String name_image = intent.getStringExtra("Name_ShapeBody");
+        final String name_image = intent.getStringExtra("Name_bodyshape");
         textViewImageSelectionText2.setText("Hi"+" "+name_image);
 
         /*db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
@@ -191,7 +191,7 @@ public class ImageSelection extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
                 overridePendingTransition(0,0);
-                Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -33,4 +33,10 @@ public class ShareAndEarnFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().setTitle("Setting");
+    }
 }

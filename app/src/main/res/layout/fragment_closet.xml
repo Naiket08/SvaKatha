@@ -24,7 +24,7 @@ android:layout_height="match_parent"
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_showcase"
             android:layout_width="0dp"
-            android:layout_height="400dp"
+            android:layout_height="@dimen/_370sdp"
             android:layout_weight="1"
             android:scaleType="centerInside"/>
 
@@ -44,7 +44,6 @@ android:layout_height="match_parent"
         android:layout_height="64dp"
         android:layout_gravity="right"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:src="@drawable/closet_plus"
         android:background="#00FFFFFF"/>
 
@@ -53,13 +52,12 @@ android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="@dimen/_10sdp"
         android:paddingHorizontal="16dp"
         android:background="@drawable/spinner_bg" />
 
     <ImageView
         android:id="@+id/iv_divider"
-        android:layout_width="64dp"
+        android:layout_width="@dimen/_35sdp"
         android:layout_height="8dp"
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
@@ -69,7 +67,7 @@ android:layout_height="match_parent"
         android:id="@+id/gv_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="auto_fit"
+        android:numColumns="3"
         android:layout_marginTop="16dp"
         android:horizontalSpacing="8dp"
         android:verticalSpacing="8dp"

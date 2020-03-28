@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.svakatha.HostActivity;
 import com.example.svakatha.Settings.SubFragments.ProfileFragment;
 import com.example.svakatha.R;
 import com.example.svakatha.Settings.SubFragments.AboutApplicationFragment;
@@ -89,7 +90,7 @@ public class SettingsFragment extends Fragment {
                 if(aboutSvakathaFragment == null){
                     aboutSvakathaFragment = new AboutSvakathaFragment();
                 }
-                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,aboutSvakathaFragment).commit();
+                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,aboutSvakathaFragment).addToBackStack(null).commit();
                 getActivity().setTitle("About SvaKatha");
             }
         });

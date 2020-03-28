@@ -32,6 +32,7 @@ public class SkinTone extends AppCompatActivity {
     private ImageView imageViewSkinToneScreenToneHeader;
     private TextView textViewSkinToneScreenGreet,textViewSkinToneScreenText2,textViewSkinToneScreenText3,textViewSkinTone;
     private ImageButton imageButtonSkinToneScreenForward,imageButtonImage1,imageButtonImage2,imageButtonImage3,imageButtonImage4,imageButtonImage5,imageButtonImage6,imageButtonImage7,imageButtonImage8,imageButtonImage9,imageButtonImage10,imageButtonImage11,imageButtonImage12,imageButtonImage13,imageButtonImage14,imageButtonImage15,imageButtonImage16,imageButtonImage17,imageButtonImage18,imageButtonImage19,imageButtonImage20,imageButtonImage21,imageButtonImage22,imageButtonImage23,imageButtonImage24,imageButtonImage25;
+    String genderStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +70,29 @@ public class SkinTone extends AppCompatActivity {
         imageButtonSkinToneScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(SkinTone.this,ShapeBody.class);
-                intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent1.putExtra("Name_skintone", name_skintone);
-                startActivity(intent1);
-                overridePendingTransition(0,0);
-
+                db.collection("users").document(auth.getCurrentUser().getUid())
+                        .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        genderStatus = documentSnapshot.getString("Gender");
+                        if (genderStatus.equals("MALE")) {
+                            Intent intent1 = new Intent(SkinTone.this, BodyShapeMale.class);
+                            intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent1.putExtra("Name_skintone", name_skintone);
+                            startActivity(intent1);
+                            overridePendingTransition(0, 0);
+                        } else {
+                            Intent intent1 = new Intent(SkinTone.this, BodyShapeFemale.class);
+                            intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent1.putExtra("Name_skintone", name_skintone);
+                            startActivity(intent1);
+                            overridePendingTransition(0, 0);
+                        }
+                    }
+                });
             }
         });
+
         imageButtonImage1=(ImageButton)findViewById(R.id.imageButtonimg_1);
         imageButtonImage2=(ImageButton)findViewById(R.id.imageButtonimg_2);
         imageButtonImage3=(ImageButton)findViewById(R.id.imageButtonimg_3);

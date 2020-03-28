@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -33,5 +34,16 @@ public class AboutSvakathaFragment extends Fragment {
         textViewSvakathaPvtLtd = (TextView) view.findViewById(R.id.textViewSvakathaPvtLtd);
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().setTitle("Setting");
     }
 }

@@ -145,7 +145,9 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
                 }
         );
 
-        String[] occasion = new String[] {"Select Occasion","Item 1", "Item 2", "Item 3", "Item 4"};
+        String[] occasion = new String[] {"Select Ocassion","Dinner party","A business dinner or a company party",
+                "Family Get-Together or Birthday Party","College","Cocktail party","Business Formal","Religious Ceremony",
+                "Interview","A Night at the Theater","Office","Holiday"};
         Spinner occasionSpnr = view.findViewById(R.id.spnr_occasion);
         ArrayAdapter<String> occasionAdapter =
                 new ArrayAdapter<>(

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 public class HostActivity extends AppCompatActivity {
@@ -34,6 +36,8 @@ public class HostActivity extends AppCompatActivity {
     private RatingFragment ratingFragment;
     private SettingsFragment settingsFragment;
     int result = 0;
+    BottomNavigationView bnv;
+    private boolean doubleBackToExitPressedOnce = false;
 
 
 
@@ -42,13 +46,13 @@ public class HostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
 
-        BottomNavigationView bnv = findViewById(R.id.bottom_navigation);
+        bnv = findViewById(R.id.bottom_navigation);
 
         bnv.setItemIconTintList(null);
 
         bnv.setOnNavigationItemSelectedListener(navListener);
 
-        bnv.setSelectedItemId(R.id.shop);
+        bnv.setSelectedItemId(R.id.closet);
 
     }
 
@@ -64,7 +68,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    closetFragment).addToBackStack(null).commit();
+                                    closetFragment).commit();
                     setTitle("My Closet");
                     break;
                 case R.id.shop:
@@ -74,7 +78,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    shopClothes).addToBackStack(null).commit();
+                                    shopClothes).commit();
                     setTitle("Closet Suggestion");
                     //TODO: add fragment 2
                     break;
@@ -85,7 +89,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    ratingFragment).addToBackStack(null).commit();
+                                    ratingFragment).commit();
                     setTitle("Rating");
                     break;
                 case R.id.setting:
@@ -95,7 +99,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    settingsFragment).addToBackStack(null).commit();
+                                    settingsFragment).commit();
                     setTitle("Setting");
                     //TODO: add fragment 4
 
@@ -168,4 +172,30 @@ public class HostActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void onBackPressed() {
+        if(bnv.getSelectedItemId() == R.id.closet){
+            if(doubleBackToExitPressedOnce){
+                super.onBackPressed();
+                return;
+            }
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            },2000);
+        }
+        if(bnv.getSelectedItemId() == R.id.rating){
+            bnv.setSelectedItemId(R.id.closet);
+        }
+        if(bnv.getSelectedItemId() == R.id.shop){
+            bnv.setSelectedItemId(R.id.closet);
+        }
+        if(bnv.getSelectedItemId() == R.id.setting && getFragmentManager().getBackStackEntryCount() == 0){
+            bnv.setSelectedItemId(R.id.closet);
+        }
+    }
 }
