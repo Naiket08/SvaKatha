@@ -1,6 +1,7 @@
 package com.example.svakatha;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -12,14 +13,19 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONObject;
 
 public class RazorPay extends Activity implements PaymentResultListener {
+   //public int YourInteger=1;
 
     private static final String TAG = RazorPay.class.getSimpleName();
+    public int YourInteger;
     protected void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Checkout.preload(getApplicationContext());
 
-
+        Intent intent = getIntent();
+        YourInteger = intent.getIntExtra("YourInteger",0);
+        YourInteger =YourInteger*100;
         startPayment();
     }
 
@@ -70,7 +76,7 @@ public class RazorPay extends Activity implements PaymentResultListener {
              * Amount is always passed in currency subunits
              * Eg: "500" = INR 5.00
              */
-            options.put("amount", "2000");
+            options.put("amount",YourInteger);
 
             checkout.open(activity, options);
         } catch(Exception e) {

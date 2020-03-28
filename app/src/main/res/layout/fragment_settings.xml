@@ -95,7 +95,9 @@
         android:id="@+id/iv_separator"
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:src="#dedede"/>
 
     <RelativeLayout
@@ -103,13 +105,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginHorizontal="16dp">
 
         <ImageView
             android:id="@+id/iv_about_sva"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="8dp"
@@ -123,8 +125,10 @@
             android:paddingBottom="8dp"
             android:layout_marginLeft="16dp"
             android:gravity="center"
+            android:fontFamily="@font/arial"
             android:text="@string/about_svakatha"
-            android:textSize="20sp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="#858585"
             android:textStyle="bold"/>
         
         <ImageView
@@ -146,8 +150,8 @@
 
         <ImageView
             android:id="@+id/iv_about_app"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="8dp"
@@ -161,8 +165,10 @@
             android:paddingBottom="8dp"
             android:layout_marginLeft="16dp"
             android:gravity="center"
+            android:fontFamily="@font/arial"
+            android:textColor="#858585"
             android:text="@string/about_our_application"
-            android:textSize="20sp"
+            android:textSize="@dimen/_14sdp"
             android:textStyle="bold"/>
 
         <ImageView
@@ -184,8 +190,8 @@
 
         <ImageView
             android:id="@+id/iv_share"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="8dp"
@@ -198,9 +204,11 @@
             android:layout_toRightOf="@id/iv_share"
             android:paddingBottom="8dp"
             android:layout_marginLeft="16dp"
+            android:textColor="#858585"
             android:gravity="center"
             android:text="@string/share_and_earn"
-            android:textSize="20sp"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/arial"
             android:textStyle="bold"/>
 
         <ImageView
@@ -234,8 +242,8 @@
 
         <ImageView
             android:id="@+id/iv_help"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
             android:layout_marginLeft="24dp"
             android:src="@drawable/ic_help"
             android:layout_gravity="center_vertical"/>
@@ -245,9 +253,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/arial"
+            android:layout_marginLeft="@dimen/_20sdp"
             android:text="@string/help"
-            android:textSize="20sp"
+            android:textColor="#858585"
+            android:textSize="@dimen/_14sdp"
             android:textStyle="bold" />
 
     </LinearLayout>
