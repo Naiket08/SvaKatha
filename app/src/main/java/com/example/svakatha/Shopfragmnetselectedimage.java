@@ -38,11 +38,10 @@ public class Shopfragmnetselectedimage  extends Fragment {
     int angle = 0;
     FirebaseFirestore mDB;
     List<String> urlList=new ArrayList<>();
-    String img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16,img17,img18,img19,img20;
+    //String img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16,img17,img18,img19,img20;
     public String Totalprice;
     private FirebaseAuth mAuth;
-    public Boolean str=false;
-    public String str1;
+
     public int TP;
 
 
@@ -79,7 +78,8 @@ public class Shopfragmnetselectedimage  extends Fragment {
         Bundle bundle = this.getArguments();
         String receivedIndex = bundle.getString("IndexValue");
         String receivedIn = bundle.getString("Index");
-
+        String receivedI = bundle.getString("IndexV");
+        boolean b = Boolean.parseBoolean(receivedI);
 
 
           Picasso.get().load(Uri.parse(receivedIn)).into(imageViewPersonImgae);
@@ -90,13 +90,13 @@ public class Shopfragmnetselectedimage  extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText2 = documentSnapshot.getString("Gender");
-                        str=finalProfileText2.equals("FEMALE");
+
 
 
                     }
                 });
 
-        if(str){
+        if(receivedI=="false"){
             mDB.collection("Images").document("maleimages")
                     .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                         @Override

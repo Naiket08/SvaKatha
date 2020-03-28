@@ -47,7 +47,7 @@ public class ShopClothes extends Fragment {
     String imageCode;
     int i = 0;
     public Boolean str=false;
-    public String str1;
+    public String str1,str2;
 
 
     public ShopClothes() {
@@ -82,6 +82,7 @@ public class ShopClothes extends Fragment {
                         String finalProfileText = documentSnapshot.getString("FirstName");
                         String finalProfileText2 = documentSnapshot.getString("Gender");
                         str=finalProfileText2.equals("FEMALE");
+                        str2=String.valueOf(str);
                         getArrayData();
                         textViewAddDesign.setText(finalProfileText+", add these design \n" +
                                 "to your Closet.");
@@ -156,6 +157,7 @@ public class ShopClothes extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         Bundle args = new Bundle();
         args.putString("IndexValue",String.valueOf(str1));
+        args.putString("IndexV",String.valueOf(str2));
         args.putString("Index",userDataModelArrayList.get(index).getUrl());
         fragment1.setArguments(args);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
