@@ -4,12 +4,11 @@
     <string name="welcome_to"><b>Welcome to</b></string>
     <string name="textfield_label">Confirm</string>
     <string name="hi_rohan"><b>Hi Rohan</b></string>
-    <string name="occupation"><b>Occupation</b></string>
+    <string name="occupation"><b>What are you most passionate about?</b></string>
     <string name="price"><b>How much you yearly
 spend on clothing?</b></string>
     <string name="style"><b>What you go for ?</b></string>
-    <string name="business"><b>What occasion you mostly
-dress for?</b></string>
+    <string name="business"><b>What ocassion do you mostly dress for?</b></string>
     <string name="skinTone"><b>Skin Tone?</b></string>
 
     <string name="facebook_app_id">610430299509221</string>
@@ -41,5 +40,57 @@ dress for?</b></string>
     <string name="how_it_works"><b>How It Works</b></string>
     <string name="invite_your_friend_and_earn"><b>Invite your friends\nand earn</b></string>
     <string name="contact_us_help_fragment"><b>Contact Us</b></string>
+
+    <!--<string-array name="FashionDesigner">
+        <item value="-1">Fashion Designer</item>
+        <item>Architect/Engineering</item>
+        <item>Student</item>
+        <item>Art/Design</item>
+        <item>Sales</item>
+        <item>Management</item>
+        <item>Community/SocialWork</item>
+        <item>Business/ClientServices</item>
+        <item>Retail</item>
+        <item>Legal</item>
+        <item>Entertainer/Performer</item>
+        <item>Financial Services</item>
+        <item>Entrepreneur</item>
+        <item>other</item>
+    </string-array>
+
+
+    <string-array name="Style">
+        <item value="-1">Style</item>
+        <item>Style</item>
+        <item>Comfort</item>
+    </string-array>
+
+
+    <string-array name="Ocassion" >
+        <item value="-1">Business</item>
+        <item>Dinner party</item>
+        <item>A business dinner or a company party</item>
+        <item>Family Get-Together or Birthday Party</item>
+        <item>College</item>
+        <item>Cocktail party</item>
+        <item>Business Formal</item>
+        <item>Religious Ceremony</item>
+        <item>Interview</item>
+        <item>A Night at the Theater</item>
+        <item>Office</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="BodyStructure">
+        <item value="-1">Size</item>
+        <item>Xs</item>
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+        <item>XL</item>
+        <item>XXL</item>
+        <item>3Xl</item>
+        <item>4XL</item>
+    </string-array>-->
 
 </resources>

@@ -80,20 +80,17 @@
         android:textColor="#000"
         android:textSize="@dimen/_17ssp" />
 
-    <EditText
-        android:id="@+id/editTextStyleScreen_3"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:hint="Style"
-        android:textSize="18dp"
-        android:textColorHint="#707070"
-        android:textColor="#000"
-        android:inputType="textPersonName"
-        android:background="@drawable/styleedittextborder"
-        android:paddingStart="@dimen/_20sdp"
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnr_whatyougofor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="16dp"
+        android:background="@drawable/spinner_bg"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_48sdp"
         android:layout_below="@+id/textViewStyleScreenQuestion_1"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginStart="@dimen/_20sdp"/>
+        android:layout_marginTop="@dimen/_25sdp"/>
 
     <ImageButton
         android:id="@+id/imageButtonStyleScreenForward_3"

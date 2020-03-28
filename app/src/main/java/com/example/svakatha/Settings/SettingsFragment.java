@@ -78,7 +78,7 @@ public class SettingsFragment extends Fragment {
                 if(profileFragment == null) {
                     profileFragment = new ProfileFragment();
                 }
-                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,profileFragment).commit();
+                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,profileFragment).addToBackStack(null).commit();
                 getActivity().setTitle("Profile");
             }
         });
@@ -100,7 +100,7 @@ public class SettingsFragment extends Fragment {
                 if(aboutApplicationFragment == null){
                     aboutApplicationFragment = new AboutApplicationFragment();
                 }
-                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,aboutApplicationFragment).commit();
+                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,aboutApplicationFragment).addToBackStack(null).commit();
                 getActivity().setTitle("Our Application");
             }
         });
@@ -111,7 +111,7 @@ public class SettingsFragment extends Fragment {
                 if(shareAndEarnFragment == null){
                     shareAndEarnFragment = new ShareAndEarnFragment();
                 }
-                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,shareAndEarnFragment).commit();
+                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,shareAndEarnFragment).addToBackStack(null).commit();
                 getActivity().setTitle("Share and Earn");
             }
         });
@@ -122,7 +122,7 @@ public class SettingsFragment extends Fragment {
                 if(helpFragment == null){
                     helpFragment = new HelpFragment();
                 }
-                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,helpFragment).commit();
+                supportFragmentManager.beginTransaction().replace(R.id.host_fragment,helpFragment).addToBackStack(null).commit();
                 getActivity().setTitle("Help");
             }
         });

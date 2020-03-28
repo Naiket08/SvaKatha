@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,9 +75,13 @@ public class Style extends AppCompatActivity {
         progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
 
-        //casting of EditText
-        editTextStyleScreen=(EditText)findViewById(R.id.editTextStyleScreen_3);
-
+        String[] style = new String[]{"Style","Comfort"};
+        Spinner stylespinner = findViewById(R.id.spnr_whatyougofor);
+        ArrayAdapter<String> stylearray =
+                new ArrayAdapter<String>(getApplicationContext(),
+                        R.layout.dropdown_menu_popup_item,
+                        style);
+        stylespinner.setAdapter(stylearray);
         //casting of ImageButton
         imageButtonStyleScreenForward=(ImageButton)findViewById(R.id.imageButtonStyleScreenForward_3);
 

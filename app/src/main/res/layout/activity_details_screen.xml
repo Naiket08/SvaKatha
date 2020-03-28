@@ -71,8 +71,8 @@
 
     <TextView
         android:id="@+id/textViewDetailsScreenOccupation"
-        android:layout_width="@dimen/_105sdp"
-        android:layout_height="@dimen/_22sdp"
+        android:layout_width="@dimen/_248sdp"
+        android:layout_height="@dimen/_42sdp"
         android:text="@string/occupation"
         android:textColor="#000"
         android:textSize="@dimen/_17ssp"
@@ -80,7 +80,7 @@
         android:layout_marginTop="@dimen/_80sdp"
         android:layout_marginStart="@dimen/_20sdp"/>
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editTextDetailsScreenStyle"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_45sdp"
@@ -92,7 +92,19 @@
         android:paddingStart="@dimen/_20sdp"
         android:layout_below="@+id/textViewDetailsScreenOccupation"
         android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginStart="@dimen/_20sdp"/>
+        android:layout_marginStart="@dimen/_20sdp"/>-->
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnr_occupation_detailsscreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="16dp"
+        android:background="@drawable/spinner_bg"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_48sdp"
+        android:layout_below="@+id/textViewDetailsScreenOccupation"
+        android:layout_marginTop="@dimen/_25sdp"/>
 
     <ImageButton
         android:id="@+id/imageButtonDetailsScreenForward"

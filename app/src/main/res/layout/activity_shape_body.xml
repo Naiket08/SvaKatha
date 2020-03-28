@@ -73,22 +73,38 @@
         android:secondaryProgressTint="@color/progressblue"
         android:secondaryProgressTintMode="src_over" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBarBodyShapeScreen_1"
+        android:layout_marginTop="@dimen/_20sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="323dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-106dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBarBodyShapeScreen_1"
-        app:layout_constraintVertical_bias="0.454" />
+        android:scrollbars="vertical"/>
 
+        <ImageButton
+            android:id="@+id/imageButtonShapeBodyScreenForward_1"
+            android:layout_width="@dimen/_26sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:layout_below="@+id/recycler"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+    </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

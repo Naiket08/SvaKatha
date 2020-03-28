@@ -69,7 +69,7 @@ public class SkinTone extends AppCompatActivity {
         imageButtonSkinToneScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(SkinTone.this,BodyShape.class);
+                Intent intent1 = new Intent(SkinTone.this,ShapeBody.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 intent1.putExtra("Name_skintone", name_skintone);
                 startActivity(intent1);

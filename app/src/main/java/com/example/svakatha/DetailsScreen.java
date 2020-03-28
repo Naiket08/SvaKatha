@@ -2,8 +2,10 @@ package com.example.svakatha;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.Image;
@@ -12,10 +14,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,10 +70,19 @@ public class DetailsScreen extends AppCompatActivity {
         textViewDetailsScreenOccupation = (TextView) findViewById(R.id.textViewDetailsScreenOccupation);
 
         imageButtonDetailsScreenForward = (ImageButton) findViewById(R.id.imageButtonDetailsScreenForward);
-
-        editTextDetailsScreenStyle = (EditText) findViewById(R.id.editTextDetailsScreenStyle);
-
         imageViewDetailsScreenHeader = (ImageView) findViewById(R.id.imageViewDetailsScreenHeader);
+
+        String[] fashiondesigner = new String[]{"Fashion Designer","Architect/Engineering","Student","Art/Design",
+                "Sales","Management","Community/SocialWork","Business/ClientServices","Retail","Legal",
+                "Entertainer/Performer","Services","Entrepreneur","other"};
+        Spinner spnr_occupation_detailsscreen = findViewById(R.id.spnr_occupation_detailsscreen);
+        ArrayAdapter<String> fashion =
+                new ArrayAdapter<>(
+                        getApplicationContext(),
+                        R.layout.dropdown_menu_popup_item,
+                        fashiondesigner);
+
+        spnr_occupation_detailsscreen.setAdapter(fashion);
 
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);

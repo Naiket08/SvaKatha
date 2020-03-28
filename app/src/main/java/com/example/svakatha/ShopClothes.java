@@ -105,7 +105,7 @@ public class ShopClothes extends Fragment {
                 if (index == 19) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
                     index = 19;
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 }
                 if(index == 0) {
                     Toast.makeText(mContext, "forward", Toast.LENGTH_SHORT).show();
@@ -113,7 +113,7 @@ public class ShopClothes extends Fragment {
                 else
                 {
                     index = index - 1;
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 }
 
 
@@ -131,10 +131,10 @@ public class ShopClothes extends Fragment {
                 if (index == 19) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
                     index = 19;
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 } else {
                     index = index + 1;
-                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+                    Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 }
 
 
@@ -353,7 +353,7 @@ public class ShopClothes extends Fragment {
 
 
     public void onFirstUrlSet() {
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageButtonPersonClothesSelection);
+        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
     }
 
 }

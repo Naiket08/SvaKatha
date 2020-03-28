@@ -64,7 +64,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    closetFragment).commit();
+                                    closetFragment).addToBackStack(null).commit();
                     setTitle("My Closet");
                     break;
                 case R.id.shop:
@@ -74,7 +74,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    shopClothes).commit();
+                                    shopClothes).addToBackStack(null).commit();
                     setTitle("Shop");
                     //TODO: add fragment 2
                     break;
@@ -85,7 +85,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    ratingFragment).commit();
+                                    ratingFragment).addToBackStack(null).commit();
                     setTitle("Rating");
                     break;
                 case R.id.setting:
@@ -95,7 +95,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    settingsFragment).commit();
+                                    settingsFragment).addToBackStack(null).commit();
                     setTitle("Setting");
                     //TODO: add fragment 4
 

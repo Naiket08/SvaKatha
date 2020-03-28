@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,16 @@ public class Part_two extends AppCompatActivity {
         editTextUserScreenHeight=(EditText)findViewById(R.id.editTextPartTwoHeight_1);
         editTextUserScreenWeight=(EditText)findViewById(R.id.editTextPartTwoWeight_1);
         editTextUserScreenBirth=(EditText)findViewById(R.id.editTextPartTwoBirth_1);
+
+        String[] size = new String[]{"Xs","S","M","L","XL","XXL","3XL","4XL"};
+        Spinner spnr_size = findViewById(R.id.spnr_size);
+        ArrayAdapter<String> sizearray =
+                new ArrayAdapter<>(
+                        getApplicationContext(),
+                        R.layout.dropdown_menu_popup_item,
+                        size);
+
+        spnr_size.setAdapter(sizearray);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

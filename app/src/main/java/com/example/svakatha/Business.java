@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,8 +70,17 @@ public class Business extends AppCompatActivity {
         //casting of ImageView
         imageViewBusinessScreenHeader=(ImageView)findViewById(R.id.imageViewBusinessScreenHeader1);
 
-        //casting of EditText
-        editTextBusinessScreen=(EditText)findViewById(R.id.editTextBusinessScreen_1);
+        String[] business = new String[]{"Ocassion","Business","Dinner party","A business dinner or a company party",
+                "Family Get-Together or Birthday Party","College","Cocktail party","Business Formal","Religious Ceremony",
+                "Interview","A Night at the Theater","Office","Other"};
+        Spinner spnr_business = findViewById(R.id.spnr_occasion_bussiness);
+        ArrayAdapter<String> businessarray =
+                new ArrayAdapter<>(
+                        getApplicationContext(),
+                        R.layout.dropdown_menu_popup_item,
+                        business);
+
+        spnr_business.setAdapter(businessarray);
 
         //casting of ImageButton
         imageButtonBusinessScreenForward=(ImageButton)findViewById(R.id.imageButtonBusinessScreenForward_1);

@@ -176,7 +176,7 @@ public class LoginScreen extends AppCompatActivity {
                             else
                             {
                                 Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
-                                intent.putExtra("Name_bodyshape", name);
+                                intent.putExtra("Name_bodyshape_login", name);
                                 startActivity(intent);
                             }
                             Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();

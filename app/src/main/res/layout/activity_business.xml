@@ -71,8 +71,8 @@
 
     <TextView
         android:id="@+id/textViewBusinessScreenOccasion_1"
-        android:layout_width="320dp"
-        android:layout_height="55dp"
+        android:layout_width="@dimen/_248sdp"
+        android:layout_height="@dimen/_42sdp"
         android:layout_below="@+id/progressBarBusinessScreen1"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="103dp"
@@ -81,7 +81,7 @@
         android:textColor="#000"
         android:textSize="@dimen/_17ssp" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/editTextBusinessScreen_1"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_45sdp"
@@ -94,7 +94,19 @@
         android:paddingStart="@dimen/_20sdp"
         android:layout_below="@+id/textViewBusinessScreenOccasion_1"
         android:layout_marginTop="@dimen/_25sdp"
-        android:layout_marginStart="@dimen/_20sdp"/>
+        android:layout_marginStart="@dimen/_20sdp"/>-->
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spnr_occasion_bussiness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:paddingHorizontal="16dp"
+        android:background="@drawable/spinner_bg"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_48sdp"
+        android:layout_below="@+id/textViewBusinessScreenOccasion_1"
+        android:layout_marginTop="@dimen/_25sdp"/>
 
     <ImageButton
         android:id="@+id/imageButtonBusinessScreenForward_1"

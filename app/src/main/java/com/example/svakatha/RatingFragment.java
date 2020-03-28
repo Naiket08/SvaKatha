@@ -41,7 +41,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class RatingFragment extends Fragment {
 
-    private static final int RESULT_OK = 0;
     private Context context;
     private ImageView imageViewCapturedImage,imageViewLikeDislike,imageViewLike;
     private TextView textViewLikeDislikePercentage;
@@ -134,7 +133,7 @@ public class RatingFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
             try {
-                Toast.makeText(context, "Uploading Image, please wait", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Image Captured", Toast.LENGTH_LONG).show();
                 Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
                 imageViewCapturedImage.setImageURI(photoUri);
             }catch (Exception e){
@@ -143,4 +142,9 @@ public class RatingFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        imageViewCapturedImage.setImageURI(null);
+    }
 }

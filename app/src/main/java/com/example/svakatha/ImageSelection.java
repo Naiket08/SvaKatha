@@ -85,7 +85,7 @@ public class ImageSelection extends AppCompatActivity {
 
         Intent intent = getIntent();
         textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(),Typeface.BOLD);
-        final String name_image = intent.getStringExtra("Name_bodyshape");
+        final String name_image = intent.getStringExtra("Name_ShapeBody");
         textViewImageSelectionText2.setText("Hi"+" "+name_image);
 
         /*db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
