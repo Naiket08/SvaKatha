@@ -78,9 +78,11 @@ public class Shopfragmnetselectedimage  extends Fragment {
 
         Bundle bundle = this.getArguments();
         String receivedIndex = bundle.getString("IndexValue");
+        String receivedIn = bundle.getString("Index");
 
 
-       //  Picasso.get().load(Uri.parse(receivedIndex)).into(imageViewPersonImgae);
+
+          Picasso.get().load(Uri.parse(receivedIn)).into(imageViewPersonImgae);
 
         mDB.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
