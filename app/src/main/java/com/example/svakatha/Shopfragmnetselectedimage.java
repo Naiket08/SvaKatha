@@ -119,6 +119,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     String received = documentSnapshot.getString(receivedIndex+"TP");
                     textViewTotalCost.setText(received.replace("\\n","\n"));
+                    textViewTotalCost.setText("Total Price"+"\n"+received);
                     Log.i("ALL",received);
                     Totalprice=received;
                     TP=Integer.parseInt(Totalprice);
@@ -152,6 +153,7 @@ public class Shopfragmnetselectedimage  extends Fragment {
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                     String received = documentSnapshot.getString(receivedIndex+"TP");
                     textViewTotalCost.setText(received.replace("\\n","\n"));
+                    textViewTotalCost.setText("Total Price"+"\n"+received);
                     Totalprice=received;
                     TP=Integer.parseInt(Totalprice);
                     Log.i("ALL",received);
