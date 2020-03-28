@@ -1,142 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:layout_height="match_parent">
+
 
     <ImageView
         android:id="@+id/imageViewShopScreenGreet_1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_130sdp"
         android:layout_alignParentTop="true"
-        android:background="@drawable/heaaderrectangleloginscreen"
-        app:layout_constraintBottom_toTopOf="@+id/imageButtonPersonClothesSelection_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:background="@drawable/heaaderrectangleloginscreen" />
 
     <!--<TextView
         android:id="@+id/textViewClosetSugestion_1"
         android:layout_width="@dimen/_117sdp"
         android:layout_height="@dimen/_19sdp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/segoe"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_17sdp"
+        android:layout_marginEnd="@dimen/_160sdp"
         android:text="Closet Sugestion"
         android:textAlignment="center"
-        android:layout_marginEnd="@dimen/_160sdp"
-        android:layout_marginStart="@dimen/_14sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewShopScreenGreet_1" />-->
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold" />-->
 
     <TextView
         android:id="@+id/textViewAddDesign_1"
         android:layout_width="@dimen/_188sdp"
         android:layout_height="@dimen/_42sdp"
-        android:layout_marginEnd="@dimen/_88sdp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="@dimen/_52sdp"
-        android:layout_marginStart="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_89sdp"
         android:fontFamily="@font/arial"
         android:text=""
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageViewShopScreenGreet_1"
-        app:layout_constraintTop_toTopOf="@+id/imageViewShopScreenGreet_1" />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewSeason_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/_178sdp"
         android:layout_marginTop="@dimen/_105sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:fontFamily="@font/arial"
         android:text="Season - Spring/Summer"
         android:textSize="11sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewShopScreenGreet_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
+
 
     <ImageButton
         android:id="@+id/imageButtonPersonClothesSelection_1"
         android:layout_width="@dimen/_241sdp"
         android:layout_height="@dimen/_301sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButtonBackward"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonForward"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/cardview_light_background"
-        app:layout_constraintVertical_bias="0.744" />
+        android:layout_below="@+id/imageViewShopScreenGreet_1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_26sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_82sdp"
+        android:background="@color/cardview_light_background" />
+
 
     <!--<ImageView
         android:id="@+id/imageViewShopFragment1"
         android:layout_width="@dimen/_26sdp"
         android:layout_height="@dimen/_23sdp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSeason_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018"
-        app:srcCompat="@drawable/cart"
-        tools:ignore="MissingConstraints" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_258sdp"
+        android:layout_marginTop="@dimen/_17sdp"
+        android:layout_marginEnd="@dimen/_34sdp"
+        android:src="@drawable/cart"/>
 
     <ImageView
         android:id="@+id/imageViewShopFragment2"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
-        android:layout_marginStart="232dp"
-        android:layout_marginTop="@dimen/_38sdp"
-        android:layout_marginBottom="160dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSeason_1"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewShopFragment1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textViewClosetSugestion_1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178"
-        app:srcCompat="@drawable/round"
-        tools:ignore="MissingConstraints" />-->
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/_227sdp"
+        android:layout_marginTop="@dimen/_17sdp" />-->
 
     <ImageButton
         android:id="@+id/imageButtonForward"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_210sdp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="370dp"
         android:layout_marginBottom="@dimen/_259sdp"
         android:background="@color/cardview_light_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
-        app:srcCompat="@drawable/arrow_left"
-        tools:ignore="MissingConstraints" />
+        android:src="@drawable/arrow_left"/>
 
     <ImageButton
         android:id="@+id/imageButtonBackward"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_210sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_290sdp"
+        android:layout_marginTop="370dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginBottom="@dimen/_259sdp"
         android:background="@color/cardview_light_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewShopScreenGreet_1"
-        app:srcCompat="@drawable/arrow_right"
-        tools:ignore="MissingConstraints" />
+        android:src="@drawable/arrow_right"/>
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>
