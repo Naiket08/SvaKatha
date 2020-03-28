@@ -145,7 +145,6 @@
                 android:layout_height="@dimen/_20sdp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="@dimen/_287sdp"
                 android:layout_marginTop="@dimen/_190sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:background="@color/cardview_light_background"
