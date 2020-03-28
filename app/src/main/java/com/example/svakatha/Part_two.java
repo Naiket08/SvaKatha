@@ -119,35 +119,36 @@ public class Part_two extends AppCompatActivity {
         imageButtonUserScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userId = auth.getCurrentUser().getUid();
-                    String male="MALE";
-                    String female="FEMALE";
+                if (editTextUserScreenHeight.getText().toString().equals("") || editTextUserScreenWeight.getText().toString().equals("") || editTextUserScreenBirth.getText().toString().equals("")) {
+                    Toast.makeText(Part_two.this, "Feilds Are Empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    userId = auth.getCurrentUser().getUid();
+                    String male = "MALE";
+                    String female = "FEMALE";
                     String Size = spnr_size.getSelectedItem().toString();
-                    String Height=editTextUserScreenHeight.getText().toString();
-                    String Weight=editTextUserScreenWeight.getText().toString();
-                    String DOB=editTextUserScreenBirth.getText().toString();
+                    String Height = editTextUserScreenHeight.getText().toString();
+                    String Weight = editTextUserScreenWeight.getText().toString();
+                    String DOB = editTextUserScreenBirth.getText().toString();
                     Map<String, Object> user = new HashMap<>();
-                    if(aSwitch.isChecked())
-                    {
-                        user.put("Gender",male);
-                    }
-                    else
-                    {
-                        user.put("Gender",female);
+                    if (aSwitch.isChecked()) {
+                        user.put("Gender", male);
+                    } else {
+                        user.put("Gender", female);
 
                     }
                     user.put("Height", Height);
                     user.put("Weight", Weight);
                     user.put("Birth", DOB);
-                    user.put("Size",Size);
+                    user.put("Size", Size);
                     db.collection("users").document(userId).set(user, SetOptions.merge());
 
-                Intent intent = new Intent(Part_two.this,SkinTone.class);
+                    Intent intent = new Intent(Part_two.this, SkinTone.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     intent.putExtra("Name_part_two", name_two);
                     startActivity(intent);
-                    overridePendingTransition(0,0);
+                    overridePendingTransition(0, 0);
                 }
+            }
 
         });
 

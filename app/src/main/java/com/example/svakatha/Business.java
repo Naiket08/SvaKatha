@@ -127,8 +127,6 @@ public class Business extends AppCompatActivity {
                     overridePendingTransition(0,0);
                 }
         });
-
-
     }
 
 

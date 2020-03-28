@@ -1,10 +1,12 @@
 package com.example.svakatha.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,7 @@ import java.util.Map;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     List <ShapeBodyModel>dataList;
+
 
 
 
@@ -75,15 +78,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public interface ClickListener{
             static void onItemClick(View view, int position){
-
                 FirebaseAuth mauth = FirebaseAuth.getInstance();
                 final String currentID = mauth.getCurrentUser().getUid();
                 final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                String bodyshape="Shape"+position;
+                String bodyshape="Saved shape"+(position+1);
+                Toast.makeText(view.getContext(), bodyshape, Toast.LENGTH_SHORT).show();
                 Map<String, Object> user = new HashMap<>();
                 user.put("BodyShape", bodyshape);
                 db.collection("users").document(currentID).set(user, SetOptions.merge());
-
             }
         }
 
