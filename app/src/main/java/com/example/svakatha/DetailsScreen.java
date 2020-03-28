@@ -53,6 +53,8 @@ public class DetailsScreen extends AppCompatActivity {
     private ProgressBar progressBarDetailsScreen;
     private FirebaseAuth auth;
     private FirebaseFirestore mfirestore;
+    String userId;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -84,6 +86,32 @@ public class DetailsScreen extends AppCompatActivity {
 
         spnr_occupation_detailsscreen.setAdapter(fashion);
 
+        spnr_occupation_detailsscreen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                userId = auth.getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("users").document(userId);
+                Map<String, Object> user = new HashMap<>();
+                String Occupation;
+                Occupation = spnr_occupation_detailsscreen.getSelectedItem().toString();
+                user.put("Occupation",Occupation);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+                /*documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(DetailsScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarDetailsScreen);
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0,9);
@@ -114,24 +142,29 @@ public class DetailsScreen extends AppCompatActivity {
                 });*/
 
 
+
+
         imageButtonDetailsScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editTextDetailsScreenStyle.getText().toString().equals("")) {
-                    Toast.makeText(getApplicationContext(), "Field is empty", Toast.LENGTH_SHORT).show();
-                } else {
-                    //DocumentReference documentReference = db.collection("users").document(currentID);
-                    String occupation=editTextDetailsScreenStyle.getText().toString();
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("Occupation", occupation);
-                    db.collection("users").document(currentID).set(user, SetOptions.merge());
+                /*String Occupation;
+                //Occupation=spinner2.getItemAtPosition(position).toString();
+                Occupation = spnr_occupation_detailsscreen.getSelectedItem().toString();
+                Toast.makeText(DetailsScreen.this, ""+Occupation, Toast.LENGTH_SHORT).show();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                String currentID = auth.getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("users").document(currentID);
+                //((TextView) selectedItemView).setTextColor(Color.WHITE);
+                Map<String, Object> user = new HashMap<>();
+                user.put("Occupation", Occupation);*/
+
                     Intent intent = new Intent(DetailsScreen.this,Price.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     intent.putExtra("Name_details", name_details);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                 }
-                }
+
         });
 
         //DatabaseReference databaseReference = firebaseDatabase.getReference(auth.getCurrentUser().getUid());

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,6 +48,8 @@ public class Business extends AppCompatActivity {
     private ImageButton imageButtonBusinessScreenForward;
     private ProgressBar progressBarBusinessScreen;
     private FirebaseAuth auth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String userId;
 
 
     @Override
@@ -66,7 +69,6 @@ public class Business extends AppCompatActivity {
         String name_business = intent.getStringExtra("Name_style");
         textViewBusinessScreenGreet.setText("Hi"+" "+name_business);
 
-
         //casting of ImageView
         imageViewBusinessScreenHeader=(ImageView)findViewById(R.id.imageViewBusinessScreenHeader1);
 
@@ -82,6 +84,26 @@ public class Business extends AppCompatActivity {
 
         spnr_business.setAdapter(businessarray);
 
+        spnr_business.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                userId = auth.getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("users").document(userId);
+                Map<String, Object> user = new HashMap<>();
+                String Bussiness;
+                Bussiness = spnr_business.getSelectedItem().toString();
+                user.put("Business",Bussiness);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
         //casting of ImageButton
         imageButtonBusinessScreenForward=(ImageButton)findViewById(R.id.imageButtonBusinessScreenForward_1);
 
@@ -93,38 +115,17 @@ public class Business extends AppCompatActivity {
         progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
 
-        final String currentID = auth.getCurrentUser().getUid();
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
-        /*documentReference.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewBusinessScreenGreet.setText("Hi "+finalProfileText);
-                        textViewBusinessScreenGreet.setTypeface(textViewBusinessScreenGreet.getTypeface(),Typeface.BOLD);
-                    }
-
-                });*/
-
 
         imageButtonBusinessScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editTextBusinessScreen.getText().toString().equals("")) {
-                    Toast.makeText(Business.this, "Field is Empty", Toast.LENGTH_SHORT).show();
-                } else {
-                    String Business=editTextBusinessScreen.getText().toString();
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("Business", Business);
-                    db.collection("users").document(currentID).set(user, SetOptions.merge());
+
                     Intent intent = new Intent(Business.this,Part_two.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     intent.putExtra("Name_business", name_business);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                 }
-            }
         });
 
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -46,6 +47,9 @@ public class Style extends AppCompatActivity {
     private ProgressBar progressBarStyleScreen;
     private EditText editTextStyleScreen;
     private ImageButton imageButtonStyleScreenForward;
+    String userId;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,27 @@ public class Style extends AppCompatActivity {
                         R.layout.dropdown_menu_popup_item,
                         style);
         stylespinner.setAdapter(stylearray);
+
+        stylespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                userId = auth.getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("users").document(userId);
+                Map<String, Object> user = new HashMap<>();
+                String Style;
+                Style = stylespinner.getSelectedItem().toString();
+                user.put("Style",Style);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
         //casting of ImageButton
         imageButtonStyleScreenForward=(ImageButton)findViewById(R.id.imageButtonStyleScreenForward_3);
 
@@ -104,15 +129,6 @@ public class Style extends AppCompatActivity {
         imageButtonStyleScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (editTextStyleScreen.getText().toString().equals("")) {
-                    Toast.makeText(Style.this, "Feild is empty", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    String Style=editTextStyleScreen.getText().toString();
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("Style", Style);
-                    db.collection("users").document(currentID).set(user, SetOptions.merge());
                     Intent intent1 = new Intent(Style.this, Business.class);
                     intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     //startActivity(intent1);
@@ -120,7 +136,6 @@ public class Style extends AppCompatActivity {
                     intent1.putExtra("Name_style", name_style);
                     startActivity(intent1);
                     //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                }
                 }
         });
 

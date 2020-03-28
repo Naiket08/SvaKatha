@@ -65,7 +65,6 @@ public class ShapeBody extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Uri uri) {
                                                 modelList.add(new ShapeBodyModel(uri));
-                                                Toast.makeText(ShapeBody.this, "Hi", Toast.LENGTH_SHORT).show();
                                                 recyclerViewAdapter.notifyDataSetChanged();
                                             }
                                         });
@@ -83,7 +82,6 @@ public class ShapeBody extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Uri uri) {
                                                 modelList.add(new ShapeBodyModel(uri));
-                                                Toast.makeText(ShapeBody.this, "Hi", Toast.LENGTH_SHORT).show();
                                                 recyclerViewAdapter.notifyDataSetChanged();
                                             }
                                         });

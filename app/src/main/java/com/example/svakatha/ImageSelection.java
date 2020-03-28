@@ -273,7 +273,6 @@ public class ImageSelection extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         final String gender = documentSnapshot.getString("Gender");
-                        Toast.makeText(ImageSelection.this, ""+gender, Toast.LENGTH_SHORT).show();
                         if(gender.equals("MALE"))
                         {
                             db.collection("Images").document("ImageURLs").get()

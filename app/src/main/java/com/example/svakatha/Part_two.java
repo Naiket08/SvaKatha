@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,6 +39,9 @@ public class Part_two extends AppCompatActivity {
     private EditText editTextUserScreenHeight,editTextUserScreenWeight,editTextUserScreenBirth;
     private ProgressBar progressBarUserScreen;
     private Switch aSwitch;
+    private FirebaseAuth auth;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,11 @@ public class Part_two extends AppCompatActivity {
         editTextUserScreenWeight=(EditText)findViewById(R.id.editTextPartTwoWeight_1);
         editTextUserScreenBirth=(EditText)findViewById(R.id.editTextPartTwoBirth_1);
 
+        Intent intent = getIntent();
+        textViewUserScreenGreet.setTypeface(textViewUserScreenGreet.getTypeface(), Typeface.BOLD);
+        String name_two = intent.getStringExtra("Name_business");
+        textViewUserScreenGreet.setText("Hi"+" "+name_two);
+
         String[] size = new String[]{"Xs","S","M","L","XL","XXL","3XL","4XL"};
         Spinner spnr_size = findViewById(R.id.spnr_size);
         ArrayAdapter<String> sizearray =
@@ -74,6 +83,26 @@ public class Part_two extends AppCompatActivity {
                         size);
 
         spnr_size.setAdapter(sizearray);
+
+        /*spnr_size.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                userId = auth.getCurrentUser().getUid();
+                DocumentReference documentReference = db.collection("users").document(userId);
+                Map<String, Object> user = new HashMap<>();
+                String Size;
+                Size = spnr_size.getSelectedItem().toString();
+                user.put("Size",Size);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });*/
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -85,37 +114,15 @@ public class Part_two extends AppCompatActivity {
         progressAnimator.setInterpolator(new AccelerateInterpolator());
         progressAnimator.start();
 
-        Intent intent = getIntent();
-        textViewUserScreenGreet.setTypeface(textViewUserScreenGreet.getTypeface(), Typeface.BOLD);
-        String name_two = intent.getStringExtra("Name_business");
-        textViewUserScreenGreet.setText("Hi"+" "+name_two);
-
-
-        final String currentID = auth.getCurrentUser().getUid();
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        /*final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String finalProfileText = documentSnapshot.getString("FirstName");
-                        textViewUserScreenGreet.setText("Hi "+finalProfileText);
-                        textViewUserScreenGreet.setTypeface(textViewUserScreenGreet.getTypeface(), Typeface.BOLD);
-                    }
-
-                });*/
-
 
         imageButtonUserScreenForward=(ImageButton)findViewById(R.id.imageButtonUserScreenForward_1);
         imageButtonUserScreenForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editTextUserScreenHeight.getText().toString().equals("") || editTextUserScreenWeight.getText().toString().equals("") || editTextUserScreenBirth.getText().toString().equals("")) {
-                    Toast.makeText(Part_two.this, "Feilds Are Empty", Toast.LENGTH_SHORT).show();
-                } else {
-                    // check current state of a Switch (true or false).
+                userId = auth.getCurrentUser().getUid();
                     String male="MALE";
                     String female="FEMALE";
+                    String Size = spnr_size.getSelectedItem().toString();
                     String Height=editTextUserScreenHeight.getText().toString();
                     String Weight=editTextUserScreenWeight.getText().toString();
                     String DOB=editTextUserScreenBirth.getText().toString();
@@ -132,15 +139,16 @@ public class Part_two extends AppCompatActivity {
                     user.put("Height", Height);
                     user.put("Weight", Weight);
                     user.put("Birth", DOB);
-                    db.collection("users").document(currentID).set(user, SetOptions.merge());
+                    user.put("Size",Size);
+                    db.collection("users").document(userId).set(user, SetOptions.merge());
 
-                    Intent intent = new Intent(Part_two.this,SkinTone.class);
+                Intent intent = new Intent(Part_two.this,SkinTone.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     intent.putExtra("Name_part_two", name_two);
                     startActivity(intent);
                     overridePendingTransition(0,0);
                 }
-            }
+
         });
 
     }
