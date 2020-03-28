@@ -42,11 +42,12 @@ public class ShopClothes extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private View view;
     ArrayList<UserDataModel> userDataModelArrayList;
-    private static int index = 0;
+    private static int index = 1;
     Map<String, String> data = new HashMap<>();
     String imageCode;
     int i = 0;
     public Boolean str=false;
+    public String str1;
 
 
     public ShopClothes() {
@@ -91,6 +92,12 @@ public class ShopClothes extends Fragment {
         imageButtonPersonClothesSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (str){
+                    str1="imgF"+index;
+                }
+                else{
+                    str1="imgM"+index;
+                }
                 swapFragment();
             }
         });
@@ -107,7 +114,7 @@ public class ShopClothes extends Fragment {
                     index = 19;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 }
-                if(index == 0) {
+                if(index == 1) {
                     Toast.makeText(mContext, "forward", Toast.LENGTH_SHORT).show();
                 }
                 else
@@ -148,7 +155,7 @@ public class ShopClothes extends Fragment {
         Shopfragmnetselectedimage fragment1 = new Shopfragmnetselectedimage();
         FragmentManager fragmentManager = getFragmentManager();
         Bundle args = new Bundle();
-        args.putString("IndexValue",userDataModelArrayList.get(index).getUrl());
+        args.putString("IndexValue",String.valueOf(str1));
         fragment1.setArguments(args);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.host_fragment, fragment1).addToBackStack(null);
@@ -293,8 +300,9 @@ public class ShopClothes extends Fragment {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             String durl = documentSnapshot.getString("imgF" + i);
+
                             model.setUrl(durl);
-                            if (i == 1) {
+                            if (i == 2) {
                                 onFirstUrlSet();
                             }
                             // Log.i("Hi", durl);
@@ -316,7 +324,7 @@ public class ShopClothes extends Fragment {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             String durl = documentSnapshot.getString("imgM" + i);
                             model.setUrl(durl);
-                            if (i == 1) {
+                            if (i == 2) {
                                 onFirstUrlSet();
                             }
                             // Log.i("Hi", durl);
