@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -99,7 +100,14 @@ public class ShopClothes extends Fragment {
                 else{
                     str1="imgM"+index;
                 }
-                swapFragment();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        // yourMethod();
+                        swapFragment();
+                    }
+                }, 1000);   //1 seconds
+
             }
         });
         imageButtonForward.setOnClickListener(new View.OnClickListener() {
@@ -305,7 +313,7 @@ public class ShopClothes extends Fragment {
                             String durl = documentSnapshot.getString("imgF" + i);
 
                             model.setUrl(durl);
-                            if (i == 1) {
+                            if (i == 2) {
                                 onFirstUrlSet();
                             }
                             // Log.i("Hi", durl);
@@ -327,7 +335,7 @@ public class ShopClothes extends Fragment {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             String durl = documentSnapshot.getString("imgM" + i);
                             model.setUrl(durl);
-                            if (i == 1) {
+                            if (i == 2) {
                                 onFirstUrlSet();
                             }
                             // Log.i("Hi", durl);
