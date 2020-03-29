@@ -74,7 +74,7 @@ public class SignupScreen extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mfirebaseAuth;
     String userId;
-    boolean status=false;
+    String status="false";
 
 
     @Override
@@ -530,7 +530,7 @@ public class SignupScreen extends AppCompatActivity {
         if(requestCode==RC_SIGN_IN)
         {
             Task<GoogleSignInAccount>task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            Toast.makeText(this, ""+task, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, ""+task, Toast.LENGTH_SHORT).show();
             handlesigninResult(task);
 
         }
@@ -614,70 +614,74 @@ public class SignupScreen extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user1)
     {
-        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if(acc==null)
-        {
-            String email=acc.getEmail();
-            String username=acc.getGivenName();
-            userId = mfirebaseAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = db.collection("users").document(userId);
-            Map<String,Object> user = new HashMap<>();
-            user.put("Email",email);
-            //user.put("Password",password);
-            user.put("FirstName",username);
-            user.put("Status","true");
+        final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        status = documentSnapshot.getString("Status");
+                        Toast.makeText(SignupScreen.this, "" + status, Toast.LENGTH_SHORT).show();
+                        GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                        if (status == "false" || status == null) {
+                            String email = acc.getEmail();
+                            String username = acc.getGivenName();
+                            userId = mfirebaseAuth.getCurrentUser().getUid();
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("Email", email);
+                            //user.put("Password",password);
+                            user.put("FirstName", username);
+                            user.put("Status", "true");
 
 
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            documentReference.get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String name = documentSnapshot.getString("FirstName");
+                                            Intent intent1 = new Intent(SignupScreen.this, DetailsScreen.class);
+                                            intent1.putExtra("Name", name);
+                                            startActivity(intent1);
+                                            Toast.makeText(getApplicationContext(), "" + userId, Toast.LENGTH_SHORT).show();
+                                        }
 
-            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
-                }
-            });
-            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
-            final FirebaseFirestore db = FirebaseFirestore.getInstance();
-            //final DocumentReference documentReference = db.collection("users").document(currentID);
-            documentReference.get()
-                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            String name = documentSnapshot.getString("FirstName");
-                            Intent intent1 = new Intent(SignupScreen.this, DetailsScreen.class);
-                            intent1.putExtra("Name", name);
-                            startActivity(intent1);
-                            Toast.makeText(getApplicationContext(),""+currentID,Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            documentReference.get()
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String name = documentSnapshot.getString("FirstName");
+                                            Intent intent1 = new Intent(SignupScreen.this, ImageSelection.class);
+                                            Toast.makeText(getApplicationContext(), "" + userId, Toast.LENGTH_SHORT).show();
+                                            intent1.putExtra("Name_bodyshape", name);
+                                            startActivity(intent1);
+                                        }
+
+                                    });
                         }
 
-                    });
+                    }
+
+                });
 //
             //Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
             //startActivity(intent);
-        }
-        else
-        {
-            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
-            final FirebaseFirestore db = FirebaseFirestore.getInstance();
-            final DocumentReference documentReference = db.collection("users").document(currentID);
-            documentReference.get()
-                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            String name = documentSnapshot.getString("FirstName");
-                            Intent intent1 = new Intent(SignupScreen.this, ImageSelection.class);
-                            intent1.putExtra("Name_bodyshape", name);
-                            startActivity(intent1);
-                        }
 
-                    });
-        }
         /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
         if(isLoggedIn){
             startActivity(new Intent(SignupScreen.this, ImageSelection.class));
         }*/
-    }
+                }
 
 
 }
