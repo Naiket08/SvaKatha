@@ -51,8 +51,7 @@ public class RatingFragment extends Fragment {
     private static final int CAMERA_IMAGE_REQUEST = 3;
     private static final String FILE_NAME = "temp.jpg";
     Uri uri;
-
-
+    int a;
 
     public RatingFragment() {
         // Required empty public constructor
@@ -75,18 +74,7 @@ public class RatingFragment extends Fragment {
 //        editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
 //        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
         imageViewLike = (ImageView) view.findViewById(R.id.imageViewLike);
-        final int percentage = new Random().nextInt(41) + 30;
 
-        if(percentage<50){
-            imageViewLikeDislike.setVisibility(View.VISIBLE);
-            imageViewLike.setVisibility(View.INVISIBLE);
-            textViewLikeDislikePercentage.setText(percentage+"%");
-        }
-        else{
-            imageViewLike.setVisibility(View.VISIBLE);
-            imageViewLikeDislike.setVisibility(View.INVISIBLE);
-            textViewLikeDislikePercentage.setText(percentage+"%");
-        }
 
         imageButtonCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +93,16 @@ public class RatingFragment extends Fragment {
 
         selectstylespnr.setAdapter(occasionAdapter);
         imageViewCapturedImage.setImageURI(uri);
+        if(a<50){
+            imageViewLikeDislike.setVisibility(View.VISIBLE);
+            imageViewLike.setVisibility(View.INVISIBLE);
+            textViewLikeDislikePercentage.setText(a+"%");
+        }
+        else{
+            imageViewLike.setVisibility(View.VISIBLE);
+            imageViewLikeDislike.setVisibility(View.INVISIBLE);
+            textViewLikeDislikePercentage.setText(a+"%");
+        }
 
         return view;
     }
@@ -135,6 +133,19 @@ public class RatingFragment extends Fragment {
                 Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
                 uri = photoUri;
                 imageViewCapturedImage.setImageURI(uri);
+                final int percentage = new Random().nextInt(41) + 30;
+                a = percentage;
+
+                if(percentage<50){
+                    imageViewLikeDislike.setVisibility(View.VISIBLE);
+                    imageViewLike.setVisibility(View.INVISIBLE);
+                    textViewLikeDislikePercentage.setText(percentage+"%");
+                }
+                else{
+                    imageViewLike.setVisibility(View.VISIBLE);
+                    imageViewLikeDislike.setVisibility(View.INVISIBLE);
+                    textViewLikeDislikePercentage.setText(percentage+"%");
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }

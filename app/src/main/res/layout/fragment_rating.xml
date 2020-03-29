@@ -47,7 +47,7 @@
         android:layout_marginTop="@dimen/_330sdp"
         android:src="@drawable/dislikeimage"
         android:scaleType="center"
-        android:visibility="invisible"/>
+        android:visibility="visible"/>
 
     <ImageView
         android:id="@+id/imageViewLike"
@@ -58,13 +58,13 @@
         android:layout_marginTop="@dimen/_330sdp"
         android:src="@drawable/likeimage"
         android:scaleType="center"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/textViewLikeDislikePercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100%"
+        android:text="0%"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp"
         android:layout_below="@+id/imageViewLikeDislike"
