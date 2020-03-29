@@ -50,6 +50,7 @@ public class RatingFragment extends Fragment {
     private static final int CAMERA_PERMISSIONS_REQUEST = 2;
     private static final int CAMERA_IMAGE_REQUEST = 3;
     private static final String FILE_NAME = "temp.jpg";
+    Uri uri;
 
 
 
@@ -103,6 +104,7 @@ public class RatingFragment extends Fragment {
                         selectstyle);
 
         selectstylespnr.setAdapter(occasionAdapter);
+        imageViewCapturedImage.setImageURI(uri);
 
         return view;
     }
@@ -131,10 +133,17 @@ public class RatingFragment extends Fragment {
             try {
                 Toast.makeText(context, "Image Captured", Toast.LENGTH_LONG).show();
                 Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
-                imageViewCapturedImage.setImageURI(photoUri);
+                uri = photoUri;
+                imageViewCapturedImage.setImageURI(uri);
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        uri = null;
     }
 }
