@@ -633,6 +633,7 @@ public class SignupScreen extends AppCompatActivity {
                             //user.put("Password",password);
                             user.put("FirstName", username);
                             user.put("Status", "true");
+                            user.put("BodyShape","");
 
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
