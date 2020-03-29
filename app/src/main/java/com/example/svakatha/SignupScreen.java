@@ -74,6 +74,7 @@ public class SignupScreen extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mfirebaseAuth;
     String userId;
+    boolean status=false;
 
 
     @Override
@@ -249,6 +250,32 @@ public class SignupScreen extends AppCompatActivity {
 //        });
     }
 
+    /*@Override
+    protected void onStart() {
+        super.onStart();
+
+        //if the user is already signed in
+        //we will close this activity
+        //and take the user to profile activity
+        if (mfirebaseAuth.getCurrentUser() != null) {
+            finish();
+            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+            final DocumentReference documentReference = db.collection("users").document(currentID);
+            documentReference.get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            String name = documentSnapshot.getString("FirstName");
+                            Intent intent1 = new Intent(SignupScreen.this, ImageSelection.class);
+                            intent1.putExtra("Name_bodyshape", name);
+                            startActivity(intent1);
+                        }
+
+                    });
+
+        }
+    }*/
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
@@ -503,7 +530,9 @@ public class SignupScreen extends AppCompatActivity {
         if(requestCode==RC_SIGN_IN)
         {
             Task<GoogleSignInAccount>task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            Toast.makeText(this, ""+task, Toast.LENGTH_SHORT).show();
             handlesigninResult(task);
+
         }
     }
 
@@ -511,8 +540,14 @@ public class SignupScreen extends AppCompatActivity {
     {
         try {
             GoogleSignInAccount account =completedtask.getResult(ApiException.class);
-            Toast.makeText(this,"Sign In Successfull",Toast.LENGTH_SHORT).show();
-            FirebaseGoogleAuth(account);
+            //if(account==null){
+                Toast.makeText(this,"Sign In Successfull",Toast.LENGTH_SHORT).show();
+                FirebaseGoogleAuth(account);
+            //}
+            /*else
+            {
+                login();
+            }*/
         }
         catch (ApiException e){
             Toast.makeText(this,"Sign In Failed",Toast.LENGTH_SHORT).show();
@@ -524,22 +559,21 @@ public class SignupScreen extends AppCompatActivity {
     private void FirebaseGoogleAuth(GoogleSignInAccount acc)
     {
         AuthCredential authCredential = GoogleAuthProvider.getCredential(acc.getIdToken(),null);
-        mfirebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(SignupScreen.this, "Successful", Toast.LENGTH_SHORT).show();
-                    FirebaseUser user = mfirebaseAuth.getCurrentUser();
-                    updateUI(user);
+
+            mfirebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(SignupScreen.this, "Successful", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = mfirebaseAuth.getCurrentUser();
+                        updateUI(user);
+                    } else {
+                        Toast.makeText(SignupScreen.this, "Failed", Toast.LENGTH_SHORT).show();
+                        updateUI(null);
+                    }
                 }
-                else
-                {
-                    Toast.makeText(SignupScreen.this, "Failed", Toast.LENGTH_SHORT).show();
-                    updateUI(null);
-                }
-            }
-        });
+            });
+
     }
 
     /*@Override
@@ -552,6 +586,26 @@ public class SignupScreen extends AppCompatActivity {
         editTextSignUpUsrname.requestFocus();
     }*/
 
+    /*public void login()
+    {
+
+        startActivity(new Intent(this, ImageSelection.class));
+        /*final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final DocumentReference documentReference = db.collection("users").document(currentID);
+        documentReference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String name = documentSnapshot.getString("FirstName");
+                        Intent intent1 = new Intent(SignupScreen.this, ImageSelection.class);
+                        intent1.putExtra("Name_bodyshape", name);
+                        startActivity(intent1);
+                    }
+
+                });
+    }*/
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -561,7 +615,7 @@ public class SignupScreen extends AppCompatActivity {
     private void updateUI(FirebaseUser user1)
     {
         GoogleSignInAccount acc = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if(acc!=null)
+        if(acc==null)
         {
             String email=acc.getEmail();
             String username=acc.getGivenName();
@@ -571,6 +625,8 @@ public class SignupScreen extends AppCompatActivity {
             user.put("Email",email);
             //user.put("Password",password);
             user.put("FirstName",username);
+            user.put("Status","true");
+
 
 
             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -598,12 +654,29 @@ public class SignupScreen extends AppCompatActivity {
             //Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
             //startActivity(intent);
         }
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        else
+        {
+            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
+            final FirebaseFirestore db = FirebaseFirestore.getInstance();
+            final DocumentReference documentReference = db.collection("users").document(currentID);
+            documentReference.get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            String name = documentSnapshot.getString("FirstName");
+                            Intent intent1 = new Intent(SignupScreen.this, ImageSelection.class);
+                            intent1.putExtra("Name_bodyshape", name);
+                            startActivity(intent1);
+                        }
+
+                    });
+        }
+        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
         if(isLoggedIn){
-            startActivity(new Intent(SignupScreen.this, DetailsScreen.class));
-        }
+            startActivity(new Intent(SignupScreen.this, ImageSelection.class));
+        }*/
     }
 
 
