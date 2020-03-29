@@ -45,7 +45,7 @@ public class RazorPay extends Activity implements PaymentResultListener {
         /**
          * Reference to current activity
          */
-        final Activity activity = this;
+        final RazorPay activity = this;
 
 
         /**
@@ -89,12 +89,18 @@ public class RazorPay extends Activity implements PaymentResultListener {
     @Override
     public void onPaymentSuccess(String s) {
         Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
-
+        onBackPressed();
     }
 
     @Override
     public void onPaymentError(int i, String s) {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-
+        onBackPressed();
+    }
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 }
