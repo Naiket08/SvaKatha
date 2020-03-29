@@ -94,7 +94,6 @@ public class RazorPay extends Activity implements PaymentResultListener {
 
     @Override
     public void onPaymentError(int i, String s) {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
         onBackPressed();
     }
     public void onBackPressed() {
