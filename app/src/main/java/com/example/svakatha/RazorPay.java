@@ -89,7 +89,7 @@ public class RazorPay extends Activity implements PaymentResultListener {
     @Override
     public void onPaymentSuccess(String s) {
         Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
-
+        onBackPressed();
     }
 
     @Override
