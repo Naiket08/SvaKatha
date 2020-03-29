@@ -45,7 +45,7 @@ public class ShopClothes extends Fragment {
     private static int index = 1;
     Map<String, String> data = new HashMap<>();
     String imageCode;
-    int i = 1;
+    int i = 0;
     public Boolean str=false;
     public String str1,str2;
 
@@ -107,12 +107,12 @@ public class ShopClothes extends Fragment {
             public void onClick(View v) {
                 // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
-                if (index < 18) {
+                if (index < 19) {
                     //saveUserChoiceToDb(index);
                 }
-                if (index == 18) {
+                if (index == 19) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
-                    index = 18;
+                    index = 19;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 }
                 if(index == 1) {
@@ -133,12 +133,12 @@ public class ShopClothes extends Fragment {
             public void onClick(View v) {
                 // Toast.makeText(mContext, "", Toast.LENGTH_SHORT).show();
                 removeParentView(index);
-                if (index < 18) {
+                if (index < 19) {
                     // saveUserChoiceToDb(index);
                 }
-                if (index == 18) {
+                if (index == 19) {
                     Toast.makeText(mContext, "Reached End", Toast.LENGTH_SHORT).show();
-                    index = 18;
+                    index = 19;
                     Picasso.get().load(userDataModelArrayList.get(index).getUrl()).fit().centerInside().into(imageButtonPersonClothesSelection);
                 } else {
                     index = index + 1;
