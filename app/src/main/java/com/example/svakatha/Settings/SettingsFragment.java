@@ -72,7 +72,6 @@ public class SettingsFragment extends Fragment {
         tv_profile_name = (TextView)view.findViewById(R.id.tv_profile_name);
         tv_profile_mail_id = (TextView)view.findViewById(R.id.tv_profile_mail_id);
 
-
         ll_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -144,6 +143,7 @@ public class SettingsFragment extends Fragment {
         //setViews(view);
         return view;
     }
+
 
     /*private void setViews(View view) {
 

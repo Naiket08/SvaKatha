@@ -305,7 +305,7 @@ public class ShopClothes extends Fragment {
                             String durl = documentSnapshot.getString("imgF" + i);
 
                             model.setUrl(durl);
-                            if (i == 2) {
+                            if (i == 1) {
                                 onFirstUrlSet();
                             }
                             // Log.i("Hi", durl);
@@ -327,7 +327,7 @@ public class ShopClothes extends Fragment {
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             String durl = documentSnapshot.getString("imgM" + i);
                             model.setUrl(durl);
-                            if (i == 2) {
+                            if (i == 1) {
                                 onFirstUrlSet();
                             }
                             // Log.i("Hi", durl);

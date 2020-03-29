@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.svakatha.Closet.ClosetFragment;
 import com.example.svakatha.PermissionUtils.PermissionUtils;
 import com.example.svakatha.Settings.SettingsFragment;
+import com.example.svakatha.Settings.SubFragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
@@ -78,7 +79,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    shopClothes).commit();
+                                    shopClothes).addToBackStack(null).commit();
                     setTitle("Closet Suggestion");
                     //TODO: add fragment 2
                     break;
@@ -89,7 +90,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    ratingFragment).commit();
+                                    ratingFragment).addToBackStack(null).commit();
                     setTitle("Rating");
                     break;
                 case R.id.setting:
@@ -99,7 +100,7 @@ public class HostActivity extends AppCompatActivity {
                     }
                     supportFragmentManager.beginTransaction()
                             .replace(R.id.host_fragment,
-                                    settingsFragment).commit();
+                                    settingsFragment).addToBackStack(null).commit();
                     setTitle("Setting");
                     //TODO: add fragment 4
 
@@ -172,9 +173,14 @@ public class HostActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    Fragment getCurrentFragment(){
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.host_fragment);
+        return currentFragment;
+    }
+
     @Override
     public void onBackPressed() {
-        if(bnv.getSelectedItemId() == R.id.closet){
+        if(getSupportFragmentManager().getBackStackEntryCount() == 0){
             if(doubleBackToExitPressedOnce){
                 super.onBackPressed();
                 finishAffinity();
@@ -188,14 +194,24 @@ public class HostActivity extends AppCompatActivity {
                 }
             },2000);
         }
-        if(bnv.getSelectedItemId() == R.id.rating){
-            bnv.setSelectedItemId(R.id.closet);
-        }
-        if(bnv.getSelectedItemId() == R.id.shop){
-            bnv.setSelectedItemId(R.id.closet);
-        }
-        if(bnv.getSelectedItemId() == R.id.setting){
-            bnv.setSelectedItemId(R.id.closet);
+        else{
+            getSupportFragmentManager().popBackStackImmediate();
+            if (getCurrentFragment() == closetFragment) {
+                bnv.setSelectedItemId(R.id.closet);
+                getSupportFragmentManager().popBackStackImmediate();
+            }
+            if (getCurrentFragment() == shopClothes) {
+                bnv.setSelectedItemId(R.id.shop);
+                getSupportFragmentManager().popBackStackImmediate();
+            }
+            if (getCurrentFragment() == ratingFragment) {
+                bnv.setSelectedItemId(R.id.rating);
+                getSupportFragmentManager().popBackStackImmediate();
+            }
+            if (getCurrentFragment() == settingsFragment) {
+                bnv.setSelectedItemId(R.id.setting);
+                getSupportFragmentManager().popBackStackImmediate();
+            }
         }
     }
 }

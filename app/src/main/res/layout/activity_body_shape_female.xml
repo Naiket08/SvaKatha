@@ -94,7 +94,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/progressBarBodyShapeScreen_1_F"
         android:layout_marginTop="@dimen/_20sdp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/linearLayoutbodyshapeFemale"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -149,17 +153,19 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/oval"/>
             </LinearLayout>
+        </LinearLayout>
 
             <ImageButton
                 android:id="@+id/imageButtonBodyShapeScreenForward_1_F"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
-                android:layout_marginStart="320dp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_below="@+id/linearLayoutbodyshapeFemale"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:background="#FFFFFF"
                 app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
-
-
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

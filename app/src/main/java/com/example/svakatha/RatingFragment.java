@@ -36,6 +36,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -73,23 +74,18 @@ public class RatingFragment extends Fragment {
 //        editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
 //        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
         imageViewLike = (ImageView) view.findViewById(R.id.imageViewLike);
+        final int percentage = new Random().nextInt(41) + 30;
 
-        /*buttonChangeLikeDislike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int percentage = Integer.parseInt(editTextPercentage.getText().toString());
-                if(percentage<50){
-                    imageViewLikeDislike.setVisibility(View.VISIBLE);
-                    imageViewLike.setVisibility(View.INVISIBLE);
-                    textViewLikeDislikePercentage.setText(percentage+"%");
-                }
-                else{
-                    imageViewLike.setVisibility(View.VISIBLE);
-                    imageViewLikeDislike.setVisibility(View.INVISIBLE);
-                    textViewLikeDislikePercentage.setText(percentage+"%");
-                }
-            }
-        });*/
+        if(percentage<50){
+            imageViewLikeDislike.setVisibility(View.VISIBLE);
+            imageViewLike.setVisibility(View.INVISIBLE);
+            textViewLikeDislikePercentage.setText(percentage+"%");
+        }
+        else{
+            imageViewLike.setVisibility(View.VISIBLE);
+            imageViewLikeDislike.setVisibility(View.INVISIBLE);
+            textViewLikeDislikePercentage.setText(percentage+"%");
+        }
 
         imageButtonCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,11 +136,5 @@ public class RatingFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        imageViewCapturedImage.setImageURI(null);
     }
 }
