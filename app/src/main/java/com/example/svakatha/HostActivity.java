@@ -64,46 +64,47 @@ public class HostActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.closet:
                     result = 1;
-                    if (closetFragment == null) {
-                        closetFragment = new ClosetFragment();
+                    closetFragment = new ClosetFragment();
+                    if (!closetFragment.isAdded()) {
+                        supportFragmentManager.beginTransaction()
+                                .replace(R.id.host_fragment,
+                                        closetFragment).commit();
+                        setTitle("My Closet");
                     }
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.host_fragment,
-                                    closetFragment).commit();
-                    setTitle("My Closet");
                     break;
                 case R.id.shop:
                     result = 2;
-                    if (shopClothes == null) {
-                        shopClothes = new ShopClothes();
+                    shopClothes = new ShopClothes();
+                    if (!shopClothes.isAdded()) {
+                        supportFragmentManager.beginTransaction()
+                                .replace(R.id.host_fragment,
+                                        shopClothes).addToBackStack(null).commit();
+                        setTitle("Closet Suggestion");
                     }
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.host_fragment,
-                                    shopClothes).addToBackStack(null).commit();
-                    setTitle("Closet Suggestion");
+
                     //TODO: add fragment 2
                     break;
                 case R.id.rating:
                     result = 3;
-                    if (ratingFragment == null) {
-                        ratingFragment = new RatingFragment();
+                    ratingFragment = new RatingFragment();
+                    if (!ratingFragment.isAdded()) {
+                        supportFragmentManager.beginTransaction()
+                                .replace(R.id.host_fragment,
+                                        ratingFragment).addToBackStack(null).commit();
+                        setTitle("Rating");
                     }
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.host_fragment,
-                                    ratingFragment).addToBackStack(null).commit();
-                    setTitle("Rating");
                     break;
                 case R.id.setting:
                     result = 4;
-                    if (settingsFragment == null) {
-                        settingsFragment = new SettingsFragment();
+                    settingsFragment = new SettingsFragment();
+                    if (!settingsFragment.isAdded()) {
+                        supportFragmentManager.beginTransaction()
+                                .replace(R.id.host_fragment,
+                                        settingsFragment).addToBackStack(null).commit();
+                        setTitle("Setting");
                     }
-                    supportFragmentManager.beginTransaction()
-                            .replace(R.id.host_fragment,
-                                    settingsFragment).addToBackStack(null).commit();
-                    setTitle("Setting");
                     //TODO: add fragment 4
-
+                    break;
             }
             return true;
         }

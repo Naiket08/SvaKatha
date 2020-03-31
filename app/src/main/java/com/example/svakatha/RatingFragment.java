@@ -155,6 +155,6 @@ public class RatingFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        uri = null;
+        //uri = null;
     }
 }
