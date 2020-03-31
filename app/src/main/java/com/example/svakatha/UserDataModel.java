@@ -1,10 +1,25 @@
 package com.example.svakatha;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 public class UserDataModel {
     String name, totalLikes;
     int photo;
     String url;
     String imageCode;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    Bitmap bitmap;
+
+
 
     public String getImageCode() {
         return imageCode;

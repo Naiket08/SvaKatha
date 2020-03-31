@@ -7,6 +7,7 @@
     android:background="#FFFFFF"
     tools:context=".SignupScreen">
 
+
     <ImageView
         android:id="@+id/imageViewSignUpHeader"
         android:layout_width="match_parent"
