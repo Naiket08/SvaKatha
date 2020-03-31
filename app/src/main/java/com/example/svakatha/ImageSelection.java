@@ -40,7 +40,7 @@ public class ImageSelection extends AppCompatActivity {
     int screenCenter;
     public RelativeLayout parentView;
     private Context context;
-    ArrayList<UserDataModel> userDataModelArrayList;
+    ArrayList<UserDataModel> userDataModelArrayList=new ArrayList<>();
     private static int index = 0;
     FirebaseFirestore db;
     FirebaseAuth mAuth ;
@@ -48,6 +48,7 @@ public class ImageSelection extends AppCompatActivity {
     String imageCode;
     ImageView imageView;
     int i = 0;
+    String currentID;
 
     @SuppressWarnings("deprecation")
     @SuppressLint({"NewApi", "ClickableViewAccessibility"})
@@ -57,6 +58,10 @@ public class ImageSelection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_selection);
+        db=FirebaseFirestore.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        currentID = mAuth.getCurrentUser().getUid();
+        getArrayData();
 //test
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarImageSelection);
@@ -64,24 +69,18 @@ public class ImageSelection extends AppCompatActivity {
         // progressAnimator.setDuration(900);
         // progressAnimator.setInterpolator(new LinearInterpolator());
         // progressAnimator.start();
-//
-        context = ImageSelection.this;
-
+//context = ImageSelection.this;
         parentView = findViewById(R.id.main_layoutview);
-
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();
-
         screenCenter = windowwidth / 2;
 
-        userDataModelArrayList = new ArrayList<>();
-        mAuth=FirebaseAuth.getInstance();
-        db=FirebaseFirestore.getInstance();
+
         textViewImageSelectionText2 = (TextView) findViewById(R.id.textViewStyleGreet2);
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
         btn3 = findViewById(R.id.imagebuttonimageselectionLove_1);
         btn4 = findViewById(R.id.imageButtonimageSelectionScreenForward_1);
-        getArrayData();
+
 
         Intent intent = getIntent();
         textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(),Typeface.BOLD);
@@ -98,11 +97,7 @@ public class ImageSelection extends AppCompatActivity {
                         textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(), Typeface.BOLD);
                     }
                 });*/
-
-        final String currentID = mAuth.getCurrentUser().getUid();
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
+        db.collection("users").document(currentID).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -265,10 +260,8 @@ public class ImageSelection extends AppCompatActivity {
     }
 
     public void settingURL(final UserDataModel model, final int i) {
-        final String currentID = mAuth.getCurrentUser().getUid();
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference documentReference = db.collection("users").document(currentID);
-        documentReference.get()
+      // currentID = mAuth.getCurrentUser().getUid();
+        db.collection("users").document(currentID).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
