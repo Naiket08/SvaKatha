@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -120,62 +123,14 @@ public class SignupScreen extends AppCompatActivity {
             }
         });
 
-        /*buttonSignUp_LetsStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(editTextSignUpUsrname.getText().toString().isEmpty()||editTextSignUpEmailId.getText().toString().isEmpty()||editTextSignUpPassword.getText().toString().isEmpty()||editTextSignUpConfirmPassword.getText().toString().isEmpty()){
-                    if(editTextSignUpUsrname.getText().toString().isEmpty()){
-                        editTextSignUpUsrname.setError("Please enter Username");
-                    }
-                    if(editTextSignUpEmailId.getText().toString().isEmpty()){
-                        editTextSignUpEmailId.setError("Please enter Email ID");
-                    }
-                    if(editTextSignUpPassword.getText().toString().isEmpty()){
-                        editTextSignUpPassword.setError("Please enter Password");
-                    }
-                    if(editTextSignUpConfirmPassword.getText().toString().isEmpty()){
-                        editTextSignUpConfirmPassword.setError("Please enter Confirm Password");
-                    }
-                }
-                else if(editTextSignUpUsrname.getText().toString().isEmpty()&&editTextSignUpEmailId.getText().toString().isEmpty()&&editTextSignUpPassword.getText().toString().isEmpty()&&editTextSignUpConfirmPassword.getText().toString().isEmpty()){
-                    editTextSignUpUsrname.setError("Please enter Username");
-                    editTextSignUpEmailId.setError("Please enter Email ID");
-                    editTextSignUpPassword.setError("Please enter Password");
-                    editTextSignUpConfirmPassword.setError("Please enter Confirm Password");
-                    Toast.makeText(SignupScreen.this, "All Fields are required", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    if(editTextSignUpPassword.getText().toString().equals(editTextSignUpConfirmPassword.getText().toString())){
-                        String name = editTextSignUpUsrname.getText().toString();
-                        Intent intent = new Intent(SignupScreen.this,DetailsScreen.class);
-                        intent.putExtra("Name",name);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                    }
-                    else{
-                        editTextSignUpConfirmPassword.setError("Password does not match");
-                    }
-                }
-            }
-        });*/
         textViewLoginForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignupScreen.this,LoginScreen.class);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                //overridePendingTransition(0,0);
             }
         });
 
-
-
-        /*if (!loggedOut) {
-            Log.d("TAG", "Username is: " + Profile.getCurrentProfile().getName());
-
-            //Using Graph API
-            getUserProfile(AccessToken.getCurrentAccessToken());
-        }*/
 
        mcallbackManager = CallbackManager.Factory.create();
         facebook_login_button = (LoginButton) findViewById(R.id.facebook_login_button);
@@ -227,69 +182,8 @@ public class SignupScreen extends AppCompatActivity {
 
             }
         });
-        // If you are using in a fragment, call loginButton.setFragment(this);
 
-        // Callback registration
-//        facebook_login_button.registerCallback(mcallbackManager, new FacebookCallback<LoginResult>() {
-//            @Override
-//            public void onSuccess(LoginResult loginResult) {
-//                // App code
-//                boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
-//                Log.d("API123", loggedIn + " ??");
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//                // App code
-//            }
-//
-//            @Override
-//            public void onError(FacebookException error) {
-//
-//            }
-//        });
     }
-
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-
-        //if the user is already signed in
-        //we will close this activity
-        //and take the user to profile activity
-        if (mfirebaseAuth.getCurrentUser() != null) {
-            finish();
-            final String currentID = mfirebaseAuth.getCurrentUser().getUid();
-            final FirebaseFirestore db = FirebaseFirestore.getInstance();
-            final DocumentReference documentReference = db.collection("users").document(currentID);
-            documentReference.get()
-                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            String name = documentSnapshot.getString("FirstName");
-                            Intent intent1 = new Intent(SignupScreen.this, ImageSelection.class);
-                            intent1.putExtra("Name_bodyshape", name);
-                            startActivity(intent1);
-                        }
-
-                    });
-
-        }
-    }*/
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseAuth mFirebaseAuth=FirebaseAuth.getInstance();
-//        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-//        if (currentUser != null) {
-//            Log.i(TAG, "onStart: Someone logged in <3");
-//            Toast.makeText(SignupScreen.this, "Facebook4", Toast.LENGTH_SHORT).show();
-//
-//        } else {
-//            Log.i(TAG, "onStart: No one logged in :/");
-//        }
-//
-//    }
 
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
@@ -303,13 +197,10 @@ public class SignupScreen extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            //Toast.makeText(SignupScreen.this, "Facebook5", Toast.LENGTH_SHORT).show();
 
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             Log.i(TAG, "onComplete: login completed with user: " + user.getDisplayName());
-                          //  startActivity(new Intent(getApplicationContext(), DetailsScreen.class));
-                           // FirebaseUser user1 = mFirebaseAuth.getCurrentUser();
-                            //updateUI(user1);
+
                             getUserProfile(AccessToken.getCurrentAccessToken());
                         } else {
                             // If sign in fails, display a message to the user.
@@ -467,55 +358,6 @@ public class SignupScreen extends AppCompatActivity {
     }
 
 
-    /*@Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mcallbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==RC_SIGN_IN){
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-        }
-    }
-
-    private void handleSignInResult(GoogleSignInResult result){
-        if(result.isSuccess()){
-            GoogleSignInAccount account=result.getSignInAccount();
-            gotoProfile(account);
-        }else{
-            Toast.makeText(getApplicationContext(),"Sign in cancel",Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void gotoProfile(GoogleSignInAccount acc){
-
-        String email=acc.getEmail();
-        String username=acc.getGivenName();
-        userId = mfirebaseAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = db.collection("users").document(userId);
-        Map<String,Object> user = new HashMap<>();
-        user.put("Email",email);
-        //user.put("Password",password);
-        user.put("FirstName",username);
-        user.put("Business","");
-        user.put("Style","");
-        user.put("Price","");
-        user.put("Occupation","");
-        //user.put("closetChoiceDocName","");
-
-        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(SignupScreen.this, "Your Details are entered in Database", Toast.LENGTH_SHORT).show();
-            }
-        });
-        Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
-        startActivity(intent);
-    }*/
 
     private void signIn()
     {
@@ -540,14 +382,9 @@ public class SignupScreen extends AppCompatActivity {
     {
         try {
             GoogleSignInAccount account =completedtask.getResult(ApiException.class);
-            //if(account==null){
                 Toast.makeText(this,"Sign In Successfull",Toast.LENGTH_SHORT).show();
                 FirebaseGoogleAuth(account);
-            //}
-            /*else
-            {
-                login();
-            }*/
+
         }
         catch (ApiException e){
             Toast.makeText(this,"Sign In Failed",Toast.LENGTH_SHORT).show();
@@ -672,16 +509,6 @@ public class SignupScreen extends AppCompatActivity {
                     }
 
                 });
-//
-            //Intent intent=new Intent(SignupScreen.this,DetailsScreen.class);
-            //startActivity(intent);
-
-        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
-        if(isLoggedIn){
-            startActivity(new Intent(SignupScreen.this, ImageSelection.class));
-        }*/
                 }
 
 

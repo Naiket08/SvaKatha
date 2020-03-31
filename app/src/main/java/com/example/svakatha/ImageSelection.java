@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -128,9 +129,13 @@ public class ImageSelection extends AppCompatActivity {
                     Toast.makeText(context, "Reached End", Toast.LENGTH_SHORT).show();
                     index = 8;
                     addParentView(index);
+                    //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
                 } else {
                     index = index + 1;
                     addParentView(index);
+                    //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
                 }
 
 
@@ -150,9 +155,13 @@ public class ImageSelection extends AppCompatActivity {
                     Toast.makeText(context, "Reached End", Toast.LENGTH_SHORT).show();
                     index = 8;
                     addParentView(index);
+                    //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
                 } else {
                     index = index + 1;
                     addParentView(index);
+                    //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
                 }
 
 
@@ -170,9 +179,13 @@ public class ImageSelection extends AppCompatActivity {
                     Toast.makeText(context, "Reached End", Toast.LENGTH_SHORT).show();
                     index = 8;
                     addParentView(index);
+                    //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
                 } else {
                     index = index + 1;
                     addParentView(index);
+                    //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+
                 }
 
 
@@ -317,7 +330,8 @@ public class ImageSelection extends AppCompatActivity {
 
     private void addParentView(int index) {
         imageView = findViewById(R.id.userIMG);
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        Glide.with(this).load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
     }
     private void removeParentView(int index) {
 
@@ -336,8 +350,7 @@ public class ImageSelection extends AppCompatActivity {
 
 
 
-    public void onFirstUrlSet() {
-        addParentView(index);
+    public void onFirstUrlSet() { addParentView(index);
     }
 
 }
