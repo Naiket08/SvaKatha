@@ -60,8 +60,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -228,7 +226,7 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     }
 
     private void startCamera() {
-        /*if (PermissionUtils.requestPermission(
+        if (PermissionUtils.requestPermission(
                 getActivity(),
                 CAMERA_PERMISSIONS_REQUEST,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -238,10 +236,7 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivityForResult(intent, CAMERA_IMAGE_REQUEST);
-        }*/
-        CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .start(getActivity());
+        }
     }
 
     private void setupImageGridView() {
@@ -288,25 +283,10 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         if (requestCode == GALLERY_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
             uploadImage(data.getData());
-        } /*else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
-            *//*Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
+        } else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
             Uri photoUri = FileProvider.getUriForFile(mContext, mContext.getApplicationContext().getPackageName() + ".provider", getCameraFile());
-            uploadImage(photoUri);*//*
-            CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .start(getActivity());
-        }*/else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
-                Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
-                uploadImage(resultUri);
-
-                //From here you can load the image however you need to, I recommend using the Glide library
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-            }
+            uploadImage(photoUri);
         }
     }
 
