@@ -62,6 +62,7 @@ public class ImageSelection extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         currentID = mAuth.getCurrentUser().getUid();
         getArrayData();
+        context=getApplicationContext();
 //test
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarImageSelection);
@@ -120,7 +121,6 @@ public class ImageSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Image Deleted", Toast.LENGTH_SHORT).show();
-                removeParentView(index);
                 if (index < 8) {
                     saveUserChoiceToDb(index);
                 }
@@ -319,11 +319,9 @@ public class ImageSelection extends AppCompatActivity {
         imageView = findViewById(R.id.userIMG);
         Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
     }
-
     private void removeParentView(int index) {
 
     }
-
     public void saveUserChoiceToDb(int index) {
         String uId = mAuth.getCurrentUser().getUid();
         imageCode = userDataModelArrayList.get(index).getImageCode();
