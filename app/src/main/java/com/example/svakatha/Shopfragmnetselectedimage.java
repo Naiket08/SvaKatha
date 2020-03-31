@@ -18,17 +18,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Shopfragmnetselectedimage  extends Fragment {
 
@@ -38,10 +44,10 @@ public class Shopfragmnetselectedimage  extends Fragment {
     int angle = 0;
     FirebaseFirestore mDB;
     List<String> urlList=new ArrayList<>();
-    public String Totalprice;
+    public String Totalprice,Totalprice1;
     private FirebaseAuth mAuth;
+    private int TP,AD;
 
-    public int TP;
 
 
     public Shopfragmnetselectedimage(){
@@ -74,14 +80,30 @@ public class Shopfragmnetselectedimage  extends Fragment {
         imagebuttonBackWard=(ImageButton)view.findViewById(R.id.imagebuttonBackWard_1);
         imagebuttonForWard=(ImageButton)view.findViewById(R.id.imagebuttonForWard_1);
 
-        Bundle bundle = this.getArguments();
-        String receivedIndex = bundle.getString("IndexValue");
-        String receivedIn = bundle.getString("Index");
-        String receivedI = bundle.getString("IndexV");
-        boolean b = Boolean.parseBoolean(receivedI);
+            Bundle bundle = this.getArguments();
+            String receivedIndex = bundle.getString("IndexValue");
+            String receivedIn = bundle.getString("Index");
+            String receivedI = bundle.getString("IndexV");
+            boolean b = Boolean.parseBoolean(receivedI);
+            Picasso.get().load(Uri.parse(receivedIn)).into(imageViewPersonImgae);
+
+        String uId = mAuth.getCurrentUser().getUid();
+//my logic
 
 
-          Picasso.get().load(Uri.parse(receivedIn)).into(imageViewPersonImgae);
+
+           mDB.collection("users").document(uId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+               @Override
+               public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                   String received = documentSnapshot.getString("AddCart");
+                   Log.i("ALL", received);
+                   Totalprice1 = received;
+                   AD = Integer.parseInt(Totalprice1);
+               }
+           });
+
+
+
 
         mDB.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -163,6 +185,13 @@ public class Shopfragmnetselectedimage  extends Fragment {
         }
 
 
+        buttonAddtoCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AD=AD+TP;
+                saveADToDb(AD);
+            }
+        });
 
 
 
@@ -170,8 +199,14 @@ public class Shopfragmnetselectedimage  extends Fragment {
         buttonBuyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getActivity().getBaseContext(),RazorPay.class);
-                intent.putExtra("YourInteger",TP);
+                if(AD==0){
+                    intent.putExtra("YourInteger",TP);
+                }
+                else{
+                    intent.putExtra("YourInteger",AD);
+                }
                 getActivity().startActivity(intent);
 
             }
@@ -195,6 +230,15 @@ public class Shopfragmnetselectedimage  extends Fragment {
         });
 
         return view;
+
+    }
+    public void saveADToDb(int AD) {
+        String uId = mAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = mDB.collection("users").document(uId);
+        Map<String, Object> user = new HashMap<>();
+        String X=String.valueOf(AD);
+        user.put("AddCart",X);
+        mDB.collection("users").document(uId).set(user, SetOptions.merge());
 
     }
 }
