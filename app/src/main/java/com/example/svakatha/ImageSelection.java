@@ -3,8 +3,14 @@ package com.example.svakatha;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -25,6 +31,17 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,16 +51,16 @@ import java.util.Map;
 
 public class ImageSelection extends AppCompatActivity {
 
-    private static ImageButton btn1, btn2, btn3,btn4;
+    private static ImageButton btn1, btn2, btn3, btn4;
     private TextView textViewImageSelectionText2;
     int windowwidth;
     int screenCenter;
     public RelativeLayout parentView;
     private Context context;
-    ArrayList<UserDataModel> userDataModelArrayList=new ArrayList<>();
+    ArrayList<UserDataModel> userDataModelArrayList = new ArrayList<>();
     private static int index = 0;
     FirebaseFirestore db;
-    FirebaseAuth mAuth ;
+    FirebaseAuth mAuth;
     Map<String, String> data = new HashMap<>();
     String imageCode;
     ImageView imageView;
@@ -58,11 +75,13 @@ public class ImageSelection extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_selection);
-        db=FirebaseFirestore.getInstance();
-        mAuth=FirebaseAuth.getInstance();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         currentID = mAuth.getCurrentUser().getUid();
         getArrayData();
-        context=getApplicationContext();
+        context = getApplicationContext();
 //test
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarImageSelection);
@@ -75,7 +94,7 @@ public class ImageSelection extends AppCompatActivity {
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();
         screenCenter = windowwidth / 2;
 
-
+        imageView = findViewById(R.id.userIMG);
         textViewImageSelectionText2 = (TextView) findViewById(R.id.textViewStyleGreet2);
         btn1 = findViewById(R.id.imagebuttonimageselectionHate_1);
         btn2 = findViewById(R.id.imagebuttonimageselectionNotSure_1);
@@ -84,9 +103,9 @@ public class ImageSelection extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(),Typeface.BOLD);
+        textViewImageSelectionText2.setTypeface(textViewImageSelectionText2.getTypeface(), Typeface.BOLD);
         final String name_image = intent.getStringExtra("Name_bodyshape");
-        textViewImageSelectionText2.setText("Hi"+" "+name_image);
+        textViewImageSelectionText2.setText("Hi" + " " + name_image);
 
         /*db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -132,7 +151,6 @@ public class ImageSelection extends AppCompatActivity {
                     index = index + 1;
                     addParentView(index);
                 }
-
 
 
             }
@@ -182,10 +200,10 @@ public class ImageSelection extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ImageSelection.this,HostActivity.class);
+                Intent intent = new Intent(ImageSelection.this, HostActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
                 //Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
@@ -260,24 +278,23 @@ public class ImageSelection extends AppCompatActivity {
     }
 
     public void settingURL(final UserDataModel model, final int i) {
-      // currentID = mAuth.getCurrentUser().getUid();
+        // currentID = mAuth.getCurrentUser().getUid();
         db.collection("users").document(currentID).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         final String gender = documentSnapshot.getString("Gender");
-                        if(gender.equals("MALE"))
-                        {
+                        if (gender.equals("MALE")) {
                             db.collection("Images").document("ImageURLs").get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             String durl = documentSnapshot.getString("url" + i);
                                             model.setUrl(durl);
-                                            if(i==1){
+                                            if (i == 1) {
                                                 onFirstUrlSet();
                                             }
-                                            // Log.i("Hi", durl);
+
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -287,16 +304,14 @@ public class ImageSelection extends AppCompatActivity {
                                             Log.i("hi", e.toString());
                                         }
                                     });
-                        }
-                        else
-                        {
+                        } else {
                             db.collection("Images").document("femaleimageselection").get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
                                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                                             String durl = documentSnapshot.getString("url" + i);
                                             model.setUrl(durl);
-                                            if(i==1){
+                                            if (i == 1) {
                                                 onFirstUrlSet();
                                             }
                                             // Log.i("Hi", durl);
@@ -316,12 +331,47 @@ public class ImageSelection extends AppCompatActivity {
     }
 
     private void addParentView(int index) {
-        imageView = findViewById(R.id.userIMG);
-        Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
+        new ImageLoadAsyncTask(userDataModelArrayList.get(index).getUrl(),imageView).execute();
+        //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
     }
+
+    public class ImageLoadAsyncTask extends AsyncTask<Void, Void, Bitmap> {
+        private String url;
+           private ImageView imageView;
+
+        public ImageLoadAsyncTask(String url,ImageView imageView) {
+            this.url = url;
+            this.imageView = imageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(Void... params) {
+            try {
+                URL urlConnection = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) urlConnection.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            super.onPostExecute(result);
+           // Picasso.get().load(url).placeholder(R.drawable.progress_animation).into(imageView);
+           imageView.setImageBitmap(result);
+        }
+    }
+
     private void removeParentView(int index) {
 
     }
+
     public void saveUserChoiceToDb(int index) {
         String uId = mAuth.getCurrentUser().getUid();
         imageCode = userDataModelArrayList.get(index).getImageCode();
@@ -333,7 +383,6 @@ public class ImageSelection extends AppCompatActivity {
         db.collection("users").document(uId).collection("Choices").document().set(choiceModel);
         //db.collection("users").document(uId).set(choiceModel, SetOptions.merge() );
     }
-
 
 
     public void onFirstUrlSet() {
