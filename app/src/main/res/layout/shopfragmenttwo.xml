@@ -148,6 +148,45 @@
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:background="@color/cardview_light_background"
                 android:src="@drawable/arrow_right" />
+            <LinearLayout
+                android:layout_margin="10dp"
+                android:id="@+id/cart_plus_minus_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/imagebuttonAddtoCart_1"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+                <ImageButton
+                    android:id="@+id/cart_decrement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cardview_light_background"
+                    android:src="@drawable/ic_minus" />
+
+                <TextView
+                    android:id="@+id/textViewCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="15dip"
+                    android:text=""
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/cart_increment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cardview_light_background"
+                    android:src="@drawable/ic_plus" />
+            </LinearLayout>
+
 
 
         </RelativeLayout>
