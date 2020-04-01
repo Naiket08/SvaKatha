@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
@@ -137,6 +138,7 @@ public class ImageSelection extends AppCompatActivity {
 
 //        Log.i("Status",userDataModelArrayList.get(2).getUrl());
 
+        savetoDB();
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -397,6 +399,18 @@ public class ImageSelection extends AppCompatActivity {
         //db.collection("users").document(uId).set(data, SetOptions.merge() );
         db.collection("users").document(uId).collection("Choices").document().set(choiceModel);
         //db.collection("users").document(uId).set(choiceModel, SetOptions.merge() );
+    }
+
+    public void savetoDB(){
+        String uId = mAuth.getCurrentUser().getUid();
+        Map<String, Object> user = new HashMap<>();
+        String X=String.valueOf(0);
+        user.put("AddCart",X);
+        db.collection("users").document(uId).set(user, SetOptions.merge());
+        String Y=String.valueOf(0);
+        user.put("Counter",Y);
+        db.collection("users").document(uId).set(user, SetOptions.merge());
+
     }
 
 

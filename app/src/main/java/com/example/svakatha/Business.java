@@ -94,12 +94,6 @@ public class Business extends AppCompatActivity {
                 Bussiness = spnr_business.getSelectedItem().toString();
                 user.put("Business",Bussiness);
                 db.collection("users").document(userId).set(user, SetOptions.merge());
-                String X=String.valueOf(0);
-                user.put("AddCart",X);
-                db.collection("users").document(userId).set(user, SetOptions.merge());
-                String Y=String.valueOf(0);
-                user.put("Counter",Y);
-                db.collection("users").document(userId).set(user, SetOptions.merge());
 
             }
 
