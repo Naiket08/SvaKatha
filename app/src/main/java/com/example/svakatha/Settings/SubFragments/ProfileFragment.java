@@ -5,7 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,15 +131,161 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
-        editTextdetail1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Function", Toast.LENGTH_SHORT).show();
-                String Weight = editTextdetail1.getText().toString();
-                update(Weight);
+        editTextdetail1.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                //mCrime.setTitle(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+                userId = mAuth.getCurrentUser().getUid();
+                String Weight = c.toString();
+                Map<String, Object> user = new HashMap<>();
+                user.put("Weight", Weight);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+            }
+        });
+
+        editTextdetail2.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                //mCrime.setTitle(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+                userId = mAuth.getCurrentUser().getUid();
+                String Height = c.toString();
+                Map<String, Object> user = new HashMap<>();
+                user.put("Height", Height);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+            }
+        });
+
+        editTextdetail3.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                //mCrime.setTitle(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+                userId = mAuth.getCurrentUser().getUid();
+                String skintone = c.toString();
+                Map<String, Object> user = new HashMap<>();
+                user.put("SkinTone", skintone);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+            }
+        });
+
+        editTextdetail4.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                //mCrime.setTitle(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+                userId = mAuth.getCurrentUser().getUid();
+                String name = c.toString();
+                Map<String, Object> user = new HashMap<>();
+                user.put("FirstName", name);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+                textViewprofilefragment2.setText(name);
 
             }
         });
+
+        editTextdetail5.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                //mCrime.setTitle(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+                userId = mAuth.getCurrentUser().getUid();
+                String email = c.toString();
+                Map<String, Object> user = new HashMap<>();
+                user.put("Email", email);
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+            }
+        });
+
+        editTextdetail6.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                //mCrime.setTitle(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+                userId = mAuth.getCurrentUser().getUid();
+                String style = c.toString();
+                Map<String, Object> user = new HashMap<>();
+                if(style=="Style" ||style=="Comfort"){
+                    user.put("Style", style);
+                }
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+            }
+        });
+
+        editTextdetail7.addTextChangedListener(new TextWatcher() {
+
+            // the user's changes are saved here
+            public void onTextChanged(CharSequence c, int start, int before, int count) {
+                //mCrime.setTitle(c.toString());
+            }
+
+            public void beforeTextChanged(CharSequence c, int start, int count, int after) {
+                // this space intentionally left blank
+            }
+
+            public void afterTextChanged(Editable c) {
+                // this one too
+                userId = mAuth.getCurrentUser().getUid();
+                String gender = c.toString();
+                Map<String, Object> user = new HashMap<>();
+                if(gender=="MALE" || gender=="FEMALE") {
+                    user.put("Gender", gender);
+                }
+                db.collection("users").document(userId).set(user, SetOptions.merge());
+            }
+        });
+
+
+
 
 
         /*
@@ -180,7 +328,7 @@ public class ProfileFragment extends Fragment {
         getActivity().setTitle("Setting");
     }
 
-    private void update(String Weight){
+    /*private void update(String Weight){
 
         Map<String, Object> user = new HashMap<>();
         user.put("Weight", Weight);
@@ -210,6 +358,6 @@ public class ProfileFragment extends Fragment {
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(mContext, "Failed", Toast.LENGTH_SHORT).show();
                     }
-                });*/
-    }
+                });
+    }*/
 }
