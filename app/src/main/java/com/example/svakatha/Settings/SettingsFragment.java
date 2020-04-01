@@ -155,7 +155,7 @@ public class SettingsFragment extends Fragment {
                                               tv_profile_mail_id.setText(email);
                                           }
                                       });
-        //code to insert value from edittext to database
+        /*//code to insert value from edittext to database
         userId = mAuth.getCurrentUser().getUid();
         String Weight = editTextdetail1.getText().toString();
         String Height = editTextdetail2.getText().toString();
@@ -178,7 +178,7 @@ public class SettingsFragment extends Fragment {
         if(gender=="MALE" || gender=="FEMALE") {
             user.put("Gender", gender);
         }
-        db.collection("users").document(userId).set(user, SetOptions.merge());
+        db.collection("users").document(userId).set(user, SetOptions.merge());*/
 
         //setViews(view);
         return view;

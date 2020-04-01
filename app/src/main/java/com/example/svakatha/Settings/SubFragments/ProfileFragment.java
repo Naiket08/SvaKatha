@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private View view;
+    String userId;
     Map<String, String> data = new HashMap<>();
 
 
@@ -116,8 +118,35 @@ public class ProfileFragment extends Fragment {
                         editTextdetail8.setText(bodyweight,TextView.BufferType.EDITABLE);
                         editTextdetail9.setText(bodyweight,TextView.BufferType.EDITABLE);
 
+
+
                     }
                 });
+
+        //code to insert value from edittext to database
+        userId = mAuth.getCurrentUser().getUid();
+        String Weight = editTextdetail1.getText().toString();
+        String Height = editTextdetail2.getText().toString();
+        String skintone = editTextdetail3.getText().toString();
+        String name = editTextdetail4.getText().toString();
+        String email = editTextdetail5.getText().toString();
+        String style = editTextdetail6.getText().toString();
+        String gender = editTextdetail7.getText().toString();
+
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("Height", Height);
+        user.put("Weight", Weight);
+        user.put("SkinTone", skintone);
+        user.put("FirstName", name);
+        user.put("Email", email);
+        if(style=="Style" ||style=="Comfort"){
+            user.put("Style", style);
+        }
+        if(gender=="MALE" || gender=="FEMALE") {
+            user.put("Gender", gender);
+        }
+        db.collection("users").document(userId).set(user, SetOptions.merge());
 
         return view;
     }
