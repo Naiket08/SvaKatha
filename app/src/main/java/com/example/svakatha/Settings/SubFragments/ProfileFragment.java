@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,17 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.svakatha.R;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -31,7 +35,7 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
     private ImageView imageViewprofilefragment;
-    private ImageButton imagebuttonanalysis;
+    private ImageButton imagebuttonanalysis,imagebuttonupdate;
     private TextView textViewprofilefragment2,textViewprofilefragment3;
     private TextView textViewDetail1Title,textViewDetail2Title,textViewDetail3Title,textViewDetail4Title,textViewDetail5Title,
             textViewDetail6Title,textViewDetail7Title,textViewDetail8Title,textViewDetail9Title;
@@ -83,6 +87,8 @@ public class ProfileFragment extends Fragment {
         textViewDetail8Title=(TextView)view.findViewById(R.id.textViewDetail8Title);
         textViewDetail9Title=(TextView)view.findViewById(R.id.textViewDetail9Title);
 
+        //imagebuttonupdate=view.findViewById(R.id.imagebuttonupdate);
+
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar)view.findViewById(R.id.progressBarProfileFragment);
         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0,30);
@@ -123,30 +129,47 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
-        //code to insert value from edittext to database
-        userId = mAuth.getCurrentUser().getUid();
-        String Weight = editTextdetail1.getText().toString();
-        String Height = editTextdetail2.getText().toString();
-        String skintone = editTextdetail3.getText().toString();
-        String name = editTextdetail4.getText().toString();
-        String email = editTextdetail5.getText().toString();
-        String style = editTextdetail6.getText().toString();
-        String gender = editTextdetail7.getText().toString();
+        editTextdetail1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Function", Toast.LENGTH_SHORT).show();
+                String Weight = editTextdetail1.getText().toString();
+                update(Weight);
+
+            }
+        });
 
 
-        Map<String, Object> user = new HashMap<>();
-        user.put("Height", Height);
-        user.put("Weight", Weight);
-        user.put("SkinTone", skintone);
-        user.put("FirstName", name);
-        user.put("Email", email);
-        if(style=="Style" ||style=="Comfort"){
-            user.put("Style", style);
-        }
-        if(gender=="MALE" || gender=="FEMALE") {
-            user.put("Gender", gender);
-        }
-        db.collection("users").document(userId).set(user, SetOptions.merge());
+        /*
+                //code to insert value from edittext to database
+                userId = mAuth.getCurrentUser().getUid();
+                String Weight = editTextdetail1.getText().toString();
+                String Height = editTextdetail2.getText().toString();
+                String skintone = editTextdetail3.getText().toString();
+                String name = editTextdetail4.getText().toString();
+                String email = editTextdetail5.getText().toString();
+                String style = editTextdetail6.getText().toString();
+                String gender = editTextdetail7.getText().toString();
+
+
+                Map<String, Object> user = new HashMap<>();
+                if(!TextUtils.isEmpty(Height)){
+                    user.put("Height", Height);}
+                if(!TextUtils.isEmpty(Weight)){
+                    user.put("Weight", Weight);}
+                if(!TextUtils.isEmpty(skintone)){
+                    user.put("SkinTone", skintone);}
+                if(!TextUtils.isEmpty(name)){
+                    user.put("FirstName", name);}
+                if(!TextUtils.isEmpty(email)){
+                    user.put("Email", email);}
+                if(style=="Style" ||style=="Comfort"){
+                    user.put("Style", style);
+                }
+                if(gender=="MALE" || gender=="FEMALE") {
+                    user.put("Gender", gender);
+                }
+                db.collection("users").document(userId).set(user, SetOptions.merge());*/
 
         return view;
     }
@@ -155,5 +178,38 @@ public class ProfileFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         getActivity().setTitle("Setting");
+    }
+
+    private void update(String Weight){
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("Weight", Weight);
+        db.collection("users")
+                .document(userId)
+                .set(user, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }});
+        /*DocumentReference documentReference = db.collection("users").document(userId);
+        documentReference.update("Weight", Weight)
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(mContext, "Updated", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(mContext, "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });*/
     }
 }

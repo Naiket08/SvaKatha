@@ -320,6 +320,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/editlinear"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_20sdp"
@@ -385,7 +386,8 @@
                         android:layout_height="@dimen/_92sdp"
                         android:layout_marginStart="10dp"
                         android:orientation="vertical"
-                        android:background="@drawable/shaperec">
+                        android:background="@drawable/shaperec"
+                        android:id="@+id/lastlinear">
                         <TextView
                             android:id="@+id/textViewDetail9Title"
                             android:layout_width="wrap_content"
@@ -409,7 +411,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
 
 
             </LinearLayout>

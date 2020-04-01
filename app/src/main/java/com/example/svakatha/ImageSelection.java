@@ -344,10 +344,10 @@ public class ImageSelection extends AppCompatActivity {
     }
 
     private void addParentView(int index) {
-        //imageView=findViewById(R.id.userIMG);
-        new ImageLoadAsyncTask(userDataModelArrayList.get(index).getUrl(),imageView).execute();
+        imageView=findViewById(R.id.userIMG);
+        //new ImageLoadAsyncTask(userDataModelArrayList.get(index).getUrl(),imageView).execute();
         //Picasso.get().load(userDataModelArrayList.get(index).getUrl()).into(imageView);
-        //Glide.with(this).load(userDataModelArrayList.get(index).getUrl()).skipMemoryCache(true).into(imageView);
+        Glide.with(this).load(userDataModelArrayList.get(index).getUrl()).skipMemoryCache(true).into(imageView);
     }
 
     public class ImageLoadAsyncTask extends AsyncTask<Void, Void, Bitmap> {
