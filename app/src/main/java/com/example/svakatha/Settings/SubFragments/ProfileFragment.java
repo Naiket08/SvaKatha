@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -30,10 +31,11 @@ import java.util.Map;
 public class ProfileFragment extends Fragment {
     private ImageView imageViewprofilefragment;
     private ImageButton imagebuttonanalysis;
-    private TextView textviewdetail1,textviewdetail2,textviewdetail3,textviewdetail4,textviewdetail5,textviewdetail6,textviewdetail7,textviewdetail8,
-            textviewdetail9,textViewprofilefragment2,textViewprofilefragment3;
+    private TextView textViewprofilefragment2,textViewprofilefragment3;
     private TextView textViewDetail1Title,textViewDetail2Title,textViewDetail3Title,textViewDetail4Title,textViewDetail5Title,
             textViewDetail6Title,textViewDetail7Title,textViewDetail8Title,textViewDetail9Title;
+    private EditText editTextdetail1,editTextdetail2,editTextdetail3,editTextdetail4,editTextdetail5,editTextdetail6,
+            editTextdetail7,editTextdetail8,editTextdetail9;
     ProgressBar progressBarProfileFragment;
     private Context mContext;
     private FirebaseAuth mAuth;
@@ -59,15 +61,15 @@ public class ProfileFragment extends Fragment {
         imagebuttonanalysis=(ImageButton)view.findViewById(R.id.imagebuttonanalysis);
         textViewprofilefragment2=(TextView)view.findViewById(R.id.textViewprofilefragment2);
         textViewprofilefragment3=(TextView)view.findViewById(R.id.textViewprofilefragment3);
-        textviewdetail1=(TextView)view.findViewById(R.id.textviewdetail1);
-        textviewdetail2=(TextView)view.findViewById(R.id.textviewdetail2);
-        textviewdetail3=(TextView)view.findViewById(R.id.textviewdetail3);
-        textviewdetail4=(TextView)view.findViewById(R.id.textviewdetail4);
-        textviewdetail5=(TextView)view.findViewById(R.id.textviewdetail5);
-        textviewdetail6=(TextView)view.findViewById(R.id.textviewdetail6);
-        textviewdetail7=(TextView)view.findViewById(R.id.textviewdetail7);
-        textviewdetail8=(TextView)view.findViewById(R.id.textviewdetail8);
-        textviewdetail9=(TextView)view.findViewById(R.id.textviewdetail9);
+        editTextdetail1=(EditText) view.findViewById(R.id.editTextdetail1);
+        editTextdetail2=(EditText)view.findViewById(R.id.editTextdetail2);
+        editTextdetail3=(EditText)view.findViewById(R.id.editTextdetail3);
+        editTextdetail4=(EditText)view.findViewById(R.id.editTextdetail4);
+        editTextdetail5=(EditText)view.findViewById(R.id.editTextdetail5);
+        editTextdetail6=(EditText)view.findViewById(R.id.editTextdetail6);
+        editTextdetail7=(EditText)view.findViewById(R.id.editTextdetail7);
+        editTextdetail8=(EditText)view.findViewById(R.id.editTextdetail8);
+        editTextdetail9=(EditText)view.findViewById(R.id.editTextdetail9);
 
         textViewDetail1Title=(TextView)view.findViewById(R.id.textViewDetail1Title);
         textViewDetail2Title=(TextView)view.findViewById(R.id.textViewDetail2Title);
@@ -104,15 +106,15 @@ public class ProfileFragment extends Fragment {
                         String style = documentSnapshot.getString("Style");
 
                         textViewprofilefragment2.setText(finalProfileText);
-                        textviewdetail1.setText(bodyweight);
-                        textviewdetail2.setText(height);
-                        textviewdetail3.setText(skintone);
-                        textviewdetail4.setText(finalProfileText);
-                        textviewdetail5.setText(email);
-                        textviewdetail6.setText(style);
-                        textviewdetail7.setText(gender);
-                        textviewdetail8.setText(bodyweight);
-                        textviewdetail9.setText(bodyweight);
+                        editTextdetail1.setText(bodyweight,TextView.BufferType.EDITABLE);
+                        editTextdetail2.setText(height,TextView.BufferType.EDITABLE);
+                        editTextdetail3.setText(skintone,TextView.BufferType.EDITABLE);
+                        editTextdetail4.setText(finalProfileText,TextView.BufferType.EDITABLE);
+                        editTextdetail5.setText(email,TextView.BufferType.EDITABLE);
+                        editTextdetail6.setText(style,TextView.BufferType.EDITABLE);
+                        editTextdetail7.setText(gender,TextView.BufferType.EDITABLE);
+                        editTextdetail8.setText(bodyweight,TextView.BufferType.EDITABLE);
+                        editTextdetail9.setText(bodyweight,TextView.BufferType.EDITABLE);
 
                     }
                 });
