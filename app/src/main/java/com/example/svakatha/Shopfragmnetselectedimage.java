@@ -47,9 +47,9 @@ public class Shopfragmnetselectedimage  extends Fragment {
     private Context mContext;
     FirebaseFirestore mDB;
     List<String> urlList=new ArrayList<>();
-    public String Totalprice,Totalprice1;
+    public String Totalprice,Totalprice1,J;
     private FirebaseAuth mAuth;
-    private int TP,AD;
+    private int TP,AD,I;
 
 
 
@@ -103,11 +103,17 @@ public class Shopfragmnetselectedimage  extends Fragment {
                @Override
                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                    String received = documentSnapshot.getString("AddCart");
+                   String received2 = documentSnapshot.getString("Counter");
                    Log.i("ALL", received);
+                   Log.i("ALL", received2);
                    Totalprice1 = received;
+                   J=received2;
                    AD = Integer.parseInt(Totalprice1);
+                   I= Integer.parseInt(J);
+                   textViewCounter.setText(""+I);
                }
            });
+
 
 
 
@@ -194,20 +200,28 @@ public class Shopfragmnetselectedimage  extends Fragment {
         cart_increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                I=I+1;
                 AD=AD+TP;
-                saveADToDb(AD);
+                textViewCounter.setText(""+I);
+                saveADToDb(AD,I);
             }
         });
 
         cart_decrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(AD<=0){
+
+                if(I<=1){
+                    AD=0;
+                    I=0;
                     Toast.makeText(mContext, "Empty Cart", Toast.LENGTH_SHORT).show();
+                    saveADToDb(AD,I);
                 }
                 else {
-                    AD = AD - TP;
-                    saveADToDb(AD);
+                    I--;
+                        AD = AD - TP;
+                    textViewCounter.setText(""+I);
+                    saveADToDb(AD,I);
                 }
             }
         });
@@ -217,7 +231,14 @@ public class Shopfragmnetselectedimage  extends Fragment {
         buttonAddtoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "Added To Cart", Toast.LENGTH_SHORT).show();
+                if(I==0){
+                    Toast.makeText(mContext, "Select Item", Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    Toast.makeText(mContext, "Added To Cart", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
@@ -260,13 +281,17 @@ public class Shopfragmnetselectedimage  extends Fragment {
         return view;
 
     }
-    public void saveADToDb(int AD) {
+    public void saveADToDb(int AD,int I) {
         String uId = mAuth.getCurrentUser().getUid();
         DocumentReference documentReference = mDB.collection("users").document(uId);
         Map<String, Object> user = new HashMap<>();
         String X=String.valueOf(AD);
         user.put("AddCart",X);
         mDB.collection("users").document(uId).set(user, SetOptions.merge());
+        String Y=String.valueOf(I);
+        user.put("Counter",Y);
+        mDB.collection("users").document(uId).set(user, SetOptions.merge());
 
     }
+
 }
