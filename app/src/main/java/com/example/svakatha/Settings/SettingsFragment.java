@@ -10,9 +10,11 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.svakatha.HostActivity;
 import com.example.svakatha.Settings.SubFragments.ProfileFragment;
@@ -25,7 +27,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.rpc.Help;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -44,8 +50,10 @@ public class SettingsFragment extends Fragment {
     RelativeLayout rl_about_app;
     RelativeLayout rl_share;
     LinearLayout ll_help;
+    EditText editTextdetail1,editTextdetail2,editTextdetail3,editTextdetail4,editTextdetail5,editTextdetail6,editTextdetail7;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String userId;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -71,6 +79,14 @@ public class SettingsFragment extends Fragment {
         ll_help = (LinearLayout) view.findViewById(R.id.ll_help);
         tv_profile_name = (TextView)view.findViewById(R.id.tv_profile_name);
         tv_profile_mail_id = (TextView)view.findViewById(R.id.tv_profile_mail_id);
+        editTextdetail1=(EditText)view.findViewById(R.id.editTextdetail1);
+        editTextdetail2=(EditText)view.findViewById(R.id.editTextdetail2);
+        editTextdetail3=(EditText)view.findViewById(R.id.editTextdetail3);
+        editTextdetail4=(EditText)view.findViewById(R.id.editTextdetail4);
+        editTextdetail5=(EditText)view.findViewById(R.id.editTextdetail5);
+        editTextdetail6=(EditText)view.findViewById(R.id.editTextdetail6);
+        editTextdetail7=(EditText)view.findViewById(R.id.editTextdetail7);
+
 
         ll_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +155,30 @@ public class SettingsFragment extends Fragment {
                                               tv_profile_mail_id.setText(email);
                                           }
                                       });
+        //code to insert value from edittext to database
+        userId = mAuth.getCurrentUser().getUid();
+        String Weight = editTextdetail1.getText().toString();
+        String Height = editTextdetail2.getText().toString();
+        String skintone = editTextdetail3.getText().toString();
+        String name = editTextdetail4.getText().toString();
+        String email = editTextdetail5.getText().toString();
+        String style = editTextdetail6.getText().toString();
+        String gender = editTextdetail7.getText().toString();
+
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("Height", Height);
+        user.put("Weight", Weight);
+        user.put("SkinTone", skintone);
+        user.put("FirstName", name);
+        user.put("Email", email);
+        if(style=="Style" ||style=="Comfort"){
+            user.put("Style", style);
+        }
+        if(gender=="MALE" || gender=="FEMALE") {
+            user.put("Gender", gender);
+        }
+        db.collection("users").document(userId).set(user, SetOptions.merge());
 
         //setViews(view);
         return view;
