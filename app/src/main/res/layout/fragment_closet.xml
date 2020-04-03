@@ -14,6 +14,15 @@ android:layout_width="match_parent"
 android:layout_height="wrap_content"
     android:background="#FFFFFF">
 
+    <ImageButton
+        android:id="@+id/imageButtonRandomImage"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:src="@drawable/ic_arrow_upward_black_24dp"
+        android:background="#FFFFFF"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/_10sdp"/>
+
     <LinearLayout
         android:id="@+id/ll_image_view"
         android:layout_width="match_parent"

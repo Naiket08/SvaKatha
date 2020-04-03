@@ -1,9 +1,11 @@
 package com.example.svakatha.Closet;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,9 +27,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.svakatha.Closet.Adapter.ClosetGridAdapter;
 import com.example.svakatha.HostActivity;
 import com.example.svakatha.PackageManagerUtils.PackageManagerUtils;
@@ -74,6 +78,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
@@ -111,6 +116,10 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     private int shuffledListIndex = 0;
     private int size;
     private View view;
+
+    ImageButton imageButtonRandomImage;
+    Boolean str = false;
+    String str2;
 
     public ClosetFragment() {
         // Required empty public constructor
@@ -158,6 +167,65 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
                         occasion);
 
         occasionSpnr.setAdapter(occasionAdapter);
+
+        imageButtonRandomImage = (ImageButton) view.findViewById(R.id.imageButtonRandomImage);
+        imageButtonRandomImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final int i = new Random().nextInt(20) + 1;
+
+                db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                String finalProfileText2 = documentSnapshot.getString("Gender");
+                                str=finalProfileText2.equals("FEMALE");
+                                str2=String.valueOf(str);
+                            }
+                        });
+
+                if (str) {
+
+                    db.collection("Images").document("femaleimages").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String durl = documentSnapshot.getString("imgF" + i);
+                                    Glide.with(getContext()).load(durl).skipMemoryCache(true).fitCenter().into(ivShowcase);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                                    Log.i("hi", e.toString());
+                                }
+                            });
+                }
+                else
+                {
+                    db.collection("Images").document("maleimages").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String durl = documentSnapshot.getString("imgM" + i);
+                                    Glide.with(getContext()).load(durl).skipMemoryCache(true).fitCenter().into(ivShowcase);
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(mContext, e.toString(), Toast.LENGTH_SHORT).show();
+                                    Log.i("hi", e.toString());
+                                }
+                            });
+
+                }
+
+            }
+        });
 
         return view;
 
