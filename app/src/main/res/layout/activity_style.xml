@@ -68,11 +68,20 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBarStyleScreen1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
     <TextView
         android:id="@+id/textViewStyleScreenQuestion_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBarStyleScreen1"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_80sdp"
         android:fontFamily="@font/arial"
@@ -98,10 +107,12 @@
         android:layout_height="@dimen/_26sdp"
         android:background="#FFFFFF"
         android:src="@drawable/ic_arrow_forward_black_24dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/spnr_whatyougofor"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_25sdp"/>
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_55sdp"/>
+        </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

@@ -8,14 +8,6 @@
     android:background="#FFFFFF"
     tools:context=".DetailsScreen">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
             <ImageView
                 android:id="@+id/imageViewPriceScreenHeader1"
                 android:layout_width="match_parent"
@@ -77,15 +69,23 @@
                 android:progressTint="@color/progess"
                 android:scaleY="3" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/progressBarPriceScreen1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_10sdp">
+
             <TextView
                 android:id="@+id/textViewPriceScreenClothing1"
-                android:layout_width="279dp"
+                android:layout_width="@dimen/_215sdp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/progressBarPriceScreen1"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_80sdp"
                 android:fontFamily="@font/arial"
-
                 android:text="@string/price"
                 android:textColor="#000"
                 android:textSize="@dimen/_17ssp" />
@@ -112,17 +112,6 @@
                 app:right_thumb_color_pressed="@color/themecolor"
                 app:right_thumb_image="@drawable/thumb" />
 
-            <ImageButton
-                android:id="@+id/imageButtonPriceScreenForward_1"
-                android:layout_width="@dimen/_26sdp"
-                android:layout_height="@dimen/_26sdp"
-                android:layout_below="@+id/textViewPriceTwo"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:layout_marginEnd="16dp"
-                android:background="#FFFFFF"
-                app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
             <TextView
                 android:id="@+id/textViewPriceOne"
@@ -149,8 +138,18 @@
                 android:textColor="#2699FB"
                 android:textSize="@dimen/_14sdp" />
 
-        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/imageButtonPriceScreenForward_1"
+            android:layout_width="@dimen/_26sdp"
+            android:layout_height="@dimen/_26sdp"
+            android:layout_below="@+id/textViewPriceTwo"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_48sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
+            android:background="#FFFFFF"
+            app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
+    </RelativeLayout>
     </ScrollView>
 
 

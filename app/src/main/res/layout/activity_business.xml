@@ -69,11 +69,21 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBarBusinessScreen1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp">
+
+
     <TextView
         android:id="@+id/textViewBusinessScreenOccasion_1"
         android:layout_width="@dimen/_248sdp"
         android:layout_height="@dimen/_42sdp"
-        android:layout_below="@+id/progressBarBusinessScreen1"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_80sdp"
         android:fontFamily="@font/arial"
@@ -114,10 +124,12 @@
         android:layout_height="@dimen/_26sdp"
         android:background="#FFFFFF"
         android:src="@drawable/ic_arrow_forward_black_24dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/spnr_occasion_bussiness"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_25sdp"/>
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_55sdp"/>
+        </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
