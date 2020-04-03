@@ -8,137 +8,150 @@
     android:background="#FFFFFF"
     tools:context=".DetailsScreen">
 
-    <ImageView
-        android:id="@+id/imageViewPriceScreenHeader1"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_245sdp"
-        android:background="@drawable/heaaderrectangleloginscreen"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/_minus20sdp"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewPriceScreenGreet1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_35sdp"
-        android:fontFamily="@font/arial"
-        android:text=""
-        android:textColor="#000"
-        android:textSize="@dimen/_27ssp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_23sdp"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textViewPriceScreenText2_1"
-        android:layout_width="@dimen/_210sdp"
-        android:layout_height="@dimen/_55sdp"
-        android:text="Let's start by knowing\nmore about you.."
-        android:textColor="#474747"
-        android:lineSpacingExtra="@dimen/_7sdp"
-        android:textSize="@dimen/_20ssp"
-        android:fontFamily="@font/arial"
-        android:layout_below="@+id/textViewPriceScreenGreet1"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_24sdp"
-        android:layout_marginStart="@dimen/_23sdp"/>
+            <ImageView
+                android:id="@+id/imageViewPriceScreenHeader1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_245sdp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/_minus20sdp"
+                android:background="@drawable/heaaderrectangleloginscreen" />
 
-    <TextView
-        android:id="@+id/textViewPriceScreenText3_1"
-        android:layout_width="@dimen/_242sdp"
-        android:layout_height="@dimen/_49sdp"
-        android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
-        android:fontFamily="@font/arial"
-        android:textColor="#737373"
-        android:textSize="@dimen/_12ssp"
-        android:lineSpacingExtra="@dimen/_2sdp"
-        android:layout_below="@+id/textViewPriceScreenText2_1"
-        android:layout_marginStart="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_12sdp"/>
+            <TextView
+                android:id="@+id/textViewPriceScreenGreet1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:fontFamily="@font/arial"
+                android:text=""
+                android:textColor="#000"
+                android:textSize="@dimen/_27ssp" />
 
-    <ProgressBar
-        android:id="@+id/progressBarPriceScreen1"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="@dimen/_327sdp"
-        android:layout_height="@dimen/_10sdp"
-        android:max="100"
-        android:progressTint="@color/progess"
-        android:scaleY="3"
-        android:layout_below="@+id/imageViewPriceScreenHeader1"
-        android:layout_marginTop="@dimen/_34sdp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"/>
+            <TextView
+                android:id="@+id/textViewPriceScreenText2_1"
+                android:layout_width="@dimen/_210sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_below="@+id/textViewPriceScreenGreet1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:fontFamily="@font/arial"
+                android:lineSpacingExtra="@dimen/_7sdp"
+                android:text="Let's start by knowing\nmore about you.."
+                android:textColor="#474747"
+                android:textSize="@dimen/_20ssp" />
 
-    <TextView
-        android:id="@+id/textViewPriceScreenClothing1"
-        android:layout_width="279dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBarPriceScreen1"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_80sdp"
-        android:fontFamily="@font/arial"
+            <TextView
+                android:id="@+id/textViewPriceScreenText3_1"
+                android:layout_width="@dimen/_242sdp"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_below="@+id/textViewPriceScreenText2_1"
+                android:layout_marginStart="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/arial"
+                android:lineSpacingExtra="@dimen/_2sdp"
+                android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
+                android:textColor="#737373"
+                android:textSize="@dimen/_12ssp" />
 
-        android:text="@string/price"
-        android:textColor="#000"
-        android:textSize="@dimen/_17ssp" />
+            <ProgressBar
+                android:id="@+id/progressBarPriceScreen1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/_327sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_below="@+id/imageViewPriceScreenHeader1"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_34sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:max="100"
+                android:progressTint="@color/progess"
+                android:scaleY="3" />
 
-    <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
-        android:id="@+id/rangeseekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:min_value="2000"
-        app:max_value="200000"
-        app:corner_radius="4"
-        app:gap="500"
-        android:layout_below="@id/textViewPriceScreenClothing1"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        app:bar_color="#BCE0FD"
-        app:bar_highlight_color="#2699FB"
-        app:left_thumb_image="@drawable/thumb"
-        app:right_thumb_image="@drawable/thumb"
-        app:left_thumb_color="@color/themecolor"
-        app:right_thumb_color="@color/themecolor"
-        app:left_thumb_color_pressed="@color/themecolor"
-        app:right_thumb_color_pressed="@color/themecolor"
-        app:data_type="_integer"/>
+            <TextView
+                android:id="@+id/textViewPriceScreenClothing1"
+                android:layout_width="279dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progressBarPriceScreen1"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_80sdp"
+                android:fontFamily="@font/arial"
 
-    <ImageButton
-        android:id="@+id/imageButtonPriceScreenForward_1"
-        android:layout_width="@dimen/_26sdp"
-        android:layout_height="@dimen/_26sdp"
-        android:background="#FFFFFF"
-        app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_25sdp"/>
+                android:text="@string/price"
+                android:textColor="#000"
+                android:textSize="@dimen/_17ssp" />
 
-    <TextView
-        android:id="@+id/textViewPriceOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rangeseekbar"
-        android:layout_marginTop="@dimen/_30sdp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:fontFamily="@font/arial"
-        android:textSize="@dimen/_14sdp"
-        android:textColor="#2699FB"/>
+            <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+                android:id="@+id/rangeseekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewPriceScreenClothing1"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                app:bar_color="#BCE0FD"
+                app:bar_highlight_color="#2699FB"
+                app:corner_radius="4"
+                app:data_type="_integer"
+                app:gap="100"
+                app:left_thumb_color="@color/themecolor"
+                app:left_thumb_color_pressed="@color/themecolor"
+                app:left_thumb_image="@drawable/thumb"
+                app:max_value="200000"
+                app:min_value="2000"
+                app:right_thumb_color="@color/themecolor"
+                app:right_thumb_color_pressed="@color/themecolor"
+                app:right_thumb_image="@drawable/thumb" />
 
-    <TextView
-        android:id="@+id/textViewPriceTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#2699FB"
-        android:layout_below="@id/rangeseekbar"
-        android:fontFamily="@font/arial"
-        android:textSize="@dimen/_14sdp"
-        android:text=""
-        android:layout_marginTop="@dimen/_30sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_10sdp"/>
+            <ImageButton
+                android:id="@+id/imageButtonPriceScreenForward_1"
+                android:layout_width="@dimen/_26sdp"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_below="@+id/textViewPriceTwo"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_marginEnd="16dp"
+                android:background="#FFFFFF"
+                app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+            <TextView
+                android:id="@+id/textViewPriceOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rangeseekbar"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:fontFamily="@font/arial"
+                android:textColor="#2699FB"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:id="@+id/textViewPriceTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rangeseekbar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/arial"
+                android:text=""
+                android:textColor="#2699FB"
+                android:textSize="@dimen/_14sdp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 
 </RelativeLayout>

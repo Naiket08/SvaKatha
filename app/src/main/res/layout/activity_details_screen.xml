@@ -115,7 +115,10 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="@dimen/_30sdp"
-        android:layout_marginEnd="@dimen/_25sdp"/>
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        />
 
 
 </RelativeLayout>
