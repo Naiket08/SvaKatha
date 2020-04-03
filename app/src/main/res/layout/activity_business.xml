@@ -75,7 +75,7 @@
         android:layout_height="@dimen/_42sdp"
         android:layout_below="@+id/progressBarBusinessScreen1"
         android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="@dimen/_80sdp"
         android:fontFamily="@font/arial"
         android:text="@string/business"
         android:textColor="#000"

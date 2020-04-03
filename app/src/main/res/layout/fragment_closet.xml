@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
 android:orientation="vertical"
 android:layout_width="match_parent"
-android:layout_height="match_parent"
+android:layout_height="wrap_content"
     android:background="#FFFFFF">
 
     <LinearLayout
@@ -15,7 +23,7 @@ android:layout_height="match_parent"
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_left"
-            android:layout_width="32dp"
+            android:layout_width="@dimen/_24sdp"
             android:layout_height="match_parent"
             android:src="@drawable/arrow_left"
             android:background="#00FFFFFF"
@@ -30,7 +38,7 @@ android:layout_height="match_parent"
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_right"
-            android:layout_width="32dp"
+            android:layout_width="@dimen/_24sdp"
             android:layout_height="match_parent"
             android:src="@drawable/arrow_right"
             android:background="#00FFFFFF"
@@ -40,10 +48,10 @@ android:layout_height="match_parent"
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_add"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
         android:layout_gravity="right"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="@dimen/_13sdp"
         android:src="@drawable/closet_plus"
         android:background="#00FFFFFF"/>
 
@@ -51,15 +59,15 @@ android:layout_height="match_parent"
         android:id="@+id/spnr_occasion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:paddingHorizontal="16dp"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:paddingHorizontal="@dimen/_13sdp"
         android:background="@drawable/mainspinnerlayout" />
 
     <ImageView
         android:id="@+id/iv_divider"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_13sdp"
         android:layout_gravity="center"
         android:src="@drawable/divider"/>
 
@@ -68,11 +76,13 @@ android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="3"
-        android:layout_marginTop="16dp"
-        android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:horizontalSpacing="@dimen/_5sdp"
+        android:verticalSpacing="@dimen/_5sdp"
         android:nestedScrollingEnabled="false"
         android:gravity="center"
         android:stretchMode="columnWidth"/>
 
 </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

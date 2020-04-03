@@ -42,6 +42,16 @@
         android:layout_marginTop="19dp"
         android:layout_marginStart="@dimen/_23sdp"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageViewSignUpHeader">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_30sdp">
+
     <EditText
         android:id="@+id/editTextSignUpUsername"
         android:layout_width="@dimen/_246sdp"
@@ -55,11 +65,9 @@
         android:inputType="textPersonName"
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
-        android:background="@drawable/borderedittext"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_220sdp"/>
+        android:layout_marginTop="@dimen/_90sdp"
+        android:background="@drawable/borderedittext"/>
 
     <EditText
         android:id="@+id/editTextSignUpEmailId"
@@ -140,47 +148,39 @@
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/facebook_login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_45sdp"
+        android:layout_below="@+id/imageViewSignUpDivider"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="244dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="113dp"/>
+        android:layout_marginStart="@dimen/_20sdp"/>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageViewSignUpDivider"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="34dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="109dp">
+        android:layout_marginEnd="@dimen/_20sdp">
 
     </com.google.android.gms.common.SignInButton>
 
     <TextView
         android:id="@+id/textViewLogin"
-        android:layout_width="103dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="62dp"
-        android:text="LOGIN"
+        android:layout_below="@+id/facebook_login_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Login"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp"
         android:fontFamily="@font/arial" />
+
+    </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>

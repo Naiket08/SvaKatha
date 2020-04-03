@@ -33,7 +33,7 @@
                 android:layout_height="@dimen/_296sdp"
                 android:layout_below="@+id/textViewTshirt_1"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="@dimen/_11sdp"/>
 
             <TextView
                 android:id="@+id/textViewAboutDesign_1"
@@ -149,7 +149,7 @@
                 android:background="@color/cardview_light_background"
                 android:src="@drawable/arrow_right" />
             <LinearLayout
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_8sdp"
                 android:id="@+id/cart_plus_minus_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
                     android:paddingRight="15dip"
                     android:text=""
                     android:textColor="#000"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold" />
 
                 <ImageButton
