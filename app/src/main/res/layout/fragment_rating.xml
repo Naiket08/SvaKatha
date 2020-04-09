@@ -118,7 +118,8 @@
         android:textSize="@dimen/_14ssp"
         android:fontFamily="@font/arial"
         android:layout_below="@+id/spnr_selectstyle"
-        android:layout_marginTop="@dimen/_10sdp"/>
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_centerHorizontal="true"/>
 
 
         </RelativeLayout>

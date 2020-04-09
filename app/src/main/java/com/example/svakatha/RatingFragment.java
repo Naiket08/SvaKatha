@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,7 +87,7 @@ public class RatingFragment extends Fragment {
     private ImageView imageViewCapturedImage,imageViewLikeDislike,imageViewLike;
     private TextView textViewLikeDislikePercentage,textViewRatingImageDetails;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth =  FirebaseAuth.getInstance();
     //private EditText editTextPercentage;
     //private Button buttonChangeLikeDislike;
     private static final int CAMERA_PERMISSIONS_REQUEST = 2;
@@ -94,6 +95,7 @@ public class RatingFragment extends Fragment {
     private static final String FILE_NAME = "temp.jpg";
     Uri uri;
     int a;
+    String res;
 
     public RatingFragment() {
         // Required empty public constructor
@@ -146,6 +148,7 @@ public class RatingFragment extends Fragment {
             imageViewLikeDislike.setVisibility(View.INVISIBLE);
             textViewLikeDislikePercentage.setText(a+"%");
         }
+        textViewRatingImageDetails.setText(res);
 
         return view;
     }
@@ -199,16 +202,6 @@ public class RatingFragment extends Fragment {
                     imageViewLikeDislike.setVisibility(View.INVISIBLE);
                     textViewLikeDislikePercentage.setText(percentage+"%");
                 }
-                db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
-                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                String docName=documentSnapshot.getString("ratingChoiceDocName");
-                                db.collection("RatingDetails").document(docName);
-                                String RatingImageDetails = documentSnapshot.getString("RatingImageDetails");
-                                textViewRatingImageDetails.setText(RatingImageDetails);
-                            }
-                        });
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -313,7 +306,7 @@ public class RatingFragment extends Fragment {
         return annotateRequest;
     }
 
-    private static class LableDetectionTask extends AsyncTask<Object, Void, String> {
+    private class LableDetectionTask extends AsyncTask<Object, Void, String> {
         private final WeakReference<HostActivity> mActivityWeakReference;
         private Vision.Images.Annotate mRequest;
         String userDocName;
@@ -349,6 +342,8 @@ public class RatingFragment extends Fragment {
                 String currentUSer=mAuth.getCurrentUser().getUid();
                 Map<String,String > data=new HashMap<>();
                 data.put("RatingImageDetails",result);
+                res = result;
+                textViewRatingImageDetails.setText(res);
                 db.collection("users").document(currentUSer)
                         .collection("RatingDetails").document(ratingDocName)
                         .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
