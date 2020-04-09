@@ -96,6 +96,7 @@ public class RatingFragment extends Fragment {
     Uri uri;
     int a;
     String res;
+    Bitmap bitmap,pixelatedbitmap;
 
     public RatingFragment() {
         // Required empty public constructor
@@ -137,6 +138,7 @@ public class RatingFragment extends Fragment {
                         selectstyle);
 
         selectstylespnr.setAdapter(occasionAdapter);
+        //imageViewCapturedImage.setImageBitmap(pixelatedbitmap);
         imageViewCapturedImage.setImageURI(uri);
         if(a<50){
             imageViewLikeDislike.setVisibility(View.VISIBLE);
@@ -178,13 +180,15 @@ public class RatingFragment extends Fragment {
                 Toast.makeText(context, "Image Captured", Toast.LENGTH_LONG).show();
                 Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
                 uri = photoUri;
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
                 new Pixelate(bitmap)
-                        .setDensity(12)
+                        .setDensity(8)
                         .setListener(new OnPixelateListener() {
                             @Override
                             public void onPixelated(Bitmap bitmap1, int density) {
+                                //pixelatedbitmap = bitmap1;
                                 callCloudVision(bitmap1);
+                                //imageViewCapturedImage.setImageBitmap(bitmap1);
                             }
                         })
                         .make();
