@@ -49,8 +49,14 @@ import com.google.api.services.vision.v1.model.EntityAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.api.services.vision.v1.model.Image;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 
@@ -87,6 +93,7 @@ public class RatingFragment extends Fragment {
     private ImageView imageViewCapturedImage,imageViewLikeDislike,imageViewLike;
     private TextView textViewLikeDislikePercentage,textViewRatingImageDetails;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseDatabase fdb = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth =  FirebaseAuth.getInstance();
     //private EditText editTextPercentage;
     //private Button buttonChangeLikeDislike;
@@ -343,9 +350,12 @@ public class RatingFragment extends Fragment {
         protected void onPostExecute(String result) {
             HostActivity activity = mActivityWeakReference.get();
             if (activity != null && !activity.isFinishing()) {
+                String ratingpercent = Integer.toString(a);
                 String currentUSer=mAuth.getCurrentUser().getUid();
                 Map<String,String > data=new HashMap<>();
+                Map<String,String > rating=new HashMap<>();
                 data.put("RatingImageDetails",result);
+                rating.put("Rating",ratingpercent);
                 res = result;
                 textViewRatingImageDetails.setText(res);
                 db.collection("users").document(currentUSer)
@@ -356,6 +366,16 @@ public class RatingFragment extends Fragment {
                         Map<String,String>data=new HashMap<>();
                         data.put("ratingChoiceDocName",ratingDocName);
                         db.collection("users").document(currentUSer).set(data, SetOptions.merge());
+                    }
+                });
+                db.collection("users").document(currentUSer)
+                        .collection("RatingDetails").document(ratingDocName)
+                        .set(rating, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Map<String,String>rating=new HashMap<>();
+                        rating.put("ratingChoiceDocName",ratingDocName);
+                        db.collection("users").document(currentUSer).set(rating, SetOptions.merge());
                     }
                 });
             }
