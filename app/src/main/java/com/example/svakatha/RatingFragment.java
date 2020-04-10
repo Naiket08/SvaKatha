@@ -104,6 +104,9 @@ public class RatingFragment extends Fragment {
     int a;
     String res;
     Bitmap bitmap,pixelatedbitmap;
+    String[] colours;
+    String[] fourcolours;
+    String[] colourvalue = new String[4];
 
     public RatingFragment() {
         // Required empty public constructor
@@ -200,6 +203,7 @@ public class RatingFragment extends Fragment {
                         })
                         .make();
                 imageViewCapturedImage.setImageURI(uri);
+
                 final int percentage = new Random().nextInt(41) + 30;
                 a = percentage;
 
@@ -357,7 +361,14 @@ public class RatingFragment extends Fragment {
                 data.put("RatingImageDetails",result);
                 rating.put("Rating",ratingpercent);
                 res = result;
-                textViewRatingImageDetails.setText(res);
+
+                colours = res.split("\\R",7);
+                for(int i=2;i<=5;i++){
+                    fourcolours = colours[i].split("\\s+",0);
+                    colourvalue[i-2] = fourcolours[1];
+                }
+
+                textViewRatingImageDetails.setText(colourvalue[0]+"\n"+colourvalue[1]+"\n"+colourvalue[2]+"\n"+colourvalue[3]);
                 db.collection("users").document(currentUSer)
                         .collection("RatingDetails").document(ratingDocName)
                         .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
