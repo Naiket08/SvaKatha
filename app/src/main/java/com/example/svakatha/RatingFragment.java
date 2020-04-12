@@ -54,8 +54,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
@@ -76,6 +79,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+import io.grpc.internal.AbstractReadableBuffer;
 import nl.dionsegijn.pixelate.OnPixelateListener;
 import nl.dionsegijn.pixelate.Pixelate;
 
@@ -102,7 +106,12 @@ public class RatingFragment extends Fragment {
     private static final String FILE_NAME = "temp.jpg";
     Uri uri;
     int a;
-    String res;
+    public boolean r=false;
+    //////////////////////////////////
+    public int x,percentage2;
+    public String maindata,Check0,Check1,Check2,Check3,reference;
+    ////////////////////////////////////
+   public String res;
     Bitmap bitmap,pixelatedbitmap;
     String[] colours;
     String[] fourcolours;
@@ -130,6 +139,26 @@ public class RatingFragment extends Fragment {
 //        editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
 //        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
         imageViewLike = (ImageView) view.findViewById(R.id.imageViewLike);
+
+        /////////////////////////////////////////////////
+        db.collection("users").document(mAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                String received4 = documentSnapshot.getString("ratingChoiceDocName");
+                if(received4==null)
+                {
+
+                }
+                else {
+                    Log.i("ALL", received4);
+                    reference = received4;
+                    x = Integer.parseInt(extractInt(reference));
+                }
+
+            }
+        });
+
+        ////////////////////////////////////////////////
 
 
         imageButtonCameraButton.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +193,30 @@ public class RatingFragment extends Fragment {
 
         return view;
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////
+     String extractInt(String str)
+    {
+        // Replacing every non-digit number
+        // with a space(" ")
+        str = str.replaceAll("[^\\d]", " ");
+
+        // Remove extra spaces from the beginning
+        // and the ending of the string
+        str = str.trim();
+
+        // Replace all the consecutive white
+        // spaces with a single space
+        str = str.replaceAll(" +", " ");
+
+        if (str.equals(""))
+            return "-1";
+
+        return str;
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     private void startCamera() {
         if (PermissionUtils.requestPermission(
                 getActivity(),
@@ -191,7 +244,28 @@ public class RatingFragment extends Fragment {
                 Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
                 uri = photoUri;
                 bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
-                new Pixelate(bitmap)
+
+                callCloudVision(bitmap);
+
+                imageViewCapturedImage.setImageURI(uri);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //override
+    public void onActivityResult1() {
+
+            try {
+                Toast.makeText(context, "Image Captured", Toast.LENGTH_LONG).show();
+                Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
+                uri = photoUri;
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
+
+
+               new Pixelate(bitmap)
                         .setDensity(8)
                         .setListener(new OnPixelateListener() {
                             @Override
@@ -202,11 +276,10 @@ public class RatingFragment extends Fragment {
                             }
                         })
                         .make();
-                imageViewCapturedImage.setImageURI(uri);
+               imageViewCapturedImage.setImageURI(uri);
 
                 final int percentage = new Random().nextInt(41) + 30;
                 a = percentage;
-
                 if(percentage<50){
                     imageViewLikeDislike.setVisibility(View.VISIBLE);
                     imageViewLike.setVisibility(View.INVISIBLE);
@@ -220,8 +293,9 @@ public class RatingFragment extends Fragment {
             }catch (Exception e){
                 e.printStackTrace();
             }
-        }
+
     }
+
 
     private void callCloudVision(final Bitmap bitmap) {
         // Switch text to loading
@@ -254,6 +328,22 @@ public class RatingFragment extends Fragment {
         return message.toString();
     }
 
+    //overide
+    private static String convertResponseToString1(BatchAnnotateImagesResponse response) {
+        StringBuilder message = new StringBuilder("Detected:\n\n");
+
+        List<EntityAnnotation> labels = response.getResponses().get(0).getLabelAnnotations();
+        if (labels != null) {
+            for (EntityAnnotation label : labels) {
+                message.append(String.format(Locale.US, "%.3f: %s", label.getScore(), label.getDescription()));
+                message.append("\n");
+            }
+        } else {
+            message.append("nothing");
+        }
+
+        return message.toString();
+    }
     private Vision.Images.Annotate prepareAnnotationRequest(Bitmap bitmap) throws IOException {
         HttpTransport httpTransport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = GsonFactory.getDefaultInstance();
@@ -328,7 +418,7 @@ public class RatingFragment extends Fragment {
         private FirebaseAuth mAuth=FirebaseAuth.getInstance();
         private StorageReference mStorageRef;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String ratingDocName= UUID.randomUUID().toString();
+        String ratingDocName="IMG";
 
         LableDetectionTask(HostActivity activity, Vision.Images.Annotate annotate) {
             mActivityWeakReference = new WeakReference<>(activity);
@@ -338,9 +428,17 @@ public class RatingFragment extends Fragment {
         @Override
         protected String doInBackground(Object... params) {
             try {
-                Log.d(TAG, "created Cloud Vision request object, sending request");
-                BatchAnnotateImagesResponse response = mRequest.execute();
-                return convertResponseToString(response);
+                if(r==false) {
+                    Log.d(TAG, "created Cloud Vision request object, sending request");
+                    BatchAnnotateImagesResponse response = mRequest.execute();
+                    return convertResponseToString(response);
+                }
+                else {
+                    Log.d(TAG, "created Cloud Vision request object, sending request");
+                    BatchAnnotateImagesResponse response = mRequest.execute();
+                    return convertResponseToString1(response);
+
+                }
 
             } catch (GoogleJsonResponseException e) {
                 Log.d(TAG, "failed to make API request because " + e.getContent());
@@ -361,42 +459,152 @@ public class RatingFragment extends Fragment {
                 data.put("RatingImageDetails",result);
                 rating.put("Rating",ratingpercent);
                 res = result;
+                String check5="nose";
+                textViewRatingImageDetails.setText(res);
+                if (res.toLowerCase().indexOf(check5.toLowerCase()) != -1 && r==false ) {
 
-                colours = res.split("\\R",7);
-                for(int i=2;i<=5;i++){
-                    fourcolours = colours[i].split("\\s+",0);
-                    colourvalue[i-2] = fourcolours[1];
+                    r=true;
+                    Toast.makeText(context, "FACE RECOGNISED ", Toast.LENGTH_LONG).show();
+                    onActivityResult1();
+
+
                 }
+                else if(r==true){
+                    r=false;
+                    ++x;
+                    colours = res.split("\\R", 7);
+                    for (int i = 2; i <= 5; i++) {
+                        fourcolours = colours[i].split("\\s+", 0);
+                        colourvalue[i - 2] = fourcolours[1];
+                    }
 
-                textViewRatingImageDetails.setText(colourvalue[0]+"\n"+colourvalue[1]+"\n"+colourvalue[2]+"\n"+colourvalue[3]);
-                db.collection("users").document(currentUSer)
-                        .collection("RatingDetails").document(ratingDocName)
-                        .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Map<String,String>data=new HashMap<>();
-                        data.put("ratingChoiceDocName",ratingDocName);
-                        db.collection("users").document(currentUSer).set(data, SetOptions.merge());
-                    }
-                });
-                db.collection("users").document(currentUSer)
-                        .collection("RatingDetails").document(ratingDocName)
-                        .set(rating, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Map<String,String>rating=new HashMap<>();
-                        rating.put("ratingChoiceDocName",ratingDocName);
-                        db.collection("users").document(currentUSer).set(rating, SetOptions.merge());
-                    }
-                });
+                    textViewRatingImageDetails.setText(colourvalue[0] + "\n" + colourvalue[1] + "\n" + colourvalue[2] + "\n" + colourvalue[3]);
+                    ///////////////////////////////////////////////////////////
+                    Check0 = colourvalue[0];
+                    Check1 = colourvalue[1];
+                    Check2 = colourvalue[2];
+                    Check3 = colourvalue[3];
+
+
+                    //////////////////////////////////////////////////////////
+
+
+                    db.collection("users").document(currentUSer)
+                            .collection("RatingDetails").document(ratingDocName + x)
+                            .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Map<String, String> data = new HashMap<>();
+                            data.put("ratingChoiceDocName", ratingDocName + x);
+                            db.collection("users").document(currentUSer).set(data, SetOptions.merge());
+
+                        }
+                    });
+
+                    db.collection("users").document(currentUSer)
+                            .collection("RatingDetails").document(ratingDocName + x)
+                            .set(rating, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Map<String, String> rating = new HashMap<>();
+                            rating.put("ratingChoiceDocName", ratingDocName + x);
+                            db.collection("users").document(currentUSer).set(rating, SetOptions.merge());
+                        }
+                    });
+                    mainprocess(x);
+
+                }
+                else{
+                    Toast.makeText(context, "FACE NOT RECOGNISED ", Toast.LENGTH_LONG).show();
+                }
             }
+
         }
 
     }
+    //////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public void onDestroy() {
         super.onDestroy();
         //uri = null;
     }
+    public void mainprocess(int y){
+        y=y-1;
+        if(y==0) {
+
+
+        }
+        else {
+            for (int j=1; j <= y; j++) {
+
+                int finalJ = j;
+                db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("RatingDetails").document("IMG"+j).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                        String received = documentSnapshot.getString("RatingImageDetails");
+                        Log.i("ALL", received);
+                        maindata = received;
+
+
+                        if (maindata.toLowerCase().indexOf(Check0.toLowerCase()) != -1 && maindata.toLowerCase().indexOf(Check1.toLowerCase()) != -1 && maindata.toLowerCase().indexOf(Check2.toLowerCase()) != -1 && maindata.toLowerCase().indexOf(Check3.toLowerCase()) != -1) {
+
+                           // Toast.makeText(context, "MATCH FOUND: "+ finalJ, Toast.LENGTH_LONG).show();
+                            db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("RatingDetails").document("IMG"+finalJ).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                @Override
+                                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                                    String received1 = documentSnapshot.getString("Rating");
+                                    Log.i("ALL", received1);
+                                    String change = received1;
+                                    percentage2= Integer.parseInt(change);
+                                    a=percentage2;
+                                    if(percentage2<50){
+                                        imageViewLikeDislike.setVisibility(View.VISIBLE);
+                                        imageViewLike.setVisibility(View.INVISIBLE);
+                                        textViewLikeDislikePercentage.setText(percentage2+"%");
+                                    }
+                                    else{
+                                        imageViewLike.setVisibility(View.VISIBLE);
+                                        imageViewLikeDislike.setVisibility(View.INVISIBLE);
+                                        textViewLikeDislikePercentage.setText(percentage2+"%");
+                                    }
+                                    //back to DB
+                                    String ratingpercent = Integer.toString(a);
+                                    Map<String,String > rating=new HashMap<>();
+                                    rating.put("Rating",ratingpercent);
+
+                                    db.collection("users").document(mAuth.getCurrentUser().getUid())
+                                            .collection("RatingDetails").document("IMG"+x)
+                                            .set(rating, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Map<String,String>rating=new HashMap<>();
+                                            rating.put("ratingChoiceDocName","IMG"+x);
+                                            db.collection("users").document(mAuth.getCurrentUser().getUid()).set(rating, SetOptions.merge());
+                                        }
+                                    });
+                                }
+                            });
+
+
+                        }else
+                        {
+                          //  Toast.makeText(context, "MATCH NOT FOUND: "+ finalJ, Toast.LENGTH_LONG).show();
+
+                        }
+
+                    }
+                });
+            }
+
+        }
+    }
+
+
+
+
 }
+
+
+
