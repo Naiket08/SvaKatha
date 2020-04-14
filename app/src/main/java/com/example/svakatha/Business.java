@@ -72,9 +72,7 @@ public class Business extends AppCompatActivity {
         //casting of ImageView
         imageViewBusinessScreenHeader=(ImageView)findViewById(R.id.imageViewBusinessScreenHeader1);
 
-        String[] business = new String[]{"Ocassion","Business","Dinner party","A business dinner or a company party",
-                "Family Get-Together or Birthday Party","College","Cocktail party","Business Formal","Religious Ceremony",
-                "Interview","A Night at the Theater","Office","Other"};
+        String[] business = new String[]{"Casual","Ethnic","Wedding","Formal"};
         Spinner spnr_business = findViewById(R.id.spnr_occasion_bussiness);
         ArrayAdapter<String> businessarray =
                 new ArrayAdapter<>(
