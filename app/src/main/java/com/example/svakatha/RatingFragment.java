@@ -101,7 +101,7 @@ public class RatingFragment extends Fragment {
     private static final String TAG = HostActivity.class.getSimpleName();
     private Context context;
     private ImageView imageViewCapturedImage,imageViewLikeDislike,imageViewLike;
-    private TextView textViewLikeDislikePercentage,textViewRatingImageDetails,textViewtotal;
+    private TextView textViewLikeDislikePercentage,textViewRatingImageDetails;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseDatabase fdb = FirebaseDatabase.getInstance();
     private FirebaseAuth mAuth =  FirebaseAuth.getInstance();
@@ -147,7 +147,6 @@ public class RatingFragment extends Fragment {
 //        editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
 //        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
         imageViewLike = (ImageView) view.findViewById(R.id.imageViewLike);
-        textViewtotal=(TextView)view.findViewById(R.id.textViewTotal);
         /////////////////////////////////////////////////
         db.collection("users").document(mAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
