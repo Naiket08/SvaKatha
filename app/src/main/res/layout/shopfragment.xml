@@ -29,14 +29,14 @@
 
     <TextView
         android:id="@+id/textViewAddDesign_1"
-        android:layout_width="@dimen/_188sdp"
-        android:layout_height="@dimen/_42sdp"
+        android:layout_width="297dp"
+        android:layout_height="71dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/_14sdp"
-        android:layout_marginTop="@dimen/_52sdp"
-        android:layout_marginEnd="@dimen/_89sdp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="96dp"
         android:fontFamily="@font/arial"
         android:text=""
         android:textAlignment="center"

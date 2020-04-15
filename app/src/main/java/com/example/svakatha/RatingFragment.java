@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -115,8 +116,8 @@ public class RatingFragment extends Fragment {
     public boolean r=false,s=false,t=false;
     //////////////////////////////////
     public int x,percentage2,totalpercentage=0;
-    public String maindata,Check0,Check1,Check2,Check3,reference,str2,resMain,smallcase,style1;
-    public Boolean str=false;
+    public String maindata,Check0,Check1,Check2,Check3,reference,resMain="",smallcase,Choice="",str4="";
+    public Boolean str,str3=true;
     ////////////////////////////////////
     public String res;
     Bitmap bitmap,pixelatedbitmap;
@@ -173,151 +174,14 @@ public class RatingFragment extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String finalProfileText2 = documentSnapshot.getString("Gender");
-                        str=finalProfileText2.equals("FEMALE");
-                        str2=String.valueOf(str);
+                        str=finalProfileText2.equals("MALE");
+                        str4=String.valueOf(str);
                     }
                 });
 
         //Style Fetch
-        db.collection("users").document(mAuth.getCurrentUser().getUid()).get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String finalProfileText3 = documentSnapshot.getString("Business");
-                        style1=finalProfileText3;
-                    }
-                });
 
-
-
-        //Condition Checking
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //Do something after 100ms
-                if(str2.equals("false")){
-                    //male
-                    if(style1.equals("Casual")){
-                        db.collection("Images").document("malefolder").get()
-                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String finalProfileText2 = documentSnapshot.getString("CasualMale");
-                                        Log.i("ALL",finalProfileText2);
-                                        resMain=finalProfileText2;
-                                    }
-                                });
-
-
-                    }
-                    else if(style1.equals("Ethnic")){
-                        db.collection("Images").document("malefolder").get()
-                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String finalProfileText2 = documentSnapshot.getString("EthincMale");
-                                        Log.i("ALL",finalProfileText2);
-                                        resMain=finalProfileText2;
-                                    }
-                                });
-
-                    }
-                    else if(style1.equals("Wedding")){
-                        db.collection("Images").document("malefolder").get()
-                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String finalProfileText2 = documentSnapshot.getString("weddingMale");
-                                        Log.i("ALL",finalProfileText2);
-                                        resMain=finalProfileText2;
-                                    }
-                                });
-
-                    }
-                    else if(style1.equals("Formal")){
-                        db.collection("Images").document("malefolder").get()
-                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String finalProfileText2 = documentSnapshot.getString("formalMale");
-                                        Log.i("ALL",finalProfileText2);
-                                        resMain=finalProfileText2;
-                                    }
-                                });
-
-                    }
-
-
-                }
-
-                else {
-                    //female
-
-                        if (style1.equals("Casual")) {
-                            db.collection("Images").document("femalefolder").get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            String finalProfileText2 = documentSnapshot.getString("casualFemale");
-                                            Log.i("ALL", finalProfileText2);
-                                            resMain = finalProfileText2;
-                                        }
-                                    });
-
-
-                        } else if (style1.equals("Ethnic")) {
-                            db.collection("Images").document("femalefolder").get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            String finalProfileText2 = documentSnapshot.getString("printsFemale");
-                                            Log.i("ALL", finalProfileText2);
-                                            resMain = finalProfileText2;
-                                        }
-                                    });
-
-                        } else if (style1.equals("Wedding")) {
-                            db.collection("Images").document("femalefolder").get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            String finalProfileText2 = documentSnapshot.getString("WeddingFemale");
-                                            Log.i("ALL", finalProfileText2);
-                                            resMain = finalProfileText2;
-                                        }
-                                    });
-
-                        } else if (style1.equals("Formal")) {
-                            db.collection("Images").document("femalefolder").get()
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            String finalProfileText2 = documentSnapshot.getString("FormalFemale");
-                                            Log.i("ALL", finalProfileText2);
-                                            resMain = finalProfileText2;
-                                        }
-                                    });
-
-                        }
-
-
-                }
-            }
-        }, 800);
-
-
-
-
-        ////////////////////////////////////////////////
-
-
-        imageButtonCameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageViewCapturedImage.setImageURI(null);
-                textViewRatingImageDetails.setText(null);
-                imageViewLikeDislike.setVisibility(View.VISIBLE);
-                imageViewLike.setVisibility(View.INVISIBLE);
-                textViewLikeDislikePercentage.setText(0+"%");
-                startCamera();
-            }
-        });
-
-        String[] selectstyle = new String[] {"Select Style","Casual", "Business Wear", "Party Wear", "Formal"};
+        String[] selectstyle = new String[] {"Select Style","Casual", "Wedding", "Party Wear", "Formal"};
         Spinner selectstylespnr = view.findViewById(R.id.spnr_selectstyle);
         ArrayAdapter<String> occasionAdapter =
                 new ArrayAdapter<>(
@@ -326,6 +190,72 @@ public class RatingFragment extends Fragment {
                         selectstyle);
 
         selectstylespnr.setAdapter(occasionAdapter);
+        selectstylespnr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Choice = selectstylespnr.getSelectedItem().toString();
+                datafetch();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //Condition Checking
+
+
+
+
+
+        ////////////////////////////////////////////////
+
+
+    imageButtonCameraButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+             if(str3 && Choice!=null  && !Choice.equals("Select Style") && resMain!=null && str4!=null){
+            imageViewCapturedImage.setImageURI(null);
+            textViewRatingImageDetails.setText(null);
+            imageViewLikeDislike.setVisibility(View.VISIBLE);
+            imageViewLike.setVisibility(View.INVISIBLE);
+            textViewLikeDislikePercentage.setText(0+"%");
+            datafetch();
+            str3=false;
+            startCamera();
+             }
+             else if(Choice==null  || Choice.equals("Select Style")){
+                 final Toast toast = Toast.makeText(context, "select your style", Toast.LENGTH_SHORT);
+                 toast.show();
+
+                 Handler handler2 = new Handler();
+                 handler2.postDelayed(new Runnable() {
+                     @Override
+                     public void run() {
+                         toast.cancel();
+                     }
+                 }, 500);
+             }else{
+                 final Toast toast = Toast.makeText(context, "Wait Until Process Finished", Toast.LENGTH_SHORT);
+                 toast.show();
+
+                 Handler handler2 = new Handler();
+                 handler2.postDelayed(new Runnable() {
+                     @Override
+                     public void run() {
+                         toast.cancel();
+                     }
+                 }, 500);
+             }
+
+
+
+        }
+    });
+
+
         //imageViewCapturedImage.setImageBitmap(pixelatedbitmap);
         imageViewCapturedImage.setImageURI(uri);
         if(a<50){
@@ -363,9 +293,121 @@ public class RatingFragment extends Fragment {
         return str;
     }
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+public void datafetch(){
+    final Handler handler = new Handler();
+    handler.postDelayed(new Runnable() {
+        @Override
+        public void run() {
+            //Do something after 100ms
+            if(str){
+                //male
+                if(Choice.equals("Casual")){
+                    db.collection("Images").document("malefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("CasualMale");
+                                    Log.i("ALL",finalProfileText2);
+                                    resMain=finalProfileText2;
+                                }
+                            });
 
+
+                }
+                else if(Choice.equals("Party Wear")){
+                    db.collection("Images").document("malefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("EthincMale");
+                                    Log.i("ALL",finalProfileText2);
+                                    resMain=finalProfileText2;
+                                }
+                            });
+
+                }
+                else if(Choice.equals("Wedding")){
+                    db.collection("Images").document("malefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("weddingMale");
+                                    Log.i("ALL",finalProfileText2);
+                                    resMain=finalProfileText2;
+                                }
+                            });
+
+                }
+                else if(Choice.equals("Formal")){
+                    db.collection("Images").document("malefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("formalMale");
+                                    Log.i("ALL",finalProfileText2);
+                                    resMain=finalProfileText2;
+                                }
+                            });
+
+                }
+
+
+
+            }
+
+            else {
+                //female
+
+                if (Choice.equals("Casual")) {
+                    db.collection("Images").document("femalefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("casualFemale");
+                                    Log.i("ALL", finalProfileText2);
+                                    resMain = finalProfileText2;
+                                }
+                            });
+
+
+                } else if (Choice.equals("Party Wear")) {
+                    db.collection("Images").document("femalefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("printsFemale");
+                                    Log.i("ALL", finalProfileText2);
+                                    resMain = finalProfileText2;
+                                }
+                            });
+
+                } else if (Choice.equals("Wedding")) {
+                    db.collection("Images").document("femalefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("WeddingFemale");
+                                    Log.i("ALL", finalProfileText2);
+                                    resMain = finalProfileText2;
+                                }
+                            });
+
+                } else if (Choice.equals("Formal")) {
+                    db.collection("Images").document("femalefolder").get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String finalProfileText2 = documentSnapshot.getString("FormalFemale");
+                                    Log.i("ALL", finalProfileText2);
+                                    resMain = finalProfileText2;
+                                }
+                            });
+
+                }
+
+
+            }
+
+        }
+    }, 1000);
+
+}
 
     public void savetoDB(int a) {
         String ratingpercent = Integer.toString(a);
@@ -406,6 +448,8 @@ public class RatingFragment extends Fragment {
                 CAMERA_PERMISSIONS_REQUEST,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA)) {
+            str3=true;
+            datafetch();
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
@@ -423,8 +467,10 @@ public class RatingFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
             try {
-                Toast.makeText(context, "Image Captured", Toast.LENGTH_LONG).show();
-                Toast.makeText(context, "PROCESSING",Toast.LENGTH_SHORT).show();
+                str3=false;
+                textViewLikeDislikePercentage.setText("Waiting");
+                Toast.makeText(context, "Image Captured",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(context, "PROCESSING",Toast.LENGTH_SHORT).show();
                 Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
                 uri = photoUri;
                 bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
@@ -442,7 +488,6 @@ public class RatingFragment extends Fragment {
     public void onActivityResult1() {
 
         try {
-            Toast.makeText(context, "Image Captured", Toast.LENGTH_LONG).show();
             Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
             uri = photoUri;
             bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
@@ -641,7 +686,16 @@ public class RatingFragment extends Fragment {
                 if (res.toLowerCase().indexOf(check5.toLowerCase()) == -1 && r==false ) {
                     Log.d("i am inside ","the code");
                     r=true;
-                    Toast.makeText(context, "FACE RECOGNISED ", Toast.LENGTH_LONG).show();
+                    final Toast toast = Toast.makeText(context, "FACE RECOGNISED", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
 
                     onActivityResult1();
 
@@ -667,8 +721,6 @@ public class RatingFragment extends Fragment {
                     }
 
                     totalpercentage=totalpercentage/10000000;
-
-                    textViewtotal.setText(Integer.toString(totalpercentage));
 
 
                     textViewRatingImageDetails.setText(colourvalue[0] + "\n" + colourvalue[1] + "\n" + colourvalue[2] + "\n" + colourvalue[3]);
@@ -732,14 +784,25 @@ public class RatingFragment extends Fragment {
                     });
 
                     mainprocess(x);
+                    str3=true;
 
                 }
                 else{
-                    Toast.makeText(context, "FACE NOT RECOGNISED ", Toast.LENGTH_LONG).show();
+                    final Toast toast = Toast.makeText(context, "FACE NOT RECOGNISED ", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
                     final int percentage3 = 0;
                     imageViewLikeDislike.setVisibility(View.VISIBLE);
                     imageViewLike.setVisibility(View.INVISIBLE);
                     textViewLikeDislikePercentage.setText(percentage3+"%");
+                    str3=true;
 
                 }
             }
@@ -754,6 +817,7 @@ public class RatingFragment extends Fragment {
     }
     ////////////////////////////////////////////////////////////////////////////////////////////
     @Override
+
     public void onDestroy() {
         super.onDestroy();
         //uri = null;
