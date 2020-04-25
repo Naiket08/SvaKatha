@@ -69,6 +69,8 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
 
     compile 'nl.dionsegijn:pixelate:1.1.0'
-
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
 
 }
