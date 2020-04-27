@@ -1,46 +1,41 @@
 package com.example.svakatha;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -59,15 +54,17 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SignupScreen extends AppCompatActivity {
 
     private static final String TAG = "Status";
     ImageView imageViewSignUpHeader, imageViewSignUpDivider;
     TextView textViewSignUpWelcome, textViewSignUpSvakatha,textViewLoginForward;
-    Button buttonSignUp_LetsStart;
+    Button buttonSignUp_LetsStart,fb;
     EditText editTextSignUpUsrname,editTextSignUpEmailId,editTextSignUpPassword,editTextSignUpConfirmPassword;
-    SignInButton signInButton;
+    ImageButton signInButton;
     private static final int RC_SIGN_IN = 1;
     private GoogleSignInClient mGoogleSignInClient;
     CallbackManager mcallbackManager;
@@ -86,18 +83,16 @@ public class SignupScreen extends AppCompatActivity {
         setContentView(R.layout.activity_signup_screen);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        imageViewSignUpHeader = (ImageView)findViewById(R.id.imageViewSignUpHeader);
-        imageViewSignUpDivider = (ImageView)findViewById(R.id.imageViewSignUpDivider);
-        textViewSignUpWelcome = (TextView)findViewById(R.id.textViewSignUpWelcome);
+
         textViewLoginForward = (TextView)findViewById(R.id.textViewLogin);
-        textViewSignUpSvakatha = (TextView)findViewById(R.id.textViewSignUpSvakatha);
+
         buttonSignUp_LetsStart = (Button)findViewById(R.id.buttonSignUp_LetsStart);
         editTextSignUpUsrname = (EditText)findViewById(R.id.editTextSignUpUsername);
         editTextSignUpEmailId = (EditText)findViewById(R.id.editTextSignUpEmailId);
         editTextSignUpPassword = (EditText)findViewById(R.id.editTextSignUpPassword);
         editTextSignUpConfirmPassword = (EditText)findViewById(R.id.editTextSignUpConfirmPassword);
         boolean loggedOut = AccessToken.getCurrentAccessToken() == null;
-
+        fb = (Button) findViewById(R.id.fb);
         mfirebaseAuth =FirebaseAuth.getInstance();
 
         signInButton=findViewById(R.id.sign_in_button);
@@ -105,6 +100,8 @@ public class SignupScreen extends AppCompatActivity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
+
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
@@ -138,7 +135,9 @@ public class SignupScreen extends AppCompatActivity {
         facebook_login_button.registerCallback(mcallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
+///////////////////////
+                showImage();
+///////////////////////
                 Log.i(TAG, "onSuccess: logged in successfully");
                 Toast.makeText(SignupScreen.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
@@ -184,7 +183,44 @@ public class SignupScreen extends AppCompatActivity {
         });
 
     }
+ ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //important to popup image
+    public void showImage() {
+        Dialog builder = new Dialog(this,R.style.AppBaseTheme);
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        builder.getWindow().setBackgroundDrawable(
+                new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //nothing;
+            }
+        });
 
+        ImageView imageView = new ImageView(this);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        builder.setContentView(R.layout.background);;
+        builder.show();
+        final Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            public void run() {
+                builder.dismiss(); // when the task active then close the dialog
+                t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
+            }
+        }, 4000); // after 2 second (or 2000 miliseconds), the task will be active.
+
+
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    public void onClickFacebookButton(View view) {
+        if (view == fb) {
+            facebook_login_button.performClick();
+        }
+    }
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
 
@@ -213,6 +249,7 @@ public class SignupScreen extends AppCompatActivity {
                     }
                 });
     }
+
 
     private void getUserProfile(AccessToken currentAccessToken) {
         GraphRequest request = GraphRequest.newMeRequest(
@@ -301,8 +338,9 @@ public class SignupScreen extends AppCompatActivity {
 
         //if the email and password are not empty
         //displaying a progress dialog
-
-
+  //////////////
+        showImage();
+//////////////////
         //creating a new user
         mfirebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -400,6 +438,9 @@ public class SignupScreen extends AppCompatActivity {
             mfirebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+/////////////////////////
+                    showImage();
+////////////////////////
                     if (task.isSuccessful()) {
                         Toast.makeText(SignupScreen.this, "Successful", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = mfirebaseAuth.getCurrentUser();

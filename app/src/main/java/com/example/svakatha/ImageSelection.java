@@ -1,18 +1,21 @@
 package com.example.svakatha;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.net.Uri;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.StrictMode;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -27,25 +30,17 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
 
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
@@ -213,10 +208,20 @@ public class ImageSelection extends AppCompatActivity {
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ImageSelection.this, HostActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
+////////////////////////
+                showImage();
+////////////////////////
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(ImageSelection.this, HostActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+                        //overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                    }
+                },2000);
                 //Toast.makeText(ImageSelection.this, "Next Page To My Closet", Toast.LENGTH_SHORT).show();
             }
         });
@@ -403,5 +408,38 @@ public class ImageSelection extends AppCompatActivity {
     public void onFirstUrlSet() {
         addParentView(index);
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //important to popup image
+    public void showImage() {
+        Dialog builder = new Dialog(this,R.style.AppBaseTheme);
+        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        builder.getWindow().setBackgroundDrawable(
+                new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                //nothing;
+            }
+        });
+
+        ImageView imageView = new ImageView(this);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        builder.setContentView(R.layout.background);;
+        builder.show();
+        final Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            public void run() {
+                builder.dismiss(); // when the task active then close the dialog
+                t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
+            }
+        }, 3000); // after 2 second (or 2000 miliseconds), the task will be active.
+
+
+    }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 }

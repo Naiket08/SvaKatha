@@ -4,55 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/backmain"
     tools:context=".SignupScreen">
 
 
     <ImageView
-        android:id="@+id/imageViewSignUpHeader"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_152sdp"
-        android:background="@drawable/heaaderrectangleloginscreen"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/_minus20sdp"/>
+        android:layout_height="@dimen/_130sdp"
+        android:background="@drawable/backgroundm"></ImageView>
 
-    <TextView
-        android:id="@+id/textViewSignUpWelcome"
-        android:layout_width="@dimen/_134sdp"
-        android:layout_height="@dimen/_27sdp"
-        android:fontFamily="@font/arial"
-        android:text="@string/welcome_to"
-        android:textColor="#000"
-        android:textSize="@dimen/_24ssp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_22sdp"
-        android:layout_marginStart="@dimen/_23sdp"/>
 
-    <TextView
-        android:id="@+id/textViewSignUpSvakatha"
-        android:layout_width="@dimen/_204sdp"
-        android:layout_height="@dimen/_42sdp"
-        android:text="@string/svakatha"
-        android:textColor="#000"
-        android:textSize="@dimen/_36ssp"
-        android:fontFamily="@font/arial"
-        android:layout_below="@+id/textViewSignUpWelcome"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="19dp"
-        android:layout_marginStart="@dimen/_23sdp"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/imageViewSignUpHeader">
+        android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingBottom="@dimen/_30sdp">
 
-    <EditText
+        <ImageView
+            android:id="@+id/imageviewmain"
+            android:layout_width="@dimen/_300sdp"
+            android:layout_height="@dimen/_410sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/header" />
+
+        <EditText
         android:id="@+id/editTextSignUpUsername"
         android:layout_width="@dimen/_246sdp"
         android:layout_height="@dimen/_32sdp"
@@ -66,8 +47,8 @@
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_90sdp"
-        android:background="@drawable/borderedittext"/>
+        android:layout_marginTop="@dimen/_200sdp"
+        android:background="@drawable/inputlayout"/>
 
     <EditText
         android:id="@+id/editTextSignUpEmailId"
@@ -82,7 +63,7 @@
         android:fontFamily="@font/arial"
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
-        android:background="@drawable/borderedittext"
+        android:background="@drawable/inputlayout"
         android:layout_below="@+id/editTextSignUpUsername"
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_centerHorizontal="true"/>
@@ -100,7 +81,7 @@
         android:inputType="textPassword"
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
-        android:background="@drawable/borderedittext"
+        android:background="@drawable/inputlayout"
         android:layout_below="@+id/editTextSignUpEmailId"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_16sdp"/>
@@ -118,7 +99,7 @@
         android:fontFamily="@font/arial"
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"
-        android:background="@drawable/borderedittext"
+        android:background="@drawable/inputlayout"
         android:layout_below="@+id/editTextSignUpPassword"
         android:layout_marginTop="@dimen/_16sdp"
         android:layout_centerHorizontal="true"/>
@@ -130,50 +111,67 @@
         android:layout_below="@+id/editTextSignUpConfirmPassword"
         android:layout_marginTop="17dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/buttonbackgroundlogin"
+        android:background="@drawable/starticon"
         android:fontFamily="@font/arial"
         android:text="Let's Start"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_14ssp" />
 
-    <ImageView
-        android:id="@+id/imageViewSignUpDivider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/divider"
-        android:layout_below="@+id/buttonSignUp_LetsStart"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_23sdp"/>
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebook_login_button"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_below="@+id/imageViewSignUpDivider"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="@dimen/_20sdp"/>
+        <FrameLayout
+            android:layout_below="@id/imageviewmain"
+            android:id="@+id/FrameLayout1"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_40sdp">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_below="@+id/imageViewSignUpDivider"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/_20sdp">
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/facebook_login_button"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_below="@+id/imageviewmain"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/facebook"
+                android:visibility="invisible"/>
 
-    </com.google.android.gms.common.SignInButton>
+            <Button
+                android:background="@drawable/facebook"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:id="@+id/fb"
+                android:onClick="onClickFacebookButton"
+                android:layout_alignParentStart="true" />
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_below="@+id/imageviewmain"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_toEndOf="@+id/FrameLayout1"
+            android:background="@drawable/google"
+            tools:ignore="NotSibling">
+
+        </ImageButton>
+
+
 
     <TextView
         android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/facebook_login_button"
+        android:layout_below="@+id/buttonSignUp_LetsStart"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
-        android:text="Login"
+        android:text=""
+        android:background="@drawable/login"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp"
