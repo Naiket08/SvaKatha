@@ -4,168 +4,181 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".BodyShapeFemale">
+    android:background="@drawable/backk"
+    tools:context=".DetailsScreen">
 
     <ImageView
         android:id="@+id/imageViewBodyShapeScreen_1_F"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_245sdp"
-        android:background="@drawable/heaaderrectangleloginscreen"
+        android:layout_height="@dimen/_167sdp"
+        android:background="@drawable/headerback"
         android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/_minus20sdp"/>
 
     <TextView
+
         android:id="@+id/textViewBodyShapeText2_1_F"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:fontFamily="@font/arial"
         android:text=""
-        android:textColor="#000"
-        android:textSize="@dimen/_27ssp"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_20ssp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_23sdp"
-        android:layout_marginEnd="@dimen/_20sdp"/>
-
-    <TextView
-        android:id="@+id/textViewBodyShapeText3_1_F"
-        android:layout_width="@dimen/_220sdp"
-        android:layout_height="wrap_content"
-        android:text="Part two: Body Structure"
-        android:textColor="#474747"
-        android:lineSpacingExtra="@dimen/_7sdp"
-        android:textSize="@dimen/_20ssp"
-        android:fontFamily="@font/arial"
-        android:layout_below="@+id/textViewBodyShapeText2_1_F"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginStart="@dimen/_23sdp"/>
+
+
 
     <TextView
         android:id="@+id/textViewBodyShapeText4_1_F"
-        android:layout_width="@dimen/_242sdp"
-        android:layout_height="@dimen/_49sdp"
-        android:text="Your body structure helps us to understand\nhow design and its colour will look great on\nyou considering your personality."
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:text="Your body structure helps us to understand\n
+how design and its colour will look great on\n you
+considering your personality."
         android:fontFamily="@font/arial"
-        android:textColor="#737373"
-        android:textSize="@dimen/_12ssp"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_14ssp"
         android:lineSpacingExtra="@dimen/_2sdp"
-        android:layout_below="@+id/textViewBodyShapeText3_1_F"
+        android:layout_below="@+id/textViewBodyShapeText2_1_F"
         android:layout_marginStart="@dimen/_23sdp"
-        android:layout_marginTop="@dimen/_12sdp"/>
+        android:layout_marginTop="@dimen/_10sdp"/>
 
-    <ProgressBar
-        android:id="@+id/progressBarBodyShapeScreen_1_F"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="@dimen/_327sdp"
-        android:layout_height="@dimen/_10sdp"
-        android:layout_below="@+id/imageViewBodyShapeScreen_1_F"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_34sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:max="100"
-        android:progress="30"
-        android:progressTint="@color/progess"
-        android:scaleY="3"
-        android:secondaryProgress="50"
-        android:secondaryProgressTint="@color/progressblue"
-        android:secondaryProgressTintMode="src_over" />
 
-    <!-- <androidx.recyclerview.widget.RecyclerView
-         android:id="@+id/recycler"
-         android:layout_width="match_parent"
-         android:layout_height="323dp"
-         android:layout_alignParentStart="true"
-         android:layout_alignParentEnd="true"
-         android:layout_alignParentBottom="true"
-         android:layout_marginStart="0dp"
-         android:layout_marginEnd="0dp"
-         android:layout_marginBottom="-106dp"
-         android:scrollbars="vertical"
-         app:layout_constraintBottom_toBottomOf="parent"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/progressBarBodyShapeScreen_1"
-         app:layout_constraintVertical_bias="0.454" />-->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBarBodyShapeScreen_1_F"
-        android:layout_marginTop="@dimen/_20sdp">
+        android:layout_below="@+id/imageViewBodyShapeScreen_1_F">
+
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/linearLayoutbodyshapeFemale"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/_280sdp"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp">
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_310sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/backwhite">
+
+            <ProgressBar
+                android:id="@+id/progressBarBodyShapeScreen_1_F"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/_327sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:max="100"
+                android:layout_below="@id/textviewbodyshape"
+                android:progress="30"
+                android:progressTint="@color/progess"
+                android:background="@drawable/progress"
+                android:paddingTop="@dimen/_1sdp"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingBottom="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_2sdp"
+                android:scaleY="1.2"
+                android:progressDrawable="@drawable/rounded_corners_progress_bar"
+                android:secondaryProgress="50"
+                android:secondaryProgressTint="@color/progressblue"
+                android:secondaryProgressTintMode="src_over"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"/>
+
+
+
+
+            <TextView
+                android:id="@+id/textviewbodyshape"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Pick your body shape"
+                android:textColor="#000"
+                android:textSize="@dimen/_20ssp" />
 
             <LinearLayout
+                android:id="@+id/linearLayoutbodyshape"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <ImageButton
-                    android:id="@+id/imagebuttonbody1F"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_height="@dimen/_270sdp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/pear"/>
-                <ImageButton
-                    android:id="@+id/imagebuttonbody2F"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_height="@dimen/_270sdp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/rectangle"/>
+                android:orientation="vertical"
+                android:layout_below="@id/progressBarBodyShapeScreen_1_F"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody1F"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_250sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/pear"/>
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody2F"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_250sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/rectangle"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody3F"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_250sdp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/hourglass"/>
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody4F"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_250sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/inverted"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/imagebuttonbody5F"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="@dimen/_250sdp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/oval"/>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <ImageButton
-                    android:id="@+id/imagebuttonbody3F"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_height="@dimen/_270sdp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/hourglass"/>
-                <ImageButton
-                    android:id="@+id/imagebuttonbody4F"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_height="@dimen/_270sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/inverted"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <ImageButton
-                    android:id="@+id/imagebuttonbody5F"
-                    android:layout_width="@dimen/_140sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_height="@dimen/_270sdp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/oval"/>
-            </LinearLayout>
-        </LinearLayout>
+
+
 
             <ImageButton
                 android:id="@+id/imageButtonBodyShapeScreenForward_1_F"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
-                android:layout_below="@+id/linearLayoutbodyshapeFemale"
+                android:layout_below="@+id/linearLayoutbodyshape"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="#FFFFFF"
-                app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:background="@drawable/ic_arrow_forward_black_24dp" />
+
+
+
+
+
+
         </RelativeLayout>
     </ScrollView>
+
+
 </RelativeLayout>

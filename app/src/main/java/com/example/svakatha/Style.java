@@ -1,15 +1,11 @@
 package com.example.svakatha;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -18,19 +14,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -57,7 +45,6 @@ public class Style extends AppCompatActivity {
         setContentView(R.layout.activity_style);
         //casting of textview
         textViewStyleScreenGreet=(TextView)findViewById(R.id.textViewStyleScreenGreet1);
-        textViewStyleScreenText2=(TextView)findViewById(R.id.textViewStyleScreenText2_1);
         textViewStyleScreenText3=(TextView)findViewById(R.id.textViewStyleScreenText3_1);
         textViewStyleScreenQuestion=(TextView)findViewById(R.id.textViewStyleScreenQuestion_1);
 
@@ -70,7 +57,7 @@ public class Style extends AppCompatActivity {
         textViewStyleScreenGreet.setText("Hi"+" "+name_style);
 
         //casting of ImageView
-        imageViewStyleScreenHeader=(ImageView)findViewById(R.id.imageViewStyleScreenHeader1);
+
 
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarStyleScreen1);

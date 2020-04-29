@@ -4,66 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".SkinTone">
+    android:background="@drawable/backk"
+    tools:context=".DetailsScreen">
+
+    <ImageView
+        android:id="@+id/imageViewSkinToneScreenHeader_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_167sdp"
+        android:background="@drawable/headerback"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_minus20sdp"/>
+
+    <TextView
+
+        android:id="@+id/textViewSkinToneScreenGreet_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:fontFamily="@font/arial"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_20ssp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+
+
+
+    <TextView
+        android:id="@+id/textViewSkinToneScreenText3_1"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:text="Your body structure helps us to understand
+how design and its colour will look great on you
+considering your personality."
+        android:fontFamily="@font/arial"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_14ssp"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:layout_below="@+id/textViewSkinToneScreenGreet_1"
+        android:layout_marginStart="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_12sdp"/>
+
+
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewSkinToneScreenHeader_1">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/imageViewSkinToneScreenHeader_1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_245sdp"
-                android:background="@drawable/heaaderrectangleloginscreen"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/_minus20sdp"/>
-
-            <TextView
-                android:id="@+id/textViewSkinToneScreenGreet_1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:fontFamily="@font/arial"
-                android:text=""
-                android:textColor="#000"
-                android:textSize="@dimen/_27ssp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/_35sdp"
-                android:layout_marginStart="@dimen/_23sdp"
-                android:layout_marginEnd="@dimen/_20sdp"/>
-
-            <TextView
-                android:id="@+id/textViewSkinToneScreenText2_1"
-                android:layout_width="@dimen/_220sdp"
-                android:layout_height="wrap_content"
-                android:text="Part two: Body Structure"
-                android:textColor="#474747"
-                android:lineSpacingExtra="@dimen/_7sdp"
-                android:textSize="@dimen/_20ssp"
-                android:fontFamily="@font/arial"
-                android:layout_below="@+id/textViewSkinToneScreenGreet_1"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/_24sdp"
-                android:layout_marginStart="@dimen/_23sdp"/>
-
-            <TextView
-                android:id="@+id/textViewSkinToneScreenText3_1"
-                android:layout_width="@dimen/_242sdp"
-                android:layout_height="@dimen/_49sdp"
-                android:text="Your body structure helps us to understand\nhow design and its colour will look great on\nyou considering your personality."
-                android:fontFamily="@font/arial"
-                android:textColor="#737373"
-                android:textSize="@dimen/_12ssp"
-                android:lineSpacingExtra="@dimen/_2sdp"
-                android:layout_below="@+id/textViewSkinToneScreenText2_1"
-                android:layout_marginStart="@dimen/_23sdp"
-                android:layout_marginTop="@dimen/_12sdp"/>
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_340sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/backwhite">
 
             <ProgressBar
                 android:id="@+id/progressBarSkinTone"
@@ -71,49 +67,59 @@
                 android:layout_width="@dimen/_327sdp"
                 android:layout_height="@dimen/_10sdp"
                 android:max="100"
+                android:layout_below="@id/skintone"
                 android:progress="30"
                 android:progressTint="@color/progess"
-                android:scaleY="3"
-                android:secondaryProgressTintMode="src_over"
-                android:secondaryProgress="40"
+                android:background="@drawable/progress"
+                android:paddingTop="@dimen/_1sdp"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingBottom="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_2sdp"
+                android:scaleY="1.2"
+                android:progressDrawable="@drawable/rounded_corners_progress_bar"
+                android:secondaryProgress="50"
                 android:secondaryProgressTint="@color/progressblue"
-                android:layout_below="@+id/imageViewSkinToneScreenHeader_1"
-                android:layout_marginTop="@dimen/_34sdp"
+                android:secondaryProgressTintMode="src_over"
+                android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"/>
 
-            <TextView
-                android:id="@+id/skintone"
-                android:layout_width="@dimen/_154sdp"
-                android:layout_height="@dimen/_32sdp"
-                android:layout_below="@+id/progressBarSkinTone"
-                android:layout_marginStart="34dp"
-                android:layout_marginTop="14dp"
-                android:text="@string/skinTone"
-                android:textColor="#000"
-                android:textSize="29dp" />
 
             <include layout="@layout/skintoneimage"
                 android:id="@+id/layoutskintone"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/skintone" />
+                android:layout_below="@+id/progressBarSkinTone"
+                android:layout_marginTop="@dimen/_50sdp"/>
+
+
+            <TextView
+                android:id="@+id/skintone"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Pick your skin tone"
+                android:textColor="#000"
+                android:textSize="@dimen/_20ssp" />
+
+
+
 
             <ImageButton
                 android:id="@+id/imageButtonSkinToneScreenForward_1"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
+                android:background="@drawable/ic_arrow_forward_black_24dp"
                 android:layout_below="@+id/layoutskintone"
-                android:layout_marginStart="@dimen/_250sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="#FFFFFF"
-                app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
-
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_40sdp"/>
         </RelativeLayout>
     </ScrollView>
-
 
 
 </RelativeLayout>

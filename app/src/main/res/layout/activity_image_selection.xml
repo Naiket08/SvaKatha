@@ -1,203 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/backk"
+    tools:context=".DetailsScreen">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imageViewDetailsScreenHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_167sdp"
+        android:background="@drawable/headerback"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_minus20sdp"/>
+
+    <TextView
+
+        android:id="@+id/textViewStyleGreet2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:fontFamily="@font/arial"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_20ssp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+
+
+
+    <TextView
+        android:id="@+id/textViewDetailsScreenText3"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:text="Svakatha uses data science to create your personal style profile and provide you better design/ style suggestions. Select as much as images for better results."
+        android:fontFamily="@font/arial"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_14ssp"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:layout_below="@+id/textViewStyleGreet2"
+        android:layout_marginStart="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_12sdp"/>
+
+
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_below="@+id/imageViewDetailsScreenHeader">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imageViewDetailsScreenHeader"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_245sdp"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/_minus20sdp"
-                android:background="@drawable/heaaderrectangleloginscreen" />
-
-            <TextView
-                android:id="@+id/textViewStyleGreet2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="@dimen/_23sdp"
-                android:layout_marginTop="@dimen/_35sdp"
-                android:fontFamily="@font/arial"
-                android:text=""
-                android:textColor="#000"
-                android:textSize="@dimen/_27ssp" />
-
-            <TextView
-                android:id="@+id/textViewDetailsScreenText2"
-                android:layout_width="@dimen/_283sdp"
-                android:layout_height="@dimen/_27sdp"
-                android:layout_below="@+id/textViewStyleGreet2"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/_23sdp"
-                android:layout_marginTop="@dimen/_24sdp"
-                android:fontFamily="@font/arial"
-                android:lineSpacingExtra="@dimen/_33sdp"
-                android:text="Final: Image Selection"
-                android:textColor="#474747"
-                android:textSize="@dimen/_20sdp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewDetailsScreenText3"
-                android:layout_width="@dimen/_288sdp"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_below="@+id/textViewDetailsScreenText2"
-                android:layout_marginStart="@dimen/_23sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:fontFamily="@font/arial"
-                android:lineSpacingExtra="@dimen/_3sdp"
-                android:text="Your body structure helps us to understand how design and its colour will look great on you considering your personality."
-                android:textColor="#737373"
-                android:textSize="@dimen/_13ssp" />
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_140sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/backwhite">
 
             <ProgressBar
                 android:id="@+id/progressBarImageSelection"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="@dimen/_327sdp"
                 android:layout_height="@dimen/_10sdp"
-                android:progress="30"
-                android:scaleY="3"
-                android:secondaryProgressTintMode="src_over"
-                android:secondaryProgressTint="@color/progressblue"
-                android:secondaryProgress="70"
-                android:layout_below="@id/imageViewDetailsScreenHeader"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_34sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:progressBackgroundTint="@color/progressred"
-                android:progressBackgroundTintMode="src_over"
                 android:max="100"
-                android:progressTint="@color/progess"/>
+                android:layout_below="@id/textviewimageselection"
+                android:progress="70"
+                android:progressTint="@color/progess"
+                android:background="@drawable/progress"
+                android:paddingTop="@dimen/_1sdp"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingBottom="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_2sdp"
+                android:scaleY="1.2"
+                android:progressDrawable="@drawable/rounded_corners_progress_bar"
+                android:secondaryProgressTint="@color/progressblue"
+                android:secondaryProgressTintMode="src_over"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"/>
+
+
+
+
+            <TextView
+                android:id="@+id/textviewimageselection"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Rate these to help us understand your style"
+                android:textColor="#000"
+                android:textSize="@dimen/_20ssp" />
 
 
             <androidx.cardview.widget.CardView
-                android:layout_width="@dimen/_300sdp"
-                android:layout_height="@dimen/_384sdp"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="@dimen/_300sdp"
-                android:layout_marginEnd="38dp">
+                android:id="@+id/kuchbhi"
+                android:layout_width="@dimen/_260sdp"
+                android:layout_height="@dimen/_320sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_below="@id/progressBarImageSelection"
+                android:layout_marginEnd="@dimen/_20sdp">
 
                 <ImageView
                     android:id="@+id/userIMG"
                     android:layout_width="@dimen/_260sdp"
-                    android:layout_height="@dimen/_384sdp"
+                    android:layout_height="@dimen/_320sdp"
                     android:background="@color/cardview_light_background"
                     android:scaleType="centerCrop" />
 
             </androidx.cardview.widget.CardView>
+
+
+
+            <LinearLayout
+                android:layout_width="@dimen/_235sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_below="@id/kuchbhi"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imagebuttonimageselectionHate_1"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:background="@drawable/unhappy"/>
+
+                    <TextView
+                        android:id="@+id/textViewHateIt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hate It"
+                        android:textAlignment="center"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_12ssp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <ImageButton
+                        android:id="@+id/imagebuttonimageselectionNotSure_1"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/unsure" />
+
+                    <TextView
+                        android:id="@+id/textViewNotSure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Not Sure"
+                        android:textAlignment="center"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imagebuttonimageselectionLove_1"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/happy" />
+
+                    <TextView
+                        android:id="@+id/textViewLovedIt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loved It"
+                        android:textAlignment="center"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButtonimageSelectionScreenForward_1"
+                android:layout_width="@dimen/_138sdp"
+                android:layout_height="@dimen/_46sdp"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_120sdp"
+                android:layout_below="@id/kuchbhi"
+                android:layout_marginEnd="@dimen/_100sdp"
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:background="@drawable/finishbutton"/>
         </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="@dimen/_235sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:layout_marginStart="@dimen/_35sdp"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imagebuttonimageselectionHate_1"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:background="#FFFFFF"
-                    android:src="@drawable/cross" />
-
-                <TextView
-                    android:id="@+id/textViewHateIt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hate It"
-                    android:textAlignment="center"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_12ssp" />
+    </ScrollView>
 
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-
-                <ImageButton
-                    android:id="@+id/imagebuttonimageselectionNotSure_1"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_weight="1"
-                    android:background="#FFFFFF"
-                    android:src="@drawable/help" />
-
-                <TextView
-                    android:id="@+id/textViewNotSure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Not Sure"
-                    android:textAlignment="center"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_12ssp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imagebuttonimageselectionLove_1"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:layout_weight="1"
-                    android:background="#FFFFFF"
-                    android:src="@drawable/check" />
-
-                <TextView
-                    android:id="@+id/textViewLovedIt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Loved It"
-                    android:textAlignment="center"
-                    android:textColor="#000"
-                    android:textSize="@dimen/_12ssp" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/imageButtonimageSelectionScreenForward_1"
-            android:layout_width="@dimen/_138sdp"
-            android:layout_height="@dimen/_46sdp"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_100sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_100sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/finishbutton" />
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

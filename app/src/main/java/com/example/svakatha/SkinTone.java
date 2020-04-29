@@ -1,7 +1,5 @@
 package com.example.svakatha;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -9,17 +7,16 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -42,7 +39,6 @@ public class SkinTone extends AppCompatActivity {
         imageViewSkinToneScreenToneHeader=(ImageView)findViewById(R.id.imageViewSkinToneScreenHeader_1);
         //casting of textView
         textViewSkinToneScreenGreet=(TextView)findViewById(R.id.textViewSkinToneScreenGreet_1);
-        textViewSkinToneScreenText2=(TextView)findViewById(R.id.textViewUserScreenText2_1);
         textViewSkinToneScreenText3=(TextView)findViewById(R.id.textViewSkinToneScreenText3_1);
         textViewSkinTone=(TextView)findViewById(R.id.skintone);
         //progressbar animation

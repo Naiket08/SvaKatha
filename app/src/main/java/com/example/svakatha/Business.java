@@ -1,15 +1,11 @@
 package com.example.svakatha;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -18,22 +14,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.tasks.OnSuccessListener;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -58,7 +44,7 @@ public class Business extends AppCompatActivity {
         setContentView(R.layout.activity_business);
         //casting of TextView
 
-        textViewBusinessScreenText2=(TextView)findViewById(R.id.textViewBusinessScreenText2_1);
+
         textViewBusinessScreenText3=(TextView)findViewById(R.id.textViewBusinessScreenText3_1);
         textViewBusinessScreenOccasion=(TextView)findViewById(R.id.textViewBusinessScreenOccasion_1);
         textViewBusinessScreenGreet=(TextView)findViewById(R.id.textViewBusinessScreenGreet1);
@@ -72,7 +58,7 @@ public class Business extends AppCompatActivity {
         //casting of ImageView
         imageViewBusinessScreenHeader=(ImageView)findViewById(R.id.imageViewBusinessScreenHeader1);
 
-        String[] business = new String[]{"Casual","Ethnic","Wedding","Formal"};
+        String[] business = new String[]{"Dinner party","A business dinner or a company party","Family Get-Together or Birthday Party","College","Cocktail party","Business Formal","Religious Ceremony","Interview", "A Night at the Theater", "Office", "Other"};
         Spinner spnr_business = findViewById(R.id.spnr_occasion_bussiness);
         ArrayAdapter<String> businessarray =
                 new ArrayAdapter<>(

@@ -4,67 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/backk"
     tools:context=".DetailsScreen">
+
+    <ImageView
+        android:id="@+id/imageViewUserScreenHeader_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_167sdp"
+        android:background="@drawable/headerback"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/_minus20sdp"/>
+
+    <TextView
+
+        android:id="@+id/textViewUserScreenGreet_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:fontFamily="@font/arial"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_20ssp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_23sdp"/>
+
+
+
+    <TextView
+        android:id="@+id/textViewUserScreenText3_1"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:text="Your body structure helps us to understand
+how design and its colour will look great on you
+considering your personality."
+        android:fontFamily="@font/arial"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_14ssp"
+        android:lineSpacingExtra="@dimen/_2sdp"
+        android:layout_below="@+id/textViewUserScreenGreet_1"
+        android:layout_marginStart="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_12sdp"/>
+
 
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewUserScreenHeader_1">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/_20sdp">
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_340sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_100sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/backwhite">
 
-            <ImageView
-                android:id="@+id/imageViewUserScreenHeader_1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_245sdp"
-                android:background="@drawable/heaaderrectangleloginscreen"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/_minus20sdp"/>
 
-            <TextView
-                android:id="@+id/textViewUserScreenGreet_1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:fontFamily="@font/arial"
-                android:text=""
-                android:textColor="#000"
-                android:textSize="@dimen/_27ssp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/_35sdp"
-                android:layout_marginStart="@dimen/_23sdp"
-                android:layout_marginEnd="@dimen/_20sdp"/>
-
-            <TextView
-                android:id="@+id/textViewUserScreenText2_1"
-                android:layout_width="@dimen/_210sdp"
-                android:layout_height="@dimen/_55sdp"
-                android:text="Let's start by knowing\nmore about you.."
-                android:textColor="#000"
-                android:lineSpacingExtra="@dimen/_7sdp"
-                android:textSize="@dimen/_20ssp"
-                android:fontFamily="@font/arial"
-                android:layout_below="@+id/textViewUserScreenGreet_1"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/_24sdp"
-                android:layout_marginStart="@dimen/_23sdp"/>
-
-            <TextView
-                android:id="@+id/textViewUserScreenText3_1"
-                android:layout_width="@dimen/_242sdp"
-                android:layout_height="@dimen/_49sdp"
-                android:text="This information helps us to know about your\npersonality type, so that we can provide you\nbetter design and style suggestions"
-                android:fontFamily="@font/arial"
-                android:textColor="#000"
-                android:textSize="@dimen/_12ssp"
-                android:lineSpacingExtra="@dimen/_2sdp"
-                android:layout_below="@+id/textViewUserScreenText2_1"
-                android:layout_marginStart="@dimen/_23sdp"
-                android:layout_marginTop="@dimen/_12sdp"/>
 
             <ProgressBar
                 android:id="@+id/progressBarUserScreen_1"
@@ -72,29 +69,46 @@
                 android:layout_width="@dimen/_327sdp"
                 android:layout_height="@dimen/_10sdp"
                 android:max="100"
+                android:layout_below="@id/parttwo"
                 android:progress="30"
                 android:progressTint="@color/progess"
-                android:scaleY="3"
-                android:secondaryProgressTintMode="src_over"
+                android:secondaryProgress="50"
+                android:background="@drawable/progress"
+                android:paddingTop="@dimen/_1sdp"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingBottom="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_2sdp"
+                android:scaleY="1.2"
+                android:progressDrawable="@drawable/rounded_corners_progress_bar"
                 android:secondaryProgressTint="@color/progressblue"
-                android:layout_below="@+id/imageViewUserScreenHeader_1"
-                android:layout_marginTop="@dimen/_34sdp"
+                android:secondaryProgressTintMode="src_over"
+                android:layout_marginTop="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"/>
 
 
 
 
+            <TextView
+                android:id="@+id/parttwo"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/montserratmedium"
+                android:text="Details"
+                android:textColor="#000"
+                android:textSize="@dimen/_20ssp" />
 
             <TextView
                 android:id="@+id/textViewFemale_1"
                 android:layout_width="@dimen/_44sdp"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_below="@id/progressBarUserScreen_1"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="104dp"
-                android:layout_marginLeft="@dimen/_80sdp"
-                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="-150dp"
+                android:layout_toStartOf="@+id/switch1"
                 android:fontFamily="@font/arial"
                 android:text="Female"
                 android:textColor="#000"
@@ -105,10 +119,10 @@
                 android:layout_width="@dimen/_44sdp"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_below="@id/progressBarUserScreen_1"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="276dp"
-                android:layout_marginLeft="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginLeft="34dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_toRightOf="@id/switch1"
                 android:fontFamily="@font/arial"
                 android:text="Male"
                 android:textColor="#000"
@@ -119,15 +133,40 @@
                 android:layout_below="@id/progressBarUserScreen_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:layout_marginLeft="@dimen/_150sdp"
                 android:background="@drawable/switchbutton" />
+            <TextView
+                android:id="@+id/textViewPreferred"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewFemale_1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="52dp"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:fontFamily="@font/arial"
+                android:text="Preferred Pronoun"
+                android:textColor="#000"
+                android:textSize="@dimen/_15sdp" />
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spnr_sizePreferred"
+                android:layout_width="@dimen/_218sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/mainspinnerlayout"
+                android:layout_marginStart="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_28sdp"
+                android:layout_below="@id/textViewPreferred"
+                android:layout_marginTop="@dimen/_10sdp"/>
             <TextView
                 android:id="@+id/textViewHeight_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewFemale_1"
+                android:layout_below="@id/spnr_sizePreferred"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="52dp"
                 android:layout_marginLeft="@dimen/_40sdp"
@@ -138,7 +177,7 @@
                 android:textSize="@dimen/_15sdp" />
             <EditText
                 android:id="@+id/editTextPartTwoHeight_1"
-                android:layout_width="@dimen/_262sdp"
+                android:layout_width="@dimen/_220sdp"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_below="@id/textViewHeight_1"
                 android:textColor="#000"
@@ -163,7 +202,7 @@
                 android:textSize="@dimen/_15sdp" />
             <EditText
                 android:id="@+id/editTextPartTwoWeight_1"
-                android:layout_width="@dimen/_262sdp"
+                android:layout_width="@dimen/_220sdp"
                 android:layout_height="@dimen/_32sdp"
                 android:layout_below="@id/textViewWeight_1"
                 android:textColor="#000"
@@ -183,28 +222,56 @@
                 android:layout_marginLeft="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_7sdp"
                 android:fontFamily="@font/arial"
-                android:text="Year of Birth"
+                android:text="Birth Date"
                 android:textColor="#000"
                 android:textSize="@dimen/_15sdp" />
             <EditText
                 android:id="@+id/editTextPartTwoBirth_1"
-                android:layout_width="@dimen/_262sdp"
-                android:layout_height="@dimen/_32sdp"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_below="@id/textViewBirth_1"
                 android:textColor="#000"
                 android:inputType="date"
+                android:hint="dd"
+                android:textColorHint="#6F6F6F"
                 android:paddingStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/inputs"
+                android:background="@drawable/birth"
                 android:layout_marginLeft="@dimen/_30sdp"/>
+            <EditText
+                android:id="@+id/editTextPartTwoBirth_2"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@id/textViewBirth_1"
+                android:textColor="#000"
+                android:inputType="date"
+                android:hint="mm"
+                android:textColorHint="#6F6F6F"
+                android:paddingStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/birth"
+                android:layout_marginLeft="@dimen/_110sdp"/>
+            <EditText
+                android:id="@+id/editTextPartTwoBirth_3"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@id/textViewBirth_1"
+                android:textColor="#000"
+                android:inputType="date"
+                android:hint="yyyy"
+                android:textColorHint="#6F6F6F"
+                android:paddingStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/birth"
+                android:layout_marginLeft="@dimen/_190sdp"/>
 
             <TextView
                 android:id="@+id/textViewCM_1"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewMale_1"
+                android:layout_below="@+id/textViewHeight_1"
                 android:layout_alignEnd="@+id/editTextPartTwoHeight_1"
-                android:layout_marginTop="@dimen/_43sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:inputType="text"
                 android:textColor="#000"
@@ -215,10 +282,10 @@
                 android:id="@+id/textViewKG_1"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textViewMale_1"
+                android:layout_below="@+id/textViewWeight_1"
                 android:layout_alignEnd="@+id/editTextPartTwoHeight_1"
                 android:layout_marginStart="@dimen/_200sdp"
-                android:layout_marginTop="@dimen/_109sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:inputType="text"
                 android:textColor="#000"
@@ -238,21 +305,10 @@
                 android:text="Size that fit your body\nbest"
                 android:textColor="#000"
                 android:textSize="@dimen/_15sdp" />
-            <!--<EditText
-                android:id="@+id/editTextSizeFit_1"
-                android:layout_width="@dimen/_262sdp"
-                android:layout_height="@dimen/_32sdp"
-                android:layout_below="@id/textViewSizeFit_1"
-                android:textColor="#000"
-                android:inputType="text"
-                android:paddingStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/inputs"
-                android:layout_marginLeft="@dimen/_30sdp"/>-->
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spnr_size"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_218sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:paddingHorizontal="16dp"
@@ -266,19 +322,19 @@
                 android:id="@+id/imageButtonUserScreenForward_1"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
-                android:background="#FFFFFF"
-                android:layout_below="@+id/spnr_size"
-                app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
-                android:layout_alignParentBottom="true"
+                android:layout_below="@id/spnr_size"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="@dimen/_30sdp"
-                android:layout_marginEnd="@dimen/_25sdp"/>
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:background="@drawable/ic_arrow_forward_black_24dp"
+                android:layout_marginBottom="@dimen/_40sdp"/>
+
+
+
+
 
         </RelativeLayout>
-
     </ScrollView>
-
-
 
 
 </RelativeLayout>

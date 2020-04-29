@@ -1,13 +1,13 @@
 package com.example.svakatha;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,35 +15,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.facebook.CallbackManager;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.w3c.dom.Text;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LoginScreen extends AppCompatActivity {
 
-    ImageView imageViewLoginHeader,imageViewLoginDivider;
-    TextView textViewLoginWelcome,textViewLoginSvakatha,textViewLoginSignUp;
+
+    TextView textViewLoginSignUp;
     EditText editTextLoginEmail,editTextLoginPassword;
     Button buttonLogin_login,googlelogin;
     private static final int RC_SIGN_IN = 1;
@@ -60,10 +53,6 @@ public class LoginScreen extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        imageViewLoginHeader = (ImageView)findViewById(R.id.imageViewLoginHeader);
-        imageViewLoginDivider = (ImageView)findViewById(R.id.imageViewLoginDivider);
-        textViewLoginWelcome = (TextView)findViewById(R.id.textViewLoginWelcome);
-        textViewLoginSvakatha = (TextView)findViewById(R.id.textViewLoginSvakatha);
         textViewLoginSignUp = (TextView)findViewById(R.id.signup);
         editTextLoginEmail = (EditText)findViewById(R.id.editTextLoginEmailId);
         editTextLoginPassword = (EditText)findViewById(R.id.editTextLoginPassword);
@@ -87,7 +76,7 @@ public class LoginScreen extends AppCompatActivity {
                                                          return;
                                                      }
                                                      if (password1.length() < 6) {
-                                                         editTextLoginEmail.setError("Password Must be more than 6 character");
+                                                         editTextLoginPassword.setError("Password Must be more than 6 character");
                                                          return;
                                                      }
 
@@ -96,6 +85,7 @@ public class LoginScreen extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        showImage();
                         if(task.isSuccessful()){
                             Toast.makeText(LoginScreen.this,"Login Successful",Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mfirebaseAuth.getCurrentUser();
@@ -138,6 +128,36 @@ public class LoginScreen extends AppCompatActivity {
                 signIn();
             }
         });*/
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //important to popup image
+        public void showImage() {
+            Dialog builder = new Dialog(this,R.style.AppBaseTheme);
+            builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            builder.getWindow().setBackgroundDrawable(
+                    new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialogInterface) {
+                    //nothing;
+                }
+            });
+
+            ImageView imageView = new ImageView(this);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            builder.setContentView(R.layout.background);;
+            builder.show();
+            final Timer t = new Timer();
+            t.schedule(new TimerTask() {
+                public void run() {
+                    builder.dismiss(); // when the task active then close the dialog
+                    t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
+                }
+            }, 4000); // after 2 second (or 2000 miliseconds), the task will be active.
+
+
+        }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

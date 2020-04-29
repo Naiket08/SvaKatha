@@ -1,7 +1,5 @@
 package com.example.svakatha;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -14,17 +12,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +45,6 @@ public class BodyShapeFemale extends AppCompatActivity {
         imageViewBodyShapeScreenF = (ImageView) findViewById(R.id.imageViewBodyShapeScreen_1_F);
         //casting of textView
         textViewBodyShapeText2F = (TextView) findViewById(R.id.textViewBodyShapeText2_1_F);
-        textViewBodyShapeText3F = (TextView) findViewById(R.id.textViewBodyShapeText3_1_F);
         textViewBodyShapeText4F = (TextView) findViewById(R.id.textViewBodyShapeText4_1_F);
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarBodyShapeScreen_1_F);

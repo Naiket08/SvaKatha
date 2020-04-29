@@ -1,19 +1,11 @@
 package com.example.svakatha;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatSpinner;
-
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -22,22 +14,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.tasks.OnSuccessListener;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -67,16 +49,13 @@ public class DetailsScreen extends AppCompatActivity {
         textViewDetailsScreenGreet.setTypeface(textViewDetailsScreenGreet.getTypeface(),Typeface.BOLD);
         final String name_details = intent.getStringExtra("Name");
         textViewDetailsScreenGreet.setText("Hi"+" "+name_details);
-        textViewDetailsScreenText2 = (TextView) findViewById(R.id.textViewDetailsScreenText2);
         textViewDetailsScreenText3 = (TextView) findViewById(R.id.textViewDetailsScreenText3);
         textViewDetailsScreenOccupation = (TextView) findViewById(R.id.textViewDetailsScreenOccupation);
 
         imageButtonDetailsScreenForward = (ImageButton) findViewById(R.id.imageButtonDetailsScreenForward);
         imageViewDetailsScreenHeader = (ImageView) findViewById(R.id.imageViewDetailsScreenHeader);
 
-        String[] fashiondesigner = new String[]{"Fashion Designer","Architect/Engineering","Student","Art/Design",
-                "Sales","Management","Community/SocialWork","Business/ClientServices","Retail","Legal",
-                "Entertainer/Performer","Services","Entrepreneur","other"};
+        String[] fashiondesigner = new String[]{"Architect / Engineering","Student","Art / Design","Sales","Management","Community / Social Work","Business / Client Services","Retail","Legal","Entertainer / Performer","Financial Services","Freelancing","Entrepreneur","Other"};
         Spinner spnr_occupation_detailsscreen = findViewById(R.id.spnr_occupation_detailsscreen);
         ArrayAdapter<String> fashion =
                 new ArrayAdapter<>(

@@ -1,48 +1,26 @@
 package com.example.svakatha;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ObjectAnimator;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
-import android.media.ImageReader;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +43,6 @@ public class Price extends AppCompatActivity {
 
         //casting of textView
         textViewPriceScreenGreet=(TextView)findViewById(R.id.textViewPriceScreenGreet1);
-        textViewPriceScreenText2=(TextView)findViewById(R.id.textViewPriceScreenText2_1);
         textViewPriceScreenText3=(TextView)findViewById(R.id.textViewPriceScreenText3_1);
         textViewPriceScreenClothing=(TextView)findViewById(R.id.textViewPriceScreenClothing1);
         textViewPriceOne=(TextView)findViewById(R.id.textViewPriceOne);

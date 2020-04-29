@@ -1,7 +1,5 @@
 package com.example.svakatha;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -14,15 +12,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
@@ -49,7 +45,6 @@ public class BodyShapeMale extends AppCompatActivity {
         imageViewBodyShapeScreen = (ImageView) findViewById(R.id.imageViewBodyShapeScreen_1);
         //casting of textView
         textViewBodyShapeText2 = (TextView) findViewById(R.id.textViewBodyShapeText2_1);
-        textViewBodyShapeText3 = (TextView) findViewById(R.id.textViewBodyShapeText3_1);
         textViewBodyShapeText4 = (TextView) findViewById(R.id.textViewBodyShapeText4_1);
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarBodyShapeScreen_1);

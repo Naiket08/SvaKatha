@@ -339,7 +339,7 @@ public class SignupScreen extends AppCompatActivity {
         //if the email and password are not empty
         //displaying a progress dialog
   //////////////
-        showImage();
+
 //////////////////
         //creating a new user
         mfirebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -347,6 +347,7 @@ public class SignupScreen extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
+                        showImage();
                         if(task.isSuccessful()){
                             //display some message here
                             Toast.makeText(SignupScreen.this,"Successfully registered",Toast.LENGTH_LONG).show();
@@ -387,6 +388,7 @@ public class SignupScreen extends AppCompatActivity {
                                     });
 //                            overridePendingTransition(0,0);
                         }else{
+                            showImage();
                             //display some message here
                             Toast.makeText(SignupScreen.this,"Already Registered", Toast.LENGTH_LONG).show();
                         }

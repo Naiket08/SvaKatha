@@ -3,9 +3,9 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#EDEDED</color>
     <color name="colorAccent">#000</color>
-    <color name="progess">#D79635</color>
-    <color name="progressblue">#3535D7</color>
-    <color name="progressred">#D73540</color>
+    <color name="progess">#008080</color>
+    <color name="progressblue">#008080</color>
+    <color name="progressred">#008080</color>
     <color name="themecolor">#BCE0FD</color>
     <color name="appgraydark">#A9A9A9</color>
     <color name="gradient_start_color">#4c84ff</color>

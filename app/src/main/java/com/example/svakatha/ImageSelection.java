@@ -1,5 +1,6 @@
 package com.example.svakatha;
 
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -16,6 +17,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -81,10 +83,10 @@ public class ImageSelection extends AppCompatActivity {
 //test
         //progressbar animation
         ProgressBar mProgressBar = (ProgressBar) findViewById(R.id.progressBarImageSelection);
-        // ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "secondaryProgress", 70,100);
-        // progressAnimator.setDuration(900);
-        // progressAnimator.setInterpolator(new LinearInterpolator());
-        // progressAnimator.start();
+         ObjectAnimator progressAnimator = ObjectAnimator.ofInt(mProgressBar, "secondaryProgress", 70,100);
+         progressAnimator.setDuration(500);
+         progressAnimator.setInterpolator(new LinearInterpolator());
+         progressAnimator.start();
 //context = ImageSelection.this;
         parentView = findViewById(R.id.main_layoutview);
         windowwidth = getWindowManager().getDefaultDisplay().getWidth();

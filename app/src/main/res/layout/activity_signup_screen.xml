@@ -171,7 +171,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_20sdp"
         android:text=""
-        android:background="@drawable/login"
+        android:background="@drawable/login2"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="@dimen/_14ssp"
