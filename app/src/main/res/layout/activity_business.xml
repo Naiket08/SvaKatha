@@ -33,13 +33,14 @@
 
     <TextView
         android:id="@+id/textViewBusinessScreenText3_1"
-        android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_50sdp"
         android:text="Let's start by knowing more  about you\n
 for better design and style suggestions..."
-        android:fontFamily="@font/arial"
+        android:fontFamily="@font/playfairdisplaymedium"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_14ssp"
+        android:autoSizeTextType="uniform"
         android:lineSpacingExtra="@dimen/_2sdp"
         android:layout_below="@+id/textViewBusinessScreenGreet1"
         android:layout_marginStart="@dimen/_23sdp"

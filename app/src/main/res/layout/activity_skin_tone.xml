@@ -33,14 +33,14 @@
 
     <TextView
         android:id="@+id/textViewSkinToneScreenText3_1"
-        android:layout_width="@dimen/_300sdp"
+        android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_70sdp"
         android:text="Your body structure helps us to understand
 how design and its colour will look great on you
 considering your personality."
-        android:fontFamily="@font/arial"
+        android:fontFamily="@font/playfairdisplaymedium"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_14ssp"
+        android:autoSizeTextType="uniform"
         android:lineSpacingExtra="@dimen/_2sdp"
         android:layout_below="@+id/textViewSkinToneScreenGreet_1"
         android:layout_marginStart="@dimen/_23sdp"
@@ -49,6 +49,7 @@ considering your personality."
 
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageViewSkinToneScreenHeader_1">
@@ -57,7 +58,7 @@ considering your personality."
             android:layout_width="@dimen/_280sdp"
             android:layout_height="@dimen/_340sdp"
             android:paddingBottom="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_330sdp"
             android:layout_gravity="center"
             android:background="@drawable/backwhite">
 

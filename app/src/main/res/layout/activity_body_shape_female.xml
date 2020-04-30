@@ -33,14 +33,14 @@
 
     <TextView
         android:id="@+id/textViewBodyShapeText4_1_F"
-        android:layout_width="@dimen/_300sdp"
+        android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_70sdp"
-        android:text="Your body structure helps us to understand\n
-how design and its colour will look great on\n you
+        android:text="Your body structure helps us to understand
+how design and its colour will look great on you
 considering your personality."
-        android:fontFamily="@font/arial"
+        android:fontFamily="@font/playfairdisplaymedium"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_14ssp"
+        android:autoSizeTextType="uniform"
         android:lineSpacingExtra="@dimen/_2sdp"
         android:layout_below="@+id/textViewBodyShapeText2_1_F"
         android:layout_marginStart="@dimen/_23sdp"

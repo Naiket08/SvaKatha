@@ -33,12 +33,13 @@
 
     <TextView
         android:id="@+id/textViewDetailsScreenText3"
-        android:layout_width="@dimen/_300sdp"
+        android:layout_width="@dimen/_270sdp"
         android:layout_height="@dimen/_70sdp"
         android:text="Svakatha uses data science to create your personal style profile and provide you better design/ style suggestions. Select as much as images for better results."
-        android:fontFamily="@font/arial"
+        android:fontFamily="@font/playfairdisplaymedium"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_14ssp"
+        android:autoSizeTextType="uniform"
         android:lineSpacingExtra="@dimen/_2sdp"
         android:layout_below="@+id/textViewStyleGreet2"
         android:layout_marginStart="@dimen/_23sdp"
