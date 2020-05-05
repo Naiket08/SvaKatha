@@ -5,11 +5,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -19,8 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -31,9 +28,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import com.example.svakatha.Closet.ClosetFragment;
 import com.example.svakatha.PackageManagerUtils.PackageManagerUtils;
 import com.example.svakatha.PermissionUtils.PermissionUtils;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,7 +41,6 @@ import com.google.api.services.vision.v1.Vision;
 import com.google.api.services.vision.v1.VisionRequest;
 import com.google.api.services.vision.v1.VisionRequestInitializer;
 import com.google.api.services.vision.v1.model.AnnotateImageRequest;
-import com.google.api.services.vision.v1.model.AnnotateImageResponse;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
 import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
 import com.google.api.services.vision.v1.model.EntityAnnotation;
@@ -54,45 +48,51 @@ import com.google.api.services.vision.v1.model.FaceAnnotation;
 import com.google.api.services.vision.v1.model.Feature;
 import com.google.api.services.vision.v1.model.Image;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
-
-import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.grpc.internal.AbstractReadableBuffer;
 import nl.dionsegijn.pixelate.OnPixelateListener;
 import nl.dionsegijn.pixelate.Pixelate;
 
 import static android.app.Activity.RESULT_OK;
 
 public class RatingFragment extends Fragment {
+
+
+    ////////////////////////////////////////////////
+    public static final String MODEL_PATH = "model.tflite";
+    public static final boolean QUANT = true;
+    public static final String LABEL_PATH = "dict.txt";
+    public static final int INPUT_SIZE = 224;
+    public static final int IMAGE_GALLERY_REQUEST = 20;
+    public static final int CAMERA_PERMISSION_REQUEST_CODE = 4192;
+    public static final int CAMERA_REQUEST_CODE = 228;
+
+    private Classifier classifier;
+
+    private Executor executor = Executors.newSingleThreadExecutor();
+    ////////////////////////////////////////////////
 
     private static final String CLOUD_VISION_API_KEY = "AIzaSyBYZftL8rp5UhFUPMHM_1dJ-3tfqNVN34E";
     private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
@@ -206,9 +206,8 @@ public class RatingFragment extends Fragment {
         //Condition Checking
 
 
-
-
-
+///////////////////
+        initTensorFlowAndLoadModel();
         ////////////////////////////////////////////////
 
 
@@ -224,7 +223,11 @@ public class RatingFragment extends Fragment {
             textViewLikeDislikePercentage.setText(0+"%");
             datafetch();
             str3=false;
-            startCamera();
+                 try {
+                     startCamera();
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 }
              }
              else if(Choice==null  || Choice.equals("Select Style")){
                  final Toast toast = Toast.makeText(context, "select your style", Toast.LENGTH_SHORT);
@@ -269,7 +272,6 @@ public class RatingFragment extends Fragment {
             textViewLikeDislikePercentage.setText(a+"%");
         }
         textViewRatingImageDetails.setText(res);
-
         return view;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -292,7 +294,39 @@ public class RatingFragment extends Fragment {
 
         return str;
     }
+////////////////////////////////////////////////////////////////////////////////////////////
+public void onImage() throws IOException {
+    Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
+    uri = photoUri;
+    bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
 
+    bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false);
+
+    final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
+
+    Toast.makeText(context, String.valueOf(results), Toast.LENGTH_LONG).show();
+
+}
+
+
+
+    public void initTensorFlowAndLoadModel() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    classifier = TensorFlowImageClassifier.create(
+                            getContext().getAssets(),
+                            MODEL_PATH,
+                            LABEL_PATH,
+                            INPUT_SIZE,
+                            QUANT);
+                } catch (final Exception e) {
+                    throw new RuntimeException("Error initializing TensorFlow!", e);
+                }
+            }
+        });
+    }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -442,7 +476,7 @@ public void datafetch(){
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private void startCamera() {
+    private void startCamera() throws IOException {
         if (PermissionUtils.requestPermission(
                 getActivity(),
                 CAMERA_PERMISSIONS_REQUEST,
@@ -455,6 +489,7 @@ public void datafetch(){
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivityForResult(intent, CAMERA_IMAGE_REQUEST);
+
         }
     }
 
@@ -466,6 +501,7 @@ public void datafetch(){
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            InputStream inputStream;
             try {
                 str3=false;
                 textViewLikeDislikePercentage.setText("Waiting");
@@ -477,12 +513,25 @@ public void datafetch(){
 
                 callCloudVision(bitmap , "FACE_DETECTION");
                 imageViewCapturedImage.setImageURI(uri);
+                inputStream =getContext().getContentResolver().openInputStream(photoUri);
+
+                // get a bitmap from the stream.
+                Bitmap image = BitmapFactory.decodeStream(inputStream);
+
+
+                // show the image to the user
+                image = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
+                final List<Classifier.Recognition> results = classifier.recognizeImage(image);
 
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
     }
+
+
+
+
 
     //override
     public void onActivityResult1() {
@@ -681,6 +730,7 @@ public void datafetch(){
 
                 res = result;
                 String check5="Face NOT Detected";
+
                 textViewRatingImageDetails.setText(res);
                 Log.d("res.tolowercase", String.valueOf(res.toLowerCase().indexOf(check5.toLowerCase())));
                 if (res.toLowerCase().indexOf(check5.toLowerCase()) == -1 && r==false ) {
@@ -696,10 +746,12 @@ public void datafetch(){
                             toast.cancel();
                         }
                     }, 500);
-
+                    try {
+                        onImage();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     onActivityResult1();
-
-
                 }
                 else if(r==true){
                     r=false;
@@ -802,6 +854,7 @@ public void datafetch(){
                     imageViewLikeDislike.setVisibility(View.VISIBLE);
                     imageViewLike.setVisibility(View.INVISIBLE);
                     textViewLikeDislikePercentage.setText(percentage3+"%");
+
                     str3=true;
 
                 }
@@ -965,6 +1018,7 @@ public void datafetch(){
 
             }
         }
+
     }
 
 

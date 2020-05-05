@@ -4,6 +4,9 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     buildToolsVersion "29.0.3"
+    aaptOptions {
+        noCompress "tflite"
+    }
 
     defaultConfig {
         applicationId "com.example.svakatha"
@@ -72,5 +75,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:design:28.0.0'
+    compile 'com.wonderkiln:camerakit:0.13.1'
+    compile 'org.tensorflow:tensorflow-lite:+'
 
 }

@@ -195,7 +195,7 @@ public class LoginScreen extends AppCompatActivity {
                             }
                             else
                             {
-                                Intent intent=new Intent(LoginScreen.this,ImageSelection.class);
+                                Intent intent=new Intent(LoginScreen.this,HostActivity.class);
                                 intent.putExtra("Name_bodyshape", name);
                                 startActivity(intent);
                             }
