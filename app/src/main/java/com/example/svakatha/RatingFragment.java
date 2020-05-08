@@ -50,10 +50,7 @@ import com.google.api.services.vision.v1.model.Image;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
@@ -66,14 +63,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import nl.dionsegijn.pixelate.OnPixelateListener;
-import nl.dionsegijn.pixelate.Pixelate;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -116,8 +109,8 @@ public class RatingFragment extends Fragment {
     public boolean r=false,s=false,t=false;
     //////////////////////////////////
     public int x,percentage2,totalpercentage=0;
-    public String maindata,Check0,Check1,Check2,Check3,reference,resMain="",smallcase,Choice="",str4="";
-    public Boolean str,str3=true;
+    public String maindata,Check0,Check1,Check2,Check3,reference,smallcase,Choice="",str4="",str5="",str6="";
+    public Boolean str=true,str3=true;
     ////////////////////////////////////
     public String res;
     Bitmap bitmap,pixelatedbitmap;
@@ -149,22 +142,6 @@ public class RatingFragment extends Fragment {
 //        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
         imageViewLike = (ImageView) view.findViewById(R.id.imageViewLike);
         /////////////////////////////////////////////////
-        db.collection("users").document(mAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                String received4 = documentSnapshot.getString("ratingChoiceDocName");
-                if(received4==null)
-                {
-
-                }
-                else {
-                    Log.i("ALL", received4);
-                    reference = received4;
-                    x = Integer.parseInt(extractInt(reference));
-                }
-
-            }
-        });
 
         //Male and Female
 
@@ -215,7 +192,7 @@ public class RatingFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-             if(str3 && Choice!=null  && !Choice.equals("Select Style") && resMain!=null && str4!=null){
+             if(str3 && Choice!=null  && !Choice.equals("Select Style") && str4!=null){
             imageViewCapturedImage.setImageURI(null);
             textViewRatingImageDetails.setText(null);
             imageViewLikeDislike.setVisibility(View.VISIBLE);
@@ -304,8 +281,9 @@ public void onImage() throws IOException {
 
     final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
 
-    Toast.makeText(context, String.valueOf(results), Toast.LENGTH_LONG).show();
-
+    String s1=String.valueOf(results);
+    str5=s1.replaceAll("\\(", "").replaceAll("\\)","");
+    textViewRatingImageDetails.setText(str5);
 }
 
 
@@ -340,48 +318,20 @@ public void datafetch(){
             if(str){
                 //male
                 if(Choice.equals("Casual")){
-                    db.collection("Images").document("malefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("CasualMale");
-                                    Log.i("ALL",finalProfileText2);
-                                    resMain=finalProfileText2;
-                                }
-                            });
 
+                    str6="men_casual_good";
 
                 }
                 else if(Choice.equals("Party Wear")){
-                    db.collection("Images").document("malefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("EthincMale");
-                                    Log.i("ALL",finalProfileText2);
-                                    resMain=finalProfileText2;
-                                }
-                            });
 
                 }
                 else if(Choice.equals("Wedding")){
-                    db.collection("Images").document("malefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("weddingMale");
-                                    Log.i("ALL",finalProfileText2);
-                                    resMain=finalProfileText2;
-                                }
-                            });
+                    str6="men_wedding_good";
 
                 }
                 else if(Choice.equals("Formal")){
-                    db.collection("Images").document("malefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("formalMale");
-                                    Log.i("ALL",finalProfileText2);
-                                    resMain=finalProfileText2;
-                                }
-                            });
+
+                    str6="men_business_formal_good";
 
                 }
 
@@ -393,83 +343,48 @@ public void datafetch(){
                 //female
 
                 if (Choice.equals("Casual")) {
-                    db.collection("Images").document("femalefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("casualFemale");
-                                    Log.i("ALL", finalProfileText2);
-                                    resMain = finalProfileText2;
-                                }
-                            });
-
-
+                    str6="women_casual_good";
                 } else if (Choice.equals("Party Wear")) {
-                    db.collection("Images").document("femalefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("printsFemale");
-                                    Log.i("ALL", finalProfileText2);
-                                    resMain = finalProfileText2;
-                                }
-                            });
 
+                    str6="women_ethnic_good";
                 } else if (Choice.equals("Wedding")) {
-                    db.collection("Images").document("femalefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("WeddingFemale");
-                                    Log.i("ALL", finalProfileText2);
-                                    resMain = finalProfileText2;
-                                }
-                            });
-
+                    str6="women_wedding_good";
                 } else if (Choice.equals("Formal")) {
-                    db.collection("Images").document("femalefolder").get()
-                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String finalProfileText2 = documentSnapshot.getString("FormalFemale");
-                                    Log.i("ALL", finalProfileText2);
-                                    resMain = finalProfileText2;
-                                }
-                            });
-
+                    str6="women_formal_good";
                 }
 
 
             }
 
         }
-    }, 1000);
+    }, 500);
 
 }
 
-    public void savetoDB(int a) {
-        String ratingpercent = Integer.toString(a);
-        Map<String,String > rating=new HashMap<>();
-        rating.put("Rating",ratingpercent);
-        db.collection("users").document(mAuth.getCurrentUser().getUid())
-                .collection("RatingDetails").document("IMG" + x)
-                .set(rating, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Map<String, String> rating = new HashMap<>();
-                rating.put("ratingChoiceDocName", "IMG" + x);
-                db.collection("users").document(mAuth.getCurrentUser().getUid()).set(rating, SetOptions.merge());
-            }
-        });
 
-    }
     ////////////////////////////////////////////////////////
     //main Logic for string
-    public void stringextract(String q){
+    public void stringextract(){
 
         //String q="brown";
-        String r="(?<="+q+"=)\\d+";
+        String r="(?<="+str6+" )\\d+";
         Pattern p = Pattern.compile(r);
-        Matcher m = p.matcher(resMain);
+        Matcher m = p.matcher(str5);
         if (m.find()) {
             int an= Integer.parseInt(m.group());
-            totalpercentage=totalpercentage+an;
+
+            if(an<=50){
+                imageViewLikeDislike.setVisibility(View.VISIBLE);
+                imageViewLike.setVisibility(View.INVISIBLE);
+                textViewLikeDislikePercentage.setText(an+"%");
+            }
+            else{
+                imageViewLike.setVisibility(View.VISIBLE);
+                imageViewLikeDislike.setVisibility(View.INVISIBLE);
+                textViewLikeDislikePercentage.setText(an+"%");
+            }
+
+
 
 
         }
@@ -483,7 +398,6 @@ public void datafetch(){
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA)) {
             str3=true;
-            datafetch();
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
@@ -534,34 +448,6 @@ public void datafetch(){
 
 
     //override
-    public void onActivityResult1() {
-
-        try {
-            Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
-            uri = photoUri;
-            bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
-
-
-            new Pixelate(bitmap)
-                    .setDensity(8)
-                    .setListener(new OnPixelateListener() {
-                        @Override
-                        public void onPixelated(Bitmap bitmap1, int density) {
-                            //pixelatedbitmap = bitmap1;
-                            callCloudVision(bitmap1 , "LABEL_DETECTION");
-                            //imageViewCapturedImage.setImageBitmap(bitmap1);
-                        }
-                    })
-                    .make();
-            imageViewCapturedImage.setImageURI(uri);
-
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
 
     private void callCloudVision(final Bitmap bitmap , String type) {
@@ -735,7 +621,6 @@ public void datafetch(){
                 Log.d("res.tolowercase", String.valueOf(res.toLowerCase().indexOf(check5.toLowerCase())));
                 if (res.toLowerCase().indexOf(check5.toLowerCase()) == -1 && r==false ) {
                     Log.d("i am inside ","the code");
-                    r=true;
                     final Toast toast = Toast.makeText(context, "FACE RECOGNISED", Toast.LENGTH_SHORT);
                     toast.show();
 
@@ -751,93 +636,8 @@ public void datafetch(){
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    onActivityResult1();
-                }
-                else if(r==true){
-                    r=false;
-                    ++x;
-
-
-                    Log.d("res", String.valueOf(res));
-                    int s=countLines(res);
-                    colours=res.split("\\R", s);
-
-
-
-                    Log.d("colorsAfter", String.valueOf(colours));
-                    for (int i = 2; i <= s-1; i++) {
-                        fourcolours = colours[i].split("\\s+", 0);
-                        colourvalue[i - 2] = fourcolours[1];
-                        smallcase=colourvalue[i-2].toLowerCase();
-                        stringextract(smallcase);
-                    }
-
-                    totalpercentage=totalpercentage/10000000;
-
-
-                    textViewRatingImageDetails.setText(colourvalue[0] + "\n" + colourvalue[1] + "\n" + colourvalue[2] + "\n" + colourvalue[3]);
-                    ///////////////////////////////////////////////////////////
-
-
-
-
-                    Check0 = colourvalue[0];
-                    Check1 = colourvalue[1];
-                    Check2 = colourvalue[2];
-                    Check3 = colourvalue[3];
-                    if(x==1){
-
-                        if(totalpercentage==0) {
-                            final int percentage = new Random().nextInt(41) + 30;
-                            a = percentage;
-                            if (percentage < 50) {
-                                imageViewLikeDislike.setVisibility(View.VISIBLE);
-                                imageViewLike.setVisibility(View.INVISIBLE);
-                                textViewLikeDislikePercentage.setText(percentage + "%");
-                            } else {
-                                imageViewLike.setVisibility(View.VISIBLE);
-                                imageViewLikeDislike.setVisibility(View.INVISIBLE);
-                                textViewLikeDislikePercentage.setText(percentage + "%");
-
-                            }
-                            savetoDB(a);
-                        }
-                        else {
-                            a=totalpercentage;
-                            if (totalpercentage < 50) {
-                                imageViewLikeDislike.setVisibility(View.VISIBLE);
-                                imageViewLike.setVisibility(View.INVISIBLE);
-                                textViewLikeDislikePercentage.setText(totalpercentage + "%");
-                            } else {
-                                imageViewLike.setVisibility(View.VISIBLE);
-                                imageViewLikeDislike.setVisibility(View.INVISIBLE);
-                                textViewLikeDislikePercentage.setText(totalpercentage + "%");
-
-                            }
-                            savetoDB(a);
-                        }
-                    }
-
-
-
-                    //////////////////////////////////////////////////////////
-
-
-                    db.collection("users").document(currentUSer)
-                            .collection("RatingDetails").document(ratingDocName + x)
-                            .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Map<String, String> data = new HashMap<>();
-                            data.put("ratingChoiceDocName", ratingDocName + x);
-                            db.collection("users").document(currentUSer).set(data, SetOptions.merge());
-
-                        }
-                    });
-
-                    mainprocess(x);
+                    stringextract();
                     str3=true;
-
                 }
                 else{
                     final Toast toast = Toast.makeText(context, "FACE NOT RECOGNISED ", Toast.LENGTH_SHORT);
@@ -875,151 +675,7 @@ public void datafetch(){
         super.onDestroy();
         //uri = null;
     }
-    public void mainprocess(int y){
-        y=y-1;
-        t=false;
-        s=false;
-        if(y==0) {
 
-
-        }
-        else {
-
-            if (totalpercentage != 0) {
-                a = totalpercentage;
-                if (totalpercentage < 50) {
-                    imageViewLikeDislike.setVisibility(View.VISIBLE);
-                    imageViewLike.setVisibility(View.INVISIBLE);
-                    textViewLikeDislikePercentage.setText(totalpercentage + "%");
-                } else {
-                    imageViewLike.setVisibility(View.VISIBLE);
-                    imageViewLikeDislike.setVisibility(View.INVISIBLE);
-                    textViewLikeDislikePercentage.setText(totalpercentage + "%");
-
-                }
-                savetoDB(a);
-            } else {
-
-                for (int j = 1; j <= y; j++) {
-
-                    int finalJ = j;
-                    db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("RatingDetails").document("IMG" + j).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                            String received = documentSnapshot.getString("RatingImageDetails");
-                            Log.i("ALL", received);
-                            maindata = received;
-                            ///////////////////////////////////////////////////////////////////////
-                            Log.d("maindata", String.valueOf(maindata));
-
-                            colours1 = maindata.split("\\R", 7);
-                            Log.d("colorsAfter", String.valueOf(colours1));
-                            for (int i = 2; i <= 5; i++) {
-                                fourcolours1 = colours1[i].split("\\s+", 0);
-                                colourvalue1[i - 2] = fourcolours1[1];
-                            }
-
-                            ///////////////////////////////////////////////////////////
-
-
-                            String ch0;
-                            ch0 = colourvalue1[0];
-
-
-                            //////////////////////////////////////////////////////////////////////
-                            //maindata = maindata.replace("Pattern","");
-                            //maindata = maindata.replace("Line","");
-                            // maindata = maindata.replace("Symmetry","");
-                            // maindata = maindata.replace("Square","");
-                            //maindata = maindata.replace("Tints and Shades","");
-                            //maindata = maindata.replace("Rectangle","");
-                       /* Log.d("maindata",maindata);
-                        String[] array = { Check0 , Check1 , Check2 , Check3};
-                        int aditya = 0 ;
-                        for(int rohan = 0 ; rohan <array.length; rohan++){
-                            Log.d("maindata.toLowerCase][", String.valueOf(maindata.toLowerCase().contains(array[rohan])));
-                            Log.d("maindat.tolowerCase",maindata.toLowerCase());
-                            Log.d("array[rohan]",array[rohan]);
-                            if(maindata.toLowerCase().contains(array[rohan].toLowerCase())){
-                                aditya ++;
-                            Log.d("aditya", String.valueOf(aditya));
-                            }
-
-                        }*/
-
-
-                            if (ch0.toLowerCase().indexOf(Check0.toLowerCase()) != -1) {
-
-                                if (t == false) {
-
-                                    Log.d("aditya", "insideif");
-                                    //Toast.makeText(context, "MATCH FOUND: " + finalJ, Toast.LENGTH_LONG).show();
-                                    db.collection("users").document(mAuth.getCurrentUser().getUid()).collection("RatingDetails").document("IMG" + finalJ).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                                            String received1 = documentSnapshot.getString("Rating");
-                                            Log.i("ALL", received1);
-                                            String change = received1;
-                                            percentage2 = Integer.parseInt(change);
-                                            a = percentage2;
-                                            if (percentage2 < 50) {
-                                                imageViewLikeDislike.setVisibility(View.VISIBLE);
-                                                imageViewLike.setVisibility(View.INVISIBLE);
-                                                textViewLikeDislikePercentage.setText(percentage2 + "%");
-                                            } else {
-                                                imageViewLike.setVisibility(View.VISIBLE);
-                                                imageViewLikeDislike.setVisibility(View.INVISIBLE);
-                                                textViewLikeDislikePercentage.setText(percentage2 + "%");
-                                            }
-                                            //back to DB
-                                            String ratingpercent = Integer.toString(a);
-                                            Map<String, String> rating = new HashMap<>();
-                                            rating.put("Rating", ratingpercent);
-
-                                            db.collection("users").document(mAuth.getCurrentUser().getUid())
-                                                    .collection("RatingDetails").document("IMG" + x)
-                                                    .set(rating, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Map<String, String> rating = new HashMap<>();
-                                                    rating.put("ratingChoiceDocName", "IMG" + x);
-                                                    db.collection("users").document(mAuth.getCurrentUser().getUid()).set(rating, SetOptions.merge());
-                                                }
-                                            });
-                                        }
-                                    });
-                                    t = true;
-                                }
-
-                            } else {
-                                if (s == false) {
-                                    final int percentage = new Random().nextInt(41) + 30;
-                                    a = percentage;
-                                    if (percentage < 50) {
-                                        imageViewLikeDislike.setVisibility(View.VISIBLE);
-                                        imageViewLike.setVisibility(View.INVISIBLE);
-                                        textViewLikeDislikePercentage.setText(percentage + "%");
-                                    } else {
-                                        imageViewLike.setVisibility(View.VISIBLE);
-                                        imageViewLikeDislike.setVisibility(View.INVISIBLE);
-                                        textViewLikeDislikePercentage.setText(percentage + "%");
-
-                                    }
-                                    savetoDB(a);
-                                }
-                                s = true;
-                                //Toast.makeText(context, "MATCH NOT FOUND: "+ finalJ, Toast.LENGTH_LONG).show();
-
-                            }
-
-                        }
-                    });
-                }
-
-            }
-        }
-
-    }
 
 
 }

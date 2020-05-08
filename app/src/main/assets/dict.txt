@@ -1,14 +1,7 @@
-50_RUPEES
-500_RUPEES
-100_DOLLARS
-200_RUPEES
-5_DOLLAR
-1_DOLLAR
-10_RUPEES
-50_DOLLARS
-10_DOLLARS
-20_RUPEES
-20_DOLLARS
-2000_RUPEES
-100_RUPEES
-50_POUNDS
+0 women_casual_good
+1 women_ethnic_good
+2 women_wedding_good
+3 women_formal_good
+4 men_business_formal_good
+5 men_casual_good
+6 men_wedding_good
