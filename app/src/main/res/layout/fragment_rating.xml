@@ -11,10 +11,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF">
 
 
@@ -42,10 +41,9 @@
         android:id="@+id/imageViewLikeDislike"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
-        android:background="@drawable/likedislikeborder"
+        android:background="@drawable/dislikeimage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_330sdp"
-        android:src="@drawable/dislikeimage"
         android:scaleType="center"
         android:visibility="visible"/>
 
@@ -53,10 +51,9 @@
         android:id="@+id/imageViewLike"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
-        android:background="@drawable/likeborder"
+        android:background="@drawable/likeimage"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_330sdp"
-        android:src="@drawable/likeimage"
         android:scaleType="center"
         android:visibility="invisible"/>
 
@@ -64,7 +61,7 @@
         android:id="@+id/textViewLikeDislikePercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0%"
+        android:text=""
         android:textColor="#000"
         android:textSize="@dimen/_14ssp"
         android:layout_below="@+id/imageViewLikeDislike"
@@ -121,7 +118,17 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_centerHorizontal="true"/>
 
+    <Button
+        android:id="@+id/upload"
+        android:layout_below="@id/imageButtonCameraButton"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/gallaryicon"/>
 
-        </RelativeLayout>
+
+</RelativeLayout>
     </ScrollView>
 </RelativeLayout>

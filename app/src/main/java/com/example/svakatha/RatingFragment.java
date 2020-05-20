@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -55,6 +56,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
@@ -94,6 +96,7 @@ public class RatingFragment extends Fragment {
 
     private static final String TAG = HostActivity.class.getSimpleName();
     private Context context;
+    private Button upload;
     private ImageView imageViewCapturedImage,imageViewLikeDislike,imageViewLike;
     private TextView textViewLikeDislikePercentage,textViewRatingImageDetails;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -101,16 +104,17 @@ public class RatingFragment extends Fragment {
     private FirebaseAuth mAuth =  FirebaseAuth.getInstance();
     //private EditText editTextPercentage;
     //private Button buttonChangeLikeDislike;
-    private static final int CAMERA_PERMISSIONS_REQUEST = 2;
-    private static final int CAMERA_IMAGE_REQUEST = 3;
+    public static final int CAMERA_PERMISSIONS_REQUEST = 2;
+    public static final int CAMERA_IMAGE_REQUEST = 3;
     private static final String FILE_NAME = "temp.jpg";
     Uri uri;
+    Bitmap B1;
     int a;
     public boolean r=false,s=false,t=false;
     //////////////////////////////////
-    public int x,percentage2,totalpercentage=0;
-    public String maindata,Check0,Check1,Check2,Check3,reference,smallcase,Choice="",str4="",str5="",str6="";
-    public Boolean str=true,str3=true;
+    public int x,percentage2,totalpercentage=0,an=0;
+    public String maindata,Check0,Check1,Check2,Check3,reference,smallcase,Choice="",str4="",str5="",str6="",str7="",condition="";
+    public Boolean str=true,str3=true,str9=true;
     ////////////////////////////////////
     public String res;
     Bitmap bitmap,pixelatedbitmap;
@@ -138,9 +142,10 @@ public class RatingFragment extends Fragment {
         ImageButton imageButtonCameraButton = (ImageButton) view.findViewById(R.id.imageButtonCameraButton);
         textViewLikeDislikePercentage = (TextView) view.findViewById(R.id.textViewLikeDislikePercentage);
         textViewRatingImageDetails = (TextView) view.findViewById(R.id.textViewRatingImageDetails);
-//        editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
-//        buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
+//      editTextPercentage = (EditText) view.findViewById(R.id.editTextPercentge);
+//      buttonChangeLikeDislike = (Button) view.findViewById(R.id.buttonChangeLikeDislike);
         imageViewLike = (ImageView) view.findViewById(R.id.imageViewLike);
+         upload =(Button)view.findViewById(R.id.upload);
         /////////////////////////////////////////////////
 
         //Male and Female
@@ -158,7 +163,7 @@ public class RatingFragment extends Fragment {
 
         //Style Fetch
 
-        String[] selectstyle = new String[] {"Select Style","Casual", "Wedding", "Party Wear", "Formal"};
+        String[] selectstyle = new String[] {"Select Style","Dinner party","A business dinner or a company party","Family Get-Together","College","Cocktail party","Business Formal","Religious Ceremony","Interview","A Night at the Theater","Office","Wedding"};
         Spinner selectstylespnr = view.findViewById(R.id.spnr_selectstyle);
         ArrayAdapter<String> occasionAdapter =
                 new ArrayAdapter<>(
@@ -182,6 +187,60 @@ public class RatingFragment extends Fragment {
 
         //Condition Checking
 
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(str3 && Choice!=null  && !Choice.equals("Select Style") && str4!=null){
+                    // invoke the image gallery using an implict intent.
+                    str9=true;
+                    datafetch();
+
+                    imageViewCapturedImage.setImageBitmap(null);
+                    textViewRatingImageDetails.setText(null);
+                    textViewLikeDislikePercentage.setText(null);
+                    imageViewLikeDislike.setVisibility(View.VISIBLE);
+                    imageViewLike.setVisibility(View.INVISIBLE);
+
+                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+
+                    // where do we want to find the data?
+                    File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                    String pictureDirectoryPath = pictureDirectory.getPath();
+                    // finally, get a URI representation
+                    Uri data = Uri.parse(pictureDirectoryPath);
+
+                    // set the data and type.  Get all image types.
+                    photoPickerIntent.setDataAndType(data, "image/*");
+
+                    // we will invoke this activity, and get something back from it.
+                    startActivityForResult(photoPickerIntent, IMAGE_GALLERY_REQUEST );
+                }
+                else if(Choice==null  || Choice.equals("Select Style")){
+                    final Toast toast = Toast.makeText(context, "select your style", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Handler handler2 = new Handler();
+                    handler2.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
+                }else{
+                    final Toast toast = Toast.makeText(context, "Wait Until Process Finished", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Handler handler2 = new Handler();
+                    handler2.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
+                }
+            }
+        });
 
 ///////////////////
         initTensorFlowAndLoadModel();
@@ -193,11 +252,12 @@ public class RatingFragment extends Fragment {
         public void onClick(View v) {
 
              if(str3 && Choice!=null  && !Choice.equals("Select Style") && str4!=null){
+                 str9=true;
             imageViewCapturedImage.setImageURI(null);
             textViewRatingImageDetails.setText(null);
+            textViewLikeDislikePercentage.setText(null);
             imageViewLikeDislike.setVisibility(View.VISIBLE);
             imageViewLike.setVisibility(View.INVISIBLE);
-            textViewLikeDislikePercentage.setText(0+"%");
             datafetch();
             str3=false;
                  try {
@@ -235,23 +295,17 @@ public class RatingFragment extends Fragment {
         }
     });
 
-
+    if(str7.equals("camara")){
+        imageViewCapturedImage.setImageURI(uri);}
+    else {
+        imageViewCapturedImage.setImageBitmap(B1);
+    }
+    textViewRatingImageDetails.setText(str5);
         //imageViewCapturedImage.setImageBitmap(pixelatedbitmap);
-        imageViewCapturedImage.setImageURI(uri);
-        if(a<50){
-            imageViewLikeDislike.setVisibility(View.VISIBLE);
-            imageViewLike.setVisibility(View.INVISIBLE);
-            textViewLikeDislikePercentage.setText(a+"%");
-        }
-        else{
-            imageViewLike.setVisibility(View.VISIBLE);
-            imageViewLikeDislike.setVisibility(View.INVISIBLE);
-            textViewLikeDislikePercentage.setText(a+"%");
-        }
-        textViewRatingImageDetails.setText(res);
+
         return view;
     }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
     String extractInt(String str)
     {
         // Replacing every non-digit number
@@ -273,6 +327,7 @@ public class RatingFragment extends Fragment {
     }
 ////////////////////////////////////////////////////////////////////////////////////////////
 public void onImage() throws IOException {
+    Toast.makeText(context, "INSIDE ONIMAGE", Toast.LENGTH_SHORT);
     Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
     uri = photoUri;
     bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
@@ -317,21 +372,49 @@ public void datafetch(){
             //Do something after 100ms
             if(str){
                 //male
-                if(Choice.equals("Casual")){
+                if(Choice.equals("Dinner party")||Choice.equals("A business dinner or a company party")||Choice.equals("Family Get-Together")||Choice.equals("College")||Choice.equals("Cocktail party")||Choice.equals("Business Formal")||Choice.equals("A Night at the Theater")||Choice.equals("Office")){
 
-                    str6="men_casual_good";
+                    str6="casual_good";
+                    stringextract();
+                    if(condition.equals("you could do better...")&&Choice.equals("Cocktail party")){
+                        str6="wedding_good";
+                        stringextract();
+
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("Dinner party")){
+                        str6="ethnic_good";
+                        stringextract();
+
+
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("A business dinner or a company party")){
+                        str6="formal_good";
+                        stringextract();
+
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("Family Get-Together")){
+                        str6="ethnic_good";
+                        stringextract();
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("Office")){
+                        str6="formal_good";
+                        stringextract();
+                    }
 
                 }
-                else if(Choice.equals("Party Wear")){
-
+                else if(Choice.equals("Religious Ceremony")){
+                    str6="ethnic_good";
+                    stringextract();
                 }
                 else if(Choice.equals("Wedding")){
-                    str6="men_wedding_good";
+                    str6="wedding_good";
+                    stringextract();
 
                 }
-                else if(Choice.equals("Formal")){
+                else if(Choice.equals("Interview")){
 
-                    str6="men_business_formal_good";
+                    str6="formal_good";
+                    stringextract();
 
                 }
 
@@ -342,22 +425,59 @@ public void datafetch(){
             else {
                 //female
 
-                if (Choice.equals("Casual")) {
-                    str6="women_casual_good";
-                } else if (Choice.equals("Party Wear")) {
+                if(Choice.equals("Dinner party")||Choice.equals("A business dinner or a company party")||Choice.equals("Family Get-Together")||Choice.equals("College")||Choice.equals("Cocktail party")||Choice.equals("Business Formal")||Choice.equals("A Night at the Theater")||Choice.equals("Office")){
 
-                    str6="women_ethnic_good";
-                } else if (Choice.equals("Wedding")) {
-                    str6="women_wedding_good";
-                } else if (Choice.equals("Formal")) {
-                    str6="women_formal_good";
+                    str6="casual_good";
+                    stringextract();
+                    if(condition.equals("you could do better...")&&Choice.equals("Cocktail party")){
+                        str6="wedding_good";
+                        stringextract();
+
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("Dinner party")){
+                        str6="ethnic_good";
+                        stringextract();
+
+
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("A business dinner or a company party")){
+                        str6="formal_good";
+                        stringextract();
+
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("Family Get-Together")){
+                        str6="ethnic_good";
+                        stringextract();
+                    }
+                    else if(condition.equals("you could do better...")&&Choice.equals("Office")){
+                        str6="formal_good";
+                        stringextract();
+                    }
+
                 }
+                else if(Choice.equals("Religious Ceremony")){
+                    str6="ethnic_good";
+                    stringextract();
+                }
+                else if(Choice.equals("Wedding")){
+                    str6="wedding_good";
+                    stringextract();
+
+                }
+                else if(Choice.equals("Interview")){
+
+                    str6="formal_good";
+                    stringextract();
+
+                }
+
+
 
 
             }
 
         }
-    }, 500);
+    }, 100);
 
 }
 
@@ -371,23 +491,57 @@ public void datafetch(){
         Pattern p = Pattern.compile(r);
         Matcher m = p.matcher(str5);
         if (m.find()) {
-            int an= Integer.parseInt(m.group());
 
-            if(an<=50){
+            if(str9)
+            {
                 imageViewLikeDislike.setVisibility(View.VISIBLE);
                 imageViewLike.setVisibility(View.INVISIBLE);
-                textViewLikeDislikePercentage.setText(an+"%");
-            }
-            else{
-                imageViewLike.setVisibility(View.VISIBLE);
-                imageViewLikeDislike.setVisibility(View.INVISIBLE);
-                textViewLikeDislikePercentage.setText(an+"%");
-            }
 
 
+            }
+        else {
+                an = Integer.parseInt(m.group());
+
+                if (an <= 50) {
+                    imageViewLikeDislike.setVisibility(View.VISIBLE);
+                    imageViewLike.setVisibility(View.INVISIBLE);
+                    textViewLikeDislikePercentage.setText("you could do better...");
+
+
+                } else {
+                    imageViewLike.setVisibility(View.VISIBLE);
+                    imageViewLikeDislike.setVisibility(View.INVISIBLE);
+                    textViewLikeDislikePercentage.setText("you look amazing..!");
+
+                }
+
+            }
+
+        }
+        else
+        {   an=0;
+            imageViewLikeDislike.setVisibility(View.VISIBLE);
+            imageViewLike.setVisibility(View.INVISIBLE);
+            description();
+        }
+        condition=textViewLikeDislikePercentage.getText().toString();
+    }
+
+    public void description(){
+
+        if(str5.isEmpty() || str9){
 
 
         }
+        else
+        {
+            textViewLikeDislikePercentage.setText("you could do better...");
+
+        }
+
+
+
+
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -415,16 +569,27 @@ public void datafetch(){
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            str9=false;
+            str7="camara";
             InputStream inputStream;
             try {
+
+                final Toast toast = Toast.makeText(context, "PROCESSING", Toast.LENGTH_SHORT);
+                toast.show();
+
+                Handler handler2 = new Handler();
+                handler2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 1500);
                 str3=false;
-                textViewLikeDislikePercentage.setText("Waiting");
                 Toast.makeText(context, "Image Captured",Toast.LENGTH_SHORT).show();
                // Toast.makeText(context, "PROCESSING",Toast.LENGTH_SHORT).show();
                 Uri photoUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", getCameraFile());
                 uri = photoUri;
                 bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),uri);
-
                 callCloudVision(bitmap , "FACE_DETECTION");
                 imageViewCapturedImage.setImageURI(uri);
                 inputStream =getContext().getContentResolver().openInputStream(photoUri);
@@ -436,16 +601,66 @@ public void datafetch(){
                 // show the image to the user
                 image = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
                 final List<Classifier.Recognition> results = classifier.recognizeImage(image);
+                String s1=String.valueOf(results);
+                str5=s1.replaceAll("\\(", "").replaceAll("\\)","");
 
             }catch (Exception e){
                 e.printStackTrace();
             }
         }
+        else {
+            if (requestCode == IMAGE_GALLERY_REQUEST && resultCode == RESULT_OK) {
+                str9=false;
+                str7="gallary";
+
+                final Toast toast = Toast.makeText(context, "PROCESSING", Toast.LENGTH_SHORT);
+                toast.show();
+
+                Handler handler2 = new Handler();
+                handler2.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 1500);
+                str3=false;
+                Toast.makeText(context, "Inside code gallary", Toast.LENGTH_SHORT);
+            // the address of the image on the SD Card.
+            Uri imageUri = data.getData();
+
+            // declare a stream to read the image data from the SD Card.
+            InputStream inputStream1;
+
+            // we are getting an input stream, based on the URI of the image.
+            try {
+                inputStream1 =getContext().getContentResolver().openInputStream(imageUri);
+
+                // get a bitmap from the stream.
+                Bitmap image = BitmapFactory.decodeStream(inputStream1);
+                callCloudVision(image , "FACE_DETECTION");
+                B1=image;
+
+                // show the image to the user
+                imageViewCapturedImage.setImageBitmap(image);
+                image = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
+                final List<Classifier.Recognition> results = classifier.recognizeImage(image);
+                String s1=String.valueOf(results);
+                str5=s1.replaceAll("\\(", "").replaceAll("\\)","");
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        }
+
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //override
 
@@ -617,7 +832,7 @@ public void datafetch(){
                 res = result;
                 String check5="Face NOT Detected";
 
-                textViewRatingImageDetails.setText(res);
+               // textViewRatingImageDetails.setText(res);
                 Log.d("res.tolowercase", String.valueOf(res.toLowerCase().indexOf(check5.toLowerCase())));
                 if (res.toLowerCase().indexOf(check5.toLowerCase()) == -1 && r==false ) {
                     Log.d("i am inside ","the code");
@@ -630,12 +845,8 @@ public void datafetch(){
                         public void run() {
                             toast.cancel();
                         }
-                    }, 500);
-                    try {
-                        onImage();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    }, 2000);
+                    textViewRatingImageDetails.setText(str5);
                     stringextract();
                     str3=true;
                 }
@@ -649,12 +860,11 @@ public void datafetch(){
                         public void run() {
                             toast.cancel();
                         }
-                    }, 500);
+                    }, 2000);
                     final int percentage3 = 0;
                     imageViewLikeDislike.setVisibility(View.VISIBLE);
                     imageViewLike.setVisibility(View.INVISIBLE);
-                    textViewLikeDislikePercentage.setText(percentage3+"%");
-
+                    str5="";
                     str3=true;
 
                 }
@@ -663,6 +873,7 @@ public void datafetch(){
         }
 
     }
+
     //////////////////////////////////////////////////////////////////////
     private static int countLines(String str){
         String[] lines = str.split("\r\n|\r|\n");
