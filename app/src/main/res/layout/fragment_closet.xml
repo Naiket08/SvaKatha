@@ -43,7 +43,7 @@ android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_height="@dimen/_370sdp"
             android:layout_weight="1"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_right"
@@ -79,9 +79,43 @@ android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_13sdp"
         android:layout_gravity="center"
         android:src="@drawable/divider"/>
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="TOP WEAR"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_20sdp"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/_5sdp"
+        />
 
     <GridView
         android:id="@+id/gv_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:horizontalSpacing="@dimen/_5sdp"
+        android:verticalSpacing="@dimen/_5sdp"
+        android:nestedScrollingEnabled="false"
+        android:gravity="center"
+        android:stretchMode="columnWidth" />
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="BOTTOMWEAR"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_20sdp"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/_5sdp"
+        />
+
+    <GridView
+        android:id="@+id/gv_image2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="3"
@@ -91,6 +125,62 @@ android:layout_height="wrap_content"
         android:nestedScrollingEnabled="false"
         android:gravity="center"
         android:stretchMode="columnWidth"/>
+    <TextView
+        android:id="@+id/textview3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="FOOTWEAR"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_20sdp"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/_5sdp"
+        />
+
+    <GridView
+        android:id="@+id/gv_image3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:horizontalSpacing="@dimen/_5sdp"
+        android:verticalSpacing="@dimen/_5sdp"
+        android:nestedScrollingEnabled="false"
+        android:gravity="center"
+        android:stretchMode="columnWidth"/>
+
+    <TextView
+        android:id="@+id/textview4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="FASHION ACCESSORIES"
+        android:fontFamily="@font/arial"
+        android:textSize="@dimen/_20sdp"
+        android:textAlignment="center"
+        android:layout_marginBottom="@dimen/_5sdp"
+        />
+
+    <GridView
+        android:id="@+id/gv_image4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:horizontalSpacing="@dimen/_5sdp"
+        android:verticalSpacing="@dimen/_5sdp"
+        android:nestedScrollingEnabled="false"
+        android:gravity="center"
+        android:stretchMode="columnWidth"/>
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=""
+        android:textSize="@dimen/_10sdp"
+        android:fontFamily="@font/arial"
+        />
 
 </LinearLayout>
     </ScrollView>

@@ -1,0 +1,4 @@
+0 Bottom Wear
+1 Fashion  Accessories
+2 Foot Wear
+3 Top Wear

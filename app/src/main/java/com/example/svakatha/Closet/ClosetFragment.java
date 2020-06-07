@@ -5,20 +5,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatImageButton;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -29,15 +19,27 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
+import com.example.svakatha.Classifier;
 import com.example.svakatha.Closet.Adapter.ClosetGridAdapter;
+import com.example.svakatha.Closet.Adapter.ClosetGridAdapter2;
+import com.example.svakatha.Closet.Adapter.ClosetGridAdapter3;
+import com.example.svakatha.Closet.Adapter.ClosetGridAdapter4;
+import com.example.svakatha.Closet.Listeners.ClosetFragmentListener;
 import com.example.svakatha.HostActivity;
 import com.example.svakatha.PackageManagerUtils.PackageManagerUtils;
-import com.example.svakatha.Closet.Listeners.ClosetFragmentListener;
 import com.example.svakatha.PermissionUtils.PermissionUtils;
 import com.example.svakatha.R;
+import com.example.svakatha.TensorFlowImageClassifier;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -69,7 +71,9 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,6 +84,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -87,6 +95,24 @@ import static android.app.Activity.RESULT_OK;
  * A simple {@link Fragment} subclass.
  */
 public class ClosetFragment extends Fragment implements ClosetFragmentListener {
+    ///////////////////////////////////////////////////////////////////////////////
+    public static final String MODEL_PATH = "model1.tflite";
+    public static final boolean QUANT = true;
+    public static final String LABEL_PATH = "labels.txt";
+    public static final int INPUT_SIZE = 224;
+    public static final int IMAGE_GALLERY_REQUEST = 20;
+    public static final int CAMERA_PERMISSION_REQUEST_CODE = 4192;
+    public static final int CAMERA_REQUEST_CODE = 228;
+
+    private Classifier classifier;
+
+    private Executor executor = Executors.newSingleThreadExecutor();
+
+//
+    public TextView result;
+    public static String match,checkmatch="";
+    static boolean a,b,c,d;
+    ///////////////////////////////////////////////////////////////////////////////
 
     private static final String CLOUD_VISION_API_KEY = "AIzaSyBYZftL8rp5UhFUPMHM_1dJ-3tfqNVN34E";
     private static final String FILE_NAME = "temp.jpg";
@@ -103,22 +129,26 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
 
     private FirebaseAuth mAuth;
     private StorageReference mStorageRef;
-    private List<DocumentSnapshot> gridImageList;
+    private List<DocumentSnapshot> gridImageList,gridImageList2,gridImageList3,gridImageList4;
     private List<DocumentSnapshot> shuffledImageList;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private Context mContext;
 
     private AppCompatImageView ivShowcase;
-    private GridView gridView;
+    private GridView gridView,gridView2,gridView3,gridView4;
 
     private ClosetGridAdapter closetGridAdapter;
+    private ClosetGridAdapter2 closetGridAdapter2;
+    private ClosetGridAdapter3 closetGridAdapter3;
+    private ClosetGridAdapter4 closetGridAdapter4;
     private int shuffledListIndex = 0;
     private int size;
     private View view;
+    public Uri uri;
 
     ImageButton imageButtonRandomImage;
-    Boolean str = false;
+    public Boolean str = false,i=true;
     String str2;
 
     public ClosetFragment() {
@@ -140,12 +170,28 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         setupAddButton(view);
         AppCompatImageButton btnLeft = view.findViewById(R.id.btn_left);
         AppCompatImageButton btnRight = view.findViewById(R.id.btn_right);
-
+        ////////////////////////////////////////////////////
+       result = view.findViewById(R.id.result);
         gridView = view.findViewById(R.id.gv_image);
+        gridView2 = view.findViewById(R.id.gv_image2);
+        gridView3 = view.findViewById(R.id.gv_image3);
+        gridView4 = view.findViewById(R.id.gv_image4);
         ivShowcase = view.findViewById(R.id.iv_showcase);
         closetGridAdapter = new ClosetGridAdapter(mContext);
+        closetGridAdapter2 = new ClosetGridAdapter2(mContext);
+        closetGridAdapter3 = new ClosetGridAdapter3(mContext);
+        closetGridAdapter4 = new ClosetGridAdapter4(mContext);
         gridView.setAdapter(closetGridAdapter);
+        gridView2.setAdapter(closetGridAdapter2);
+        gridView3.setAdapter(closetGridAdapter3);
+        gridView4.setAdapter(closetGridAdapter4);
 
+
+///////////////////
+        initTensorFlowAndLoadModel();
+        ////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////
         btnLeft.setOnClickListener(
                 v -> leftButtonClicked()
         );
@@ -230,9 +276,26 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         return view;
 
     }
-
+    /////////////////////////////////////////////////////////////////////
+    public void initTensorFlowAndLoadModel() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    classifier = TensorFlowImageClassifier.create(
+                            getContext().getAssets(),
+                            MODEL_PATH,
+                            LABEL_PATH,
+                            INPUT_SIZE,
+                            QUANT);
+                } catch (final Exception e) {
+                    throw new RuntimeException("Error initializing TensorFlow!", e);
+                }
+            }
+        });
+    }
+//////////////////////////////////////////////////////////////////////////////////////
     private void setupShowcaseImageView() {
-
         shuffledImageList = gridImageList;
         if (shuffledImageList != null && !shuffledImageList.isEmpty()) {
             Collections.shuffle(Collections.singletonList(shuffledImageList));
@@ -318,6 +381,19 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
             closetGridAdapter.setImageList(gridImageList);
             closetGridAdapter.notifyDataSetChanged();
         }
+        if(gridImageList2 != null){
+            closetGridAdapter2.setImageList(gridImageList2);
+            closetGridAdapter2.notifyDataSetChanged();
+
+        }
+        if(gridImageList3 != null) {
+            closetGridAdapter3.setImageList(gridImageList3);
+            closetGridAdapter3.notifyDataSetChanged();
+        }
+        if(gridImageList4 != null) {
+            closetGridAdapter4.setImageList(gridImageList4);
+            closetGridAdapter4.notifyDataSetChanged();
+        }
 
     }
 
@@ -329,13 +405,49 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     }
 
     private void getDataFromDb() {
-        String currentUser=mAuth.getCurrentUser().getUid();
+
+            String currentUser = mAuth.getCurrentUser().getUid();
+            db.collection("users").document(currentUser)
+                    .collection("TopWear").get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            gridImageList = queryDocumentSnapshots.getDocuments();
+                            onImageListReceived();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            //TODO: discuss what is to be done on failure
+                            Toast.makeText(mContext, "Error while loading images", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+            db.collection("users").document(currentUser)
+                    .collection("BottomWear").get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                            gridImageList2 = queryDocumentSnapshots.getDocuments();
+                            onImageListReceived();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            //TODO: discuss what is to be done on failure
+                            Toast.makeText(mContext, "Error while loading images", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
         db.collection("users").document(currentUser)
-                .collection("ClosetDetails").get()
+                .collection("FootWear").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        gridImageList =queryDocumentSnapshots.getDocuments();
+                        gridImageList3 = queryDocumentSnapshots.getDocuments();
                         onImageListReceived();
                     }
                 })
@@ -346,15 +458,65 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
                         Toast.makeText(mContext, "Error while loading images", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        db.collection("users").document(currentUser)
+                .collection("FashionAccessories").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        gridImageList4 = queryDocumentSnapshots.getDocuments();
+                        onImageListReceived();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //TODO: discuss what is to be done on failure
+                        Toast.makeText(mContext, "Error while loading images", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
 
         if (requestCode == GALLERY_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
+            ////////////////////////////////////////////////////////
+            Uri imageUri = data.getData();
+
+            // declare a stream to read the image data from the SD Card.
+            InputStream inputStream1;
+
+            // we are getting an input stream, based on the URI of the image.
+            try {
+                inputStream1 =getContext().getContentResolver().openInputStream(imageUri);
+
+            // get a bitmap from the stream.
+                Bitmap image = BitmapFactory.decodeStream(inputStream1);
+
+
+                // show the image to the user
+                image = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
+                final List<Classifier.Recognition> results = classifier.recognizeImage(image);
+                String s1=String.valueOf(results);
+                //IMPORTANT METHOD FOR CONDITION
+                match=s1.replaceAll("\\[", "").replaceAll("\\]","").replaceAll("\\d","").replaceAll("\\ ","").replaceAll("\\(","").replaceAll("\\)","").replaceAll("\\.","").replaceAll("\\%","");
+                result.setText(s1);
+                stringextract();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+                ///////////////////////////////////////////////////////
             uploadImage(data.getData());
         } /*else if (requestCode == CAMERA_IMAGE_REQUEST && resultCode == RESULT_OK) {
             *//*Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
@@ -367,6 +529,29 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 Uri resultUri = result.getUri();
+
+                // declare a stream to read the image data from the SD Card.
+                InputStream inputStream1;
+
+                // we are getting an input stream, based on the URI of the image.
+                try {
+                    inputStream1 =getContext().getContentResolver().openInputStream(resultUri);
+
+                    // get a bitmap from the stream.
+                    Bitmap image = BitmapFactory.decodeStream(inputStream1);
+
+
+                    // show the image to the user
+                    image = Bitmap.createScaledBitmap(image, INPUT_SIZE, INPUT_SIZE, false);
+                    final List<Classifier.Recognition> results = classifier.recognizeImage(image);
+                    String s1=String.valueOf(results);
+                    match=s1.replaceAll("\\[", "").replaceAll("\\]","").replaceAll("\\d","").replaceAll("\\ ","").replaceAll("\\(","").replaceAll("\\)","").replaceAll("\\.","").replaceAll("\\%","");
+                    stringextract();
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
                 Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
                 uploadImage(resultUri);
 
@@ -378,45 +563,66 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         }
     }
 
+    public void stringextract() {
+
+        //String q="brown";
+        String r="[a-zA-Z]+";
+        Pattern p = Pattern.compile(r);
+        Matcher m = p.matcher(match);
+        if (m.find()) {
+            checkmatch = m.group();
+           // result.setText(checkmatch);
+            if(checkmatch.equals("TopWear")){
+                Toast.makeText(mContext,checkmatch,Toast.LENGTH_LONG).show();
+              // result.setText("TRUE");
+            }
+            else{
+                Toast.makeText(mContext,checkmatch,Toast.LENGTH_LONG).show();
+              //  result.setText("FALSE");
+            }
+
+        }
+    }
+
     private void uploadImage(Uri uri) {
-        if (uri != null) {
-            try {
-                // scale the image to save on bandwidth
-                Bitmap bitmap =
-                        scaleBitmapDown(
-                                MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), uri),
-                                MAX_DIMENSION);
+        if(checkmatch.equals("TopWear")) {
+            if (uri != null) {
+                try {
+                    // scale the image to save on bandwidth
+                    Bitmap bitmap =
+                            scaleBitmapDown(
+                                    MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), uri),
+                                    MAX_DIMENSION);
 
-                callCloudVision(bitmap);
+                    callCloudVision(bitmap);
 
-
-                mAuth=FirebaseAuth.getInstance();
-                String currentUser=mAuth.getCurrentUser().getUid();
-                StorageReference filePath=mStorageRef.child("UserClosetImages").child(currentUser).child(UUID.randomUUID().toString());
-                filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Log.i("Status","Uploaded");
-                        filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Log.i("Status",uri.toString());
-                                Map<String ,String> data=new HashMap<>();
-                                data.put("downloadUrl",uri.toString());
-                                Map<String,Object> data_time=new HashMap<>();
-                                data_time.put("Time",new Timestamp(new Date()));
-                                String currentUser=mAuth.getCurrentUser().getUid();
-                                db.collection("users").document(currentUser)
-                                        .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String docName=documentSnapshot.getString("closetChoiceDocName");
-                                        db.collection("users").document(currentUser)
-                                                .collection("ClosetDetails").document(docName)
-                                                .set(data,SetOptions.merge());
-                                        db.collection("users").document(currentUser)
-                                                .collection("ClosetDetails").document(docName)
-                                                .set(data_time,SetOptions.merge());
+                    mAuth = FirebaseAuth.getInstance();
+                    String currentUser = mAuth.getCurrentUser().getUid();
+                    StorageReference filePath = mStorageRef.child("UserClosetImages").child(currentUser).child(UUID.randomUUID().toString());
+                    filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Log.i("Status", "Uploaded");
+                            filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Log.i("Status", uri.toString());
+                                    Map<String, String> data = new HashMap<>();
+                                    data.put("downloadUrl", uri.toString());
+                                    Map<String, Object> data_time = new HashMap<>();
+                                    data_time.put("Time", new Timestamp(new Date()));
+                                    String currentUser = mAuth.getCurrentUser().getUid();
+                                    db.collection("users").document(currentUser)
+                                            .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String docName = documentSnapshot.getString("closetChoiceDocName");
+                                            db.collection("users").document(currentUser)
+                                                    .collection("TopWear").document(docName)
+                                                    .set(data, SetOptions.merge());
+                                            db.collection("users").document(currentUser)
+                                                    .collection("TopWear").document(docName)
+                                                    .set(data_time, SetOptions.merge());
 
 //                                        db.collection("users").document(currentUser)
 //                                                .collection("ClosetDetails").document(docName)
@@ -424,30 +630,252 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
 //                                                    @Override
 //                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
 //
-                                                        Toast.makeText(mContext,"Upload Successful",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(mContext, "Upload Successful", Toast.LENGTH_SHORT).show();
 //                                                        gridImageList.add(documentSnapshot);
 //                                                        shuffledImageList.add(documentSnapshot);
 //                                                        onImageListReceived();
 //                                                    }
 //                                                });
 
-                                        getDataFromDb();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
+                                            getDataFromDb();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
 
 
-            } catch (IOException e) {
-                Log.d(TAG, "Image picking failed because " + e.getMessage());
+                } catch (IOException e) {
+                    Log.d(TAG, "Image picking failed because " + e.getMessage());
+                    Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Log.d(TAG, "Image picker gave us a null image.");
                 Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
             }
-        } else {
-            Log.d(TAG, "Image picker gave us a null image.");
-            Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+
         }
+        else if(checkmatch.equals("BottomWear"))
+        {
+            if (uri != null) {
+                try {
+                    // scale the image to save on bandwidth
+                    Bitmap bitmap =
+                            scaleBitmapDown(
+                                    MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), uri),
+                                    MAX_DIMENSION);
+
+                    callCloudVision(bitmap);
+
+
+                    mAuth = FirebaseAuth.getInstance();
+                    String currentUser = mAuth.getCurrentUser().getUid();
+                    StorageReference filePath = mStorageRef.child("UserClosetImages").child(currentUser).child(UUID.randomUUID().toString());
+                    filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Log.i("Status", "Uploaded");
+                            filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Log.i("Status", uri.toString());
+                                    Map<String, String> data = new HashMap<>();
+                                    data.put("downloadUrl", uri.toString());
+                                    Map<String, Object> data_time = new HashMap<>();
+                                    data_time.put("Time", new Timestamp(new Date()));
+                                    String currentUser = mAuth.getCurrentUser().getUid();
+                                    db.collection("users").document(currentUser)
+                                            .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String docName = documentSnapshot.getString("closetChoiceDocName");
+                                            db.collection("users").document(currentUser)
+                                                    .collection("BottomWear").document(docName)
+                                                    .set(data, SetOptions.merge());
+                                            db.collection("users").document(currentUser)
+                                                    .collection("BottomWear").document(docName)
+                                                    .set(data_time, SetOptions.merge());
+
+//                                        db.collection("users").document(currentUser)
+//                                                .collection("ClosetDetails").document(docName)
+//                                                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                                    @Override
+//                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//
+                                            Toast.makeText(mContext, "Upload Successful", Toast.LENGTH_SHORT).show();
+//                                                        gridImageList.add(documentSnapshot);
+//                                                        shuffledImageList.add(documentSnapshot);
+//                                                        onImageListReceived();
+//                                                    }
+//                                                });
+
+                                            getDataFromDb();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+
+
+                } catch (IOException e) {
+                    Log.d(TAG, "Image picking failed because " + e.getMessage());
+                    Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Log.d(TAG, "Image picker gave us a null image.");
+                Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+            }
+
+        }
+        else if(checkmatch.equals("FootWear"))
+        {
+            if (uri != null) {
+                try {
+                    // scale the image to save on bandwidth
+                    Bitmap bitmap =
+                            scaleBitmapDown(
+                                    MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), uri),
+                                    MAX_DIMENSION);
+
+                    callCloudVision(bitmap);
+
+
+                    mAuth = FirebaseAuth.getInstance();
+                    String currentUser = mAuth.getCurrentUser().getUid();
+                    StorageReference filePath = mStorageRef.child("UserClosetImages").child(currentUser).child(UUID.randomUUID().toString());
+                    filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Log.i("Status", "Uploaded");
+                            filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Log.i("Status", uri.toString());
+                                    Map<String, String> data = new HashMap<>();
+                                    data.put("downloadUrl", uri.toString());
+                                    Map<String, Object> data_time = new HashMap<>();
+                                    data_time.put("Time", new Timestamp(new Date()));
+                                    String currentUser = mAuth.getCurrentUser().getUid();
+                                    db.collection("users").document(currentUser)
+                                            .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String docName = documentSnapshot.getString("closetChoiceDocName");
+                                            db.collection("users").document(currentUser)
+                                                    .collection("FootWear").document(docName)
+                                                    .set(data, SetOptions.merge());
+                                            db.collection("users").document(currentUser)
+                                                    .collection("FootWear").document(docName)
+                                                    .set(data_time, SetOptions.merge());
+
+//                                        db.collection("users").document(currentUser)
+//                                                .collection("ClosetDetails").document(docName)
+//                                                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                                    @Override
+//                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//
+                                            Toast.makeText(mContext, "Upload Successful", Toast.LENGTH_SHORT).show();
+//                                                        gridImageList.add(documentSnapshot);
+//                                                        shuffledImageList.add(documentSnapshot);
+//                                                        onImageListReceived();
+//                                                    }
+//                                                });
+
+                                            getDataFromDb();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+
+
+                } catch (IOException e) {
+                    Log.d(TAG, "Image picking failed because " + e.getMessage());
+                    Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Log.d(TAG, "Image picker gave us a null image.");
+                Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+            }
+
+        }
+        else if(checkmatch.equals("FashionAccessories"))
+        {
+            if (uri != null) {
+                try {
+                    // scale the image to save on bandwidth
+                    Bitmap bitmap =
+                            scaleBitmapDown(
+                                    MediaStore.Images.Media.getBitmap(mContext.getContentResolver(), uri),
+                                    MAX_DIMENSION);
+
+                    callCloudVision(bitmap);
+
+
+                    mAuth = FirebaseAuth.getInstance();
+                    String currentUser = mAuth.getCurrentUser().getUid();
+                    StorageReference filePath = mStorageRef.child("UserClosetImages").child(currentUser).child(UUID.randomUUID().toString());
+                    filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Log.i("Status", "Uploaded");
+                            filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    Log.i("Status", uri.toString());
+                                    Map<String, String> data = new HashMap<>();
+                                    data.put("downloadUrl", uri.toString());
+                                    Map<String, Object> data_time = new HashMap<>();
+                                    data_time.put("Time", new Timestamp(new Date()));
+                                    String currentUser = mAuth.getCurrentUser().getUid();
+                                    db.collection("users").document(currentUser)
+                                            .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String docName = documentSnapshot.getString("closetChoiceDocName");
+                                            db.collection("users").document(currentUser)
+                                                    .collection("FashionAccessories").document(docName)
+                                                    .set(data, SetOptions.merge());
+                                            db.collection("users").document(currentUser)
+                                                    .collection("FashionAccessories").document(docName)
+                                                    .set(data_time, SetOptions.merge());
+
+//                                        db.collection("users").document(currentUser)
+//                                                .collection("ClosetDetails").document(docName)
+//                                                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                                    @Override
+//                                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+//
+                                            Toast.makeText(mContext, "Upload Successful", Toast.LENGTH_SHORT).show();
+//                                                        gridImageList.add(documentSnapshot);
+//                                                        shuffledImageList.add(documentSnapshot);
+//                                                        onImageListReceived();
+//                                                    }
+//                                                });
+
+                                            getDataFromDb();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+
+
+                } catch (IOException e) {
+                    Log.d(TAG, "Image picking failed because " + e.getMessage());
+                    Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Log.d(TAG, "Image picker gave us a null image.");
+                Toast.makeText(mContext, R.string.image_picker_error, Toast.LENGTH_LONG).show();
+            }
+
+        }
+
     }
 
     private Bitmap scaleBitmapDown(Bitmap bitmap, int maxDimension) {
@@ -583,6 +1011,7 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String closetDocName= UUID.randomUUID().toString();
 
+
         LableDetectionTask(HostActivity activity, Vision.Images.Annotate annotate) {
             mActivityWeakReference = new WeakReference<>(activity);
             mRequest = annotate;
@@ -605,23 +1034,87 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
         }
 
         protected void onPostExecute(String result) {
-            HostActivity activity = mActivityWeakReference.get();
-            if (activity != null && !activity.isFinishing()) {
-                String currentUSer=mAuth.getCurrentUser().getUid();
-                Map<String,String > data=new HashMap<>();
-                data.put("AnalysisText",result);
-                db.collection("users").document(currentUSer)
-                        .collection("ClosetDetails").document(closetDocName)
-                        .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Map<String,String>data=new HashMap<>();
-                        data.put("closetChoiceDocName",closetDocName);
-                        db.collection("users").document(currentUSer).set(data, SetOptions.merge());
-                    }
-                });
+            if(checkmatch.equals("TopWear")){
+
+                HostActivity activity = mActivityWeakReference.get();
+                if (activity != null && !activity.isFinishing()) {
+                    String currentUSer = mAuth.getCurrentUser().getUid();
+                    Map<String, String> data = new HashMap<>();
+                    data.put("AnalysisText", result);
+                    db.collection("users").document(currentUSer)
+                            .collection("TopWear").document(closetDocName)
+                            .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Map<String, String> data = new HashMap<>();
+                            data.put("closetChoiceDocName", closetDocName);
+                            db.collection("users").document(currentUSer).set(data, SetOptions.merge());
+                        }
+                    });
+                }
             }
+            else if(checkmatch.equals("BottomWear"))
+            {
+                HostActivity activity = mActivityWeakReference.get();
+                if (activity != null && !activity.isFinishing()) {
+                    String currentUSer = mAuth.getCurrentUser().getUid();
+                    Map<String, String> data = new HashMap<>();
+                    data.put("AnalysisText", result);
+                    db.collection("users").document(currentUSer)
+                            .collection("BottomWear").document(closetDocName)
+                            .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Map<String, String> data = new HashMap<>();
+                            data.put("closetChoiceDocName", closetDocName);
+                            db.collection("users").document(currentUSer).set(data, SetOptions.merge());
+                        }
+                    });
+                }
+            }
+            else if(checkmatch.equals("FootWear"))
+            {
+                HostActivity activity = mActivityWeakReference.get();
+                if (activity != null && !activity.isFinishing()) {
+                    String currentUSer = mAuth.getCurrentUser().getUid();
+                    Map<String, String> data = new HashMap<>();
+                    data.put("AnalysisText", result);
+                    db.collection("users").document(currentUSer)
+                            .collection("FootWear").document(closetDocName)
+                            .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Map<String, String> data = new HashMap<>();
+                            data.put("closetChoiceDocName", closetDocName);
+                            db.collection("users").document(currentUSer).set(data, SetOptions.merge());
+                        }
+                    });
+                }
+            }
+            else if(checkmatch.equals("FashionAccessories"))
+            {
+                HostActivity activity = mActivityWeakReference.get();
+                if (activity != null && !activity.isFinishing()) {
+                    String currentUSer = mAuth.getCurrentUser().getUid();
+                    Map<String, String> data = new HashMap<>();
+                    data.put("AnalysisText", result);
+                    db.collection("users").document(currentUSer)
+                            .collection("FashionAccessories").document(closetDocName)
+                            .set(data, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Map<String, String> data = new HashMap<>();
+                            data.put("closetChoiceDocName", closetDocName);
+                            db.collection("users").document(currentUSer).set(data, SetOptions.merge());
+                        }
+                    });
+                }
+            }
+
+
+
         }
+
 
     }
 

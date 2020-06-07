@@ -75,7 +75,7 @@ import static android.app.Activity.RESULT_OK;
 public class RatingFragment extends Fragment {
 
 
-    ////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////
     public static final String MODEL_PATH = "model.tflite";
     public static final boolean QUANT = true;
     public static final String LABEL_PATH = "dict.txt";
@@ -87,7 +87,7 @@ public class RatingFragment extends Fragment {
     private Classifier classifier;
 
     private Executor executor = Executors.newSingleThreadExecutor();
-    ////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////
 
     private static final String CLOUD_VISION_API_KEY = "AIzaSyBYZftL8rp5UhFUPMHM_1dJ-3tfqNVN34E";
     private static final String ANDROID_CERT_HEADER = "X-Android-Cert";
