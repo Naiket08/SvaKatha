@@ -145,7 +145,7 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     private int shuffledListIndex = 0;
     private int size;
     private View view;
-    public Uri uri;
+    public Uri uri,uri2;
 
     ImageButton imageButtonRandomImage;
     public Boolean str = false,i=true;
@@ -159,6 +159,12 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initFirebase();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDataFromDb();
     }
 
     @Override
@@ -272,7 +278,10 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
 
             }
         });
+        /////////////////////////
 
+       ivShowcase.setImageURI(uri2);
+//////////////////////////////////
         return view;
 
     }
@@ -491,6 +500,7 @@ public class ClosetFragment extends Fragment implements ClosetFragmentListener {
             Toast.makeText(mContext,"Uploading Image, please wait",Toast.LENGTH_LONG).show();
             ////////////////////////////////////////////////////////
             Uri imageUri = data.getData();
+            uri2 =imageUri;
 
             // declare a stream to read the image data from the SD Card.
             InputStream inputStream1;
